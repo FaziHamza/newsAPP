@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&family=Roboto+Serif:ital,opsz,wght@0,8..144,300;0,8..144,400;0,8..144,500;0,8..144,700;0,8..144,900;1,8..144,300;1,8..144,400;1,8..144,500;1,8..144,700;1,8..144,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url("https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css");
+
+:root {
+  --font-family: 'Noto Sans', sans-serif;
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --color-dark4: #0f2d37;
+  --color-dark3: #001e28;
+  --color-dark2: #00141e;
+  --color-dark1: #010a0f;
+  --color-dark1-transparent: #010a0fbf;
+
+  --color-light4: #999;
+  --color-light3: #aaa;
+  --color-light2: #ccc;
+  --color-light1: #fff;
+  --color-light1-transparent: #ffffffbf;
+
+  --color-white: #fff;
+  --color-black: #000;
+
+  --color-red: #c80037;
+  --color-red-transparent: #c8003576;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.4rem;
+}
+
+
+.logo-image {
+  text-align: center;
+}
+
+.logo-image img {
+  height: 60px;
+}
+
+.main-header {
+  width: 100%;
+  background: #c10206;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px;
+}
+
+.main-header .item {
+  padding: 0px 15px;
+
+}
+
+.league-card .date {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.league-card .date p {
+  font-size: 14px;
+  color: black;
+  margin-bottom: 0px;
+  font-weight: 600;
+}
+
+.league-card {
+  width: 100%;
+  min-height: 200px;
+  background: white;
+  padding: 10px;
+}
+
+.league-card .banner {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 15px;
+}
+
+.league-card .banner img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+
+
+}
+
+.league-card .content p {
+  font-size: 14px;
+  color: black;
+  margin-bottom: 0px;
+}
+
+.suggested-card {
+  margin-top: 10px;
+  width: 100%;
+  min-height: 150px;
+  padding: 10px;
+  background: white;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.suggested-card .banner {
+  width: 85%;
+  height: 120px;
+
+}
+
+.suggested-card .content {
+  width: 100%;
+  padding: 0px 15px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.suggested-card .content h6 {
+  font-size: 14px;
+  color: black;
+  margin-bottom: 0px;
+}
+
+.suggested-card .content p {
+  font-size: 14px;
+  margin: 0px;
+  color: black;
+}
+
+.suggested-card .banner img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+body {
+    font-family: "Lato", sans-serif;
+}
+
+/* .side-width{
+} */
+.sidenav.open {
+  /* Apply styles when the sidebar is open, e.g., setting the width */
+  width: calc(100vw - 55px);
+}
+.sidenav {
+    height: 100%;
+    /* width: 0; */
+    /* width: calc(100vw - 45px); */
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    scrollbar-width: thin;
+    scrollbar-color: #000;
+    scrollbar-track-color: #fff;
+}
+
+.sidenav::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidenav::-webkit-scrollbar-track {
+    color: #fff;
+}
+
+.sidenav::-webkit-scrollbar-thumb {
+    color: #000;
+    border-radius: 50%;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 11px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+
+
+.sidenav .nav-item {
+    padding: 8px 22px 8px 32px;
+    /* padding-right: 22px; */
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    width: 100%;
+    transition: 0.3s;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(250, 250, 250, .1);
+}
+
+.sidenav .nav-item:hover {
+    color: #f1f1f1;
+}
+
+.nav-item-child {
+    margin-bottom: 0;
+}
+
+.chevron-up {
+    display: none;
+}
+
+.nav-item-sub-child {
+    list-style-type: none;
+    color: #818181;
+    cursor: pointer;
+    padding-right: 32px;
+    background: #444;
+    padding: 5px 3px;
+
+}
+
+.nav-item-sub-child li {
+    padding: 3px 32px;
+    width: 100%;
+    font-size: 15px;
+    border-radius: 2px;
+}
+
+.nav-item-sub-child li:hover {
+    color: #fff;
+    background-color: #818181;
+}
+
+.nav-item.collapsed .chevron-down {
+  display: none;
+}
+
+.nav-item.collapsed .chevron-up {
+  display: inline-block;
+}

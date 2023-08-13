@@ -1,0 +1,19 @@
+.adMobile {
+  display: block;
+  position: fixed;
+  z-index: 20;
+  bottom: 10px;
+  left: calc(50% - 200px);
+  width: 400px;
+  height: 100px;
+  overflow: hidden;
+  background-color: var(--color-ad-secondary);
+}
+
+.adMobile img {
+  position: absolute;
+  top: 40px;
+  left: 3rem;
+  width: 150px;
+  height: auto;
+}

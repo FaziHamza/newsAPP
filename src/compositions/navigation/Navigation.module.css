@@ -1,0 +1,16 @@
+.navigation {
+  position: fixed;
+  width: 100%;
+  margin-top: 4rem;
+  padding: 1.3rem;
+}
+
+.navigation ul {
+  display: flex;
+  position: relative;
+  list-style: none;
+  overflow-x: hidden;
+  gap: 2rem;
+  /* scrollbar-width: none; */
+  padding: 0;
+}

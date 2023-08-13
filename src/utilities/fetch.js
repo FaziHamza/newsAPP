@@ -1,0 +1,58 @@
+import { addresses } from './config';
+
+const fetchGetFunction = (url) =>
+  fetch(url, {
+    headers: {
+      'content-type': 'application/json',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Access-Control-Allow-Origin': '*',
+    },
+    cache: 'no-store', // Ignore cached data and force a fresh request
+
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error('Error', error);
+    });
+
+const fetchPostFunction = (url, body) =>
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Access-Control-Allow-Origin': '*',
+    },
+    cache: 'no-store', // Ignore cached data and force a fresh request
+
+    body: JSON.stringify(body),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      debugger
+      return data;
+    })
+    .catch((error) => {
+      console.error('Error', error);
+    });
+
+export const fetchConfig = (windowHref) => fetchGetFunction(`${'http://localhost/SportifiedSpot'}/api/DataFeed/GetConfig`);
+
+export const fetchArticleTable = (topic) =>{
+  debugger
+  fetchGetFunction(`${'http://localhost/SportifiedSpot'}/GetArticles/${topic}`);
+
+}
+
+export const fetchArticle = (id) => fetchGetFunction(`${addresses.baseUrl}/GetFromArticles/${id}`);
+
+export const fetchNewsTable = (address) => fetchGetFunction(address);
+
+export const fetchNews = (id) => fetchGetFunction(`${addresses.baseUrl}/GetFromNews/${id}`);
+
+export const fetchFiltered = (requestBody) =>
+  fetchPostFunction(`${addresses.baseUrl}/GetFilteredContent`, requestBody);

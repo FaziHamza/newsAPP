@@ -1,0 +1,33 @@
+.ad {
+  display: block;
+  position: relative;
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+  background-color: var(--color-ad-secondary);
+}
+
+.ad img {
+  position: absolute;
+  top: 40px;
+  left: 3rem;
+  width: 150px;
+  height: auto;
+}
+
+.ad::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -50px;
+  background-color: var(--color-ad-primary);
+  width: 250px;
+  height: 100px;
+  transform: skewX(-45deg);
+  border-radius: 30px 0 0 0;
+}
+
+.ad button {
+  width: 3rem;
+  height: 2rem;
+}

@@ -1,0 +1,8 @@
+.icon {
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-background-tertiary);
+  border-radius: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
