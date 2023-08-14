@@ -9,7 +9,8 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
   console.log(navList)
   const navMore = navList.slice(inMain, navList.length);
     const [isOpen, setIsOpen] = useState(false); // Initially closed
-
+    const filteredNavItems = navMore.filter(item => item.Name === "SHL" || item.Name === "ALLSVENSKAN");
+  console.log(filteredNavItems)
   const openNav = () => {
     setIsOpen(true);
   };
@@ -17,6 +18,13 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
   const closeNav = () => {
     setIsOpen(false);
   };
+
+
+  //const shlObject = filteredNavItems.find(item => item.Name === "SHL");
+  //console.log(shlObject)
+  // if (shlObject) {
+  //   shlObject.items = [...shlObject.Items, ...newItems];
+  // }
 
   return (
     
@@ -84,18 +92,18 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                 </li>
               );
             })} */}
-      {navMore.map((moreItem) => {
-         const [navType, navTopic, navAddress] = moreItem.SearchItems.news
-         ? [
-             'news',
-             moreItem.Name.toLowerCase().replace(/\s/g, '_'),
-             moreItem.SearchItems.news,
-           ]
-         : [
-             'articles',
-             moreItem.Name.toLowerCase().replace(/\s/g, '_'),
-             moreItem.SearchItems.articles,
-           ];
+      {filteredNavItems.map((moreItem) => {
+        //  const [navType, navTopic, navAddress] = moreItem.SearchItems.news
+        //  ? [
+        //      'news',
+        //      moreItem.Name.toLowerCase().replace(/\s/g, '_'),
+        //      moreItem.SearchItems.news,
+        //    ]
+        //  : [
+        //      'articles',
+        //      moreItem.Name.toLowerCase().replace(/\s/g, '_'),
+        //      moreItem.SearchItems.articles,
+        //    ];
         return (
           <div key={moreItem.Name}>
           <a href="#" data-bs-toggle="collapse" data-bs-target={`#${moreItem.Name.toLowerCase().replace(/\s+/g, '-')}`} className="nav-item collapsed" aria-expanded="false">
@@ -105,15 +113,60 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
           </a>
           <div id={moreItem.Name.toLowerCase().replace(/\s+/g, '-')} className="collapse">
             <ul className="nav-item-sub-child">
-          
-                {moreItem.Items.map((item, i) => (
-            <li key={item.Name}>
-              <NavLink to={`${navType}/${navTopic}`}
-                state={{ address: navAddress, subTopics: moreItem.Items, Name: moreItem.Name }}>
-                {item.Name}
-              </NavLink>
-            </li>
-          ))}
+
+            {moreItem.Items.map((team) => {
+        const [navType, navTopic, navAddress] = team.SearchItems.news
+          ? ['news', team.Name.toLowerCase().replace(/\s/g, '_'), team.SearchItems.news]
+          : ['articles', team.Name.toLowerCase().replace(/\s/g, '_'), team.SearchItems.articles];
+
+        return (
+          <li key={team.Name}>
+            <Link
+              to={`../${navType}/${navTopic}`}
+              state={{
+                address: navAddress,
+                subTopics: team.Items,
+                Name: team.Name,
+                navType,
+                navTopic,
+              }}
+              name={team.Name}>
+              {team.Name}
+            </Link>
+          </li>
+        );
+      })}
+
+
+
+
+                {/* {moreItem.Items.map((team, i) => (
+
+      <li key={team.Name}>
+            <Link
+              to={`../${navType}/${navTopic}`}
+              state={{
+                address: navAddress,
+                subTopics: team.Items,
+                Name: team.Name,
+                navType,
+                navTopic,
+              }}
+              name={team.Name}>
+              {team.Name}
+            </Link>
+          </li>
+
+
+
+            // <li key={item.Name}>
+            //   <NavLink to={`${navType}/${navTopic}`}
+            //     state={{ address: navAddress, subTopics: moreItem.Items, Name: moreItem.Name }}
+            //     name={moreItem.Name}>
+            //     {item.Name}
+            //   </NavLink>     
+            // </li>
+          ))} */}
 {/* {moreItem.Items.map((item, i) => {
                 console.log(item.Name);
                 <li key={item.Name}><NavLink  to={`${navType}/${navTopic}`}> {item.Name}</NavLink></li>
