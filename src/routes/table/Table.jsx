@@ -34,13 +34,34 @@ const SectionHeader = ({ title = 'missingTitle', listItems }) => {
     </>
   );
 };
+const DisplayComponent = ({ topic }) => {
+  const location = useLocation();
+  const { state } = location;
 
+  // Now you can access the passed state values
+  const moreItemName = state?.moreItemName;
+  const teamName = state?.Name;
+  const defaulttopic = topic?.Name;
+  return (
+    <>
+      {moreItemName && teamName ? (
+        <h4 className="topic-title">{moreItemName} :{teamName}</h4>
+      ) : (
+        <h4 className="topic-title">{defaulttopic}</h4>
+
+      )}
+    </>
+  );
+}
 const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const [settingsInfo, windowHref] = useOutletContext();
   const defaultTopic = settingsInfo.MenuItems[2];
   const { data: tableInfo, status, error, run } = useAsync({ status: 'pending' });
   const { state } = useLocation();
   console.log(state);
+  console.log(tableInfo);
+  console.log(defaultTopic.Name)
+  // console.log(state.Name)
   const [promoVisible, setPromoVisible] = useState(false);
   const isDesktop = useMediaContext();
   const themeVariant = useThemeContext();
@@ -193,10 +214,13 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
               </>
             ) : (
               <>
+
                 {state ? (
-                  <SectionHeader title={state.Name} listItems={state?.subTopics} />
+                  // <SectionHeader title={state.Name} listItems={state?.subTopics} />
+                  < DisplayComponent />
                 ) : (
-                  <SectionHeader title={defaultTopic.Name} listItems={defaultTopic.Items} />
+                  < DisplayComponent topic={defaultTopic.Name}/>
+                  // <SectionHeader title={defaultTopic.Name} listItems={defaultTopic.Items} />
                 )}
                 <main>
 
@@ -238,7 +262,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   : `news/${defaultTopic.Name.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
                                   }`
                               }>
-                            
+
 
                               <StoryMain
                                 description={tileItem._abstract}
@@ -284,7 +308,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                         </>
                       );
                   })}
-                
+
                 </main>
               </>
             )}
