@@ -40,11 +40,11 @@ const fetchPostFunction = (url, body) =>
       console.error('Error', error);
     });
 
-export const fetchConfig = (windowHref) => fetchGetFunction(`${'http://localhost/SportifiedSpot'}/api/DataFeed/GetConfig`);
+export const fetchConfig = (windowHref) => fetchGetFunction(`${'http://localhost:50203'}/api/topics-with-subtopics`);
 
 export const fetchArticleTable = (topic) =>{
   debugger
-  fetchGetFunction(`${'http://localhost/SportifiedSpot'}/GetArticles/${topic}`);
+  fetchGetFunction(`${'http://localhost:50203'}/GetArticles/${topic}`);
 
 }
 

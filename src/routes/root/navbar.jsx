@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { Dropdown } from '../../compositions';
-// import { SideNav } from '../../components';
 import { NavLink, Link } from 'react-router-dom';
 import { SideNav } from '../../compositions';
 
 function Navbar({ className = '', navList, inMain = 4, ...props }) {
   const navMain = navList.slice(0, inMain);
-  console.log(navList)
   const navMore = navList.slice(inMain, navList.length);
-  const [isOpen, setIsOpen] = useState(false); // Initially closed
-  const filteredNavItems = navMore.filter(item => item.Name === "SHL" || item.Name === "ALLSVENSKAN");
+  const [isOpen, setIsOpen] = useState(false);
+  const filteredNavItems = navList
   console.log(filteredNavItems)
+  console.log(navList)
+   console.log(navList[0].Topic)
+   console.log(navList[0].SubTopics)
   const openNav = () => {
     setIsOpen(true);
   };
@@ -20,73 +21,53 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
   };
 
   return (
-
     <div>
       <div id="Sidenav" className={`sidenav ${isOpen ? 'open' : ''}`}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
         {filteredNavItems.map((moreItem) => {
           return (
-            <div key={moreItem.Name}>
-              <a href="#" data-bs-toggle="collapse" data-bs-target={`#${moreItem.Name.toLowerCase().replace(/\s+/g, '-')}`} className="nav-item collapsed" aria-expanded="false">
-                <p className="nav-item-child">{moreItem.Name}</p>
-                <i className="fa-regular fa-chevron-down chevron-up"></i>
-                <i className="fa-regular fa-chevron-up chevron-down"></i>
+            <div key={moreItem.Topic.Name.toUpperCase()}>
+              <a href="#" data-bs-toggle="collapse" data-bs-target={`#${moreItem.Topic.Name.toLowerCase().replace(/\s+/g, '-')}`} className="nav-item collapsed" aria-expanded="false">
+                <p className="nav-item-child">{moreItem.Topic.Name}</p>
+                {moreItem.SubTopics.length > 0 ? (
+                  <>
+                    <i className="fa-regular fa-chevron-down chevron-up"></i>
+                    <i className="fa-regular fa-chevron-up chevron-down"></i>
+                  </>
+                ) : null}
               </a>
-              <div id={moreItem.Name.toLowerCase().replace(/\s+/g, '-')} className="collapse">
+              <div id={moreItem.Topic.Name.toLowerCase().replace(/\s+/g, '-')} className="collapse">
                 <ul className="nav-item-sub-child">
-
-                  {moreItem.Items.map((team) => {
-                    const [navType, navTopic, navAddress] = team.SearchItems.news
-                      ? ['news', team.Name.toLowerCase().replace(/\s/g, '_'), team.SearchItems.news]
-                      : ['articles', team.Name.toLowerCase().replace(/\s/g, '_'), team.SearchItems.articles];
-
+                  {moreItem.SubTopics.map((team) => {
+                    const [navType, navTopic, navAddress] = team.News
+                      ? ['news', team.Name.toLowerCase().replace(/\s/g, '_'), team.News]
+                      : ['articles', team.Name.toLowerCase().replace(/\s/g, '_'), team.Articles];
+                      console.log(team.Articles)
                     return (
                       <li key={team.Name}>
                         <Link
                           to={`../${navType}/${navTopic}`}
                           state={{
                             address: navAddress,
-                            subTopics: team.Items,
+                            //subTopics: team.Items,
                             Name: team.Name,
                             navType,
                             navTopic,
-                            moreItemName: moreItem.Name
+                            moreItemName: moreItem.Topic.Name,
+                            LogoPath:moreItem.Topic.Logo
                           }}
                           name={team.Name}>
                           {team.Name}
                         </Link>
-
-                        {/* <Link
-                          to={{
-                            pathname: `../${navType}/${navTopic}`,
-                            state: {
-                              address: navAddress,
-                              subTopics: team.Items,
-                              Name: team.Name,
-                              navType,
-                              navTopic,
-                              moreItemName: moreItem.Name, // Pass moreItem.Name as part of the state
-                            },
-                          }}
-                          name={team.Name}
-                        >
-                          {team.Name}
-                        </Link> */}
                       </li>
                     );
                   })}
-
                 </ul>
-
-
               </div>
             </div>
-          )
-
-
+          );
         })}
       </div>
-      {/* <SideNav isOpen={isOpen} closeNav={closeNav} /> Pass the state variable here */}
       <span style={{ fontSize: '30px', cursor: 'pointer', color: 'white' }} onClick={openNav}>&#9776;</span>
     </div>
   );

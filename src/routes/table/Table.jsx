@@ -42,12 +42,21 @@ const DisplayComponent = ({ topic }) => {
   const moreItemName = state?.moreItemName;
   const teamName = state?.Name;
   const defaulttopic = topic?.Name;
+  const logoPath=state?.LogoPath
+  console.log(moreItemName)
+  console.log(teamName)
   return (
     <>
-      {moreItemName && teamName ? (
-        <h4 className="topic-title">{moreItemName} :{teamName}</h4>
+      {moreItemName && teamName && logoPath ? (
+        <>
+        
+        <h4 className="topic-title">
+          <img src={logoPath} height={'20px'}/>
+          {/* <img src='https://theblogreaders.com/wp-content/uploads/2015/12/Go.gif ' height={'20px'}/> */}
+           {moreItemName} :{teamName}</h4>
+        </>
       ) : (
-        <h4 className="topic-title">{defaulttopic}</h4>
+        <h4 className="topic-title"> {defaulttopic}</h4>
 
       )}
     </>
@@ -55,19 +64,19 @@ const DisplayComponent = ({ topic }) => {
 }
 const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const [settingsInfo, windowHref] = useOutletContext();
-  const defaultTopic = settingsInfo.MenuItems[2];
+  const defaultTopic = settingsInfo.Default;
   const { data: tableInfo, status, error, run } = useAsync({ status: 'pending' });
   const { state } = useLocation();
   console.log(state);
   console.log(tableInfo);
-  console.log(defaultTopic.Name)
+  console.log(defaultTopic)
   // console.log(state.Name)
   const [promoVisible, setPromoVisible] = useState(false);
   const isDesktop = useMediaContext();
   const themeVariant = useThemeContext();
 
   useEffect(() => {
-    const address = state?.address ?? defaultTopic.SearchItems.news;
+    const address = state?.address ?? 'articles/getarticles?lang=sv&category=Ice%20Hockey&sub1=SHL';
     const tablePromise = () => fetchNewsTable(windowHref + settingsInfo.Api + address);
     run(tablePromise());
   }, [run, state]);
@@ -219,7 +228,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                   // <SectionHeader title={state.Name} listItems={state?.subTopics} />
                   < DisplayComponent />
                 ) : (
-                  < DisplayComponent topic={defaultTopic.Name}/>
+                  < DisplayComponent topic={defaultTopic}/>
                   // <SectionHeader title={defaultTopic.Name} listItems={defaultTopic.Items} />
                 )}
                 <main>
@@ -241,7 +250,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
 
 
                   {/* fazi */}
-                  {tableInfo.map((tileItem, index) => {
+
+                  {tableInfo.length>0 && tableInfo.map((tileItem, index) => {
                     if (index <= topStoryLimit + adSpan)
                       return (
                         <>

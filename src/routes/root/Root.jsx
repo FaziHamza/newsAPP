@@ -28,8 +28,8 @@ const Root = () => {
   };
 
   useEffect(() => {
-    const settingsPromise = fetchConfig(`http://localhost/SportifiedSpot/`);
-    setWindowHref(`http://localhost/SportifiedSpot/`);
+    const settingsPromise = fetchConfig(`http://localhost:50203/`);
+    setWindowHref(`http://localhost:50203/`);
     run(settingsPromise);
   }, []);
 
@@ -48,6 +48,7 @@ const Root = () => {
         return <div>Error: Missing settings information</div>;
       }
       const fullInfo = [settingsInfo, windowHref];
+      console.log(fullInfo)
       return (
         
         <MediaQueryProvider>
@@ -74,7 +75,7 @@ const Root = () => {
                   </div>
                 </div>
               </header>
-              <Navigation className="nav-main" navList={settingsInfo.MenuItems} />
+              {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
               <Outlet context={fullInfo} />
             </div>
           </ThemeQueryProvider>
