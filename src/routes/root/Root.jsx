@@ -62,9 +62,9 @@ const Root = () => {
                   {/* <span style={{ fontSize: '30px', cursor: 'pointer' }}>&#9776;</span> */}
 
                   </div>
-                  <div className='item'><Logo href="/" alt={'logo'} /></div>
-                  <div className='item'>
-                    {/* 000 */}
+                  <div className='item'><Logo name={'Logo'} href="/" alt={'logo'} /></div>
+                  <div className='item'><Logo name={'Flag'}href="/" alt={'logo'} /></div>
+                  {/* <div className='item'>
                     
                     <Icon
                       onClick={() => toggleTheme(themeVariant, 'dark', 'light')}
@@ -72,7 +72,8 @@ const Root = () => {
                       className={themeIcon.className}
                       title={themeIcon.themeText}
                     />
-                  </div>
+                  </div> */}
+
                 </div>
               </header>
               {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}

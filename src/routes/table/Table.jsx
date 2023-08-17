@@ -34,34 +34,7 @@ const SectionHeader = ({ title = 'missingTitle', listItems }) => {
     </>
   );
 };
-const DisplayComponent = ({ topic }) => {
-  const location = useLocation();
-  const { state } = location;
 
-  // Now you can access the passed state values
-  const moreItemName = state?.moreItemName;
-  const teamName = state?.Name;
-  const defaulttopic = topic?.Name;
-  const logoPath=state?.LogoPath
-  console.log(moreItemName)
-  console.log(teamName)
-  return (
-    <>
-      {moreItemName && teamName && logoPath ? (
-        <>
-        
-        <h4 className="topic-title">
-          <img src={logoPath} height={'20px'}/>
-          {/* <img src='https://theblogreaders.com/wp-content/uploads/2015/12/Go.gif ' height={'20px'}/> */}
-           {moreItemName} :{teamName}</h4>
-        </>
-      ) : (
-        <h4 className="topic-title"> {defaulttopic}</h4>
-
-      )}
-    </>
-  );
-}
 const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const [settingsInfo, windowHref] = useOutletContext();
   const defaultTopic = settingsInfo.Default;
@@ -111,7 +84,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                   {state ? (
                     <SectionHeader title={state.Name} listItems={state?.subTopics} />
                   ) : (
-                    <SectionHeader title={defaultTopic.Name} listItems={defaultTopic.Items} />
+                    <SectionHeader title={defaultTopic} listItems={defaultTopic.Items} />
                   )}
 
                   <Link
@@ -125,7 +98,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                     to={
                       state
                         ? tableInfo[0]?._id
-                        : `news/${defaultTopic.Name.toLowerCase().replace(/\s/g, '_')}/${tableInfo[0]?._id
+                        : `news/${defaultTopic.toLowerCase().replace(/\s/g, '_')}/${tableInfo[0]?._id
                         }`
                     }>
                     <StoryTile
@@ -224,13 +197,13 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
             ) : (
               <>
 
-                {state ? (
+                {/* {state ? (
                   // <SectionHeader title={state.Name} listItems={state?.subTopics} />
                   < DisplayComponent />
                 ) : (
                   < DisplayComponent topic={defaultTopic}/>
                   // <SectionHeader title={defaultTopic.Name} listItems={defaultTopic.Items} />
-                )}
+                )} */}
                 <main>
 
 
@@ -269,7 +242,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                               to={
                                 state
                                   ? tileItem._id
-                                  : `news/${defaultTopic.Name.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
+                                  : `news/${defaultTopic.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
                                   }`
                               }>
 
@@ -297,7 +270,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             to={
                               state
                                 ? tileItem._id
-                                : `news/${defaultTopic.Name.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
+                                : `news/${defaultTopic.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
                                 }`
                             }>
 
