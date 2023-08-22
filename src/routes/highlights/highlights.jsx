@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import {useLocation } from 'react-router-dom';
 const highlightsData =  [
     {
         "title": "Manchester City - Newcastle United",
@@ -350,7 +350,8 @@ const highlightsData =  [
 const HighlightsList = () => {
     const [showModal, setShowModal] = useState(false);
     const [videoEmbed, setVideoEmbed] = useState('');
-  
+    const location = useLocation();
+    const { state } = location;
     const handleVideoClick = (embedCode) => {
       setVideoEmbed(embedCode);
       setShowModal(true);
@@ -360,11 +361,12 @@ const HighlightsList = () => {
       setShowModal(false);
       setVideoEmbed('');
     };
-  
+    const SubTopicId=state?.subtopicId;
+    const TopicId=state?.topicId;
     return (
       <div className='highlightbox'>
           <div className="league-card1">
-          <h1>Match Highlights</h1>
+          <h1>Match Highlights  TopicId:{TopicId} SubTopicId:{SubTopicId} </h1>
           <ul>
             {highlightsData.map((highlight, index) => (
               <li key={index} className="highlight-item league-card">

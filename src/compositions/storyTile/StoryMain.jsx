@@ -10,11 +10,14 @@ const DisplayComponent = ({ topic }) => {
   const { state } = location;
 
   // Now you can access the passed state values
+
   const moreItemName = state?.moreItemName;
   const teamName = state?.Name;
   const defaulttopic = topic?.Name;
   const logoPath = state?.LogoPath;
-  const teamLogoPath = state?.LogoTeam
+  const teamLogoPath = state?.LogoTeam;
+  const SubTopicId=state?.SubTopicId;
+  const TopicId=state?.TopicId;
   const IsSql = state?.IsSql;
 
   return (
@@ -30,7 +33,7 @@ const DisplayComponent = ({ topic }) => {
               <img src={teamLogoPath} height={'20px'} />
               {teamName}
             </div>
-            <Link to="/highlights">
+            <Link to="/highlights" state={{topicId:TopicId,subtopicId:SubTopicId}}>
               <div className="highlights">
                 Video
                 <img src={video_play} height={'20px'} />

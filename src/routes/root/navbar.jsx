@@ -8,10 +8,10 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
   const navMore = navList.slice(inMain, navList.length);
   const [isOpen, setIsOpen] = useState(false);
   const filteredNavItems = navList
-  console.log(filteredNavItems)
-  console.log(navList)
-   console.log(navList[0].Topic)
-   console.log(navList[0].SubTopics)
+  // console.log(filteredNavItems)
+  // console.log(navList)
+  //  console.log(navList[0].Topic)
+  //  console.log(navList[0].SubTopics)
   const openNav = () => {
     setIsOpen(true);
   };
@@ -50,9 +50,11 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                             address: navAddress,
                             //subTopics: team.Items,
                             Name: team.Name,
+                            TopicId:team.TopicID,
                             navType,
                             navTopic,
                             moreItemName: moreItem.Topic.Name,
+                            SubTopicId:team.SubTopicID,
                             LogoPath:moreItem.Topic.Logo,
                             LogoTeam:team.Logo,
                             IsSql:!team.News,
