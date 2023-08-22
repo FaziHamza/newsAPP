@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Root, ErrorPage, Table, Article, topicLoader, articleLoader } from './routes';
+import { Root, ErrorPage, Table, Article, topicLoader, articleLoader ,Highlights  } from './routes';
 import './main.css';
 
 const router = createBrowserRouter([
@@ -13,6 +13,8 @@ const router = createBrowserRouter([
       { index: true, element: <Table />, loader: topicLoader },
       { path: ':type/:topic', element: <Table />, loader: topicLoader },
       { path: ':type/:topic/:id', element: <Article />, loader: articleLoader },
+      { path: 'highlights', element: <Highlights /> }, // <-- Add this line
+
     ],
   },
 ]);

@@ -109,7 +109,6 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                       time={tableInfo[0]?._published}
                     />
                   </Link>
-                  asdasasd
                 </main>
                 <div className="top-articles">
                   {/* fazi */}

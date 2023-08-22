@@ -9,5 +9,11 @@ export { default as googlePlayRemote } from './images/google-play-remote.jpg';
 export { default as newsLogo } from './images/newsLogo.png';
 export { default as logo } from './images/logo.png';
 export { default as flag } from './images/flag.png';
+export { default as video_play } from './images/video_play.png';
+export { default as AFP_news } from './images/AFP_news.png';
+export { default as sportspotsverige } from './images/sportspotsverige.png';
+
+
+
 
 

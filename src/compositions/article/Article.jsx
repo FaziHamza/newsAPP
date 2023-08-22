@@ -96,15 +96,15 @@ const Article = ({ articleChosen, chooseArticle, className = '' }) => {
             </>
           ) : (
             <main className={`article ${className}`.trim()}>
-              <h2>{articleInfo._title}</h2>
-              <figure>
+              <h2 className='artical-detail' >{articleInfo._title}</h2>
+              <figure className='artical-detail'>
                 <img
                   src={addresses.baseUrl + '/' + articleInfo.imageUrl}
                   alt={articleInfo.imageUrl}
                 />
               </figure>
-              <h4>{articleInfo.title}</h4>
-              <p>
+              <h4 >{articleInfo.title}</h4>
+              <p className='artical-detail-box'>
                 <ContentParsed content={articleInfo.fullContent} />
               </p>
             </main>

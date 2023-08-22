@@ -42,7 +42,6 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                     const [navType, navTopic, navAddress] = team.News
                       ? ['news', team.Name.toLowerCase().replace(/\s/g, '_'), team.News]
                       : ['articles', team.Name.toLowerCase().replace(/\s/g, '_'), team.Articles];
-                      console.log(team.Articles)
                     return (
                       <li key={team.Name}>
                         <Link
@@ -54,7 +53,10 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                             navType,
                             navTopic,
                             moreItemName: moreItem.Topic.Name,
-                            LogoPath:moreItem.Topic.Logo
+                            LogoPath:moreItem.Topic.Logo,
+                            LogoTeam:team.Logo,
+                            IsSql:!team.News,
+
                           }}
                           name={team.Name}>
                           {team.Name}

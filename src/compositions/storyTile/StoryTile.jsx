@@ -1,41 +1,44 @@
 import { timeQuery } from '../../utilities/timeQuery';
-
+import { json, useLocation } from 'react-router-dom';
+import { sportspotsverige,AFP_news } from '../../assets';
 const StoryTile = ({ description, className = '', src, alt, time }) => {
+  const location = useLocation();
+  const { state } = location;
+  const IsSql = state?.IsSql;
+  const imageUrl = IsSql
+  ? sportspotsverige
+  : AFP_news;
+
   const days = () => {
-    const day = Math.floor(timeQuery(time));
-    switch (true) {
-      case day < 1:
-        return 'last 24 hours';
-      case day >= 1 && day < 2:
-        return `${day} day ago`;
-      case day > 2:
-        return `${day} days ago`;
-      default:
-        return 'no date';
+    const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
+    const day = Math.floor(timeDifference / 24);
+    const hours = timeDifference % 24;
+
+    if (timeDifference < 24) {
+      return `${hours} Tim`; // Swedish for hours
+    } else {
+      return `${day} Dag`; // Swedish for days
     }
   };
 
   console.log(days);
+  const sanitizedSrc = src.replace(/([^:]\/)\/+/g, "$1");
 
   return (
     <>
-      {/* <div className={`story-tile ${className}`.trim()}> */}
-        {/* <figure>
-          <img src={src} alt={alt} />
-        </figure>
-        <p>{description}</p>
-        <span>{days()}</span> */}
-      {/* </div> */}
 
-                   <div className='suggested-card'>
-                    <div className='banner'>
-                    <img src={src} alt={alt} />
-                    </div>
-                    <div className='content'>
-                    <p>{description}</p>
-                      <h6>{days()}</h6>
-                    </div>
-                  </div>
+      <div className='suggested-card'>
+        <div className='banner'>
+          <img src={sanitizedSrc} alt={alt} />
+
+        </div>
+        <div className='content'>
+          <p>{description}</p>
+          <h6>{days()} 
+          <img src={imageUrl} alt="" />
+          </h6>
+        </div>
+      </div>
     </>
   );
 };

@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700;800;900&display=swap');
+
+body {
+  font-family: 'Source Sans 3', sans-serif !important;
+}
+
 .dark-theme {
   --color-font-main: var(--color-light1);
   --color-font-hover: var(--color-light4);
@@ -48,7 +54,7 @@ header {
   background-color: var(--color-background-main);
 }
 
-header > div {
+header>div {
   display: flex;
   display: -webkit-flex;
   justify-content: flex-end;
@@ -56,7 +62,7 @@ header > div {
   gap: 8px;
 }
 
-header > .title-section {
+header>.title-section {
   color: var(--color-alert)
 }
 
@@ -78,6 +84,7 @@ nav a:hover {
 .contrast-circle {
   position: relative;
 }
+
 .contrast-circle::after {
   display: block;
   content: '\25D1';
@@ -141,7 +148,8 @@ nav a:hover {
   transform: scale(1, 0.5);
 }
 
-.nav-main .dropdown-title:hover, .nav-main .dropdown-title:hover::after {
+.nav-main .dropdown-title:hover,
+.nav-main .dropdown-title:hover::after {
   transition: 0.3s color;
   color: var(--color-font-hover);
 }
@@ -185,7 +193,7 @@ nav a:hover {
 }
 
 main {
-  padding: 19rem 1.3rem 0 1.3rem;
+  padding: 10.5rem 1.3rem 0 1.3rem;
   background-color: var(--color-background-secondary);
 }
 
@@ -194,7 +202,8 @@ main {
   margin: 0;
 }
 
-.topic-container .dropdown-title, .topic-title {
+.topic-container .dropdown-title,
+.topic-title {
   display: flex;
   position: fixed;
   z-index: 25;
@@ -223,7 +232,7 @@ main {
   position: relative;
 }
 
-.topic-container .dropdown-list > ul {
+.topic-container .dropdown-list>ul {
   display: grid;
   position: absolute;
   top: 14rem;
@@ -237,7 +246,7 @@ main {
   list-style: none;
 }
 
-.topic-container .dropdown-list > ul > li {
+.topic-container .dropdown-list>ul>li {
   display: flex;
   height: 8rem;
   background-color: var(--color-background-main);
@@ -249,7 +258,7 @@ main {
   overflow: hidden;
 }
 
-.topic-container .dropdown-list > ul > li:hover {
+.topic-container .dropdown-list>ul>li:hover {
   transition: background-color 0.3s;
   background-color: var(--color-background-secondary);
 }
@@ -266,7 +275,8 @@ main {
   display: none;
 }
 
-.main-title, article {
+.main-title,
+article {
   margin: 0;
   padding: 2rem 0;
   text-transform: capitalize;
@@ -285,13 +295,15 @@ main {
   flex-basis: 300px;
   flex-shrink: 0;
   overflow: hidden;
- }
+}
 
-.story-tile figure, .article figure {
+.story-tile figure,
+.article figure {
   margin: 0;
 }
 
-.story-tile img, .article img {
+.story-tile img,
+.article img {
   width: 100%;
   height: auto;
   border-radius: 8px;
@@ -343,12 +355,13 @@ aside .tile-m p {
 }
 
 .article {
-   color: var(--color-font-main);
+  color: var(--color-font-main);
 }
 
 .article h2 {
-  font-size: 2.8rem;
-  line-height: 3.4rem;
+  font-size: 22px;
+  font-weight: 600;
+  /* line-height: 3.4rem; */
 }
 
 .article h4 {
@@ -357,7 +370,7 @@ aside .tile-m p {
 }
 
 .article p {
-  font-size: 1.4rem;
+  font-size: 16px;
   line-height: 2.5rem;
 }
 
@@ -376,18 +389,19 @@ aside .tile-m p {
     /* padding: 0 calc(50% - 510px) 0 calc(50% - 510px); */
   }
 
-  header > .title-section {
+  header>.title-section {
     font-size: 2rem;
   }
 
-  .topic-container .dropdown-title, .topic-title {
+  .topic-container .dropdown-title,
+  .topic-title {
     position: relative;
     top: 0;
     width: auto;
-      padding: 0 0 3rem 0;
+    padding: 0 0 3rem 0;
   }
 
-  .topic-container .dropdown-list > ul {
+  .topic-container .dropdown-list>ul {
     top: 0;
     width: 100%;
     margin-top: 0;
@@ -402,7 +416,7 @@ aside .tile-m p {
     height: 60px;
     padding: 0 calc(50% - 510px);
     border-bottom: solid var(--color-background-main) 2px;
-    margin-bottom: 3rem; 
+    margin-bottom: 3rem;
   }
 
   .story-tile {
@@ -414,7 +428,7 @@ aside .tile-m p {
   .divider-solid {
     display: none;
   }
-  
+
   .nav-main ul li {
     padding: 2rem 0;
   }
@@ -448,7 +462,7 @@ aside .tile-m p {
     display: block;
     position: absolute;
     right: calc(50% - 510px);
-    top:200px;
+    top: 200px;
     width: 300px;
   }
 
@@ -462,7 +476,7 @@ aside .tile-m p {
 
   .story-tile {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     column-gap: 3rem;
     row-gap: 1rem;
   }
@@ -477,6 +491,94 @@ aside .tile-m p {
 }
 
 @keyframes pulsing {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.topic img {
+  height: 20px !important;
+  width: auto !important;
+  margin-right: 6px;
+}
+
+.topic .title {
+  margin-left: 10px;
+
+}
+
+.topic {
+  display: flex;
+  justify-content: space-between;
+  /* height: 50px; */
+  align-items: center;
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0 0 9px 0;
+  font-size: 12px;
+}
+
+.topic img {
+  width: 42px;
+  background-size: cover;
+  height: 50px;
+}
+
+.highlights img {
+  margin-left: 6px;
+  margin-right: 0px;
+
+}
+
+
+.artical-detail {
+  padding: 7px 10px;
+  background: white !important;
+  margin: 0px;
+}
+
+.artical-detail-box {
+  padding: 7px 10px;
+  background: white !important;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.league-card ul {
+  padding-left: 0rem;
+}
+
+.highlightbox {
+  padding: 10.5rem 1.3rem 0 1.3rem;
+  background-color: var(--color-background-secondary);
+}
+
+.highlightbox .highlight-item button {
+  background: #c10206;
+  margin-bottom: 2px  ;
+}
+.highlightbox h2  {
+  margin-top: 13px;
+}
+
+element.style {
+}
+dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+ol, ul {
+    padding-left: 0rem;
+}
+.highlightbox .league-card1 h1{
+  margin-top: 0;
+  margin-bottom: -0.5rem;
+  font-weight: 500;
+  background: white;
+  line-height: 2.2;
+  padding: 0 0 0px 11px;
+  color: var(--bs-heading-color);
 }

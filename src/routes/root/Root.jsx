@@ -28,8 +28,8 @@ const Root = () => {
   };
 
   useEffect(() => {
-    const settingsPromise = fetchConfig(`http://localhost:50203/`);
-    setWindowHref(`http://localhost:50203/`);
+    const settingsPromise = fetchConfig(`http://localhost/SportifiedSpot//`);
+    setWindowHref(`http://localhost/SportifiedSpot//`);
     run(settingsPromise);
   }, []);
 

@@ -1,5 +1,9 @@
 import { timeQuery } from '../../utilities/timeQuery';
-import { useLocation } from 'react-router-dom';
+import { json, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { video_play } from '../../assets';
+import { sportspotsverige,AFP_news } from '../../assets';
+
 
 const DisplayComponent = ({ topic }) => {
   const location = useLocation();
@@ -9,18 +13,30 @@ const DisplayComponent = ({ topic }) => {
   const moreItemName = state?.moreItemName;
   const teamName = state?.Name;
   const defaulttopic = topic?.Name;
-  const logoPath=state?.LogoPath
-  console.log(moreItemName)
-  console.log(teamName)
+  const logoPath = state?.LogoPath;
+  const teamLogoPath = state?.LogoTeam
+  const IsSql = state?.IsSql;
+
   return (
     <>
       {moreItemName && teamName && logoPath ? (
         <>
-        
-        <h4 className="title">
-          <img src={logoPath} height={'20px'}/>
-          {/* <img src='https://theblogreaders.com/wp-content/uploads/2015/12/Go.gif ' height={'20px'}/> */}
-           {moreItemName} :{teamName}</h4>
+          <div className="topic" >
+            <div>
+              <img src={logoPath} height={'20px'} />
+              {moreItemName}
+            </div>
+            <div className="title">
+              <img src={teamLogoPath} height={'20px'} />
+              {teamName}
+            </div>
+            <Link to="/highlights">
+              <div className="highlights">
+                Video
+                <img src={video_play} height={'20px'} />
+              </div>
+            </Link>
+          </div>
         </>
       ) : (
         <h4 className="title"> {defaulttopic}</h4>
@@ -30,36 +46,42 @@ const DisplayComponent = ({ topic }) => {
   );
 }
 const StoryMain = ({ description, className = '', src, alt, time }) => {
+  const location = useLocation();
+  const { state } = location;
+  const IsSql = state?.IsSql;
+  const imageUrl = IsSql
+    ? sportspotsverige
+    : AFP_news;
+
   const days = () => {
-    const day = Math.floor(timeQuery(time));
-    switch (true) {
-      case day < 1:
-        return 'last 24 hours';
-      case day >= 1 && day < 2:
-        return `${day} day ago`;
-      case day > 2:
-        return `${day} days ago`;
-      default:
-        return 'no date';
+    const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
+    const day = Math.floor(timeDifference / 24);
+    const hours = timeDifference % 24;
+
+    if (timeDifference < 24) {
+      return `${hours} Tim`; // Swedish for hours
+    } else {
+      return `${day} Dag`; // Swedish for days
     }
   };
 
   // console.log(days);
+  const sanitizedSrc = src.replace(/([^:]\/)\/+/g, "$1");
 
   return (
     <>
-
-
       <div className='league-card'>
-      < DisplayComponent />
+        < DisplayComponent />
         <div className='banner'>
-          <img src={src} alt={alt} />                     </div>
+          <img src={sanitizedSrc} alt={alt} />
+        </div>
         <div className='content'>
           <p>
             {description}
           </p>
           <div className='date'>
-            <p>{days()}</p>
+            <p>{days()}
+              <img src={imageUrl} alt="" /></p>
           </div>
         </div>
       </div>

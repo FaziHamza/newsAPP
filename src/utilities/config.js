@@ -1,7 +1,7 @@
 // Address config
 export const addresses = {
-  settingsUrl: 'http://localhost:50203topics-with-subtopics',
+  settingsUrl: 'http://localhost/SportifiedSpot/topics-with-subtopics',
   // settingsUrl: 'https://sportspotsverige.se/api/DataFeed',
-  baseUrl: 'http://localhost:50203',
+  baseUrl: 'http://localhost/SportifiedSpot/',
   // baseUrl: 'https://sportspotsverige.se',
 };
