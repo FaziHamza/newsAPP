@@ -5,7 +5,7 @@ const fetchGetFunction = (url) =>
     headers: {
       'content-type': 'application/json',
       'Accept-Encoding': 'gzip, deflate, br',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'http://localhost:5173',
     },
     cache: 'no-store', // Ignore cached data and force a fresh request
 
@@ -40,11 +40,11 @@ const fetchPostFunction = (url, body) =>
       console.error('Error', error);
     });
 
-export const fetchConfig = (windowHref) => fetchGetFunction(`${'http://localhost/SportifiedSpot/'}/api/topics-with-subtopics`);
+export const fetchConfig = (windowHref) => fetchGetFunction(`${addresses.baseUrl}api/topics-with-subtopics`);
 
 export const fetchArticleTable = (topic) =>{
   debugger
-  fetchGetFunction(`${'http://localhost/SportifiedSpot/'}/GetArticles/${topic}`);
+  fetchGetFunction(`${addresses.baseUrl}/GetArticles/${topic}`);
 
 }
 
@@ -53,6 +53,7 @@ export const fetchArticle = (id) => fetchGetFunction(`${addresses.baseUrl}/GetFr
 export const fetchNewsTable = (address) => fetchGetFunction(address);
 
 export const fetchNews = (id) => fetchGetFunction(`${addresses.baseUrl}/GetFromNews/${id}`);
+export const fetchHighlights = (id) => fetchGetFunction(`https://www.scorebat.com/video-api/v3/competition/england-premier-league/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy `);
 
 export const fetchFiltered = (requestBody) =>
   fetchPostFunction(`${addresses.baseUrl}/GetFilteredContent`, requestBody);

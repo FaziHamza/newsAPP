@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { fetchHighlights } from '../../utilities/fetch';
+import { useAsync } from '../../utilities/asyncReducer';
+import { useEffect } from 'react';
 const highlightsData = [
     {
         "title": "Manchester City - Newcastle United",
@@ -353,7 +356,12 @@ const HighlightsList = () => {
 
     const [mathInfoEmbed, setMathInfoEmbed] = useState(null);
     const [showMathInfoModal, setShowMathInfoModal] = useState(false);
+    const { data: response, status, error, run } = useAsync({ status: 'pending' });
 
+    useEffect(() => {
+      const responsedata = fetchHighlights();
+      run(responsedata);
+    }, [run]);
 
     const handleMathInfoClick = (url) => {
         setMathInfoEmbed(url);
@@ -373,73 +381,87 @@ const HighlightsList = () => {
         setVideoEmbed('');
     };
     const SubTopicId = state?.subtopicId;
-    const TopicId = state?.topicId;
-    return (
-        <div className="layout">
-            <div className="main-card-section">
-
-                <div className="main-card">
-                    <div className="header">
-                        <div>
-                            <img src="assets/images/22.png" alt="" />
-                            <span>TOPIC : {TopicId}</span>
+    const TopicName = state?.topicName;
+    console.log(state)
+    switch (status) {
+        case 'idle':
+          return <div>idle</div>;
+        case 'pending':
+          return <div>pending</div>;
+        case 'resolved':
+            return (
+                <div className="layout">
+                    <div className="main-card-section">
+        
+                        <div className="main-card">
+                            <div className="header">
+                                <div>
+                                    <img src="assets/images/22.png" alt="" />
+                                    <span>TOPIC : {TopicName}</span>
+                                </div>
+                                <div>
+                                    <img src="assets/images/22.png" alt="" />
+                                    <span>SUBTOPIC : {SubTopicId} </span>
+                                </div>
+        
+                            </div>
+                            <div className="video-banner" style={{ backgroundImage: `url(${highlightsData[0]?.thumbnail})` }} onClick={() => handleVideoClick(highlightsData[0]?.videos[0]?.embed)}>
+                                <i className="fa-solid fa-circle-play"></i>
+                            </div>
+                            <div className="content">
+                                <h5>
+                                    {highlightsData[0]?.title}
+                                </h5>
+                                <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlightsData[0]?.matchviewUrl); }}>MATH INFO</a>
+                                <small>{new Date(highlightsData[0]?.date).toLocaleString()}</small>
+                            </div>
+                            {showMathInfoModal && (
+                                <div className="modal">
+                                    <div className="modal-content modal-content-more">
+                                    <button onClick={() => { console.log("Close button clicked"); setShowMathInfoModal(false); }} className="close-button">X</button>
+                                        <iframe src={mathInfoEmbed} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
+                                    </div>
+                                </div>
+                            )}
+        
                         </div>
-                        <div>
-                            <img src="assets/images/22.png" alt="" />
-                            <span>SUBTOPIC : {SubTopicId} </span>
-                        </div>
-
                     </div>
-                    <div className="video-banner" style={{ backgroundImage: `url(${highlightsData[0]?.thumbnail})` }} onClick={() => handleVideoClick(highlightsData[0]?.videos[0]?.embed)}>
-                        <i className="fa-solid fa-circle-play"></i>
+                    <div className="secondary-card-section">
+                        {highlightsData.slice(1).map((highlight, index) => (
+                            <div key={index} className="secondary-card">
+                                <div className="video-banner" style={{ backgroundImage: `url(${highlight.thumbnail})` }} onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
+                                    <i className="fa-solid fa-circle-play"></i>
+                                </div>
+                                <div className="content">
+                                    <h5>
+                                        {highlight.title}
+                                    </h5>
+                                    <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlight?.matchviewUrl); }}>MATH INFO</a>
+        
+                                    {/* <a href={highlight.competitionUrl}>MATH INFO</a> */}
+                                    <small>{new Date(highlight.date).toLocaleString()}</small>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                    <div className="content">
-                        <h5>
-                            {highlightsData[0]?.title}
-                        </h5>
-                        <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlightsData[0]?.matchviewUrl); }}>MATH INFO</a>
-                        <small>{new Date(highlightsData[0]?.date).toLocaleString()}</small>
-                    </div>
-                    {showMathInfoModal && (
+                    {showModal && (
                         <div className="modal">
-                            <div className="modal-content modal-content-more">
-                            <button onClick={() => { console.log("Close button clicked"); setShowMathInfoModal(false); }} className="close-button">X</button>
-                                <iframe src={mathInfoEmbed} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
+                            <div className="modal-content">
+                                <button onClick={handleCloseModal} className="close-button">X</button>
+                                <div className="video-wrapper" dangerouslySetInnerHTML={{ __html: videoEmbed }} />
                             </div>
                         </div>
                     )}
-
                 </div>
-            </div>
-            <div className="secondary-card-section">
-                {highlightsData.slice(1).map((highlight, index) => (
-                    <div key={index} className="secondary-card">
-                        <div className="video-banner" style={{ backgroundImage: `url(${highlight.thumbnail})` }} onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
-                            <i className="fa-solid fa-circle-play"></i>
-                        </div>
-                        <div className="content">
-                            <h5>
-                                {highlight.title}
-                            </h5>
-                            <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlight?.matchviewUrl); }}>MATH INFO</a>
+        
+            );
+        case 'rejected':
+          return <div>{error}</div>;
+        default:
+          return <div>anotherError</div>;
+      }
 
-                            {/* <a href={highlight.competitionUrl}>MATH INFO</a> */}
-                            <small>{new Date(highlight.date).toLocaleString()}</small>
-                        </div>
-                    </div>
-                ))}
-            </div>
-            {showModal && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <button onClick={handleCloseModal} className="close-button">X</button>
-                        <div className="video-wrapper" dangerouslySetInnerHTML={{ __html: videoEmbed }} />
-                    </div>
-                </div>
-            )}
-        </div>
-
-    );
+  
 
 };
 

@@ -37,7 +37,7 @@ const DisplayComponent = ({ topic }) => {
               <img src={teamLogoPath} height={'20px'} />
               {teamName}
             </div>
-            <Link to="/highlights" state={{topicId:TopicId,subtopicId:SubTopicId}}>
+            <Link to="/highlights" state={{topicName:teamName}}>
               <div className="highlights">
                 Video
                 <img src={video_play} height={'20px'} />

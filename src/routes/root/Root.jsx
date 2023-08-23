@@ -12,7 +12,7 @@ import { Logo,NavbarMobile, Navigation } from '../../compositions';
 import { useTheme } from '../../utilities/hooks';
 import { useEffect, useState } from 'react';
 import { getData } from '../../assets/mockup-assets/data/dataObject';
-
+import { addresses } from '../../utilities/config';
 const Root = () => {
   const { data: settingsInfo, status, error, run } = useAsync({ status: 'pending' });
   const [themeVariant, setThemeVariant] = useTheme('dark'); // 'dark', 'light'
@@ -27,8 +27,8 @@ const Root = () => {
   };
 
   useEffect(() => {
-    const settingsPromise = fetchConfig(`http://localhost/SportifiedSpot//`);
-    setWindowHref(`http://localhost/SportifiedSpot//`);
+    const settingsPromise = fetchConfig(`${addresses.baseUrl}`);
+    setWindowHref(`${addresses.baseUrl}`);
     run(settingsPromise);
   }, []);
 
