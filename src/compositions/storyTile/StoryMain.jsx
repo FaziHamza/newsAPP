@@ -14,6 +14,10 @@ const DisplayComponent = ({ topic }) => {
   const moreItemName = state?.moreItemName;
   const teamName = state?.Name;
   const defaulttopic = topic?.Name;
+
+  console.log("moreItemName" + moreItemName);
+  console.log(teamName);
+
   const logoPath = state?.LogoPath;
   const teamLogoPath = state?.LogoTeam;
   const SubTopicId=state?.SubTopicId;
@@ -22,7 +26,7 @@ const DisplayComponent = ({ topic }) => {
 
   return (
     <>
-      {moreItemName && teamName && logoPath ? (
+      { logoPath ? (
         <>
           <div className="topic" >
             <div>
@@ -68,7 +72,6 @@ const StoryMain = ({ description, className = '', src, alt, time }) => {
     }
   };
 
-  // console.log(days);
   const sanitizedSrc = src.replace(/([^:]\/)\/+/g, "$1");
 
   return (

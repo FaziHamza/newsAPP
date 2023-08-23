@@ -40,9 +40,6 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const defaultTopic = settingsInfo.Default;
   const { data: tableInfo, status, error, run } = useAsync({ status: 'pending' });
   const { state } = useLocation();
-  console.log(state);
-  console.log(tableInfo);
-  console.log(defaultTopic)
   // console.log(state.Name)
   const [promoVisible, setPromoVisible] = useState(false);
   const isDesktop = useMediaContext();

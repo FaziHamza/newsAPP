@@ -21,7 +21,6 @@ const StoryTile = ({ description, className = '', src, alt, time }) => {
     }
   };
 
-  console.log(days);
   const sanitizedSrc = src.replace(/([^:]\/)\/+/g, "$1");
 
   return (

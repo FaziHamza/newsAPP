@@ -18,7 +18,6 @@ const Root = () => {
   const [themeVariant, setThemeVariant] = useTheme('dark'); // 'dark', 'light'
   const [windowHref, setWindowHref] = useState('');
   const themeIcon = getData().themeIcon;
-  console.log(settingsInfo);
   const toggleTheme = (inputValue, valueOne, valueTwo) => {
     if (inputValue === valueOne) {
       setThemeVariant(valueTwo);
@@ -48,7 +47,6 @@ const Root = () => {
         return <div>Error: Missing settings information</div>;
       }
       const fullInfo = [settingsInfo, windowHref];
-      console.log(fullInfo)
       return (
         
         <MediaQueryProvider>

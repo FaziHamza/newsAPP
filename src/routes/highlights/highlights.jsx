@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import {useLocation } from 'react-router-dom';
-const highlightsData =  [
+import { useLocation } from 'react-router-dom';
+const highlightsData = [
     {
         "title": "Manchester City - Newcastle United",
         "competition": "ENGLAND: Premier League",
@@ -350,52 +350,97 @@ const highlightsData =  [
 const HighlightsList = () => {
     const [showModal, setShowModal] = useState(false);
     const [videoEmbed, setVideoEmbed] = useState('');
+
+    const [mathInfoEmbed, setMathInfoEmbed] = useState(null);
+    const [showMathInfoModal, setShowMathInfoModal] = useState(false);
+
+
+    const handleMathInfoClick = (url) => {
+        setMathInfoEmbed(url);
+        setShowMathInfoModal(true);
+    };
+
+
     const location = useLocation();
     const { state } = location;
     const handleVideoClick = (embedCode) => {
-      setVideoEmbed(embedCode);
-      setShowModal(true);
+        setVideoEmbed(embedCode);
+        setShowModal(true);
     };
-  
+
     const handleCloseModal = () => {
-      setShowModal(false);
-      setVideoEmbed('');
+        setShowModal(false);
+        setVideoEmbed('');
     };
-    const SubTopicId=state?.subtopicId;
-    const TopicId=state?.topicId;
+    const SubTopicId = state?.subtopicId;
+    const TopicId = state?.topicId;
     return (
-      <div className='highlightbox'>
-          <div className="league-card1">
-          <h1>Match Highlights  TopicId:{TopicId} SubTopicId:{SubTopicId} </h1>
-          <ul>
-            {highlightsData.map((highlight, index) => (
-              <li key={index} className="highlight-item league-card">
-                <div className="highlight-thumbnail">
-                  <img src={highlight.thumbnail} alt={highlight.title} />
+        <div className="layout">
+            <div className="main-card-section">
+
+                <div className="main-card">
+                    <div className="header">
+                        <div>
+                            <img src="assets/images/22.png" alt="" />
+                            <span>TOPIC : {TopicId}</span>
+                        </div>
+                        <div>
+                            <img src="assets/images/22.png" alt="" />
+                            <span>SUBTOPIC : {SubTopicId} </span>
+                        </div>
+
+                    </div>
+                    <div className="video-banner" style={{ backgroundImage: `url(${highlightsData[0]?.thumbnail})` }} onClick={() => handleVideoClick(highlightsData[0]?.videos[0]?.embed)}>
+                        <i className="fa-solid fa-circle-play"></i>
+                    </div>
+                    <div className="content">
+                        <h5>
+                            {highlightsData[0]?.title}
+                        </h5>
+                        <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlightsData[0]?.matchviewUrl); }}>MATH INFO</a>
+                        <small>{new Date(highlightsData[0]?.date).toLocaleString()}</small>
+                    </div>
+                    {showMathInfoModal && (
+                        <div className="modal">
+                            <div className="modal-content modal-content-more">
+                            <button onClick={() => { console.log("Close button clicked"); setShowMathInfoModal(false); }} className="close-button">X</button>
+                                <iframe src={mathInfoEmbed} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
+                            </div>
+                        </div>
+                    )}
+
                 </div>
-                <div className="highlight-details">
-                  <h2>{highlight.title}</h2>
-                  <p>Competition: <a href='#'>{highlight.competition}</a></p>
-                  <p>Date: {new Date(highlight.date).toLocaleString()}</p>
-                  {highlight.videos.map((video, videoIndex) => (
-                    <button key={videoIndex} className="watch-button" onClick={() => handleVideoClick(video.embed)}>Watch Video</button>
-                  ))}
-                </div>
-              </li>
-            ))}
-          </ul>
-          {showModal && (
-            <div className="modal">
-              <div className="modal-content">
-                <button onClick={handleCloseModal} className="close-button">X</button>
-                <div  className="video-wrapper" dangerouslySetInnerHTML={{ __html: videoEmbed }} />
-              </div>
             </div>
-          )}
+            <div className="secondary-card-section">
+                {highlightsData.slice(1).map((highlight, index) => (
+                    <div key={index} className="secondary-card">
+                        <div className="video-banner" style={{ backgroundImage: `url(${highlight.thumbnail})` }} onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
+                            <i className="fa-solid fa-circle-play"></i>
+                        </div>
+                        <div className="content">
+                            <h5>
+                                {highlight.title}
+                            </h5>
+                            <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlight?.matchviewUrl); }}>MATH INFO</a>
+
+                            {/* <a href={highlight.competitionUrl}>MATH INFO</a> */}
+                            <small>{new Date(highlight.date).toLocaleString()}</small>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            {showModal && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <button onClick={handleCloseModal} className="close-button">X</button>
+                        <div className="video-wrapper" dangerouslySetInnerHTML={{ __html: videoEmbed }} />
+                    </div>
+                </div>
+            )}
         </div>
-      </div>
-      );
-    
-  };
-  
-  export default HighlightsList;
+
+    );
+
+};
+
+export default HighlightsList;

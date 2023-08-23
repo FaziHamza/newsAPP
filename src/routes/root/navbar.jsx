@@ -19,53 +19,112 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
   const closeNav = () => {
     setIsOpen(false);
   };
+  const [collapsedIds, setCollapsedIds] = useState({});
+
+  const toggleCollapse = (id) => {
+    setCollapsedIds((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
 
   return (
     <div>
       <div id="Sidenav" className={`sidenav ${isOpen ? 'open' : ''}`}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
         {filteredNavItems.map((moreItem) => {
+          const id = moreItem.Topic.Name.toLowerCase().replace(/\s+/g, '-');
+          const [topicNavType, topicNavTopic, topicNavAddress] = moreItem.Topic.News
+            ? ['news', moreItem.Topic.Name.toLowerCase().replace(/\s/g, '_'), moreItem.Topic.News]
+            : ['articles', moreItem.Topic.Name.toLowerCase().replace(/\s/g, '_'), moreItem.Topic.Articles];
+
           return (
             <div key={moreItem.Topic.Name.toUpperCase()}>
-              <a href="#" data-bs-toggle="collapse" data-bs-target={`#${moreItem.Topic.Name.toLowerCase().replace(/\s+/g, '-')}`} className="nav-item collapsed" aria-expanded="false">
-                <p className="nav-item-child">{moreItem.Topic.Name}</p>
-                {moreItem.SubTopics.length > 0 ? (
-                  <>
-                    <i className="fa-regular fa-chevron-down chevron-up"></i>
-                    <i className="fa-regular fa-chevron-up chevron-down"></i>
-                  </>
-                ) : null}
-              </a>
-              <div id={moreItem.Topic.Name.toLowerCase().replace(/\s+/g, '-')} className="collapse">
-                <ul className="nav-item-sub-child">
-                  {moreItem.SubTopics.map((team) => {
-                    const [navType, navTopic, navAddress] = team.News
-                      ? ['news', team.Name.toLowerCase().replace(/\s/g, '_'), team.News]
-                      : ['articles', team.Name.toLowerCase().replace(/\s/g, '_'), team.Articles];
-                    return (
-                      <li key={team.Name}>
-                        <Link
-                          to={`../${navType}/${navTopic}`}
-                          state={{
-                            address: navAddress,
-                            //subTopics: team.Items,
-                            Name: team.Name,
-                            TopicId:team.TopicID,
-                            navType,
-                            navTopic,
-                            moreItemName: moreItem.Topic.Name,
-                            SubTopicId:team.SubTopicID,
-                            LogoPath:moreItem.Topic.Logo,
-                            LogoTeam:team.Logo,
-                            IsSql:!team.News,
+              <div className="nav-item">
+                {/* <Link
+                  to={{
+                    pathname: `../${topicNavType}/${topicNavTopic}`,
+                    state: {
+                      address: topicNavAddress,
+                      Name: moreItem.Topic.Name,
+                      TopicId: moreItem.Topic.TopicID,
+                      LogoPath: moreItem.Topic.Logo,
+                    },
+                  }}
+                >
+                  <p className="nav-item-child">{moreItem.Topic.Name}</p>
+                </Link> */}
 
-                          }}
-                          name={team.Name}>
-                          {team.Name}
-                        </Link>
-                      </li>
-                    );
-                  })}
+                <Link
+                            to={`../${topicNavType}/${topicNavTopic}`}
+                            state={{
+                              address: topicNavAddress,
+                              Name: moreItem.Topic.Name,
+                              TopicId: moreItem.Topic.TopicID,
+                              LogoPath: moreItem.Topic.Logo,
+
+                            }}
+                            name={moreItem.Topic.Name}>
+                            {moreItem.Topic.Name}
+                          </Link>
+
+                {/* <p className="nav-item-child">{moreItem.Topic.Name}</p> */}
+                {/* <Link
+                  to={{
+                    pathname: `../articles/${moreItem.Topic.Name.toLowerCase().replace(/\s+/g, '-')}`,
+                    state: {
+                      Name: moreItem.Topic.Name,
+                      TopicId: moreItem.Topic.TopicID,
+                      LogoPath: moreItem.Topic.Logo,
+                    },
+                  }}
+                >
+                  <p className="nav-item-child">{moreItem.Topic.Name}</p>
+                </Link> */}
+
+                {moreItem.SubTopics.length > 0 && (
+                  <>
+                    <i
+                      className={`fa-regular ${collapsedIds[id] ? 'fa-chevron-up' : 'fa-chevron-down'} chevron`}
+                      onClick={() => toggleCollapse(id)}
+                    />
+                  </>
+                )}
+              </div>
+              <div id={id} className={`collapse ${collapsedIds[id] ? 'show' : ''}`}>
+                <ul className="nav-item-sub-child">
+                  <ul className="nav-item-sub-child">
+                    {moreItem.SubTopics.map((team) => {
+                      const [navType, navTopic, navAddress] = team.News
+                        ? ['news', team.Name.toLowerCase().replace(/\s/g, '_'), team.News]
+                        : ['articles', team.Name.toLowerCase().replace(/\s/g, '_'), team.Articles];
+                      return (
+                        <li key={team.Name}>
+                          <Link
+                            to={`../${navType}/${navTopic}`}
+                            state={{
+                              address: navAddress,
+                              //subTopics: team.Items,
+                              Name: team.Name,
+                              TopicId: team.TopicID,
+                              navType,
+                              navTopic,
+                              moreItemName: moreItem.Topic.Name,
+                              SubTopicId: team.SubTopicID,
+                              LogoPath: moreItem.Topic.Logo,
+                              LogoTeam: team.Logo,
+                              IsSql: !team.News,
+
+                            }}
+                            name={team.Name}>
+                            {team.Name}
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+
                 </ul>
               </div>
             </div>
