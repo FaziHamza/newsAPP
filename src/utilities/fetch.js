@@ -53,7 +53,10 @@ export const fetchArticle = (id) => fetchGetFunction(`${addresses.baseUrl}/GetFr
 export const fetchNewsTable = (address) => fetchGetFunction(address);
 
 export const fetchNews = (id) => fetchGetFunction(`${addresses.baseUrl}/GetFromNews/${id}`);
-export const fetchHighlights = (id) => fetchGetFunction(`https://www.scorebat.com/video-api/v3/competition/england-premier-league/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy `);
+export const fetchHighlights = () => {
+  const url = 'https://www.scorebat.com/video-api/v3/competition/england-premier-league/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy';
+  return fetch(url).then((response) => response.json());
+};
 
 export const fetchFiltered = (requestBody) =>
   fetchPostFunction(`${addresses.baseUrl}/GetFilteredContent`, requestBody);
