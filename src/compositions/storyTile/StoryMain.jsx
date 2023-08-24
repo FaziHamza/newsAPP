@@ -1,7 +1,7 @@
 import { timeQuery } from '../../utilities/timeQuery';
 import { json, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { video_play } from '../../assets';
+import { logo, video_play } from '../../assets';
 import { sportspotsverige,AFP_news } from '../../assets';
 
 
@@ -37,7 +37,7 @@ const DisplayComponent = ({ topic }) => {
               <img src={teamLogoPath} height={'20px'} />
               {teamName}
             </div>
-            <Link to="/highlights" state={{topicName:teamName}}>
+            <Link to="/highlights" state={{topicName:teamName,imagesource:logoPath}}>
               <div className="highlights">
                 Video
                 <img src={video_play} height={'20px'} />

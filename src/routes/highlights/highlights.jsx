@@ -36,7 +36,7 @@ const HighlightsList = () => {
   };
   const SubTopicId = state?.subtopicId;
   const TopicName = state?.topicName;
-
+  const LogoPath=state?.imagesource;
   if (highlightsData.length === 0) {
     return <div>Loading...</div>;
   }
@@ -47,7 +47,7 @@ const HighlightsList = () => {
         <div className="main-card">
           <div className="header">
             <div>
-              <img src="assets/images/22.png" alt="" />
+              <img src={LogoPath} alt="Logo" />
               <span>TOPIC : {TopicName}</span>
             </div>
             <div>
