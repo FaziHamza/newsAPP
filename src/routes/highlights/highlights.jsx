@@ -48,7 +48,7 @@ const HighlightsList = () => {
           <div className="header">
             <div>
               <img src={LogoPath} alt="Logo" />
-              <span>TOPIC : {TopicName}</span>
+              <span> {TopicName}</span>
             </div>
             <div>
               {/* <img src="assets/images/22.png" alt="" /> */}
