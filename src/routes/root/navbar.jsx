@@ -43,7 +43,7 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
 
           return (
             
-            <div key={moreItem.Topic.Name.toUpperCase()}>
+            <div className='try' key={moreItem.Topic.Name.toUpperCase()}>
               <div className='sidebar-heading' >INTERNATIONALS</div>
               <div className="nav-item">
                 {/* <Link
@@ -104,7 +104,11 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                         ? ['news', team.Name.toLowerCase().replace(/\s/g, '_'), team.News]
                         : ['articles', team.Name.toLowerCase().replace(/\s/g, '_'), team.Articles];
                       return (
-                        <li key={team.Name}>
+                        <li key={team.Name} className='nav-item-sub-child-content' >
+                          {/* <p>
+                          <i class="fa-light fa-futbol"></i>
+                          </p> */}
+                          <img className='' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe5j1XrohuZp4SdlAY7YhIk_dX37LtPG4oztz2owD67w&s" alt="logo-images" />
                           <Link
                             to={`../${navType}/${navTopic}`}
                             state={{
