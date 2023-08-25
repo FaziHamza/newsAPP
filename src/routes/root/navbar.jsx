@@ -33,14 +33,18 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
     <div>
       <div id="Sidenav" className={`sidenav ${isOpen ? 'open' : ''}`}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
+        
         {filteredNavItems.map((moreItem) => {
+          
           const id = moreItem.Topic.Name.toLowerCase().replace(/\s+/g, '-');
           const [topicNavType, topicNavTopic, topicNavAddress] = moreItem.Topic.News
             ? ['news', moreItem.Topic.Name.toLowerCase().replace(/\s/g, '_'), moreItem.Topic.News]
             : ['articles', moreItem.Topic.Name.toLowerCase().replace(/\s/g, '_'), moreItem.Topic.Articles];
 
           return (
+            
             <div key={moreItem.Topic.Name.toUpperCase()}>
+              <div className='sidebar-heading' >INTERNATIONALS</div>
               <div className="nav-item">
                 {/* <Link
                   to={{

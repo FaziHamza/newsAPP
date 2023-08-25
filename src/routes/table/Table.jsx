@@ -108,7 +108,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                   </Link>
                 </main>
                 <div className="top-articles">
-                  {/* fazi */}
+                  {/* 11 */}
                   {/* {tableInfo?.map((tileItem, index) => {
                       if (index > 0 && index <= topStoryLimit) {
                         return (
@@ -149,7 +149,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                   <div className="divider-container">
                     <hr className="divider-solid" />
                   </div>
-                  {/* fazi */}
+                  {/* 11 */}
                   {/* {tableInfo.map((tileItem, index) => {
                       if (index > topStoryLimit && index < topStoryLimit + adSpan) {
                         return (
@@ -218,7 +218,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
 
 
 
-                  {/* fazi */}
+                  {/* 11 */}
 
                   {tableInfo.length>0 && tableInfo.map((tileItem, index) => {
                     if (index <= topStoryLimit + adSpan)
