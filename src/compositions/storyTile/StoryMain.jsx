@@ -19,9 +19,12 @@ const DisplayComponent = ({ topic }) => {
   console.log(teamName);
 
   const logoPath = state?.LogoPath;
+  console.log("logoPath : "+ logoPath)
   const teamLogoPath = state?.LogoTeam;
   const SubTopicId = state?.SubTopicId;
   const TopicId = state?.TopicId;
+  // const TopicId = state?.TopicId;
+
   const IsSql = state?.IsSql;
 
   return (
@@ -44,7 +47,7 @@ const DisplayComponent = ({ topic }) => {
               </div>
 
             </div>
-            <Link to="/highlights" state={{ topicName: teamName, imagesource: logoPath }}>
+            <Link to="/highlights" state={{ topicName: moreItemName, imagesource: logoPath }}>
               <div className="highlights">
 
                 <img src={video_play} height={'20px'} />

@@ -15,12 +15,12 @@ const HighlightsList = () => {
   useEffect(() => {
     const fetchHighlights = async () => {
       const highlightMapping = {
-        "Premier League": "england-premier-league",
-        "LA LIGA ": "spain-la-liga",
+        "England": "england-premier-league",
+        "Spanien": "spain-la-liga",
         "Bundesliga senaste nytt": "germany-bundesliga",
         "Tennis senaste nytt": "Tennis",
         "Golf senaste nytt": "Golf",
-        "Serie A senaste nytt": "italy-serie-a"
+        "Italien": "italy-serie-a"
       };
 
       const highlightName = highlightMapping[topicName];
@@ -68,7 +68,7 @@ const HighlightsList = () => {
         <div className="main-card">
           <div className="header">
             <div>
-              <img src={LogoPath} alt="Logo" />
+              <img src={LogoPath} alt={LogoPath} />
               {/* why topicName not update here ?? */}
               <span>{topicName.replace('senaste nytt', '')}</span> {/* Modify this line */}
             </div>

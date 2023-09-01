@@ -125,8 +125,9 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                                     <Link
                                       to="/highlights"
                                       state={{
-                                        topicName: team.Name,
-                                        imagesource: team.LogoTeam, // Assuming team.LogoTeam is the correct logo path
+                                        topicName: moreItem.Topic.Name,
+                                        imagesource: moreItem.Topic.Logo, // Assuming team.LogoTeam is the correct logo path
+                                         // Assuming team.LogoTeam is the correct logo path
                                       }}
                                       onClick={closeNav}
                                       name={team.Name}
