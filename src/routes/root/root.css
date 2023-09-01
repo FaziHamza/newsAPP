@@ -507,7 +507,8 @@ aside .tile-m p {
 }
 
 .topic .title {
-  margin-left: 10px;
+  margin-right: 10px;
+  text-transform: capitalize;
 
 }
 
@@ -519,7 +520,7 @@ aside .tile-m p {
   font-size: 17px;
   font-weight: 500;
   margin: 0 0 9px 0;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .topic img {
@@ -558,22 +559,28 @@ aside .tile-m p {
 
 .highlightbox .highlight-item button {
   background: #c10206;
-  margin-bottom: 2px  ;
+  margin-bottom: 2px;
 }
-.highlightbox h2  {
+
+.highlightbox h2 {
   margin-top: 13px;
 }
 
-element.style {
+element.style {}
+
+dl,
+ol,
+ul {
+  margin-top: 0;
+  margin-bottom: 2rem;
 }
-dl, ol, ul {
-    margin-top: 0;
-    margin-bottom: 2rem;
+
+ol,
+ul {
+  padding-left: 0rem;
 }
-ol, ul {
-    padding-left: 0rem;
-}
-.highlightbox .league-card1 h1{
+
+.highlightbox .league-card1 h1 {
   margin-top: 0;
   margin-bottom: -0.5rem;
   font-weight: 500;
@@ -708,6 +715,7 @@ ol, ul {
   font-size: 11px;
   margin-bottom: 0px
 }
+
 .math-info-modal {
   position: fixed;
   top: 0;
@@ -737,12 +745,13 @@ ol, ul {
   padding: 10px !important;
 }
 
-.nav-item-sub-child-content{
+.nav-item-sub-child-content {
   display: flex !important;
-  justify-content: start !important;
+  /* justify-content: start !important; */
   align-items: center;
 }
-.nav-item-sub-child-content p{
+
+.nav-item-sub-child-content p {
   margin-bottom: 0px !important;
   width: 32px;
   height: 32px;
@@ -754,14 +763,51 @@ ol, ul {
   align-items: center;
   background-color: rgba(164, 164, 164, 0.11) !important;
 }
-.nav-item-sub-child-content p i{
-  font-size: 24px!important;
+
+.nav-item-sub-child-content p i {
+  font-size: 24px !important;
   color: #fff;
 }
 
-.nav-item-sub-child-content img{
+.nav-item-sub-child-content img {
   margin-right: 2px !important;
   width: 35px;
   height: 35px;
   object-fit: cover;
+}
+
+.nav-item-img {
+  height: 25px;
+  /* Adjust height as necessary */
+  width: auto;
+  /* Maintains aspect ratio */
+  margin-right: 10px;
+  /* Spacing between the image and the topic name */
+}
+
+.flx {
+  display: flex;
+  align-items: center;
+}
+.flx i {
+  margin-right: 10px ;
+}
+
+.flx a {
+  color: rgba(255, 255, 255, 0.822) !important;
+  font-weight: 500;
+}
+
+.sidebar-heading {
+  font-size: 16px !important;
+}
+
+.nav-item-sub-child-content a {
+  /* margin-left: 25px; */
+}
+
+.content-time-img{
+  font-size: 11px;
+  font-weight: 500;
+  color: #000000c7;
 }

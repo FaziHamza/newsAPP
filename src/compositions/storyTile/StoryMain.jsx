@@ -2,7 +2,7 @@ import { timeQuery } from '../../utilities/timeQuery';
 import { json, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { logo, video_play } from '../../assets';
-import { sportspotsverige,AFP_news } from '../../assets';
+import { sportspotsverige, AFP_news } from '../../assets';
 
 
 const DisplayComponent = ({ topic }) => {
@@ -20,26 +20,33 @@ const DisplayComponent = ({ topic }) => {
 
   const logoPath = state?.LogoPath;
   const teamLogoPath = state?.LogoTeam;
-  const SubTopicId=state?.SubTopicId;
-  const TopicId=state?.TopicId;
+  const SubTopicId = state?.SubTopicId;
+  const TopicId = state?.TopicId;
   const IsSql = state?.IsSql;
 
   return (
     <>
-      { logoPath ? (
+      {logoPath ? (
         <>
           <div className="topic" >
-            <div>
-              <img src={logoPath} height={'20px'} />
-              {moreItemName}
+            <div className='topic-row'>
+              <div className="title">
+                <img src={logoPath} height={'20px'} />
+                {moreItemName}
+              </div>
+              <div className="title">
+                {teamName.includes(moreItemName) ? null : (
+                  <>
+                    <img src={teamLogoPath} height={'20px'}  />
+                  </>
+                )}
+                   {teamName.replace(moreItemName, '')} 
+              </div>
+
             </div>
-            <div className="title">
-              <img src={teamLogoPath} height={'20px'} />
-              {teamName}
-            </div>
-            <Link to="/highlights" state={{topicName:teamName,imagesource:logoPath}}>
+            <Link to="/highlights" state={{ topicName: teamName, imagesource: logoPath }}>
               <div className="highlights">
-                Video
+
                 <img src={video_play} height={'20px'} />
               </div>
             </Link>
@@ -66,9 +73,9 @@ const StoryMain = ({ description, className = '', src, alt, time }) => {
     const hours = timeDifference % 24;
 
     if (timeDifference < 24) {
-      return `${hours} Tim`; // Swedish for hours
+      return `${hours.toFixed(2)} Tim `;// Swedish for hours
     } else {
-      return `${day} Dag`; // Swedish for days
+      return `${day} Dag  ` ; // Swedish for days
     }
   };
 
@@ -83,7 +90,7 @@ const StoryMain = ({ description, className = '', src, alt, time }) => {
         </div>
         <div className='content'>
           <p>
-            {description}
+          <p dangerouslySetInnerHTML={{ __html: description }} />
           </p>
           <div className='date'>
             <p>{days()}
@@ -96,3 +103,8 @@ const StoryMain = ({ description, className = '', src, alt, time }) => {
 };
 
 export default StoryMain;
+
+function MyComponent({ description }) {
+  return <div dangerouslySetInnerHTML={{ __html: description }} />;
+}
+

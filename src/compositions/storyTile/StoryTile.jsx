@@ -15,9 +15,9 @@ const StoryTile = ({ description, className = '', src, alt, time }) => {
     const hours = timeDifference % 24;
 
     if (timeDifference < 24) {
-      return `${hours} Tim`; // Swedish for hours
+      return `${hours.toFixed(2)} Tim `; // Swedish for hours
     } else {
-      return `${day} Dag`; // Swedish for days
+      return `${day} Dag  `; // Swedish for days
     }
   };
 
@@ -32,8 +32,9 @@ const StoryTile = ({ description, className = '', src, alt, time }) => {
 
         </div>
         <div className='content'>
-          <p>{description}</p>
-          <h6>{days()} 
+          {/* <p>{description}</p> */}
+          <p dangerouslySetInnerHTML={{ __html: description }} />
+          <h6 className='content-time-img'  >{days()} 
           <img src={imageUrl} alt="" />
           </h6>
         </div>

@@ -11,7 +11,7 @@ const Logo = ({ name,  href, alt, className = '' }) => {
       <Link className={`logo ${styles.logo} ${className}`.trim()} to={href}>
         <ImageContainer
           src={name=='Logo' ? logo : flag}
-          containerClass="logo-image"
+          containerClass={name === 'Logo' ? 'logo-image' : 'flag-image'}  // Apply class based on name value
           alt={alt}
       />
     </Link>

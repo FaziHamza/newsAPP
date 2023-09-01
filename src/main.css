@@ -55,6 +55,10 @@ body {
   height: 60px;
 }
 
+.flag-image img {
+  height: 37px;
+}
+
 .main-header {
   width: 100%;
   background: #c10206;
@@ -66,13 +70,28 @@ body {
 
 .main-header .item {
   padding: 0px 15px;
+  width: 100%;
+}
 
+.main-header .item:nth-child(1) {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.main-header .item:nth-child(2) {
+  display: flex;
+  justify-content: center;
+}
+
+.main-header .item:nth-child(3) {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .league-card .date {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .league-card .date p {
@@ -108,7 +127,7 @@ body {
 }
 
 .league-card .content p {
-  font-size: 18px;
+  font-size: 16px;
   color: black;
   font-weight: 600;
   margin-bottom: 0px;
@@ -149,21 +168,21 @@ body {
 }
 
 .suggested-card .content h6 {
-  font-size: 16px;
-  color: black;
+  font-size: 11px;
   margin-bottom: 0px;
 }
 
 .suggested-card .content p {
-  font-size: 18px;
+  font-size: 16x !important;
   margin: 0px;
   font-weight: 600;
   color: black;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   line-height: 20px;
-  overflow: hidden
+  overflow: hidden;
+  font-family: 'Source Sans 3' !important;
 }
 
 .suggested-card .banner img {
@@ -315,6 +334,28 @@ body {
   width: 100%;
   font-size: 15px;
   border-radius: 2px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.nav-item-sub-child li .icons a .fa-video {
+  color: var(--color-red);
+}
+
+.nav-item-sub-child li .icons a .fa-newspaper {
+  color: white;
+}
+
+.nav-item-sub-child li .icons a {
+  padding-left: 15px;
+  font-size: 16px;
+}
+
+.nav-item-sub-child li .icons {
+  display: flex;
 }
 
 .nav-item-sub-child li:hover {
@@ -393,7 +434,8 @@ body {
   line-height: 25px;
   text-align: center;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  z-index: 100; /* Setting a higher z-index value */
+  z-index: 100;
+  /* Setting a higher z-index value */
 }
 
 
@@ -405,20 +447,29 @@ body {
   height: 100%;
 }
 
-.suggested-card .content p{
-  font-size: 12px;
-  
-  font-weight: 500;
-  color: #000000c7;
 
+.league-card .content .date p {
+  font-size: 11px;
 }
-.league-card .content p {
-  font-size: 16px;
-}
-.sidebar-heading{
+
+.sidebar-heading {
   padding: 10px 10px;
   color: white;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 600;
+}
+
+.topic-row {
+  display: flex;
+  align-items: center;
+}
+
+.coll-flag {
+  height: 27px;
+  margin-right: 10px;
+}
+.coll-video{
+  height: 21px !important;
+  width: 21px !important;
 }

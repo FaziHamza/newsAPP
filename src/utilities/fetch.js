@@ -5,7 +5,7 @@ const fetchGetFunction = (url) =>
     headers: {
       'content-type': 'application/json',
       'Accept-Encoding': 'gzip, deflate, br',
-      'Access-Control-Allow-Origin': 'http://localhost:5173',
+      // 'Access-Control-Allow-Origin': '*',
     },
     cache: 'no-store', // Ignore cached data and force a fresh request
 

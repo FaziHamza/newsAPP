@@ -8,23 +8,44 @@ const HighlightsList = () => {
   const [showMathInfoModal, setShowMathInfoModal] = useState(false);
   const [highlightsData, setHighlightsData] = useState([]);
 
+  const location = useLocation();
+  const { state } = location;
+  console.log(JSON.stringify(state));
+  var topicName = state?.topicName;
   useEffect(() => {
-    const url = 'https://www.scorebat.com/video-api/v3/competition/england-premier-league/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy';
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setHighlightsData(data.response); // Adjust based on the actual response structure
-      })
-      .catch((error) => console.error(error));
-  }, []);
+    const fetchHighlights = async () => {
+      const highlightMapping = {
+        "Premier League senaste nytt": "england-premier-league",
+        "LA LIGA senaste nytt": "spain-la-liga",
+        "Bundesliga senaste nytt": "germany-bundesliga",
+        "Tennis senaste nytt": "Tennis",
+        "Golf senaste nytt": "Golf",
+        "Serie A senaste nytt": "italy-serie-a"
+      };
+
+      const highlightName = highlightMapping[topicName];
+      // topicName = highlightMapping[topicName]; // i update the topic name here why not reflect in UI ?
+      if (highlightName) {
+        const url = `https://www.scorebat.com/video-api/v3/competition/${highlightName}/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy`;
+
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          setHighlightsData(data.response);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+
+    fetchHighlights();
+  }, [state]);
 
   const handleMathInfoClick = (url) => {
     setMathInfoEmbed(url);
     setShowMathInfoModal(true);
   };
 
-  const location = useLocation();
-  const { state } = location;
   const handleVideoClick = (embedCode) => {
     setVideoEmbed(embedCode);
     setShowModal(true);
@@ -34,9 +55,9 @@ const HighlightsList = () => {
     setShowModal(false);
     setVideoEmbed('');
   };
-  const SubTopicId = state?.subtopicId;
-  const TopicName = state?.topicName;
-  const LogoPath=state?.imagesource;
+
+  const LogoPath = state?.imagesource;
+
   if (highlightsData.length === 0) {
     return <div>Loading...</div>;
   }
@@ -48,7 +69,8 @@ const HighlightsList = () => {
           <div className="header">
             <div>
               <img src={LogoPath} alt="Logo" />
-              <span> {TopicName}</span>
+              {/* why topicName not update here ?? */}
+              <span>{topicName.replace('senaste nytt', '')}</span> {/* Modify this line */}
             </div>
             <div>
               {/* <img src="assets/images/22.png" alt="" /> */}
