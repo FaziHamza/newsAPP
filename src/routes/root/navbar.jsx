@@ -101,17 +101,39 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                               <div>
                                 {/* Check if team.VideoIcon is not null and team.NewsIcon is null */}
                                 {team.VideoIcon !== null ? (
-                                  <Link
-                                    to="/highlights"
-                                    state={{
-                                      topicName: team.Name,
-                                      imagesource: team.LogoTeam, // Assuming team.LogoTeam is the correct logo path
-                                    }}
-                                    onClick={closeNav}
-                                    name={team.Name}
-                                  >
-                                    {team.Name}
-                                  </Link>
+                                  team.NewsIcon !== null ? (
+                                    <Link
+                                      to={`../${navType}/${navTopic}`}
+                                      onClick={closeNav}
+                                      state={{
+                                        address: navAddress,
+                                        Name: team.Name,
+                                        TopicId: team.TopicID,
+                                        navType,
+                                        navTopic,
+                                        moreItemName: moreItem.Topic.Name,
+                                        SubTopicId: team.SubTopicID,
+                                        LogoPath: moreItem.Topic.Logo,
+                                        LogoTeam: team.Logo,
+                                        IsSql: !team.News,
+                                      }}
+                                      name={team.Name}
+                                    >
+                                      {team.Name}
+                                    </Link>
+                                  ) : (
+                                    <Link
+                                      to="/highlights"
+                                      state={{
+                                        topicName: team.Name,
+                                        imagesource: team.LogoTeam, // Assuming team.LogoTeam is the correct logo path
+                                      }}
+                                      onClick={closeNav}
+                                      name={team.Name}
+                                    >
+                                      {team.Name}
+                                    </Link>
+                                  )
                                 ) : (
                                   <Link
                                     to={`../${navType}/${navTopic}`}
@@ -150,6 +172,7 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                               </div>
                             </li>
                           );
+                          
                           
                       })}
                     </ul>
