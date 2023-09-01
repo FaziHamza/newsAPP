@@ -96,46 +96,61 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                         const [navType, navTopic, navAddress] = team.News
                           ? ['news', team.Name.toLowerCase().replace(/\s/g, '_'), team.News]
                           : ['articles', team.Name.toLowerCase().replace(/\s/g, '_'), team.Articles];
-                        return (
-                          <li key={team.Name} className='nav-item-sub-child-content'>
-                            <div>
-                              {/* //  if NewsIcon has value then navaigate same otherwise  */}
-                              <Link 
-                                to={`../${navType}/${navTopic}`}
-                                onClick={closeNav}  
-                                state={{
-                                  address: navAddress,
-                                  Name: team.Name,
-                                  TopicId: team.TopicID,
-                                  navType,
-                                  navTopic,
-                                  moreItemName: moreItem.Topic.Name,
-                                  SubTopicId: team.SubTopicID,
-                                  LogoPath: moreItem.Topic.Logo,
-                                  LogoTeam: team.Logo,
-                                  IsSql: !team.News,
-                                }}
-                                name={team.Name}>
-                                {team.Name}
-                              </Link>
-                            </div>
-                            <div className='icons'>
-                              <a href="">
-                                {team.NewsIcon !== null && (
-                                  <i className={team.NewsIcon}></i>
-                                  //fa-light fa-newspaper
+                          return (
+                            <li key={team.Name} className='nav-item-sub-child-content'>
+                              <div>
+                                {/* Check if team.VideoIcon is not null and team.NewsIcon is null */}
+                                {team.VideoIcon !== null ? (
+                                  <Link
+                                    to="/highlights"
+                                    state={{
+                                      topicName: team.Name,
+                                      imagesource: team.LogoTeam, // Assuming team.LogoTeam is the correct logo path
+                                    }}
+                                    onClick={closeNav}
+                                    name={team.Name}
+                                  >
+                                    {team.Name}
+                                  </Link>
+                                ) : (
+                                  <Link
+                                    to={`../${navType}/${navTopic}`}
+                                    onClick={closeNav}
+                                    state={{
+                                      address: navAddress,
+                                      Name: team.Name,
+                                      TopicId: team.TopicID,
+                                      navType,
+                                      navTopic,
+                                      moreItemName: moreItem.Topic.Name,
+                                      SubTopicId: team.SubTopicID,
+                                      LogoPath: moreItem.Topic.Logo,
+                                      LogoTeam: team.Logo,
+                                      IsSql: !team.News,
+                                    }}
+                                    name={team.Name}
+                                  >
+                                    {team.Name}
+                                  </Link>
                                 )}
-                              </a>
-                              <a href="">
-                                {team.VideoIcon !== null && (
-                                  <img src={team.VideoIcon} className='coll-video' alt="" />
-
-                                  //fa-solid fa-video
-                                )}
-                              </a>
-                            </div>
-                          </li>
-                        );
+                              </div>
+                              <div className='icons'>
+                                <a href="">
+                                  {team.NewsIcon !== null && (
+                                    <i className={team.NewsIcon}></i>
+                                    //fa-light fa-newspaper
+                                  )}
+                                </a>
+                                <a href="">
+                                  {team.VideoIcon !== null && (
+                                    <img src={team.VideoIcon} className='coll-video' alt="" />
+                                    //fa-solid fa-video
+                                  )}
+                                </a>
+                              </div>
+                            </li>
+                          );
+                          
                       })}
                     </ul>
                   </div>
