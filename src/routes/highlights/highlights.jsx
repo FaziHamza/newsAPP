@@ -15,8 +15,8 @@ const HighlightsList = () => {
   useEffect(() => {
     const fetchHighlights = async () => {
       const highlightMapping = {
-        "Premier League senaste nytt": "england-premier-league",
-        "LA LIGA senaste nytt": "spain-la-liga",
+        "Premier League": "england-premier-league",
+        "LA LIGA ": "spain-la-liga",
         "Bundesliga senaste nytt": "germany-bundesliga",
         "Tennis senaste nytt": "Tennis",
         "Golf senaste nytt": "Golf",
