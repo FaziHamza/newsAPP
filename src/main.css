@@ -145,6 +145,7 @@ body {
   background: white;
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 20px;
 }
 
 .suggested-card h6 img {
@@ -156,6 +157,11 @@ body {
   width: 75%;
   height: 105px;
 
+}
+
+.suggested-card.tile-l .banner {
+  width: 100%;
+  height: 200px;
 }
 
 .suggested-card .content {
@@ -189,6 +195,7 @@ body {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  border-radius: 4%;
 }
 
 
@@ -201,6 +208,10 @@ body {
 .sidenav.open {
   /* Apply styles when the sidebar is open, e.g., setting the width */
   width: calc(100vw - 55px);
+}
+
+.sidenav.desktop.open {
+  width: calc(100vw - 80vw);
 }
 
 .sidenav {

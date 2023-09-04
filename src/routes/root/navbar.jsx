@@ -3,11 +3,14 @@ import { Dropdown } from '../../compositions';
 import { NavLink, Link } from 'react-router-dom';
 import { SideNav } from '../../compositions';
 import { logo, sportLogoBlack, tennis } from '../../assets';
+import { useMediaContext } from '../../utilities/mediaQuery';
 
 function Navbar({ className = '', navList, inMain = 4, ...props }) {
   const navMain = navList.slice(0, inMain);
   const navMore = navList.slice(inMain, navList.length);
   const [isOpen, setIsOpen] = useState(false);
+  const usingScreen = useMediaContext();
+  const isDesktop = usingScreen === 'desktop' ? true : false;
   const filteredNavItems = navList;
 
   const openNav = () => {
@@ -37,7 +40,7 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
 
   return (
     <div>
-      <div id="Sidenav" className={`sidenav ${isOpen ? 'open' : ''}`}>
+      <div id="Sidenav" className={`sidenav ${usingScreen} ${isOpen ? 'open' : ''}`}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
 
         {Object.entries(groupedNavItems).map(([heading, items]) => (
@@ -49,7 +52,7 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                 ? ['news', moreItem.Topic.Name.toLowerCase().replace(/\s/g, '_'), moreItem.Topic.News]
                 : ['articles', moreItem.Topic.Name.toLowerCase().replace(/\s/g, '_'), moreItem.Topic.Articles];
 
-              return (
+                return (
                 <div className='try' key={moreItem.Topic.Name.toUpperCase()}>
                   <div className="nav-item">
                     <div className='flx' >
@@ -107,6 +110,7 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                                     onClick={closeNav}
                                     state={{
                                       address: navAddress,
+                                      topicKey: team?.Highlights,
                                       Name: team.Name,
                                       TopicId: team.TopicID,
                                       navType,
@@ -125,7 +129,8 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                                   <Link
                                     to="/highlights"
                                     state={{
-                                      topicName: moreItem.Topic.Name,
+                                      topicKey: team?.Highlights,
+                                      topicName: team?.Name,
                                       imagesource: moreItem.Topic.Logo, // Assuming team.LogoTeam is the correct logo path
                                       // Assuming team.LogoTeam is the correct logo path
                                     }}
@@ -141,6 +146,7 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                                   onClick={closeNav}
                                   state={{
                                     address: navAddress,
+                                    topicKey: team?.Highlights,
                                     Name: team.Name,
                                     TopicId: team.TopicID,
                                     navType,
@@ -173,6 +179,7 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                                  onClick={closeNav}
                                  state={{
                                    address: navAddress,
+                                   topicKey: team?.Highlights,
                                    Name: team.Name,
                                    TopicId: team.TopicID,
                                    navType,
@@ -194,7 +201,8 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                                   <Link
                                   to="/highlights"
                                   state={{
-                                    topicName: moreItem.Topic.Name,
+                                    topicKey: team?.Highlights,
+                                    topicName: team?.Name,
                                     imagesource: team.Logo, // Assuming team.LogoTeam is the correct logo path
                                     // Assuming team.LogoTeam is the correct logo path
                                   }}

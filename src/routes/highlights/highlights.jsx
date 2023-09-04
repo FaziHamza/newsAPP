@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import DataNotFound from '../../components/dataNotFound';
+import { useMediaContext } from '../../utilities/mediaQuery';
 
 const HighlightsList = () => {
   const [showModal, setShowModal] = useState(false);
@@ -7,26 +9,16 @@ const HighlightsList = () => {
   const [mathInfoEmbed, setMathInfoEmbed] = useState(null);
   const [showMathInfoModal, setShowMathInfoModal] = useState(false);
   const [highlightsData, setHighlightsData] = useState([]);
+  const isDesktop = useMediaContext();
 
   const location = useLocation();
   const { state } = location;
   console.log(JSON.stringify(state));
-  var topicName = state?.topicName;
+  const { topicKey, topicName } = state;
   useEffect(() => {
     const fetchHighlights = async () => {
-      const highlightMapping = {
-        "England": "arsenal",
-        "Spanien": "spain-la-liga",
-        "Bundesliga senaste nytt": "germany-bundesliga",
-        "Tennis senaste nytt": "Tennis",
-        "Golf senaste nytt": "Golf",
-        "Italien": "italy-serie-a"
-      };
-
-      const highlightName = highlightMapping[topicName];
-      // topicName = highlightMapping[topicName]; // i update the topic name here why not reflect in UI ?
-      if (highlightName) {
-        const url = `https://www.scorebat.com/video-api/v3/team/${highlightName}/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy`;
+      if (topicKey) {
+        const url = `https://www.scorebat.com/video-api/v3/team/${topicKey}/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy`;
 
         try {
           const response = await fetch(url);
@@ -60,17 +52,19 @@ const HighlightsList = () => {
 
   if (highlightsData.length === 0) {
     return <div>Loading...</div>;
+  } else if (!topicName || !topicKey) {
+    return <DataNotFound />
   }
 
   return (
-    <div className="layout">
+    <div className={`layout ${isDesktop}`}>
       <div className="main-card-section">
         <div className="main-card">
           <div className="header">
             <div>
               <img src={LogoPath} alt={LogoPath} />
               {/* why topicName not update here ?? */}
-              <span>{topicName.replace('senaste nytt', '')}</span> {/* Modify this line */}
+              <span>{topicName?.replace('senaste nytt', '')}</span> {/* Modify this line */}
             </div>
             <div>
               {/* <img src="assets/images/22.png" alt="" /> */}

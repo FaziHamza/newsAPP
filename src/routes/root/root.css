@@ -601,6 +601,11 @@ ul {
   background: #dfe2d9
 }
 
+.layout.desktop {
+  margin-top: 10px;
+  grid-column: 2 / span 1;
+}
+
 .layout .main-card {
   min-height: 300px;
   background: #f6f5f2;

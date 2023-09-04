@@ -95,7 +95,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                     to={
                       state
                         ? tableInfo[0]?._id
-                        : `news/${defaultTopic.toLowerCase().replace(/\s/g, '_')}/${tableInfo[0]?._id
+                        : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tableInfo[0]?._id
                         }`
                     }>
                     <StoryTile
@@ -109,7 +109,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                 </main>
                 <div className="top-articles">
                   {/* 11 */}
-                  {/* {tableInfo?.map((tileItem, index) => {
+                  {tableInfo?.map((tileItem, index) => {
                       if (index > 0 && index <= topStoryLimit) {
                         return (
                           <>
@@ -124,7 +124,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                               to={
                                 state
                                   ? tileItem._id
-                                  : `news/${defaultTopic.Name.toLowerCase().replace(/\s/g, '_')}/${
+                                  : `news/${defaultTopic?.Name?.toLowerCase().replace(/\s/g, '_')}/${
                                       tileItem._id
                                     }`
                               }>
@@ -141,14 +141,14 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             </div>
                           </>
                         );
-                      }
-                    })} */}
+                      } else { return <></>}
+                    })}
                 </div>
-                <aside className="aside-right">
+                {/* <aside className="aside-right">
                   <AdRemote to="www.google.com" badge={appStoreRemote} />
                   <div className="divider-container">
                     <hr className="divider-solid" />
-                  </div>
+                  </div> */}
                   {/* 11 */}
                   {/* {tableInfo.map((tileItem, index) => {
                       if (index > topStoryLimit && index < topStoryLimit + adSpan) {
@@ -184,11 +184,11 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                         );
                       }
                     })} */}
-                  <AdRemote badge={googlePlayRemote} to="www.google.com" />
+                  {/* <AdRemote badge={googlePlayRemote} to="www.google.com" />
                   <div className="divider-container">
                     <hr className="divider-solid" />
                   </div>
-                </aside>
+                </aside> */}
               </>
             ) : (
               <>

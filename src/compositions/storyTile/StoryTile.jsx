@@ -26,7 +26,7 @@ const StoryTile = ({ description, className = '', src, alt, time }) => {
   return (
     <>
 
-      <div className='suggested-card'>
+      <div className={`suggested-card ${className}`}>
         <div className='banner'>
           <img src={sanitizedSrc} alt={alt} />
 

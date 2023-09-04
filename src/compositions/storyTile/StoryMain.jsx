@@ -14,6 +14,7 @@ const DisplayComponent = ({ topic }) => {
   const moreItemName = state?.moreItemName;
   const teamName = state?.Name;
   const defaulttopic = topic?.Name;
+  const topicKey = state?.topicKey;
 
   console.log("moreItemName" + moreItemName);
   console.log(teamName);
@@ -47,7 +48,7 @@ const DisplayComponent = ({ topic }) => {
               </div>
 
             </div>
-            <Link to="/highlights" state={{ topicName: moreItemName, imagesource: logoPath }}>
+            <Link to="/highlights" state={{ topicKey,  topicName: teamName, imagesource: teamLogoPath }}>
               <div className="highlights">
 
                 <img src={video_play} height={'20px'} />
