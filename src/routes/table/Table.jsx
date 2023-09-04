@@ -46,7 +46,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const themeVariant = useThemeContext();
 
   useEffect(() => {
-    const address = state?.address ?? 'articles/getarticles?lang=sv&category=Ice%20Hockey&sub1=SHL';
+    const address = state?.address ?? 'news/getnews?lang=sv&topic=football&sub1=fbl,ENG,Pr';
     const tablePromise = () => fetchNewsTable(windowHref + settingsInfo.Api + address);
     run(tablePromise());
   }, [run, state]);

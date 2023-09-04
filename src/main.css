@@ -466,8 +466,13 @@ body {
 }
 
 .coll-flag {
-  height: 27px;
+  height: 22px;
   margin-right: 10px;
+  width: 35px;
+  object-fit: cover;
+}
+.coll-flag:nth-child(3) {
+  border: 1px solid white !important;
 }
 .coll-video{
   height: 21px !important;

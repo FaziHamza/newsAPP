@@ -15,7 +15,7 @@ const HighlightsList = () => {
   useEffect(() => {
     const fetchHighlights = async () => {
       const highlightMapping = {
-        "England": "england-premier-league",
+        "England": "arsenal",
         "Spanien": "spain-la-liga",
         "Bundesliga senaste nytt": "germany-bundesliga",
         "Tennis senaste nytt": "Tennis",
@@ -26,7 +26,7 @@ const HighlightsList = () => {
       const highlightName = highlightMapping[topicName];
       // topicName = highlightMapping[topicName]; // i update the topic name here why not reflect in UI ?
       if (highlightName) {
-        const url = `https://www.scorebat.com/video-api/v3/competition/${highlightName}/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy`;
+        const url = `https://www.scorebat.com/video-api/v3/team/${highlightName}/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy`;
 
         try {
           const response = await fetch(url);
