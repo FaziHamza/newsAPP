@@ -252,7 +252,7 @@ main {
   background-color: var(--color-background-main);
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 6px;
   cursor: pointer;
   text-align: center;
   overflow: hidden;
@@ -597,9 +597,10 @@ ul {
 
 
 .layout {
-  margin-top: 89px;
-  padding: 10px;
-  background: #dfe2d9
+  padding: 30px;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  background: #f5f5f5;
 }
 
 .layout.desktop {
@@ -609,9 +610,10 @@ ul {
 
 .layout .main-card {
   min-height: 300px;
-  background: #f6f5f2;
+  background: white;
   padding: 10px;
   width: 100%;
+  border-radius: 6px;
   margin-bottom: 10px
 }
 
@@ -635,6 +637,7 @@ ul {
 .layout .main-card .video-banner {
   height: 200px;
   width: 100%;
+  border-radius: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -675,8 +678,9 @@ ul {
 }
 
 .layout .secondary-card {
-  background: #f6f5f2;
+  background: white;
   padding: 10px;
+  border-radius: 6px;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -686,6 +690,7 @@ ul {
 .layout .secondary-card .video-banner {
   height: 100px;
   width: 140px;
+  border-radius: 6px;
   display: flex;
   justify-content: center;
   align-items: center;

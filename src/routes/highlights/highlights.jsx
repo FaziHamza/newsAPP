@@ -57,64 +57,66 @@ const HighlightsList = () => {
   }
 
   return (
-    <div className={`layout ${isDesktop}`}>
-      <div className="main-card-section">
-        <div className="main-card">
-          <div className="header">
-            <div>
-              <img src={LogoPath} alt={LogoPath} />
-              {/* why topicName not update here ?? */}
-              <span>{topicName?.replace('senaste nytt', '')}</span> {/* Modify this line */}
-            </div>
-            <div>
-              {/* <img src="assets/images/22.png" alt="" /> */}
-              {/* <span>SUBTOPIC : {SubTopicId} </span> */}
-            </div>
-          </div>
-          <div className="video-banner" style={{ backgroundImage: `url(${highlightsData[0]?.thumbnail})` }} onClick={() => handleVideoClick(highlightsData[0]?.videos[0]?.embed)}>
-            <i className="fa-solid fa-circle-play"></i>
-          </div>
-          <div className="content">
-            <h5>
-              {highlightsData[0]?.title}
-            </h5>
-            <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlightsData[0]?.matchviewUrl); }}>MATH INFO</a>
-            <small>{new Date(highlightsData[0]?.date).toLocaleString()}</small>
-          </div>
-          {showMathInfoModal && (
-            <div className="modal">
-              <div className="modal-content modal-content-more">
-                <button onClick={() => { setShowMathInfoModal(false); }} className="close-button">X</button>
-                <iframe src={mathInfoEmbed} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
+    <div className='main-body'>
+      <div className={`layout ${isDesktop}`}>
+        <div className="main-card-section">
+          <div className="main-card">
+            <div className="header">
+              <div>
+                <img src={LogoPath} alt={LogoPath} />
+                {/* why topicName not update here ?? */}
+                <span>{topicName?.replace('senaste nytt', '')}</span> {/* Modify this line */}
+              </div>
+              <div>
+                {/* <img src="assets/images/22.png" alt="" /> */}
+                {/* <span>SUBTOPIC : {SubTopicId} </span> */}
               </div>
             </div>
-          )}
-        </div>
-      </div>
-      <div className="secondary-card-section">
-        {highlightsData.slice(1).map((highlight, index) => (
-          <div key={index} className="secondary-card">
-            <div className="video-banner" style={{ backgroundImage: `url(${highlight.thumbnail})` }} onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
+            <div className="video-banner" style={{ backgroundImage: `url(${highlightsData[0]?.thumbnail})` }} onClick={() => handleVideoClick(highlightsData[0]?.videos[0]?.embed)}>
               <i className="fa-solid fa-circle-play"></i>
             </div>
             <div className="content">
               <h5>
-                {highlight.title}
+                {highlightsData[0]?.title}
               </h5>
-              <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlight?.matchviewUrl); }}>MATH INFO</a>
-              <small>{new Date(highlight.date).toLocaleString()}</small>
+              <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlightsData[0]?.matchviewUrl); }}>MATH INFO</a>
+              <small>{new Date(highlightsData[0]?.date).toLocaleString()}</small>
             </div>
-          </div>
-        ))}
-      </div>
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <button onClick={handleCloseModal} className="close-button">X</button>
-            <div className="video-wrapper" dangerouslySetInnerHTML={{ __html: videoEmbed }} />
+            {showMathInfoModal && (
+              <div className="modal">
+                <div className="modal-content modal-content-more">
+                  <button onClick={() => { setShowMathInfoModal(false); }} className="close-button">X</button>
+                  <iframe src={mathInfoEmbed} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
+                </div>
+              </div>
+            )}
           </div>
         </div>
-      )}
+        <div className="secondary-card-section">
+          {highlightsData.slice(1).map((highlight, index) => (
+            <div key={index} className="secondary-card">
+              <div className="video-banner" style={{ backgroundImage: `url(${highlight.thumbnail})` }} onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
+                <i className="fa-solid fa-circle-play"></i>
+              </div>
+              <div className="content">
+                <h5>
+                  {highlight.title}
+                </h5>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlight?.matchviewUrl); }}>MATH INFO</a>
+                <small>{new Date(highlight.date).toLocaleString()}</small>
+              </div>
+            </div>
+          ))}
+        </div>
+        {showModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <button onClick={handleCloseModal} className="close-button">X</button>
+              <div className="video-wrapper" dangerouslySetInnerHTML={{ __html: videoEmbed }} />
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

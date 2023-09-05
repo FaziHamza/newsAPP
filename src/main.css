@@ -141,7 +141,7 @@ body {
   width: 100%;
   min-height: 200px;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 6px;
   background: white;
   display: flex;
   justify-content: space-evenly;
@@ -166,7 +166,7 @@ body {
 
 .suggested-card.tile-l .banner {
   width: 100%;
-  height: 300px;
+  height: 260px;
 }
 
 .suggested-card .content {
@@ -503,4 +503,17 @@ body {
 .coll-video {
   height: 21px !important;
   width: 21px !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .layout {
+    padding: 15px;
+  }
+  .main-body {
+    padding: 100px 10px;
+  }
+  .league-card {
+    margin-bottom: 10px;
+  }
+
 }
