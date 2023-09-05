@@ -375,12 +375,13 @@ aside .tile-m p {
 }
 
 @media only screen and (min-width: 1024px) {
-  .App {
-    display: grid;
-    grid-template-columns: auto 684px 300px auto;
-    column-gap: 3rem;
-    padding-bottom: 3rem;
-  }
+
+  .main-body {
+    padding: 40px 20px;
+   max-width: 1000px;
+   margin: auto;
+
+ } 
 
   header {
     grid-column: span 4;
@@ -441,19 +442,19 @@ aside .tile-m p {
   }
 
   .topic-title {
-    padding: 0 0 3rem 0;
+    padding: 0 0 1rem 0;
   }
 
   main {
     grid-column: 2 / span 1;
-    padding: 4rem 4.2rem 0 4.2rem;
+    padding: 30px;
     border-radius: 8px;
     margin-bottom: 1rem;
   }
 
   .top-articles {
     grid-column: 2 / span 1;
-    padding: 4rem 4.2rem 0 4.2rem;
+    padding: 20px;
     border-radius: 8px;
     background-color: var(--color-background-secondary);
   }

@@ -138,14 +138,14 @@ body {
 }
 
 .suggested-card {
-  margin-top: 10px;
   width: 100%;
-  min-height: 125 px;
+  min-height: 200px;
   padding: 10px;
+  border-radius: 10px;
   background: white;
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .suggested-card h6 img {
@@ -159,15 +159,20 @@ body {
 
 }
 
+.suggested-card.tile-l .banner img {
+  height: 100% !important;
+
+}
+
 .suggested-card.tile-l .banner {
   width: 100%;
-  height: 200px;
+  height: 300px;
 }
 
 .suggested-card .content {
   width: 100%;
   padding: 0px 15px;
-  height: 105px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -184,15 +189,23 @@ body {
   font-weight: 600;
   color: black;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   line-height: 20px;
   overflow: hidden;
   font-family: 'Source Sans 3' !important;
 }
 
+@media only screen and (max-width: 768px) {
+  .suggested-card .content p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+}
+
 .suggested-card .banner img {
-  height: 100%;
+  height: 180px;
   width: 100%;
   object-fit: cover;
   border-radius: 4%;
@@ -482,10 +495,12 @@ body {
   width: 35px;
   object-fit: cover;
 }
+
 .coll-flag:nth-child(3) {
   border: 1px solid white !important;
 }
-.coll-video{
+
+.coll-video {
   height: 21px !important;
   width: 21px !important;
 }

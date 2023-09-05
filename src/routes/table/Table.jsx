@@ -77,39 +77,40 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
             ) : null}
             {isDesktop === 'desktop' ? (
               <>
-                <main>
-                  {state ? (
-                    <SectionHeader title={state.Name} listItems={state?.subTopics} />
-                  ) : (
-                    <SectionHeader title={defaultTopic} listItems={defaultTopic.Items} />
-                  )}
+                <div className='main-body'>
+                  <main>
+                    {state ? (
+                      <SectionHeader title={state.Name} listItems={state?.subTopics} />
+                    ) : (
+                      <SectionHeader title={defaultTopic} listItems={defaultTopic.Items} />
+                    )}
 
-                  <Link
-                    className="story-link"
-                    key={tableInfo[0]?._id}
-                    state={{
-                      articleInfo: tableInfo[0],
-                      baseUrl: settingsInfo.Url + settingsInfo.Api,
-                      imgUrl: settingsInfo.Url + tableInfo[0]?._medias[0]?.href,
-                    }}
-                    to={
-                      state
-                        ? tableInfo[0]?._id
-                        : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tableInfo[0]?._id
-                        }`
-                    }>
-                    <StoryTile
-                      description={tableInfo[0]?._abstract}
-                      className={'tile-l'}
-                      src={windowHref + tableInfo[0]?._medias[0]?.href}
-                      alt={tableInfo[0]?._medias[0]?.href}
-                      time={tableInfo[0]?._published}
-                    />
-                  </Link>
-                </main>
-                <div className="top-articles">
-                  {/* 11 */}
-                  {tableInfo?.map((tileItem, index) => {
+                    <Link
+                      className="story-link"
+                      key={tableInfo[0]?._id}
+                      state={{
+                        articleInfo: tableInfo[0],
+                        baseUrl: settingsInfo.Url + settingsInfo.Api,
+                        imgUrl: settingsInfo.Url + tableInfo[0]?._medias[0]?.href,
+                      }}
+                      to={
+                        state
+                          ? tableInfo[0]?._id
+                          : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tableInfo[0]?._id
+                          }`
+                      }>
+                      <StoryTile
+                        description={tableInfo[0]?._abstract}
+                        className={'tile-l'}
+                        src={windowHref + tableInfo[0]?._medias[0]?.href}
+                        alt={tableInfo[0]?._medias[0]?.href}
+                        time={tableInfo[0]?._published}
+                      />
+                    </Link>
+                  </main>
+                  <div className="top-articles">
+                    {/* 11 */}
+                    {tableInfo?.map((tileItem, index) => {
                       if (index > 0 && index <= topStoryLimit) {
                         return (
                           <>
@@ -124,9 +125,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                               to={
                                 state
                                   ? tileItem._id
-                                  : `news/${defaultTopic?.Name?.toLowerCase().replace(/\s/g, '_')}/${
-                                      tileItem._id
-                                    }`
+                                  : `news/${defaultTopic?.Name?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
+                                  }`
                               }>
                               <StoryTile
                                 description={tileItem._abstract}
@@ -136,21 +136,20 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 time={tileItem._published}
                               />
                             </Link>
-                            <div className="divider-container">
-                              <hr className="divider-solid" />
-                            </div>
+
                           </>
                         );
-                      } else { return <></>}
+                      } else { return <></> }
                     })}
+                  </div>
                 </div>
                 {/* <aside className="aside-right">
                   <AdRemote to="www.google.com" badge={appStoreRemote} />
                   <div className="divider-container">
                     <hr className="divider-solid" />
                   </div> */}
-                  {/* 11 */}
-                  {/* {tableInfo.map((tileItem, index) => {
+                {/* 11 */}
+                {/* {tableInfo.map((tileItem, index) => {
                       if (index > topStoryLimit && index < topStoryLimit + adSpan) {
                         return (
                           <>
@@ -177,14 +176,12 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 time={tileItem._published}
                               />
                             </Link>
-                            <div className="divider-container">
-                              <hr className="divider-solid" />
-                            </div>
+                            
                           </>
                         );
                       }
                     })} */}
-                  {/* <AdRemote badge={googlePlayRemote} to="www.google.com" />
+                {/* <AdRemote badge={googlePlayRemote} to="www.google.com" />
                   <div className="divider-container">
                     <hr className="divider-solid" />
                   </div>
@@ -220,7 +217,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
 
                   {/* 11 */}
 
-                  {tableInfo.length>0 && tableInfo.map((tileItem, index) => {
+                  {tableInfo.length > 0 && tableInfo.map((tileItem, index) => {
                     if (index <= topStoryLimit + adSpan)
                       return (
                         <>
