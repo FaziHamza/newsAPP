@@ -516,4 +516,14 @@ body {
     margin-bottom: 10px;
   }
 
+  .suggested-card {
+    min-height: 120px;
+  }
+  .suggested-card .banner {
+    height: auto;
+  }
+  .suggested-card .banner img {
+    height: 100px;
+  }
+
 }
