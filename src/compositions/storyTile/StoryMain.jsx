@@ -20,7 +20,6 @@ const DisplayComponent = ({ topic }) => {
   console.log(teamName);
 
   const logoPath = state?.LogoPath;
-  console.log("logoPath : "+ logoPath)
   const teamLogoPath = state?.LogoTeam;
   const SubTopicId = state?.SubTopicId;
   const TopicId = state?.TopicId;
@@ -41,14 +40,14 @@ const DisplayComponent = ({ topic }) => {
               <div className="title">
                 {teamName.includes(moreItemName) ? null : (
                   <>
-                    <img src={teamLogoPath} height={'20px'}  />
+                    <img src={teamLogoPath} height={'20px'} />
                   </>
                 )}
-                   {teamName.replace(moreItemName, '')} 
+                {teamName.replace(moreItemName, '')}
               </div>
 
             </div>
-            <Link to="/highlights" state={{ topicKey,  topicName: teamName, imagesource: teamLogoPath }}>
+            <Link to="/highlights" state={{ topicKey, topicName: teamName, imagesource: teamLogoPath }}>
               <div className="highlights">
 
                 <img src={video_play} height={'20px'} />
@@ -63,7 +62,7 @@ const DisplayComponent = ({ topic }) => {
     </>
   );
 }
-const StoryMain = ({ description, className = '', src, alt, time }) => {
+const StoryMain = ({ description, className = '', src, alt, time, isDesktopScreen }) => {
   const location = useLocation();
   const { state } = location;
   const IsSql = state?.IsSql;
@@ -79,7 +78,7 @@ const StoryMain = ({ description, className = '', src, alt, time }) => {
     if (timeDifference < 24) {
       return `${hours.toFixed(2)} Tim `;// Swedish for hours
     } else {
-      return `${day} Dag  ` ; // Swedish for days
+      return `${day} Dag  `; // Swedish for days
     }
   };
 
@@ -87,21 +86,39 @@ const StoryMain = ({ description, className = '', src, alt, time }) => {
 
   return (
     <>
-      <div className='league-card'>
-        < DisplayComponent />
-        <div className='banner'>
-          <img src={sanitizedSrc} alt={alt} />
-        </div>
-        <div className='content'>
-          <p>
-          <p dangerouslySetInnerHTML={{ __html: description }} />
-          </p>
-          <div className='date'>
-            <p>{days()}
-              <img src={imageUrl} alt="" /></p>
+
+      {!!isDesktopScreen ?
+        <>
+          < DisplayComponent />
+          <div className={`suggested-card ${className}`}>
+            <div className='banner'>
+              <img src={sanitizedSrc} alt={alt} />
+            </div>
+            <div className='content'>
+              <p dangerouslySetInnerHTML={{ __html: description }} />
+              <h6 className='content-time-img'  >{days()}
+                <img src={imageUrl} alt="" />
+              </h6>
+            </div>
+          </div>
+        </>
+        :
+        <div className='league-card'>
+          < DisplayComponent />
+          <div className='banner'>
+            <img src={sanitizedSrc} alt={alt} />
+          </div>
+          <div className='content'>
+            <p>
+              <p dangerouslySetInnerHTML={{ __html: description }} />
+            </p>
+            <div className='date'>
+              <p>{days()}
+                <img src={imageUrl} alt="" /></p>
+            </div>
           </div>
         </div>
-      </div>
+      }
     </>
   );
 };

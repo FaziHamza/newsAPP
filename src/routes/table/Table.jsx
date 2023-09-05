@@ -79,11 +79,11 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
               <>
                 <div className='main-body'>
                   <main>
-                    {state ? (
+                    {/* {state ? (
                       <SectionHeader title={state.Name} listItems={state?.subTopics} />
                     ) : (
                       <SectionHeader title={defaultTopic} listItems={defaultTopic.Items} />
-                    )}
+                    )} */}
 
                     <Link
                       className="story-link"
@@ -99,9 +99,10 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                           : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tableInfo[0]?._id
                           }`
                       }>
-                      <StoryTile
-                        description={tableInfo[0]?._abstract}
+                      <StoryMain
+                        description={tableInfo[0]?._content}
                         className={'tile-l'}
+                        isDesktopScreen={true}
                         src={windowHref + tableInfo[0]?._medias[0]?.href}
                         alt={tableInfo[0]?._medias[0]?.href}
                         time={tableInfo[0]?._published}
@@ -111,7 +112,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                   <div className="top-articles">
                     {/* 11 */}
                     {tableInfo?.map((tileItem, index) => {
-                      if (index > 0 && index <= topStoryLimit) {
+                      if (index > 0 && index <= topStoryLimit + adSpan) {
                         return (
                           <>
                             <Link
@@ -129,7 +130,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   }`
                               }>
                               <StoryTile
-                                description={tileItem._abstract}
+                                description={tileItem._content}
                                 className={'tile-m'}
                                 src={windowHref + tileItem._medias[0].href}
                                 alt={tileItem._medias[0]?.href}
