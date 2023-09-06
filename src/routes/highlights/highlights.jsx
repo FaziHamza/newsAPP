@@ -74,9 +74,10 @@ const HighlightsList = () => {
 
   return (
     <div className='main-body'>
-      <div className={`layout ${isDesktop}`}>
-        <div className='row'>
-          <div className='col-lg-8'>
+      <div className='row'>
+        <div className='col-lg-8'>
+          <div className={`layout ${isDesktop}`}>
+
             <div className="main-card-section">
               <div className="main-card">
                 <div className="header">
@@ -127,8 +128,11 @@ const HighlightsList = () => {
               ))}
             </div>
           </div>
+        </div>
 
-          <div className='col-lg-4'>
+        <div className='col-lg-4'>
+          <div className={`layout ${isDesktop}`}>
+
             <aside className="aside-right">
               <div className="secondary-card-section">
                 {highlightsData.slice(mainHighlightsQuantity).map((highlight, index) => (
@@ -149,18 +153,18 @@ const HighlightsList = () => {
             </aside>
           </div>
         </div>
-        
-
-
-        {showModal && (
-          <div className="modal">
-            <div className="modal-content">
-              <button onClick={handleCloseModal} className="close-button">X</button>
-              <div className="video-wrapper" dangerouslySetInnerHTML={{ __html: videoEmbed }} />
-            </div>
-          </div>
-        )}
       </div>
+
+
+
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <button onClick={handleCloseModal} className="close-button">X</button>
+            <div className="video-wrapper" dangerouslySetInnerHTML={{ __html: videoEmbed }} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

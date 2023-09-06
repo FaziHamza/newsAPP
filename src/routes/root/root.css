@@ -571,7 +571,6 @@ border-right:none;
   margin-top: 13px;
 }
 
-element.style {}
 
 dl,
 ol,
@@ -749,9 +748,6 @@ ul {
   background: white;
 }
 
-.close-button {
-  /* Add styling for the close button here */
-}
 
 
 .modal-content-more {
@@ -817,9 +813,7 @@ ul {
   font-size: 16px !important;
 }
 
-.nav-item-sub-child-content a {
-  /* margin-left: 25px; */
-}
+
 
 .content-time-img{
   font-size: 11px;
