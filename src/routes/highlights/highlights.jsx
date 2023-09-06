@@ -132,7 +132,6 @@ const HighlightsList = () => {
 
         <div className='col-lg-4'>
           <div className={`layout ${isDesktop}`}>
-
             <aside className="aside-right">
               <div className="secondary-card-section">
                 {highlightsData.slice(mainHighlightsQuantity).map((highlight, index) => (
@@ -154,8 +153,6 @@ const HighlightsList = () => {
           </div>
         </div>
       </div>
-
-
 
       {showModal && (
         <div className="modal">

@@ -304,6 +304,8 @@ article {
 
 .story-tile img,
 .article img {
+  max-height: 350px;
+  object-fit: cover;
   width: 100%;
   height: auto;
   border-radius: 8px;
