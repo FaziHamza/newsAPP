@@ -378,7 +378,7 @@ aside .tile-m p {
 
   .main-body {
     padding: 40px 20px;
-   max-width: 1000px;
+   max-width: 1180px;
    margin: auto;
 
  } 
@@ -447,7 +447,7 @@ aside .tile-m p {
 
   main {
     grid-column: 2 / span 1;
-    padding: 30px;
+    padding: 20px;
     border-radius: 8px;
     margin-bottom: 1rem;
   }
@@ -461,10 +461,10 @@ aside .tile-m p {
 
   .aside-right {
     display: block;
-    position: absolute;
+    /* position: absolute;
     right: calc(50% - 800px);
-    top: 200px;
-    width: 300px;
+    top: 200px; */
+    width: 100%;
   }
 
   .aside-right .story-tile p {

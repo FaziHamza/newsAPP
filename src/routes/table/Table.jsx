@@ -78,115 +78,122 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
             {isDesktop === 'desktop' ? (
               <>
                 <div className='main-body'>
-                  <main>
-                    {/* {state ? (
+                  <div className='row'>
+                    <div className='col-lg-8'>
+                      <main>
+                        {/* {state ? (
                       <SectionHeader title={state.Name} listItems={state?.subTopics} />
                     ) : (
                       <SectionHeader title={defaultTopic} listItems={defaultTopic.Items} />
                     )} */}
 
-                    <Link
-                      className="story-link"
-                      key={tableInfo[0]?._id}
-                      state={{
-                        articleInfo: tableInfo[0],
-                        baseUrl: settingsInfo.Url + settingsInfo.Api,
-                        imgUrl: settingsInfo.Url + tableInfo[0]?._medias[0]?.href,
-                      }}
-                      to={
-                        state
-                          ? tableInfo[0]?._id
-                          : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tableInfo[0]?._id
-                          }`
-                      }>
-                      <StoryMain
-                        description={tableInfo[0]?._content}
-                        className={'tile-l'}
-                        isDesktopScreen={true}
-                        src={windowHref + tableInfo[0]?._medias[0]?.href}
-                        alt={tableInfo[0]?._medias[0]?.href}
-                        time={tableInfo[0]?._published}
-                      />
-                    </Link>
-                  </main>
-                  <div className="top-articles">
-                    {/* 11 */}
-                    {tableInfo?.map((tileItem, index) => {
-                      if (index > 0 && index <= topStoryLimit + adSpan) {
-                        return (
-                          <>
-                            <Link
-                              className="story-link"
-                              key={tileItem._id}
-                              state={{
-                                articleInfo: tileItem,
-                                baseUrl: settingsInfo.Url + settingsInfo.Api,
-                                imgUrl: settingsInfo.Url + tileItem._medias[0].href,
-                              }}
-                              to={
-                                state
-                                  ? tileItem._id
-                                  : `news/${defaultTopic?.Name?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
-                                  }`
-                              }>
-                              <StoryTile
-                                description={tileItem._content}
-                                className={'tile-m'}
-                                src={windowHref + tileItem._medias[0].href}
-                                alt={tileItem._medias[0]?.href}
-                                time={tileItem._published}
-                              />
-                            </Link>
+                        <Link
+                          className="story-link"
+                          key={tableInfo[0]?._id}
+                          state={{
+                            articleInfo: tableInfo[0],
+                            baseUrl: settingsInfo.Url + settingsInfo.Api,
+                            imgUrl: settingsInfo.Url + tableInfo[0]?._medias[0]?.href,
+                          }}
+                          to={
+                            state
+                              ? tableInfo[0]?._id
+                              : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tableInfo[0]?._id
+                              }`
+                          }>
+                          <StoryMain
+                            description={tableInfo[0]?._content}
+                            className={'tile-l'}
+                            isDesktopScreen={true}
+                            src={windowHref + tableInfo[0]?._medias[0]?.href}
+                            alt={tableInfo[0]?._medias[0]?.href}
+                            time={tableInfo[0]?._published}
+                          />
+                        </Link>
+                      </main>
+                      <div className="top-articles">
+                        {/* 11 */}
+                        {tableInfo?.map((tileItem, index) => {
+                          if (index > 0 && index <= topStoryLimit + adSpan) {
+                            return (
+                              <>
+                                <Link
+                                  className="story-link"
+                                  key={tileItem._id}
+                                  state={{
+                                    articleInfo: tileItem,
+                                    baseUrl: settingsInfo.Url + settingsInfo.Api,
+                                    imgUrl: settingsInfo.Url + tileItem._medias[0].href,
+                                  }}
+                                  to={
+                                    state
+                                      ? tileItem._id
+                                      : `news/${defaultTopic?.Name?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
+                                      }`
+                                  }>
+                                  <StoryTile
+                                    description={tileItem._content}
+                                    className={'tile-m'}
+                                    src={windowHref + tileItem._medias[0].href}
+                                    alt={tileItem._medias[0]?.href}
+                                    time={tileItem._published}
+                                  />
+                                </Link>
 
-                          </>
-                        );
-                      } else { return <></> }
-                    })}
+                              </>
+                            );
+                          } else { return <></> }
+                        })}
+                      </div>
+                    </div>
+                    <div className='col-lg-4'>
+                      <aside className="aside-right">
+                        {/* <AdRemote to="www.google.com" badge={appStoreRemote} />
+                  <div className="divider-container">
+                    <hr className="divider-solid" />
+                  </div> */}
+                        {/* 11 */}
+                        {tableInfo.map((tileItem, index) => {
+                          if (index > topStoryLimit && index < topStoryLimit + adSpan) {
+                            return (
+                              <>
+                                <Link
+                                  className="story-link"
+                                  key={tileItem._id}
+                                  state={{
+                                    articleInfo: tileItem,
+                                    baseUrl: settingsInfo.Url + settingsInfo.Api,
+                                    imgUrl: settingsInfo.Url + tileItem._medias[0].href,
+                                  }}
+                                  to={
+                                    state
+                                      ? tileItem._id
+                                      : `news/${defaultTopic?.Name?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
+                                      }`
+                                  }>
+                                  <StoryTile
+                                    description={tileItem._abstract}
+                                    className={'tile-m'}
+                                    src={windowHref + tileItem._medias[0].href}
+                                    alt={tileItem._medias[0]?.href}
+                                    time={tileItem._published}
+                                  />
+                                </Link>
+
+                              </>
+                            );
+                          }
+                        })}
+                        {/* <AdRemote badge={googlePlayRemote} to="www.google.com" />
+                  <div className="divider-container">
+                    <hr className="divider-solid" />
+                  </div> */}
+                      </aside>
+                    </div>
                   </div>
+
                 </div>
-                <aside className="aside-right">
-                  {/* <AdRemote to="www.google.com" badge={appStoreRemote} />
-                  <div className="divider-container">
-                    <hr className="divider-solid" />
-                  </div> */}
-                {/* 11 */}
-                {tableInfo.map((tileItem, index) => {
-                      if (index > topStoryLimit && index < topStoryLimit + adSpan) {
-                        return (
-                          <>
-                            <Link
-                              className="story-link"
-                              key={tileItem._id}
-                              state={{
-                                articleInfo: tileItem,
-                                baseUrl: settingsInfo.Url + settingsInfo.Api,
-                                imgUrl: settingsInfo.Url + tileItem._medias[0].href,
-                              }}
-                              to={
-                                state
-                                  ? tileItem._id
-                                  : `news/${defaultTopic?.Name?.toLowerCase().replace(/\s/g, '_')}/${
-                                      tileItem._id
-                                    }`
-                              }>
-                              <StoryTile
-                                description={tileItem._abstract}
-                                className={'tile-m'}
-                                src={windowHref + tileItem._medias[0].href}
-                                alt={tileItem._medias[0]?.href}
-                                time={tileItem._published}
-                              />
-                            </Link>
-                            
-                          </>
-                        );
-                      }
-                    })}
-                {/* <AdRemote badge={googlePlayRemote} to="www.google.com" />
-                  <div className="divider-container">
-                    <hr className="divider-solid" />
-                  </div> */}
-                </aside>
+
               </>
             ) : (
               <>

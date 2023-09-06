@@ -139,7 +139,7 @@ body {
 
 .suggested-card {
   width: 100%;
-  min-height: 200px;
+  /* min-height: 200px; */
   padding: 10px;
   border-radius: 6px;
   background: white;
@@ -155,7 +155,6 @@ body {
 
 .suggested-card .banner {
   width: 75%;
-  height: 105px;
 
 }
 
@@ -205,7 +204,7 @@ body {
 }
 
 .suggested-card .banner img {
-  height: 180px;
+  height: 100%;
   width: 100%;
   object-fit: cover;
   border-radius: 4%;
@@ -522,12 +521,9 @@ body {
     min-height: 120px;
   }
 
-  .suggested-card .banner {
-    height: auto;
-  }
 
   .suggested-card .banner img {
-    height: 100px;
+    height: auto;
   }
 
 }
