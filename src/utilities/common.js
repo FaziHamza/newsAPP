@@ -15,7 +15,7 @@ export const removeBetween = (string, startStr, endStr) => {
 
 export const divideByPercentage = (total) => {
   total = Number(total);
-  let fortyPercent = total * 0.40;
-  let sixtyPercent = total * 0.60;
-  return [fortyPercent, sixtyPercent];
+  let fortyPercent = Math.round(total * 0.40);
+  let sixtyPercent = Math.round(total * 0.60);
+  return [sixtyPercent, fortyPercent];
 }

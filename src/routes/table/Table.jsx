@@ -13,6 +13,7 @@ import {
   appStoreRemote,
 } from '../../assets';
 import { useThemeContext } from '../../utilities/themeQuery';
+import { divideByPercentage } from '../../utilities/common';
 
 export const loader = ({ params }) => {
   return { params };
@@ -44,6 +45,25 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const [promoVisible, setPromoVisible] = useState(false);
   const isDesktop = useMediaContext();
   const themeVariant = useThemeContext();
+  const [mainNewsQuantity, setMainNewsQuantity] = useState(0);
+  const [asideNewsQuantity, setAsideNewsQuantity] = useState(0);
+
+
+  useEffect(() => {
+    if (tableInfo?.length) {
+      const [mainList, sideList] = divideByPercentage(tableInfo.length);
+      // if (sideList > 4) {
+      setMainNewsQuantity(mainList);
+      setAsideNewsQuantity(sideList);
+      // } else {
+      //   setMainNewsQuantity(mainList + sideList);
+      //   setAsideNewsQuantity(0);
+      // }
+      // console.log("Total: => ", tableInfo.length);
+      // console.log(`40%: ${forty}, 60%: ${sixty}`);
+
+    }
+  }, [tableInfo]);
 
   useEffect(() => {
     const address = state?.address ?? 'news/getnews?lang=sv&topic=football&sub1=fbl,ENG,Pr';
@@ -132,6 +152,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                       }`
                                   }>
                                   <StoryTile
+                                    isDesktopScreen={true}
                                     description={tileItem._content}
                                     className={'tile-m'}
                                     src={windowHref + tileItem._medias[0].href}
@@ -153,7 +174,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                     <hr className="divider-solid" />
                   </div> */}
                         {/* 11 */}
-                        {tableInfo.map((tileItem, index) => {
+                        {tableInfo?.map((tileItem, index) => {
                           if (index > topStoryLimit && index < topStoryLimit + adSpan) {
                             return (
                               <>

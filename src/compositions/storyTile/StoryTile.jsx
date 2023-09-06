@@ -1,13 +1,13 @@
 import { timeQuery } from '../../utilities/timeQuery';
 import { json, useLocation } from 'react-router-dom';
-import { sportspotsverige,AFP_news } from '../../assets';
-const StoryTile = ({ description, className = '', src, alt, time }) => {
+import { sportspotsverige, AFP_news } from '../../assets';
+const StoryTile = ({ description, className = '', src, alt, time, isDesktopScreen }) => {
   const location = useLocation();
   const { state } = location;
   const IsSql = state?.IsSql;
   const imageUrl = IsSql
-  ? sportspotsverige
-  : AFP_news;
+    ? sportspotsverige
+    : AFP_news;
 
   const days = () => {
     const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
@@ -33,9 +33,9 @@ const StoryTile = ({ description, className = '', src, alt, time }) => {
         </div>
         <div className='content'>
           {/* <p>{description}</p> */}
-          <p dangerouslySetInnerHTML={{ __html: description }} />
-          <h6 className='content-time-img'  >{days()} 
-          <img src={imageUrl} alt="" />
+          <p className={!!isDesktopScreen ? 'desktop' : 'mobile'} dangerouslySetInnerHTML={{ __html: description }} />
+          <h6 className='content-time-img'  >{days()}
+            <img src={imageUrl} alt="" />
           </h6>
         </div>
       </div>

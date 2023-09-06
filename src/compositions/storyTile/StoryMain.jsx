@@ -95,7 +95,7 @@ const StoryMain = ({ description, className = '', src, alt, time, isDesktopScree
               <img src={sanitizedSrc} alt={alt} />
             </div>
             <div className='content'>
-              <p dangerouslySetInnerHTML={{ __html: description }} />
+              <p className='desktopTop' dangerouslySetInnerHTML={{ __html: description }} />
               <h6 className='content-time-img'  >{days()}
                 <img src={imageUrl} alt="" />
               </h6>
@@ -110,7 +110,7 @@ const StoryMain = ({ description, className = '', src, alt, time, isDesktopScree
           </div>
           <div className='content'>
             <p>
-              <p dangerouslySetInnerHTML={{ __html: description }} />
+              <p className='mobile' dangerouslySetInnerHTML={{ __html: description }} />
             </p>
             <div className='date'>
               <p>{days()}
