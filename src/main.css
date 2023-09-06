@@ -509,9 +509,11 @@ body {
   .layout {
     padding: 15px;
   }
+
   .main-body {
     padding: 100px 10px;
   }
+
   .league-card {
     margin-bottom: 10px;
   }
@@ -519,11 +521,16 @@ body {
   .suggested-card {
     min-height: 120px;
   }
+
   .suggested-card .banner {
     height: auto;
   }
+
   .suggested-card .banner img {
     height: 100px;
   }
 
+}
+.article img {
+  margin-bottom: 15px;
 }

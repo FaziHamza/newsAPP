@@ -63,15 +63,17 @@ const Article = ({ className = '' }) => {
     <>
       {isDesktop === 'desktop' ? (
         <>
-          <main className={`article ${className}`.trim()}>
-            <h2>{articleInfo._title}</h2>
-            <figure>
-              <img src={state.imgUrl} alt={state.imgUrl} />
-            </figure>
-            <p>
-              <ContentParsed content={articleInfo._content} />
-            </p>
-          </main>
+          <div className='main-body'>
+            <main className={`article ${className}`.trim()}>
+              <h2>{articleInfo._title}</h2>
+              <figure>
+                <img src={state.imgUrl} alt={state.imgUrl} />
+              </figure>
+              <p>
+                <ContentParsed content={articleInfo._content} />
+              </p>
+            </main>
+          </div>
           {/* <AsideArticle /> */}
         </>
       ) : (
