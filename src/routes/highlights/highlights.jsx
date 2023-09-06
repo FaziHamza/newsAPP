@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import DataNotFound from '../../components/dataNotFound';
 import { useMediaContext } from '../../utilities/mediaQuery';
+import { divideByPercentage } from '../../utilities/common';
 
 const HighlightsList = () => {
   const [showModal, setShowModal] = useState(false);
@@ -11,14 +12,29 @@ const HighlightsList = () => {
   const [highlightsData, setHighlightsData] = useState([]);
   const isDesktop = useMediaContext();
 
+  const [mainHighlightsQuantity, setMainHighlightsQuantity] = useState(0);
+  const [asideHighlightsQuantity, setAsideHighlightsQuantity] = useState(0);
+
   const location = useLocation();
   const { state } = location;
   console.log(JSON.stringify(state));
   const { topicKey, topicName } = state;
+
+  useEffect(() => {
+    if (highlightsData?.length) {
+      const [forty, sixty] = divideByPercentage(highlightsData.length);
+      setMainHighlightsQuantity(forty);
+      setAsideHighlightsQuantity(sixty);
+      // console.log("Total: => ", highlightsData.length);
+      // console.log(`40%: ${forty}, 60%: ${sixty}`);
+    }
+  }, [highlightsData]);
+
   useEffect(() => {
     const fetchHighlights = async () => {
       if (topicKey) {
-        const url = `https://www.scorebat.com/video-api/v3/team/${topicKey}/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy`;
+        const detailOf = (topicKey === 'england-premier-league' || topicKey === 'italy-serie-a') ? "competition" : "team";
+        const url = `https://www.scorebat.com/video-api/v3/${detailOf}/${topicKey}/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy`;
 
         try {
           const response = await fetch(url);
@@ -59,55 +75,83 @@ const HighlightsList = () => {
   return (
     <div className='main-body'>
       <div className={`layout ${isDesktop}`}>
-        <div className="main-card-section">
-          <div className="main-card">
-            <div className="header">
-              <div>
-                <img src={LogoPath} alt={LogoPath} />
-                {/* why topicName not update here ?? */}
-                <span>{topicName?.replace('senaste nytt', '')}</span> {/* Modify this line */}
-              </div>
-              <div>
-                {/* <img src="assets/images/22.png" alt="" /> */}
-                {/* <span>SUBTOPIC : {SubTopicId} </span> */}
-              </div>
-            </div>
-            <div className="video-banner" style={{ backgroundImage: `url(${highlightsData[0]?.thumbnail})` }} onClick={() => handleVideoClick(highlightsData[0]?.videos[0]?.embed)}>
-              <i className="fa-solid fa-circle-play"></i>
-            </div>
-            <div className="content">
-              <h5>
-                {highlightsData[0]?.title}
-              </h5>
-              <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlightsData[0]?.matchviewUrl); }}>MATH INFO</a>
-              <small>{new Date(highlightsData[0]?.date).toLocaleString()}</small>
-            </div>
-            {showMathInfoModal && (
-              <div className="modal">
-                <div className="modal-content modal-content-more">
-                  <button onClick={() => { setShowMathInfoModal(false); }} className="close-button">X</button>
-                  <iframe src={mathInfoEmbed} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
+        <div className='row'>
+          <div className='col-lg-8'>
+            <div className="main-card-section">
+              <div className="main-card">
+                <div className="header">
+                  <div>
+                    <img src={LogoPath} alt={LogoPath} />
+                    {/* why topicName not update here ?? */}
+                    <span>{topicName?.replace('senaste nytt', '')}</span> {/* Modify this line */}
+                  </div>
+                  <div>
+                    {/* <img src="assets/images/22.png" alt="" /> */}
+                    {/* <span>SUBTOPIC : {SubTopicId} </span> */}
+                  </div>
                 </div>
+                <div className="video-banner" style={{ backgroundImage: `url(${highlightsData[0]?.thumbnail})` }} onClick={() => handleVideoClick(highlightsData[0]?.videos[0]?.embed)}>
+                  <i className="fa-solid fa-circle-play"></i>
+                </div>
+                <div className="content">
+                  <h5>
+                    {highlightsData[0]?.title}
+                  </h5>
+                  <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlightsData[0]?.matchviewUrl); }}>MATH INFO</a>
+                  <small>{new Date(highlightsData[0]?.date).toLocaleString()}</small>
+                </div>
+                {showMathInfoModal && (
+                  <div className="modal">
+                    <div className="modal-content modal-content-more">
+                      <button onClick={() => { setShowMathInfoModal(false); }} className="close-button">X</button>
+                      <iframe src={mathInfoEmbed} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
+            <div className="secondary-card-section">
+              {highlightsData.slice(1, asideHighlightsQuantity).map((highlight, index) => (
+                <div key={index} className="secondary-card">
+                  <div className="video-banner" style={{ backgroundImage: `url(${highlight.thumbnail})` }} onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
+                    <i className="fa-solid fa-circle-play"></i>
+                  </div>
+                  <div className="content">
+                    <h5>
+                      {highlight.title}
+                    </h5>
+                    <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlight?.matchviewUrl); }}>MATH INFO</a>
+                    <small>{new Date(highlight.date).toLocaleString()}</small>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className='col-lg-4'>
+            <aside className="aside-right">
+              <div className="secondary-card-section">
+                {highlightsData.slice(mainHighlightsQuantity).map((highlight, index) => (
+                  <div key={index} className="secondary-card">
+                    <div className="video-banner" style={{ backgroundImage: `url(${highlight.thumbnail})` }} onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
+                      <i className="fa-solid fa-circle-play"></i>
+                    </div>
+                    <div className="content">
+                      <h5>
+                        {highlight.title}
+                      </h5>
+                      <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlight?.matchviewUrl); }}>MATH INFO</a>
+                      <small>{new Date(highlight.date).toLocaleString()}</small>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </aside>
           </div>
         </div>
-        <div className="secondary-card-section">
-          {highlightsData.slice(1).map((highlight, index) => (
-            <div key={index} className="secondary-card">
-              <div className="video-banner" style={{ backgroundImage: `url(${highlight.thumbnail})` }} onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
-                <i className="fa-solid fa-circle-play"></i>
-              </div>
-              <div className="content">
-                <h5>
-                  {highlight.title}
-                </h5>
-                <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlight?.matchviewUrl); }}>MATH INFO</a>
-                <small>{new Date(highlight.date).toLocaleString()}</small>
-              </div>
-            </div>
-          ))}
-        </div>
+        
+
+
         {showModal && (
           <div className="modal">
             <div className="modal-content">
