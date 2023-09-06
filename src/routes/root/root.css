@@ -462,7 +462,7 @@ aside .tile-m p {
   .aside-right {
     display: block;
     position: absolute;
-    right: calc(50% - 510px);
+    right: calc(50% - 800px);
     top: 200px;
     width: 300px;
   }

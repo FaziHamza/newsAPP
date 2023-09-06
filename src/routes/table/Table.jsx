@@ -144,13 +144,13 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                     })}
                   </div>
                 </div>
-                {/* <aside className="aside-right">
-                  <AdRemote to="www.google.com" badge={appStoreRemote} />
+                <aside className="aside-right">
+                  {/* <AdRemote to="www.google.com" badge={appStoreRemote} />
                   <div className="divider-container">
                     <hr className="divider-solid" />
                   </div> */}
                 {/* 11 */}
-                {/* {tableInfo.map((tileItem, index) => {
+                {tableInfo.map((tileItem, index) => {
                       if (index > topStoryLimit && index < topStoryLimit + adSpan) {
                         return (
                           <>
@@ -165,7 +165,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                               to={
                                 state
                                   ? tileItem._id
-                                  : `news/${defaultTopic.Name.toLowerCase().replace(/\s/g, '_')}/${
+                                  : `news/${defaultTopic?.Name?.toLowerCase().replace(/\s/g, '_')}/${
                                       tileItem._id
                                     }`
                               }>
@@ -181,12 +181,12 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                           </>
                         );
                       }
-                    })} */}
+                    })}
                 {/* <AdRemote badge={googlePlayRemote} to="www.google.com" />
                   <div className="divider-container">
                     <hr className="divider-solid" />
-                  </div>
-                </aside> */}
+                  </div> */}
+                </aside>
               </>
             ) : (
               <>
@@ -236,7 +236,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                               to={
                                 state
                                   ? tileItem._id
-                                  : `news/${defaultTopic.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
+                                  : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
                                   }`
                               }>
 
@@ -264,7 +264,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             to={
                               state
                                 ? tileItem._id
-                                : `news/${defaultTopic.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
+                                : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
                                 }`
                             }>
 

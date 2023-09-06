@@ -80,32 +80,32 @@ const Article = ({ articleChosen, chooseArticle, className = '' }) => {
           {isDesktop === 'desktop' ? (
             <>
               <main className={`article ${className}`.trim()}>
-                <h2>{articleInfo.title}</h2>
+                <h2>{articleInfo?.title}</h2>
                 <figure>
                   <img
-                    src={addresses.baseUrl + '/' + articleInfo.imageUrl}
-                    alt={articleInfo.imageUrl}
+                    src={addresses.baseUrl + '/' + articleInfo?.imageUrl}
+                    alt={articleInfo?.imageUrl}
                   />
                 </figure>
-                <h4>{articleInfo.title}</h4>
+                <h4>{articleInfo?.title}</h4>
                 <p>
-                  <ContentParsed content={articleInfo.fullContent} />
+                  <ContentParsed content={articleInfo?.fullContent} />
                 </p>
               </main>
               <AsideArticle chooseArticle={chooseArticle} />
             </>
           ) : (
             <main className={`article ${className}`.trim()}>
-              <h2 className='artical-detail' >{articleInfo._title}</h2>
+              <h2 className='artical-detail' >{articleInfo?._title}</h2>
               <figure className='artical-detail'>
                 <img
-                  src={addresses.baseUrl + '/' + articleInfo.imageUrl}
-                  alt={articleInfo.imageUrl}
+                  src={addresses.baseUrl + '/' + articleInfo?.imageUrl}
+                  alt={articleInfo?.imageUrl}
                 />
               </figure>
-              <h4 >{articleInfo.title}</h4>
+              <h4 >{articleInfo?.title}</h4>
               <p className='artical-detail-box'>
-                <ContentParsed content={articleInfo.fullContent} />
+                <ContentParsed content={articleInfo?.fullContent} />
               </p>
             </main>
           )}
