@@ -197,20 +197,20 @@ body {
 
 .suggested-card .content p.desktopTop {
   display: -webkit-box;
-  -webkit-line-clamp: 10;
+  /* -webkit-line-clamp: 10; */
   -webkit-box-orient: vertical;
 }
 
 .suggested-card .content p.desktop {
   display: -webkit-box;
-  -webkit-line-clamp: 7;
+  /* -webkit-line-clamp: 7; */
   -webkit-box-orient: vertical;
 }
 
 @media only screen and (max-width: 768px) {
   .suggested-card .content p {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    /* -webkit-line-clamp: 3; */
     -webkit-box-orient: vertical;
   }
 }
@@ -447,11 +447,8 @@ body {
 }
 
 .modal-content {
-  position: relative;
-  background-color: #fff;
-  width: 90%;
-  max-width: 500px;
-  padding: 50.25% 0 0 0;
+  width: 80%;
+  padding: 43% 0 0 0;
 }
 
 .close-button {
@@ -517,6 +514,12 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
+  .modal-content { 
+    width: 90%;
+    max-width: 500px;
+    padding: 50.25% 0 0 0;
+  }
+
   .layout {
     padding: 15px;
   }
@@ -540,5 +543,6 @@ body {
 
 }
 .article img {
+  margin-top: 10px;
   margin-bottom: 15px;
 }
