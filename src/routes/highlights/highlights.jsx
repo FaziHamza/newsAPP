@@ -33,7 +33,7 @@ const HighlightsList = () => {
   useEffect(() => {
     const fetchHighlights = async () => {
       if (topicKey) {
-        const detailOf = (topicKey === 'england-premier-league' || topicKey === 'italy-serie-a') ? "competition" : "team";
+        const detailOf = (topicKey === 'england-premier-league' || topicKey === 'italy-serie-a' || topicKey==='spain-la-liga' || topicKey==='germany-bundesliga') ? "competition" : "team";
         const url = `https://www.scorebat.com/video-api/v3/${detailOf}/${topicKey}/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy`;
 
         try {
