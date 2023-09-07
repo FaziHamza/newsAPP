@@ -15,37 +15,45 @@ export const loader = ({ params }) => {
   return { params };
 };
 
-// const AsideArticle = () => {
-//   const { params } = useLoaderData();
+const AsideArticle = ({ tableInfo }) => {
+  const { params } = useLoaderData();
+  // const { state } = useLocation();
+  // console.log(params);
 
-//   console.log(params);
-
-//   return (
-//     <aside className="aside-right">
-//       {tableInfo.map((tileItem) => {
-//         return (
-//           <>
-//             <Link
-//               className="story-link"
-//               to={`../${urlPrefix}${tileItem._id}`}
-//               relative="path"
-//               key={tileItem._id}>
-//               <StoryTile
-//                 description={tileItem._abstract}
-//                 className={'tile-m'}
-//                 src={addresses.baseUrl + '/' + tileItem._medias[0].href}
-//                 alt={tileItem._medias[0].href}
-//               />
-//             </Link>
-//             <div className="divider-container">
-//               <hr className="divider-solid" />
-//             </div>
-//           </>
-//         );
-//       })}
-//     </aside>
-//   );
-// };
+  return (
+    <aside className="aside-right">
+      {tableInfo?.filter(item => item._id !== params.id)?.slice(0, 5)?.map((tileItem) => {
+        return (
+          <>
+            {/* <Link
+              className="story-link"
+              to={`/${params.type}/${params.topic}/${tileItem._id}`}
+              // to={`../${urlPrefix}${tileItem._id}`}
+              relative="path"
+              key={tileItem._id}
+              // state={{ ...state,
+              //   // articleInfo: state.articleInfo,
+              //   // tableInfo: state.tableInfo,
+              //   // baseUrl: settingsInfo.Url + settingsInfo.Api,
+              //   // imgUrl: settingsInfo.Url + tileItem._medias[0].href,
+              // }}
+              > */}
+            <StoryTile
+              description={tileItem._abstract}
+              className={'tile-m'}
+              src={addresses.baseUrl + '/' + tileItem._medias[0].href}
+              alt={tileItem._medias[0].href}
+            />
+            {/* </Link> */}
+            <div className="divider-container">
+              <hr className="divider-solid" />
+            </div>
+          </>
+        );
+      })}
+    </aside>
+  );
+};
 
 const Article = ({ className = '' }) => {
   const isDesktop = useMediaContext();
@@ -57,22 +65,30 @@ const Article = ({ className = '' }) => {
     return <>{parsedContent}</>;
   };
 
-  const { articleInfo } = state;
-
+  const { articleInfo, tableInfo } = state;
   return (
     <>
       {isDesktop === 'desktop' ? (
         <>
           <div className='main-body'>
-            <main className={`article ${className}`.trim()}>
-              <h2>{articleInfo._title}</h2>
-              <figure>
-                <img src={state.imgUrl} alt={state.imgUrl} />
-              </figure>
-              <p>
-                <ContentParsed content={articleInfo._content} />
-              </p>
-            </main>
+            <div className='row'>
+              <div className='col-lg-8'>
+                <main className={`article ${className}`.trim()}>
+
+                  <h2>{articleInfo._title}</h2>
+                  <figure>
+                    <img src={state.imgUrl} alt={state.imgUrl} />
+                  </figure>
+                  <p>
+                    <ContentParsed content={articleInfo._content} />
+                  </p>
+                </main>
+              </div>
+              <div className='col-lg-4'>
+                <AsideArticle tableInfo={tableInfo} />
+              </div>
+            </div>
+
           </div>
           {/* <AsideArticle /> */}
         </>

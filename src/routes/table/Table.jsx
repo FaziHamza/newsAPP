@@ -112,6 +112,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                           key={tableInfo[0]?._id}
                           state={{
                             articleInfo: tableInfo[0],
+                            tableInfo: tableInfo,
                             baseUrl: settingsInfo.Url + settingsInfo.Api,
                             imgUrl: settingsInfo.Url + tableInfo[0]?._medias[0]?.href,
                           }}
@@ -134,7 +135,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                       <div className="top-articles">
                         {/* 11 */}
                         {tableInfo?.map((tileItem, index) => {
-                          if (index > 0 && index <= topStoryLimit + adSpan) {
+                          if (index > 0 && index < mainNewsQuantity) {
                             return (
                               <>
                                 <Link
@@ -142,6 +143,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   key={tileItem._id}
                                   state={{
                                     articleInfo: tileItem,
+                                    tableInfo: tableInfo,
                                     baseUrl: settingsInfo.Url + settingsInfo.Api,
                                     imgUrl: settingsInfo.Url + tileItem._medias[0].href,
                                   }}
@@ -174,8 +176,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                     <hr className="divider-solid" />
                   </div> */}
                         {/* 11 */}
-                        {tableInfo?.map((tileItem, index) => {
-                          if (index > topStoryLimit && index < topStoryLimit + adSpan) {
+                        {tableInfo?.slice(mainNewsQuantity)?.map((tileItem, index) => {
                             return (
                               <>
                                 <Link
@@ -183,6 +184,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   key={tileItem._id}
                                   state={{
                                     articleInfo: tileItem,
+                                    tableInfo: tableInfo,
                                     baseUrl: settingsInfo.Url + settingsInfo.Api,
                                     imgUrl: settingsInfo.Url + tileItem._medias[0].href,
                                   }}
@@ -203,7 +205,6 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
 
                               </>
                             );
-                          }
                         })}
                         {/* <AdRemote badge={googlePlayRemote} to="www.google.com" />
                   <div className="divider-container">
