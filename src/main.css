@@ -188,7 +188,7 @@ body {
   font-weight: 600;
   color: black;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   line-height: 20px;
   overflow: hidden;
@@ -197,20 +197,20 @@ body {
 
 .suggested-card .content p.desktopTop {
   display: -webkit-box;
-  /* -webkit-line-clamp: 10; */
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
 }
 
 .suggested-card .content p.desktop {
   display: -webkit-box;
-  /* -webkit-line-clamp: 7; */
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
 
 @media only screen and (max-width: 768px) {
   .suggested-card .content p {
     display: -webkit-box;
-    /* -webkit-line-clamp: 3; */
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
   }
 }
