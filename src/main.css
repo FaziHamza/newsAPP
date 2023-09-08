@@ -59,7 +59,15 @@ body {
   height: 37px;
 }
 
-.main-header {
+header {
+  background: #c10206;
+}
+
+.main-header.desktop {
+  padding: 40px 20px;
+  max-width: 1180px;
+  margin: auto;
+
   width: 100%;
   background: #c10206;
   display: flex;
@@ -68,18 +76,12 @@ body {
   padding: 14px 0px;
 }
 
-.main-header .logo {
-  margin-left: 15%;
-}
-
-.main-header .menu {
-  margin-right: 15%;
-}
 
 .logo-title {
   margin-top: auto;
   margin-left: 5%;
   font-weight: 700;
+  color: #fff;
 }
 
 .main-header .item {
@@ -213,6 +215,7 @@ body {
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
+  line-height: 1.2;
 }
 
 .suggested-card .content p.desktop {
@@ -250,15 +253,6 @@ body {
   padding-right: 5px;
 }
 
-.sidenav.desktop.open {
-  width: calc(100vw - 80vw);
-
-  position: fixed;
-  right: 0px;
-  left: 251vh;
-  top: 88px;
-}
-
 .sidenav {
   height: 100%;
   /* width: 0; */
@@ -275,6 +269,16 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #000;
   scrollbar-track-color: #fff;
+}
+
+.sidenav.desktop.open {
+  width: calc(100vw - 80vw);
+  top: 88px;
+}
+
+.sidenav.desktop {
+  left: 100% !important;
+  transform: translate(-100%, 0) !important;
 }
 
 .sidenav::-webkit-scrollbar {
@@ -538,7 +542,7 @@ body {
   .main-header .logo {
     margin-left: 0;
   }
-  
+
   .main-header .menu {
     margin-right: 0;
   }
