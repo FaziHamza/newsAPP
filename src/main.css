@@ -272,10 +272,10 @@ body {
 
 .sidenav.desktop.open {
   width: calc(100vw - 80vw);
-  top: 88px;
 }
 
 .sidenav.desktop {
+  top: 88px;
   left: 100% !important;
   transform: translate(-100%, 0) !important;
 }
