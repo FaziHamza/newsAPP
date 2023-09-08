@@ -56,17 +56,18 @@ body {
 }
 
 .flag-image img {
-  height: 45px;
+  height: 50px;
 }
 
 header {
   background: #c10206;
-
 }
 
-.main-header {
+.main-header.desktop {
+  padding: 40px 20px;
   max-width: 1180px;
   margin: auto;
+
   width: 100%;
   background: #c10206;
   display: flex;
@@ -75,21 +76,11 @@ header {
   padding: 14px 0px;
 }
 
-.main-header .logo-title {
-  color: white;
-}
-
-/* .main-header .logo {
-  margin-left: 15%;
-} */
-
-/* .main-header .menu {
-  margin-right: 15%;
-} */
 
 .logo-title {
-  margin: 10px 0px;
+  margin: auto 15px;
   font-weight: 700;
+  color: #fff;
 }
 
 .main-header .item {
@@ -169,7 +160,7 @@ header {
   background: white;
   display: flex;
   justify-content: space-evenly;
-  /* margin-bottom: 10px; */
+  margin-bottom: 10px;
 }
 
 .suggested-card h6 img {
@@ -214,7 +205,7 @@ header {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
-  /* line-height: 20px; */
+  line-height: 20px;
   overflow: hidden;
   font-family: 'Source Sans 3' !important;
 }
@@ -223,6 +214,7 @@ header {
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
+  line-height: 1.2;
 }
 
 .suggested-card .content p.desktop {
@@ -260,19 +252,6 @@ body {
   padding-right: 5px;
 }
 
-.sidenav.desktop {
-  top: 88px;
-
-}
-
-.sidenav.desktop.open {
-  width: calc(100vw - 80vw);
-
-  position: fixed;
-  /* right: 0px; */
-  /* left: 251vh; */
-}
-
 .sidenav {
   height: 100%;
   /* width: 0; */
@@ -289,6 +268,16 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #000;
   scrollbar-track-color: #fff;
+}
+
+.sidenav.desktop.open {
+  width: calc(100vw - 80vw);
+  top: 88px;
+}
+
+.sidenav.desktop {
+  left: 100% !important;
+  transform: translate(-100%, 0) !important;
 }
 
 .sidenav::-webkit-scrollbar {

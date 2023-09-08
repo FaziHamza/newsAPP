@@ -55,7 +55,7 @@ const Root = () => {
             <div className={'App'}>
               <header>
                 {isDesktop ? (
-                  <div className='main-header'>
+                  <div className='main-header desktop'>
                     <div className='item logo'><Logo name={'Logo'} href="/" alt={'logo'} /></div>
                     <div className='item flag'><Logo name={'Flag'} href="/" alt={'logo'} /> <h2 className='logo-title'>NYHETER</h2></div>
                     <div className='item menu'>
