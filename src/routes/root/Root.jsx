@@ -9,7 +9,7 @@ import { fetchConfig } from '../../utilities/fetch';
 
 import { Logo, NavbarMobile, Navigation } from '../../compositions';
 // Mockup images imports
-import { useTheme } from '../../utilities/hooks';
+import { useMediaQuery, useTheme } from '../../utilities/hooks';
 import { useEffect, useState } from 'react';
 import { getData } from '../../assets/mockup-assets/data/dataObject';
 import { addresses } from '../../utilities/config';
@@ -17,6 +17,7 @@ const Root = () => {
   const { data: settingsInfo, status, error, run } = useAsync({ status: 'pending' });
   const [themeVariant, setThemeVariant] = useTheme('dark'); // 'dark', 'light'
   const [windowHref, setWindowHref] = useState('');
+  const isDesktop = useMediaQuery('width', 1024);
   const themeIcon = getData().themeIcon;
   const toggleTheme = (inputValue, valueOne, valueTwo) => {
     if (inputValue === valueOne) {
@@ -53,8 +54,7 @@ const Root = () => {
           <ThemeQueryProvider value={themeVariant}>
             <div className={'App'}>
               <header>
-
-                {true ? (
+                {isDesktop ? (
                   <div className='main-header'>
                     <div className='item logo'><Logo name={'Logo'} href="/" alt={'logo'} /></div>
                     <div className='item flag'><Logo name={'Flag'} href="/" alt={'logo'} /> <h2 className='logo-title'>NYHETER</h2></div>

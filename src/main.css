@@ -78,8 +78,8 @@ body {
 
 .logo-title {
   margin-top: auto;
-    margin-left: 5%;
-    font-weight: 700;
+  margin-left: 5%;
+  font-weight: 700;
 }
 
 .main-header .item {
@@ -252,6 +252,11 @@ body {
 
 .sidenav.desktop.open {
   width: calc(100vw - 80vw);
+
+  position: fixed;
+  right: 0px;
+  left: 251vh;
+  top: 88px;
 }
 
 .sidenav {
@@ -577,4 +582,3 @@ body {
   /* color: black; */
   font-family: 'Source Sans 3' !important;
 }
-
