@@ -74,8 +74,7 @@ const Article = ({ className = '' }) => {
             <div className='row'>
               <div className='col-lg-8'>
                 <main className={`article ${className}`.trim()}>
-
-                  <h2>{articleInfo._title}</h2>
+                  <h2 dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>
                   <figure>
                     <img src={state.imgUrl} alt={state.imgUrl} />
                   </figure>
