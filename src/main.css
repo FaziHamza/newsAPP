@@ -56,10 +56,17 @@ body {
 }
 
 .flag-image img {
-  height: 37px;
+  height: 45px;
+}
+
+header {
+  background: #c10206;
+
 }
 
 .main-header {
+  max-width: 1180px;
+  margin: auto;
   width: 100%;
   background: #c10206;
   display: flex;
@@ -68,17 +75,20 @@ body {
   padding: 14px 0px;
 }
 
-.main-header .logo {
-  margin-left: 15%;
+.main-header .logo-title {
+  color: white;
 }
 
-.main-header .menu {
+/* .main-header .logo {
+  margin-left: 15%;
+} */
+
+/* .main-header .menu {
   margin-right: 15%;
-}
+} */
 
 .logo-title {
-  margin-top: auto;
-  margin-left: 5%;
+  margin: 10px 0px;
   font-weight: 700;
 }
 
@@ -159,7 +169,7 @@ body {
   background: white;
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .suggested-card h6 img {
@@ -204,7 +214,7 @@ body {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
-  line-height: 20px;
+  /* line-height: 20px; */
   overflow: hidden;
   font-family: 'Source Sans 3' !important;
 }
@@ -250,13 +260,17 @@ body {
   padding-right: 5px;
 }
 
+.sidenav.desktop {
+  top: 88px;
+
+}
+
 .sidenav.desktop.open {
   width: calc(100vw - 80vw);
 
   position: fixed;
-  right: 0px;
-  left: 251vh;
-  top: 88px;
+  /* right: 0px; */
+  /* left: 251vh; */
 }
 
 .sidenav {
@@ -538,7 +552,7 @@ body {
   .main-header .logo {
     margin-left: 0;
   }
-  
+
   .main-header .menu {
     margin-right: 0;
   }
