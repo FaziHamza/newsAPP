@@ -7,7 +7,7 @@ import './root.css';
 
 import { fetchConfig } from '../../utilities/fetch';
 
-import { Logo,NavbarMobile, Navigation } from '../../compositions';
+import { Logo, NavbarMobile, Navigation } from '../../compositions';
 // Mockup images imports
 import { useTheme } from '../../utilities/hooks';
 import { useEffect, useState } from 'react';
@@ -48,21 +48,32 @@ const Root = () => {
       }
       const fullInfo = [settingsInfo, windowHref];
       return (
-        
+
         <MediaQueryProvider>
           <ThemeQueryProvider value={themeVariant}>
             <div className={'App'}>
               <header>
-                
-                <div className='main-header'>
-                  <div className='item'>
-                  <NavbarMobile navList={settingsInfo.MenuItems}/>
-                  {/* <span style={{ fontSize: '30px', cursor: 'pointer' }}>&#9776;</span> */}
 
+                {true ? (
+                  <div className='main-header'>
+                    <div className='item logo'><Logo name={'Logo'} href="/" alt={'logo'} /></div>
+                    <div className='item flag'><Logo name={'Flag'} href="/" alt={'logo'} /> <h2 className='logo-title'>NYHETER</h2></div>
+                    <div className='item menu'>
+                      <NavbarMobile navList={settingsInfo.MenuItems} />
+                    </div>
                   </div>
-                  <div className='item'><Logo name={'Logo'} href="/" alt={'logo'} /></div>
-                  <div className='item'><Logo name={'Flag'}href="/" alt={'logo'} /></div>
-                  {/* <div className='item'>
+                )
+                  :
+                  (
+                    <div className='main-header'>
+                      <div className='item'>
+                        <NavbarMobile navList={settingsInfo.MenuItems} />
+                        {/* <span style={{ fontSize: '30px', cursor: 'pointer' }}>&#9776;</span> */}
+
+                      </div>
+                      <div className='item'><Logo name={'Logo'} href="/" alt={'logo'} /></div>
+                      <div className='item'><Logo name={'Flag'} href="/" alt={'logo'} /></div>
+                      {/* <div className='item'>
                     
                     <Icon
                       onClick={() => toggleTheme(themeVariant, 'dark', 'light')}
@@ -72,7 +83,9 @@ const Root = () => {
                     />
                   </div> */}
 
-                </div>
+                    </div>
+                  )}
+
               </header>
               {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
               <Outlet context={fullInfo} />
