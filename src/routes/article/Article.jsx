@@ -93,7 +93,7 @@ const Article = ({ className = '' }) => {
         </>
       ) : (
         <main className={`article ${className}`.trim()}>
-          <h2 className='artical-detail'>{articleInfo._title}</h2>
+          <h2 className='artical-detail' dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>
           <figure className='artical-detail'>
             <img src={state.imgUrl} alt={state.imgUrl} />
           </figure>

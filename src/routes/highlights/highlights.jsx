@@ -33,7 +33,7 @@ const HighlightsList = () => {
   useEffect(() => {
     const fetchHighlights = async () => {
       if (topicKey) {
-        const detailOf = (topicKey === 'england-premier-league' || topicKey === 'italy-serie-a' || topicKey==='spain-la-liga' || topicKey==='germany-bundesliga') ? "competition" : "team";
+        const detailOf = (topicKey === 'england-premier-league' || topicKey === 'italy-serie-a' || topicKey === 'spain-la-liga' || topicKey === 'germany-bundesliga') ? "competition" : "team";
         const url = `https://www.scorebat.com/video-api/v3/${detailOf}/${topicKey}/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy`;
 
         try {
@@ -71,6 +71,15 @@ const HighlightsList = () => {
   } else if (!topicName || !topicKey) {
     return <DataNotFound />
   }
+
+  let mainHightLights = highlightsData || [];
+  let asideHightLights = [];
+
+  if ((highlightsData?.length > 0) && isDesktop === 'desktop') {
+    mainHightLights = highlightsData.slice(1, asideHighlightsQuantity);
+    asideHightLights = highlightsData.slice(mainHighlightsQuantity);
+  }
+
 
   return (
     <div className='main-body'>
@@ -111,30 +120,9 @@ const HighlightsList = () => {
                 )}
               </div>
             </div>
-            <div className="secondary-card-section">
-              {highlightsData.slice(1, asideHighlightsQuantity).map((highlight, index) => (
-                <div key={index} className="secondary-card">
-                  <div className="video-banner" style={{ backgroundImage: `url(${highlight.thumbnail})` }} onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
-                    <i className="fa-solid fa-circle-play"></i>
-                  </div>
-                  <div className="content">
-                    <h5>
-                      {highlight.title}
-                    </h5>
-                    <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlight?.matchviewUrl); }}>MATH INFO</a>
-                    <small>{new Date(highlight.date).toLocaleString()}</small>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className='col-lg-4'>
-          <div className={`layout ${isDesktop}`}>
-            <aside className="aside-right">
+            {mainHightLights?.length > 0 &&
               <div className="secondary-card-section">
-                {highlightsData.slice(mainHighlightsQuantity).map((highlight, index) => (
+                {mainHightLights?.map((highlight, index) => (
                   <div key={index} className="secondary-card">
                     <div className="video-banner" style={{ backgroundImage: `url(${highlight.thumbnail})` }} onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
                       <i className="fa-solid fa-circle-play"></i>
@@ -148,10 +136,34 @@ const HighlightsList = () => {
                     </div>
                   </div>
                 ))}
-              </div>
-            </aside>
+              </div>}
           </div>
         </div>
+
+        {asideHightLights?.length > 0 &&
+          <div className='col-lg-4'>
+            <div className={`layout ${isDesktop}`}>
+              <aside className="aside-right">
+                <div className="secondary-card-section">
+                  {asideHightLights?.map((highlight, index) => (
+                    <div key={index} className="secondary-card">
+                      <div className="video-banner" style={{ backgroundImage: `url(${highlight.thumbnail})` }} onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
+                        <i className="fa-solid fa-circle-play"></i>
+                      </div>
+                      <div className="content">
+                        <h5>
+                          {highlight.title}
+                        </h5>
+                        <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlight?.matchviewUrl); }}>MATH INFO</a>
+                        <small>{new Date(highlight.date).toLocaleString()}</small>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </aside>
+            </div>
+          </div>
+        }
       </div>
 
       {showModal && (
