@@ -367,6 +367,13 @@ body {
 
 .nav-item-sub-child li:hover {
   background: #c10206 !important;
+
+}
+
+.sidenav li:hover a,
+.sidenav li:hover i {
+
+  color: white !important;
 }
 
 .sidenav .nav-item {
