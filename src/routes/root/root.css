@@ -376,6 +376,20 @@ aside .tile-m p {
   line-height: 2.5rem;
 }
 
+.modal-content-more {
+  width: 500px !important;
+  height: 100% !important;
+  padding: 10px !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .modal-content-more {
+    width: 90% !important;
+    height: 100% !important;
+    padding: 10px !important;
+  }
+}
+
 @media only screen and (min-width: 1024px) {
 
   .main-body {
@@ -750,13 +764,6 @@ ul {
   background: white;
 }
 
-
-
-.modal-content-more {
-  width: 90% !important;
-  height: 100% !important;
-  padding: 10px !important;
-}
 
 .nav-item-sub-child-content {
   display: flex !important;
