@@ -232,6 +232,8 @@ body {
 .sidenav.open {
   /* Apply styles when the sidebar is open, e.g., setting the width */
   width: calc(100vw - 55px);
+  /* padding-left: 30px; */
+  padding-right: 5px;
 }
 
 .sidenav.desktop.open {
@@ -247,7 +249,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #d0cece;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -334,7 +336,7 @@ body {
   color: #818181;
   cursor: pointer;
   padding-right: 32px;
-  background: #444;
+  background: #d9d9d9;
   padding: 0px;
 
 }
@@ -344,12 +346,12 @@ body {
 }
 
 .sidenav .nav-item {
-  background: black !important;
+  background: #d0cece !important;
 
 }
 
 .sidenav .nav-item {
-  color: white !important;
+  color: #414141 !important;
 }
 
 .nav-item-sub-child {
@@ -381,7 +383,7 @@ body {
 }
 
 .nav-item-sub-child li .icons a .fa-newspaper {
-  color: white;
+  color: #414141;
 }
 
 .nav-item-sub-child li .icons a {
@@ -553,3 +555,4 @@ body {
   /* color: black; */
   font-family: 'Source Sans 3' !important;
 }
+

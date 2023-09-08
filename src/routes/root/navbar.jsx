@@ -45,27 +45,27 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
 
         {Object.entries(groupedNavItems).map(([heading, items]) => (
           <div key={heading}>
-            <div className="sidebar-heading">{heading} </div>
+            {/* <div className="sidebar-heading">{heading} </div> */}
             {items.map((moreItem) => {
               const id = moreItem.Topic.Name.toLowerCase().replace(/\s+/g, '-');
               const [topicNavType, topicNavTopic, topicNavAddress] = moreItem.Topic.News
                 ? ['news', moreItem.Topic.Name.toLowerCase().replace(/\s/g, '_'), moreItem.Topic.News]
                 : ['articles', moreItem.Topic.Name.toLowerCase().replace(/\s/g, '_'), moreItem.Topic.Articles];
 
-                return (
-                <div className='try' key={moreItem.Topic.Name.toUpperCase()}>
+              return (
+                <div className='try' key={moreItem.Topic.Name.toUpperCase()} >
                   <div className="nav-item">
                     <div className='flx' >
-                      {
+                      {/* {
                         moreItem.Topic.NavLogo ? (
                           <img className='nav-item-img' src={moreItem.Topic.NavLogo} alt="topic-logo" />
                         ) : (
                           <i className="fa-solid fa-football"></i>
                         )
-                      }
-                      {moreItem.Topic.MenuFlag !== null && (
+                      } */}
+                      {/* {moreItem.Topic.MenuFlag !== null && (
                         <img src={moreItem.Topic.MenuFlag} className='coll-flag' alt="" />
-                      )}
+                      )} */}
                       {/* <Link
                       //"https://www.countryflags.com/wp-content/uploads/flag-jpg-xl-7-scaled.jpg"
                         to={`../${topicNavType}/${topicNavTopic}`}
@@ -164,7 +164,7 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                               )}
                             </div>
                             <div className='icons'>
-{/* 
+                              {/* 
                               <a href="">
                                 {team.NewsIcon !== null && (
                                   <i className={team.NewsIcon}></i>
@@ -173,32 +173,32 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                               </a> */}
 
                               {team.NewsIcon !== null && (
-                                 
-                                 <Link
-                                 to={`../${navType}/${navTopic}`}
-                                 onClick={closeNav}
-                                 state={{
-                                   address: navAddress,
-                                   topicKey: team?.Highlights,
-                                   Name: team.Name,
-                                   TopicId: team.TopicID,
-                                   navType,
-                                   navTopic,
-                                   moreItemName: moreItem.Topic.Name,
-                                   SubTopicId: team.SubTopicID,
-                                   LogoPath: moreItem.Topic.Logo,
-                                   LogoTeam: team.Logo,
-                                   IsSql: !team.News,
-                                 }}
-                                 name={team.Name}
-                               >
-                                 <i className={team.NewsIcon}></i>
-                               </Link>
-                               )}
 
-                              {team.VideoIcon !== null && (
-                                 
-                                  <Link
+                                <Link
+                                  to={`../${navType}/${navTopic}`}
+                                  onClick={closeNav}
+                                  state={{
+                                    address: navAddress,
+                                    topicKey: team?.Highlights,
+                                    Name: team.Name,
+                                    TopicId: team.TopicID,
+                                    navType,
+                                    navTopic,
+                                    moreItemName: moreItem.Topic.Name,
+                                    SubTopicId: team.SubTopicID,
+                                    LogoPath: moreItem.Topic.Logo,
+                                    LogoTeam: team.Logo,
+                                    IsSql: !team.News,
+                                  }}
+                                  name={team.Name}
+                                >
+                                  <i className={team.NewsIcon}></i>
+                                </Link>
+                              )}
+
+                              {(team.VideoIcon !== null && team.NewsIcon === null) && (
+
+                                <Link
                                   to="/highlights"
                                   state={{
                                     topicKey: team?.Highlights,
@@ -211,8 +211,7 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                                 >
                                   <img src={team.VideoIcon} className='coll-video' alt="" />
                                 </Link>
-                                )}
-                         
+                              )}
 
                             </div>
                           </li>
@@ -225,6 +224,7 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                 </div>
               );
             })}
+            <hr style={{ border: '1px solid #615c5c', margin: '20px 22px' }} />
           </div>
         ))}
       </div>

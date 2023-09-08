@@ -783,9 +783,9 @@ ul {
 }
 
 .nav-item-sub-child-content img {
-  margin-right: 2px !important;
-  width: 35px;
-  height: 35px;
+  /* margin-right: 2px !important; */
+    width: 35px;
+    height: 35px;
   object-fit: cover;
 }
 
