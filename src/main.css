@@ -63,6 +63,10 @@ header {
   background: #c10206;
 }
 
+header > div {
+  align-items: center;
+}
+
 .main-header.desktop {
   padding: 40px 20px;
   max-width: 1180px;
@@ -228,6 +232,12 @@ header {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .logo-image img {
+    padding: 5px;
   }
 }
 
