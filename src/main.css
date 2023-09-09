@@ -248,6 +248,10 @@ header > div {
   border-radius: 4%;
 }
 
+.suggested-card.tile-m.main-list .banner img {
+  width: 75% !important;
+}
+
 
 body {
   font-family: 'Source Sans 3', sans-serif !important;

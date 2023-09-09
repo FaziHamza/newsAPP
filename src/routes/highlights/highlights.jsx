@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import DataNotFound from '../../components/dataNotFound';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { divideByPercentage } from '../../utilities/common';
@@ -11,6 +11,7 @@ const HighlightsList = () => {
   const [showMathInfoModal, setShowMathInfoModal] = useState(false);
   const [highlightsData, setHighlightsData] = useState([]);
   const isDesktop = useMediaContext();
+  const navigate = useNavigate();
 
   const [mainHighlightsQuantity, setMainHighlightsQuantity] = useState(0);
   const [asideHighlightsQuantity, setAsideHighlightsQuantity] = useState(0);
@@ -89,15 +90,22 @@ const HighlightsList = () => {
 
             <div className="main-card-section">
               <div className="main-card">
-                <div className="header">
-                  <div>
-                    <img src={LogoPath} alt={LogoPath} />
-                    {/* why topicName not update here ?? */}
-                    <span>{topicName?.replace('senaste nytt', '')}</span> {/* Modify this line */}
+                <div className='row'>
+                  <div className='col-lg-11'>
+                    <div className="header">
+                      <div>
+                        <img src={LogoPath} alt={LogoPath} />
+                        {/* why topicName not update here ?? */}
+                        <span>{topicName?.replace('senaste nytt', '')}</span> {/* Modify this line */}
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    {/* <img src="assets/images/22.png" alt="" /> */}
-                    {/* <span>SUBTOPIC : {SubTopicId} </span> */}
+                  <div className='col-lg-1'>
+                    <div>
+                      {/* <img src="assets/images/22.png" alt="" /> */}
+                      {/* <span>SUBTOPIC : {SubTopicId} </span> */}
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary btn-md" style={{ float: 'right' }} onClick={() => navigate(-1)}>X</button>
                   </div>
                 </div>
                 <div className="video-banner" style={{ backgroundImage: `url(${highlightsData[0]?.thumbnail})` }} onClick={() => handleVideoClick(highlightsData[0]?.videos[0]?.embed)}>
