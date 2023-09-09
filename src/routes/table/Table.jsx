@@ -52,16 +52,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   useEffect(() => {
     if (tableInfo?.length) {
       const [mainList, sideList] = divideByPercentage(tableInfo.length);
-      // if (sideList > 4) {
       setMainNewsQuantity(mainList);
       setAsideNewsQuantity(sideList);
-      // } else {
-      //   setMainNewsQuantity(mainList + sideList);
-      //   setAsideNewsQuantity(0);
-      // }
-      // console.log("Total: => ", tableInfo.length);
-      // console.log(`40%: ${forty}, 60%: ${sixty}`);
-
     }
   }, [tableInfo]);
 
