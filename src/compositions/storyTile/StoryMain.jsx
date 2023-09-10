@@ -11,16 +11,14 @@ const DisplayComponent = ({ topic }) => {
 
   // Now you can access the passed state values
 
-  const moreItemName = state?.moreItemName;
-  const teamName = state?.Name;
-  const defaulttopic = topic?.Name;
-  const topicKey = state?.topicKey;
+  const moreItemName = state?.moreItemName || "England";
+  const teamName = state?.Name || "Premier League";
+  const defaulttopic = topic?.Name || "Premier League";
+  const topicKey = state?.topicKey || "england-premier-league";
 
-  console.log("moreItemName" + moreItemName);
-  console.log(teamName);
 
-  const logoPath = state?.LogoPath;
-  const teamLogoPath = state?.LogoTeam;
+  const logoPath = state?.LogoPath || "https://siteofsports.com/v2/Content/TopicLogo/GB.png";
+  const teamLogoPath = state?.LogoTeam || "https://siteofsports.com/v2/content/topicLogo/premier_league.jpg";
   const SubTopicId = state?.SubTopicId;
   const TopicId = state?.TopicId;
   // const TopicId = state?.TopicId;

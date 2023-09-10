@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useLoaderData, useLocation } from 'react-router-dom';
+import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { useAsync } from '../../utilities/asyncReducer';
@@ -22,7 +22,7 @@ const AsideArticle = ({ tableInfo }) => {
 
   return (
     <aside className="aside-right">
-      {tableInfo?.filter(item => item._id !== params.id)?.slice(0, 5)?.map((tileItem) => {
+      {tableInfo?.filter(item => item._id !== params.id)?.slice(0, 8)?.map((tileItem) => {
         return (
           <>
             {/* <Link
@@ -58,6 +58,7 @@ const AsideArticle = ({ tableInfo }) => {
 const Article = ({ className = '' }) => {
   const isDesktop = useMediaContext();
   const { state } = useLocation();
+  const navigate = useNavigate();
 
   const ContentParsed = ({ content = 'Text Missing' }) => {
     const parsedContent = parse(removeBetween(content, 'style="', '"'));
@@ -74,7 +75,14 @@ const Article = ({ className = '' }) => {
             <div className='row'>
               <div className='col-lg-8'>
                 <main className={`article ${className}`.trim()}>
-                  <h2 dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>
+                  <div className='row'>
+                    <div className='col-lg-11'>
+                      <h2 dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>
+                    </div>
+                    <div className='col-lg-1'>
+                      <button type="button" class="btn btn-outline-secondary btn-md" style={{ float: 'right' }} onClick={() => navigate(-1)}>X</button>
+                    </div>
+                  </div>
                   <figure>
                     <img src={state.imgUrl} alt={state.imgUrl} />
                   </figure>

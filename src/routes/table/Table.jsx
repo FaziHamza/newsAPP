@@ -45,23 +45,22 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const [promoVisible, setPromoVisible] = useState(false);
   const isDesktop = useMediaContext();
   const themeVariant = useThemeContext();
-  const [mainNewsQuantity, setMainNewsQuantity] = useState(0);
-  const [asideNewsQuantity, setAsideNewsQuantity] = useState(0);
+  const [mainNewsList, setMainNewsList] = useState([]);
+  const [asideNewsList, setAsideNewsList] = useState([]);
 
 
   useEffect(() => {
-    if (tableInfo?.length) {
-      const [mainList, sideList] = divideByPercentage(tableInfo.length);
-      // if (sideList > 4) {
-      setMainNewsQuantity(mainList);
-      setAsideNewsQuantity(sideList);
-      // } else {
-      //   setMainNewsQuantity(mainList + sideList);
-      //   setAsideNewsQuantity(0);
-      // }
-      // console.log("Total: => ", tableInfo.length);
-      // console.log(`40%: ${forty}, 60%: ${sixty}`);
+    if (tableInfo?.length > 0) {
+      let mainList = tableInfo || [];
+      let asideList = [];
 
+      if (isDesktop === 'desktop') {
+        mainList = tableInfo.slice(0, 4);
+        asideList = tableInfo.length > 4 ? tableInfo.slice(4, 12) : [];
+      }
+
+      setMainNewsList(mainList);
+      setAsideNewsList(asideList);
     }
   }, [tableInfo]);
 
@@ -100,83 +99,84 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                 <div className='main-body'>
                   <div className='row'>
                     <div className='col-lg-8'>
-                      <main>
-                        {/* {state ? (
+                      {(mainNewsList?.length > 0) ?
+                        <main>
+                          {/* {state ? (
                       <SectionHeader title={state.Name} listItems={state?.subTopics} />
                     ) : (
                       <SectionHeader title={defaultTopic} listItems={defaultTopic.Items} />
                     )} */}
 
-                        <Link
-                          className="story-link"
-                          key={tableInfo[0]?._id}
-                          state={{
-                            articleInfo: tableInfo[0],
-                            tableInfo: tableInfo,
-                            baseUrl: settingsInfo.Url + settingsInfo.Api,
-                            imgUrl: settingsInfo.Url + tableInfo[0]?._medias[0]?.href,
-                          }}
-                          to={
-                            state
-                              ? tableInfo[0]?._id
-                              : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tableInfo[0]?._id
-                              }`
-                          }>
-                          <StoryMain
-                            description={tableInfo[0]?._content}
-                            className={'tile-l'}
-                            isDesktopScreen={true}
-                            src={windowHref + tableInfo[0]?._medias[0]?.href}
-                            alt={tableInfo[0]?._medias[0]?.href}
-                            time={tableInfo[0]?._published}
-                          />
-                        </Link>
-                      </main>
+                          <Link
+                            className="story-link"
+                            key={mainNewsList[0]?._id}
+                            state={{
+                              articleInfo: mainNewsList[0],
+                              tableInfo: tableInfo,
+                              baseUrl: settingsInfo.Url + settingsInfo.Api,
+                              imgUrl: settingsInfo.Url + mainNewsList[0]?._medias[0]?.href,
+                            }}
+                            to={
+                              state
+                                ? mainNewsList[0]?._id
+                                : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${mainNewsList[0]?._id
+                                }`
+                            }>
+                            <StoryMain
+                              description={mainNewsList[0]?._content}
+                              className={'tile-l'}
+                              isDesktopScreen={true}
+                              src={windowHref + mainNewsList[0]?._medias[0]?.href}
+                              alt={mainNewsList[0]?._medias[0]?.href}
+                              time={mainNewsList[0]?._published}
+                            />
+                          </Link>
+                        </main>
+                        : null}
                       <div className="top-articles">
                         {/* 11 */}
-                        {tableInfo?.map((tileItem, index) => {
-                          if (index > 0 && index < mainNewsQuantity) {
-                            return (
-                              <>
-                                <Link
-                                  className="story-link"
-                                  key={tileItem._id}
-                                  state={{
-                                    articleInfo: tileItem,
-                                    tableInfo: tableInfo,
-                                    baseUrl: settingsInfo.Url + settingsInfo.Api,
-                                    imgUrl: settingsInfo.Url + tileItem._medias[0].href,
-                                  }}
-                                  to={
-                                    state
-                                      ? tileItem._id
-                                      : `news/${defaultTopic?.Name?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
-                                      }`
-                                  }>
-                                  <StoryTile
-                                    isDesktopScreen={true}
-                                    description={tileItem._content}
-                                    className={'tile-m'}
-                                    src={windowHref + tileItem._medias[0].href}
-                                    alt={tileItem._medias[0]?.href}
-                                    time={tileItem._published}
-                                  />
-                                </Link>
+                        {mainNewsList?.slice(1)?.map(tileItem => {
+                          return (
+                            <>
+                              <Link
+                                className="story-link"
+                                key={tileItem._id}
+                                state={{
+                                  articleInfo: tileItem,
+                                  tableInfo: tableInfo,
+                                  baseUrl: settingsInfo.Url + settingsInfo.Api,
+                                  imgUrl: settingsInfo.Url + tileItem._medias[0].href,
+                                }}
+                                to={
+                                  state
+                                    ? tileItem._id
+                                    : `news/${defaultTopic?.Name?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
+                                    }`
+                                }>
+                                <StoryTile
+                                  isDesktopScreen={true}
+                                  description={tileItem._content}
+                                  className={'tile-m main-list'}
+                                  src={windowHref + tileItem._medias[0].href}
+                                  alt={tileItem._medias[0]?.href}
+                                  time={tileItem._published}
+                                />
+                              </Link>
 
-                              </>
-                            );
-                          } else { return <></> }
+                            </>
+                          );
                         })}
                       </div>
                     </div>
                     <div className='col-lg-4'>
-                      <aside className="aside-right">
-                        {/* <AdRemote to="www.google.com" badge={appStoreRemote} />
+                      {asideNewsList?.length > 0 ?
+                        <aside className="aside-right">
+                          {/* <AdRemote to="www.google.com" badge={appStoreRemote} />
                   <div className="divider-container">
                     <hr className="divider-solid" />
                   </div> */}
-                        {/* 11 */}
-                        {tableInfo?.slice(mainNewsQuantity)?.map((tileItem, index) => {
+                          {/* 11 */}
+                          {asideNewsList?.map(tileItem => {
                             return (
                               <>
                                 <Link
@@ -202,15 +202,15 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                     time={tileItem._published}
                                   />
                                 </Link>
-
                               </>
                             );
-                        })}
-                        {/* <AdRemote badge={googlePlayRemote} to="www.google.com" />
+                          })}
+                          {/* <AdRemote badge={googlePlayRemote} to="www.google.com" />
                   <div className="divider-container">
                     <hr className="divider-solid" />
                   </div> */}
-                      </aside>
+                        </aside>
+                        : null}
                     </div>
                   </div>
 

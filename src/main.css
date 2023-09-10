@@ -63,6 +63,10 @@ header {
   background: #c10206;
 }
 
+header > div {
+  align-items: center;
+}
+
 .main-header.desktop {
   padding: 40px 20px;
   max-width: 1180px;
@@ -231,11 +235,21 @@ header {
   }
 }
 
+@media only screen and (max-width: 1023px) {
+  .logo-image img {
+    padding: 5px;
+  }
+}
+
 .suggested-card .banner img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   border-radius: 4%;
+}
+
+.suggested-card.tile-m.main-list .banner img {
+  width: 75% !important;
 }
 
 
