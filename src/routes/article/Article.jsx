@@ -101,7 +101,14 @@ const Article = ({ className = '' }) => {
         </>
       ) : (
         <main className={`article ${className}`.trim()}>
-          <h2 className='artical-detail' dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>
+          <div className='row'>
+            <div className='col-11'>
+              <h2 dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>
+            </div>
+            <div className='col-1'>
+              <button type="button" class="btn btn-outline-secondary btn-md" style={{ float: 'right' }} onClick={() => navigate(-1)}>X</button>
+            </div>
+          </div>
           <figure className='artical-detail'>
             <img src={state.imgUrl} alt={state.imgUrl} />
           </figure>
