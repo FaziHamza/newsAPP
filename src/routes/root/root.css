@@ -769,6 +769,7 @@ ul {
   display: flex !important;
   /* justify-content: start !important; */
   align-items: center;
+  font-family: 'Source Sans 3 Light';
 }
 
 .nav-item-sub-child-content p {

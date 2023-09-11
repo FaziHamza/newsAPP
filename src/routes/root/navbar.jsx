@@ -45,6 +45,7 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
 
         {Object.entries(groupedNavItems).map(([heading, items]) => (
           <div key={heading}>
+            <div class="separator">{heading}</div>
             {/* <div className="sidebar-heading">{heading} </div> */}
             {items.map((moreItem) => {
               const id = moreItem.Topic.Name.toLowerCase().replace(/\s+/g, '-');
@@ -224,9 +225,19 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                 </div>
               );
             })}
-            <hr style={{ border: '1px solid #615c5c', margin: '20px 22px' }} />
           </div>
         ))}
+        <div class="separator">INSTALLNINGAR</div>
+        <div className="nav-item">
+          <div className='flx' >
+            Farg palett
+          </div>
+          <i
+            className={`${collapsedIds['switch'] ? 'fa-solid fa-toggle-on' : 'fa-solid fa-toggle-off'}`}
+            onClick={() => toggleCollapse('switch')}
+          />
+        </div>
+
       </div>
       <span style={{ fontSize: '30px', cursor: 'pointer', color: 'white' }} onClick={openNav}>&#9776;</span>
     </div>
