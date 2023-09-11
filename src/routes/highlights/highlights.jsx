@@ -105,7 +105,9 @@ const HighlightsList = () => {
                       {/* <img src="assets/images/22.png" alt="" /> */}
                       {/* <span>SUBTOPIC : {SubTopicId} </span> */}
                     </div>
-                    <button type="button" class="btn btn-outline-secondary btn-md" style={{ float: 'right' }} onClick={() => navigate(-1)}>X</button>
+                    <button type="button" class="btn btn-outline-secondary close-btn" style={{ float: 'right' }} onClick={() => navigate(-1)}>
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
                   </div>
                 </div>
                 <div className="video-banner" style={{ backgroundImage: `url(${highlightsData[0]?.thumbnail})` }} onClick={() => handleVideoClick(highlightsData[0]?.videos[0]?.embed)}>

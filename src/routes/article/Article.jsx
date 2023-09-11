@@ -80,7 +80,9 @@ const Article = ({ className = '' }) => {
                       <h2 dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>
                     </div>
                     <div className='col-lg-1'>
-                      <button type="button" class="btn btn-outline-secondary btn-md" style={{ float: 'right' }} onClick={() => navigate(-1)}>X</button>
+                      <button type="button" class="btn btn-outline-secondary close-btn" style={{ float: 'right' }} onClick={() => navigate(-1)}>
+                        <i class="fa-solid fa-xmark"></i>
+                      </button>
                     </div>
                   </div>
                   <figure>
@@ -106,7 +108,9 @@ const Article = ({ className = '' }) => {
               <h2 dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>
             </div>
             <div className='col-1'>
-              <button type="button" class="btn btn-outline-secondary btn-md" style={{ float: 'right' }} onClick={() => navigate(-1)}>X</button>
+              <button type="button" class="btn btn-outline-secondary close-btn" style={{ float: 'right' }} onClick={() => navigate(-1)}>
+                <i class="fa-solid fa-xmark"></i>
+              </button>
             </div>
           </div>
           <figure className='artical-detail'>
