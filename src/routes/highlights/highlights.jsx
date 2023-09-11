@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import DataNotFound from '../../components/dataNotFound';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { divideByPercentage } from '../../utilities/common';
@@ -11,6 +11,7 @@ const HighlightsList = () => {
   const [showMathInfoModal, setShowMathInfoModal] = useState(false);
   const [highlightsData, setHighlightsData] = useState([]);
   const isDesktop = useMediaContext();
+  const navigate = useNavigate();
 
   const [mainHighlightsQuantity, setMainHighlightsQuantity] = useState(0);
   const [asideHighlightsQuantity, setAsideHighlightsQuantity] = useState(0);
@@ -33,7 +34,7 @@ const HighlightsList = () => {
   useEffect(() => {
     const fetchHighlights = async () => {
       if (topicKey) {
-        const detailOf = (topicKey === 'england-premier-league' || topicKey === 'italy-serie-a' || topicKey==='spain-la-liga' || topicKey==='germany-bundesliga') ? "competition" : "team";
+        const detailOf = (topicKey === 'england-premier-league' || topicKey === 'italy-serie-a' || topicKey === 'spain-la-liga' || topicKey === 'germany-bundesliga') ? "competition" : "team";
         const url = `https://www.scorebat.com/video-api/v3/${detailOf}/${topicKey}/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy`;
 
         try {
@@ -72,6 +73,15 @@ const HighlightsList = () => {
     return <DataNotFound />
   }
 
+  let mainHightLights = highlightsData || [];
+  let asideHightLights = [];
+
+  if ((highlightsData?.length > 0) && isDesktop === 'desktop') {
+    mainHightLights = highlightsData.slice(1, asideHighlightsQuantity);
+    asideHightLights = highlightsData.slice(mainHighlightsQuantity);
+  }
+
+
   return (
     <div className='main-body'>
       <div className='row'>
@@ -80,15 +90,22 @@ const HighlightsList = () => {
 
             <div className="main-card-section">
               <div className="main-card">
-                <div className="header">
-                  <div>
-                    <img src={LogoPath} alt={LogoPath} />
-                    {/* why topicName not update here ?? */}
-                    <span>{topicName?.replace('senaste nytt', '')}</span> {/* Modify this line */}
+                <div className='row'>
+                  <div className='col-lg-11'>
+                    <div className="header">
+                      <div>
+                        <img src={LogoPath} alt={LogoPath} />
+                        {/* why topicName not update here ?? */}
+                        <span>{topicName?.replace('senaste nytt', '')}</span> {/* Modify this line */}
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    {/* <img src="assets/images/22.png" alt="" /> */}
-                    {/* <span>SUBTOPIC : {SubTopicId} </span> */}
+                  <div className='col-lg-1'>
+                    <div>
+                      {/* <img src="assets/images/22.png" alt="" /> */}
+                      {/* <span>SUBTOPIC : {SubTopicId} </span> */}
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary btn-md" style={{ float: 'right' }} onClick={() => navigate(-1)}>X</button>
                   </div>
                 </div>
                 <div className="video-banner" style={{ backgroundImage: `url(${highlightsData[0]?.thumbnail})` }} onClick={() => handleVideoClick(highlightsData[0]?.videos[0]?.embed)}>
@@ -111,30 +128,9 @@ const HighlightsList = () => {
                 )}
               </div>
             </div>
-            <div className="secondary-card-section">
-              {highlightsData.slice(1, asideHighlightsQuantity).map((highlight, index) => (
-                <div key={index} className="secondary-card">
-                  <div className="video-banner" style={{ backgroundImage: `url(${highlight.thumbnail})` }} onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
-                    <i className="fa-solid fa-circle-play"></i>
-                  </div>
-                  <div className="content">
-                    <h5>
-                      {highlight.title}
-                    </h5>
-                    <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlight?.matchviewUrl); }}>MATH INFO</a>
-                    <small>{new Date(highlight.date).toLocaleString()}</small>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className='col-lg-4'>
-          <div className={`layout ${isDesktop}`}>
-            <aside className="aside-right">
+            {mainHightLights?.length > 0 &&
               <div className="secondary-card-section">
-                {highlightsData.slice(mainHighlightsQuantity).map((highlight, index) => (
+                {mainHightLights?.map((highlight, index) => (
                   <div key={index} className="secondary-card">
                     <div className="video-banner" style={{ backgroundImage: `url(${highlight.thumbnail})` }} onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
                       <i className="fa-solid fa-circle-play"></i>
@@ -148,10 +144,34 @@ const HighlightsList = () => {
                     </div>
                   </div>
                 ))}
-              </div>
-            </aside>
+              </div>}
           </div>
         </div>
+
+        {asideHightLights?.length > 0 &&
+          <div className='col-lg-4'>
+            <div className={`layout ${isDesktop}`}>
+              <aside className="aside-right">
+                <div className="secondary-card-section">
+                  {asideHightLights?.map((highlight, index) => (
+                    <div key={index} className="secondary-card">
+                      <div className="video-banner" style={{ backgroundImage: `url(${highlight.thumbnail})` }} onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
+                        <i className="fa-solid fa-circle-play"></i>
+                      </div>
+                      <div className="content">
+                        <h5>
+                          {highlight.title}
+                        </h5>
+                        <a href="#" onClick={(e) => { e.preventDefault(); handleMathInfoClick(highlight?.matchviewUrl); }}>MATH INFO</a>
+                        <small>{new Date(highlight.date).toLocaleString()}</small>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </aside>
+            </div>
+          </div>
+        }
       </div>
 
       {showModal && (

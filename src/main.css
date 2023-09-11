@@ -63,6 +63,10 @@ header {
   background: #c10206;
 }
 
+header > div {
+  align-items: center;
+}
+
 .main-header.desktop {
   padding: 40px 20px;
   max-width: 1180px;
@@ -231,11 +235,21 @@ header {
   }
 }
 
+@media only screen and (max-width: 1023px) {
+  .logo-image img {
+    padding: 5px;
+  }
+}
+
 .suggested-card .banner img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   border-radius: 4%;
+}
+
+.suggested-card.tile-m.main-list .banner img {
+  width: 75% !important;
 }
 
 
@@ -252,6 +266,31 @@ body {
   padding-right: 5px;
 }
 
+.separator {
+  padding: 10px;
+  padding-right: 25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-family: 'Source Sans 3 Black';
+}
+
+/* .separator::before, */
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #615c5c;
+}
+
+.separator:not(:empty)::before {
+  margin-right: .25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: .25em;
+}
+
+
 .sidenav {
   height: 100%;
   /* width: 0; */
@@ -261,7 +300,9 @@ body {
   z-index: 1;
   top: 0;
   right: 0;
-  background-color: #d0cece;
+  /* background-color: #d0cece; */
+  background-color: #fff;
+  border: 1px solid #d4c6c6;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -341,6 +382,7 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgba(250, 250, 250, .1);
+  font-family: 'Source Sans 3';
 }
 
 .sidenav .nav-item:hover {
@@ -378,6 +420,7 @@ body {
 
 .sidenav .nav-item {
   background: #d0cece !important;
+  background: #fff !important;
 
 }
 
