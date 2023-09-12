@@ -76,10 +76,10 @@ const Article = ({ className = '' }) => {
               <div className='col-lg-8'>
                 <main className={`article ${className}`.trim()}>
                   <div className='row'>
-                    <div className='col-lg-11'>
+                    <div className='col-11'>
                       <h2 dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>
                     </div>
-                    <div className='col-lg-1'>
+                    <div className='col-1'>
                       <button type="button" class="btn btn-outline-secondary close-btn" style={{ float: 'right' }} onClick={() => navigate(-1)}>
                         <i class="fa-solid fa-xmark"></i>
                       </button>

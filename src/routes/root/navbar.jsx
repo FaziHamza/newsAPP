@@ -39,7 +39,7 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
   }, {});
 
   return (
-    <div>
+    <div className='dark'>
       <div id="Sidenav" className={`sidenav ${usingScreen} ${isOpen ? 'open' : ''}`}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
 

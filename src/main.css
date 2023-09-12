@@ -63,7 +63,7 @@ header {
   background: #c10206;
 }
 
-header > div {
+header>div {
   align-items: center;
 }
 
@@ -82,7 +82,7 @@ header > div {
 
 
 .logo-title {
-  margin: auto 15px;
+  margin: auto 10px;
   font-weight: 700;
   color: #fff;
 }
@@ -300,8 +300,7 @@ body {
   z-index: 1;
   top: 0;
   right: 0;
-  /* background-color: #d0cece; */
-  background-color: black;
+  background-color: #ffff;
   border: 1px solid #d4c6c6;
   overflow-x: hidden;
   transition: 0.5s;
@@ -316,7 +315,7 @@ body {
 }
 
 .sidenav.desktop {
-  top: 88px;
+  top: 0px;
   left: 100% !important;
   transform: translate(-100%, 0) !important;
 }
@@ -336,7 +335,7 @@ body {
 
 .sidenav a {
   font-family: 'Source Sans 3';
-  
+
   /* padding: 8px 8px 8px 32px; */
   text-decoration: none;
   font-size: 16px;
@@ -376,7 +375,7 @@ body {
   /* padding-right: 22px; */
   text-decoration: none;
   font-size: 16px;
-  color: white;
+  color: #818181;
   width: 100%;
   font-weight: 600;
   transition: 0.3s;
@@ -386,14 +385,12 @@ body {
   border-bottom: 1px solid rgba(250, 250, 250, .1);
   font-family: 'Source Sans 3';
 }
-.separator {
-  color: #c10206;
-  font-family: 'Source Sans 3';
 
-}
+
 
 .sidenav .nav-item:hover {
-  color: #f1f1f1;
+  cursor: pointer;
+  color: #c10206;
 }
 
 .nav-item-child {
@@ -406,10 +403,10 @@ body {
 
 .nav-item-sub-child {
   list-style-type: none;
-  /* color: #1a1a1a00; */
+  color: #1a1a1a00;
   cursor: pointer;
   padding-right: 32px;
-  background: #242424;
+  background: #f5f5f5;
   padding: 0px;
 
 }
@@ -652,6 +649,7 @@ body {
     right: 20px;
   }
 }
+
 .close-btn {
   height: 26px;
   width: 26px;
@@ -661,9 +659,34 @@ body {
   align-items: center;
   background: #c10206;
   border: none;
-  
+
 }
+
+.separator {
+  font-family: 'Source Sans 3';
+
+}
+
 .close-btn i {
   color: white;
   font-size: 16px;
+}
+
+.dark .sidenav {
+  background-color: black;
+  border: none;
+}
+
+.dark .sidenav .nav-item {
+  color: white;
+}
+
+.dark .separator {
+  color: #c10206;
+
+}
+
+.dark .nav-item-sub-child {
+  background: #242424;
+
 }

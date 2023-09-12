@@ -91,7 +91,7 @@ const HighlightsList = () => {
             <div className="main-card-section">
               <div className="main-card">
                 <div className='row'>
-                  <div className='col-lg-11'>
+                  <div className='col-11'>
                     <div className="header">
                       <div>
                         <img src={LogoPath} alt={LogoPath} />
@@ -100,7 +100,7 @@ const HighlightsList = () => {
                       </div>
                     </div>
                   </div>
-                  <div className='col-lg-1'>
+                  <div className='col-1'>
                     <div>
                       {/* <img src="assets/images/22.png" alt="" /> */}
                       {/* <span>SUBTOPIC : {SubTopicId} </span> */}
