@@ -690,3 +690,7 @@ body {
   background: #242424;
 
 }
+
+.dark .nav-item-sub-child li .icons a .fa-newspaper {
+  color: #818181;
+}
