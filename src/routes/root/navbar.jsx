@@ -22,13 +22,14 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   };
 
   const [collapsedIds, setCollapsedIds] = useState({});
-  const toggleCollapse = (id) => {
+  const toggleTheme=()=>{
     if (themeVariant === 'light') {
       setThemeVariant('dark');
     } else {
       setThemeVariant('light');
     }
-
+  }
+  const toggleCollapse = (id) => {
     setCollapsedIds((prev) => ({
       ...prev,
       [id]: !prev[id],
@@ -241,7 +242,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
           </div>
           <i
             className={`${collapsedIds['switch'] ? 'fa-solid fa-toggle-on' : 'fa-solid fa-toggle-off'}`}
-            onClick={() => toggleCollapse('switch')}
+            onClick={() => toggleTheme('switch')}
           />
         </div>
 
