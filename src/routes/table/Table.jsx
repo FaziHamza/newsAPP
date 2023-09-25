@@ -100,7 +100,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                   <div className='row'>
                     <div className='col-lg-8'>
                       {(mainNewsList?.length > 0) ?
-                        <main>
+                        <main className='hi'>
                           {/* {state ? (
                       <SectionHeader title={state.Name} listItems={state?.subTopics} />
                     ) : (
@@ -227,7 +227,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                   < DisplayComponent topic={defaultTopic}/>
                   // <SectionHeader title={defaultTopic.Name} listItems={defaultTopic.Items} />
                 )} */}
-                <main>
+                <main className='mobileScreen'>
 
 
 
