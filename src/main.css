@@ -591,7 +591,7 @@ body {
 /* .main-body.dark {
 } */
 
-.App.dark {
+/* .App.dark {
   background-color: #0e1218;
 }
 
@@ -636,7 +636,7 @@ h6 {
 .main-body.dark .secondary-card-section .secondary-card {
   background-color: #1d2027;
   color: white;
-}
+} */
 
 @media only screen and (max-width: 768px) {
   .main-header .logo {
