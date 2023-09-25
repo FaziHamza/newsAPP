@@ -757,8 +757,7 @@ h6 {
 .dark-theme .layout .secondary-card .video-banner i,
 .dark-theme .layout .main-card .video-banner i,
 .dark-theme .layout .main-card,
-.dark-theme .layout .secondary-card
- {
+.dark-theme .layout .secondary-card {
   background: #171a1e !important;
   color: white !important;
 }
@@ -776,6 +775,26 @@ h6 {
   color: white !important;
 
 }
+
 .dark .sidenav {
   border-left: 1px solid #f5f5f54d;
+}
+
+.light-theme .sidenav {
+  background: #f5f5f5;
+  border-left: 1px solid lightgray;
+
+}
+
+.light-theme .sidenav .nav-item {
+  color: black;
+}
+
+.light-theme .separator {
+  font-weight: bold;
+}
+
+.light-theme .nav-item-sub-child {
+  background: white;
+
 }
