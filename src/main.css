@@ -587,6 +587,51 @@ body {
   height: 21px !important;
   width: 21px !important;
 }
+/* .main-body.dark {
+} */
+
+.App.dark {
+  background-color: #000000;
+}
+.main-body.dark main, .top-articles {
+  
+background-color: #950101;
+}
+
+.main-body.dark .suggested-card {
+  color: white;
+background-color: #3D0000;
+}
+
+.dark .content p, h6 {
+  color: white;
+}
+.dark .content .content-time-img {
+  color: white;
+}
+
+.main-body.dark .topic-row .title {
+  color: white;
+}
+
+.main-body.dark .article {
+  color: white;
+}
+
+
+.main-body.dark  .layout {
+  background-color: #950101;
+}
+
+.main-body.dark  .main-card-section .main-card {
+  background-color: #3D0000;
+  color: white;
+}
+
+.main-body.dark  .secondary-card-section .secondary-card {
+  background-color: #3D0000;
+  color: white;
+}
 
 @media only screen and (max-width: 768px) {
   .main-header .logo {

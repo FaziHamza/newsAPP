@@ -52,14 +52,14 @@ const Root = () => {
 
         <MediaQueryProvider>
           <ThemeQueryProvider value={themeVariant}>
-            <div className={'App'}>
+            <div className={'App dark'}>
               <header>
                 {isDesktop ? (
                   <div className='main-header desktop'>
                     <div className='item logo'><Logo name={'Logo'} href="/" alt={'logo'} /></div>
                     <div className='item flag'><Logo name={'Flag'} href="/" alt={'logo'} /> <h2 className='logo-title'>NYHETER</h2></div>
                     <div className='item menu'>
-                      <NavbarMobile navList={settingsInfo.MenuItems} />
+                      <NavbarMobile navList={settingsInfo.MenuItems} setThemeVariant={setThemeVariant} themeVariant={themeVariant}  />
                     </div>
                   </div>
                 )
@@ -67,21 +67,21 @@ const Root = () => {
                   (
                     <div className='main-header'>
                       <div className='item'>
-                        <NavbarMobile navList={settingsInfo.MenuItems} />
+                        <NavbarMobile navList={settingsInfo.MenuItems} setThemeVariant={setThemeVariant} themeVariant={themeVariant} />
                         {/* <span style={{ fontSize: '30px', cursor: 'pointer' }}>&#9776;</span> */}
 
                       </div>
                       <div className='item'><Logo name={'Logo'} href="/" alt={'logo'} /></div>
                       <div className='item'><Logo name={'Flag'} href="/" alt={'logo'} /></div>
-                      {/* <div className='item'>
+                      <div className='item'>
                     
-                    <Icon
+                    {/* <Icon
                       onClick={() => toggleTheme(themeVariant, 'dark', 'light')}
                       key={themeIcon.key}
                       className={themeIcon.className}
                       title={themeIcon.themeText}
-                    />
-                  </div> */}
+                    /> */}
+                  </div>
 
                     </div>
                   )}

@@ -96,11 +96,11 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
             ) : null}
             {isDesktop === 'desktop' ? (
               <>
-                <div className='main-body'>
+                <div className='main-body dark'>
                   <div className='row'>
                     <div className='col-lg-8'>
                       {(mainNewsList?.length > 0) ?
-                        <main className='hi'>
+                        <main>
                           {/* {state ? (
                       <SectionHeader title={state.Name} listItems={state?.subTopics} />
                     ) : (

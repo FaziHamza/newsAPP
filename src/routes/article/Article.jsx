@@ -71,7 +71,7 @@ const Article = ({ className = '' }) => {
     <>
       {isDesktop === 'desktop' ? (
         <>
-          <div className='main-body'>
+          <div className='main-body dark'>
             <div className='row'>
               <div className='col-lg-8'>
                 <main className={`article ${className}`.trim()}>
@@ -80,7 +80,7 @@ const Article = ({ className = '' }) => {
                       <h2 dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>
                     </div>
                     <div className='col-1'>
-                      <button type="button" class="btn btn-outline-secondary close-btn" style={{ float: 'right' }} onClick={() => navigate(-1)}>
+                      <button type="button" class="btn text-light close-btn rounded-circle " style={{ float: 'right', backgroundColor: '#333333' }} onClick={() => navigate(-1)}>
                         <i class="fa-solid fa-xmark"></i>
                       </button>
                     </div>
@@ -108,7 +108,7 @@ const Article = ({ className = '' }) => {
               <h2 dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>
             </div>
             <div className='col-1'>
-              <button type="button" class="btn btn-outline-secondary close-btn" style={{ float: 'right' }} onClick={() => navigate(-1)}>
+              <button type="button" class="btn text-light close-btn rounded-circle " style={{ float: 'right' }} onClick={() => navigate(-1)}>
                 <i class="fa-solid fa-xmark"></i>
               </button>
             </div>

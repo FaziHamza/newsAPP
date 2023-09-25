@@ -83,7 +83,7 @@ const HighlightsList = () => {
 
 
   return (
-    <div className='main-body'>
+    <div className='main-body dark'>
       <div className='row'>
         <div className='col-lg-8'>
           <div className={`layout ${isDesktop}`}>
@@ -105,7 +105,7 @@ const HighlightsList = () => {
                       {/* <img src="assets/images/22.png" alt="" /> */}
                       {/* <span>SUBTOPIC : {SubTopicId} </span> */}
                     </div>
-                    <button type="button" class="btn btn-outline-secondary close-btn" style={{ float: 'right' }} onClick={() => navigate(-1)}>
+                    <button type="button" class="btn text-light close-btn rounded-circle " style={{ float: 'right', backgroundColor: '#333333' }} onClick={() => navigate(-1)}>
                       <i class="fa-solid fa-xmark"></i>
                     </button>
                   </div>

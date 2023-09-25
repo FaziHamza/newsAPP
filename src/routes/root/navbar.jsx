@@ -5,7 +5,7 @@ import { SideNav } from '../../compositions';
 import { logo, sportLogoBlack, tennis } from '../../assets';
 import { useMediaContext } from '../../utilities/mediaQuery';
 
-function Navbar({ className = '', navList, inMain = 4, ...props }) {
+function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVariant, ...props }) {
   const navMain = navList.slice(0, inMain);
   const navMore = navList.slice(inMain, navList.length);
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +23,12 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
 
   const [collapsedIds, setCollapsedIds] = useState({});
   const toggleCollapse = (id) => {
+    if (themeVariant === 'light') {
+      setThemeVariant('dark');
+    } else {
+      setThemeVariant('light');
+    }
+
     setCollapsedIds((prev) => ({
       ...prev,
       [id]: !prev[id],
@@ -39,7 +45,7 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
   }, {});
 
   return (
-    <div className={collapsedIds['switch'] ? 'dark' : ''}>
+    <div className={themeVariant}>
       <div id="Sidenav" className={`sidenav ${usingScreen} ${isOpen ? 'open' : ''}`}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
 
@@ -90,6 +96,7 @@ function Navbar({ className = '', navList, inMain = 4, ...props }) {
                         <i
                           className={`fa-regular ${collapsedIds[id] ? 'fa-chevron-up' : 'fa-chevron-down'} chevron`}
                           onClick={() => toggleCollapse(id)}
+                          // onClick={() => setThemeVariant()}
                         />
                       </>
                     )}
