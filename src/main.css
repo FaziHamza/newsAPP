@@ -60,7 +60,7 @@ body {
 }
 
 header {
-  background: #2d333c;
+  background: #c10206;
 }
 
 header>div {
@@ -73,7 +73,7 @@ header>div {
   margin: auto;
 
   width: 100%;
-  background: #2d333c;
+  background: #c10206;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -412,7 +412,7 @@ body {
 }
 
 .nav-item-sub-child li:hover {
-  background: #2d333c !important;
+  background: #c10206 !important;
 
 }
 
@@ -598,7 +598,7 @@ body {
 .main-body.dark main,
 .top-articles {
 
-  background-color: #2d333c;
+  background-color: #c10206;
 }
 
 .main-body.dark .suggested-card {
@@ -625,7 +625,7 @@ h6 {
 
 
 .main-body.dark .layout {
-  background-color: #2d333c;
+  background-color: #c10206;
 }
 
 .main-body.dark .main-card-section .main-card {
@@ -707,7 +707,7 @@ h6 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #2d333c;
+  background: #c10206;
   border: none;
 
 }
@@ -743,4 +743,39 @@ h6 {
 
 .dark .nav-item-sub-child li .icons a .fa-newspaper {
   color: #818181;
+}
+
+.dark-theme header,
+.dark-theme main,
+.dark-theme .layout,
+.dark-theme .top-articles,
+.dark-theme .main-header.desktop {
+  background: #2d333c !important;
+}
+
+.dark-theme .suggested-card,
+.dark-theme .layout .secondary-card .video-banner i,
+.dark-theme .layout .main-card .video-banner i,
+.dark-theme .layout .main-card,
+.dark-theme .layout .secondary-card
+ {
+  background: #171a1e !important;
+  color: white !important;
+}
+
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4,
+.dark-theme h5,
+.dark-theme h6,
+.dark-theme p,
+.dark-theme span,
+.dark-theme small,
+.dark-theme b {
+  color: white !important;
+
+}
+.dark .sidenav {
+  border-left: 1px solid #f5f5f54d;
 }
