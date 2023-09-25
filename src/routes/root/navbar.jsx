@@ -246,7 +246,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
         </div>
 
       </div>
-      <span style={{ fontSize: '30px', cursor: 'pointer', color: 'white' }} onClick={openNav}>&#9776;</span>
+      <span style={{ fontSize: '25px', cursor: 'pointer', color: 'white' }} onClick={openNav}>&#9776;</span>
     </div>
   );
 }

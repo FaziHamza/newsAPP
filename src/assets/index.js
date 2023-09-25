@@ -8,7 +8,7 @@ export { default as appStoreRemote } from './images/apple-store-remote.jpg';
 export { default as googlePlayRemote } from './images/google-play-remote.jpg';
 export { default as newsLogo } from './images/newsLogo.png';
 export { default as logo } from './images/logo.png';
-export { default as flag } from './images/flag.png';
+export { default as flag } from './images/engFlag.png';
 export { default as tennis } from './images/tennis.png';
 
 export { default as video_play } from './images/video_play.png';
