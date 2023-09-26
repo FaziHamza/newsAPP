@@ -230,7 +230,7 @@ header>div {
 @media only screen and (max-width: 768px) {
   .suggested-card .content p {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
   }
 }
