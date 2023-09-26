@@ -235,10 +235,10 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
             })}
           </div>
         ))}
-        <div class="separator">INSTALLNINGAR</div>
+        <div class="separator">SETTING</div>
         <div className="nav-item">
           <div className='flx' >
-            Farg palett
+            Color Theme
           </div>
           <i
             className={`${collapsedIds['switch'] ? 'fa-solid fa-toggle-on' : 'fa-solid fa-toggle-off'}`}
