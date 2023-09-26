@@ -688,7 +688,9 @@ h6 {
 }
 
 @media screen and (max-width: 991px) {
-
+  .flag-image img {
+    height: 40px;
+  }
   .sidenav {
     right: auto !important;
     left: 0 !important;
