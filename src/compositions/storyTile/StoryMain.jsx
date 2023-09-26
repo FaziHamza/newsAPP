@@ -1,9 +1,8 @@
 import { timeQuery } from '../../utilities/timeQuery';
-import { json, useLocation } from 'react-router-dom';
+import { json, useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { logo, video_play } from '../../assets';
 import { sportspotsverige, AFP_news } from '../../assets';
-
 
 const DisplayComponent = ({ topic }) => {
   const location = useLocation();
@@ -11,26 +10,30 @@ const DisplayComponent = ({ topic }) => {
 
   // Now you can access the passed state values
 
-  const moreItemName = state?.moreItemName || "England";
-  const teamName = state?.Name || "Premier League";
-  const defaulttopic = topic?.Name || "Premier League";
-  const topicKey = state?.topicKey || "england-premier-league";
+  const moreItemName = state?.moreItemName || 'England';
+  const teamName = state?.Name || 'Premier League';
+  const defaulttopic = topic?.Name || 'Premier League';
+  const topicKey = state?.topicKey || 'england-premier-league';
 
-
-  const logoPath = state?.LogoPath || "https://siteofsports.com/v2/Content/TopicLogo/GB.png";
-  const teamLogoPath = state?.LogoTeam || "https://siteofsports.com/v2/content/topicLogo/premier_league.jpg";
+  const logoPath = state?.LogoPath || 'https://siteofsports.com/v2/Content/TopicLogo/GB.png';
+  const teamLogoPath =
+    state?.LogoTeam || 'https://siteofsports.com/v2/content/topicLogo/premier_league.jpg';
   const SubTopicId = state?.SubTopicId;
   const TopicId = state?.TopicId;
   // const TopicId = state?.TopicId;
 
   const IsSql = state?.IsSql;
+  const navigate = useNavigate();
+  const navigateBack = () => {
+    navigate(-1);
+  };
 
   return (
     <>
       {logoPath ? (
         <>
-          <div className="topic" >
-            <div className='topic-row'>
+          <div className="topic">
+            <div className="topic-row">
               <div className="title">
                 <img src={logoPath} height={'20px'} />
                 {moreItemName}
@@ -43,30 +46,34 @@ const DisplayComponent = ({ topic }) => {
                 )}
                 {teamName.replace(moreItemName, '')}
               </div>
-
             </div>
-            <Link to="/highlights" state={{ topicKey, topicName: teamName, imagesource: teamLogoPath }}>
+            {/* <Link to="/highlights" state={{ topicKey, topicName: teamName, imagesource: teamLogoPath }}>
               <div className="highlights">
 
                 <img src={video_play} height={'20px'} />
               </div>
-            </Link>
+            </Link> */}
+            <div
+              role="button"
+              onClick={navigateBack}
+              state={{ topicKey, topicName: teamName, imagesource: teamLogoPath }}>
+              <div className="highlights">
+                <img src={video_play} height={'20px'} />
+              </div>
+            </div>
           </div>
         </>
       ) : (
         <h4 className="title"> {defaulttopic}</h4>
-
       )}
     </>
   );
-}
+};
 const StoryMain = ({ description, className = '', src, alt, time, isDesktopScreen }) => {
   const location = useLocation();
   const { state } = location;
   const IsSql = state?.IsSql;
-  const imageUrl = IsSql
-    ? sportspotsverige
-    : AFP_news;
+  const imageUrl = IsSql ? sportspotsverige : AFP_news;
 
   const days = () => {
     const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
@@ -74,49 +81,51 @@ const StoryMain = ({ description, className = '', src, alt, time, isDesktopScree
     const hours = timeDifference % 24;
 
     if (timeDifference < 24) {
-      return `${hours.toFixed(2)} Tim `;// Swedish for hours
+      return `${hours.toFixed(2)} Tim `; // Swedish for hours
     } else {
       return `${day} Dag  `; // Swedish for days
     }
   };
 
-  const sanitizedSrc = src.replace(/([^:]\/)\/+/g, "$1");
+  const sanitizedSrc = src.replace(/([^:]\/)\/+/g, '$1');
 
   return (
     <>
-
-      {!!isDesktopScreen ?
+      {!!isDesktopScreen ? (
         <>
-          < DisplayComponent />
+          <DisplayComponent />
           <div className={`suggested-card ${className}`}>
-            <div className='banner'>
+            <div className="banner">
               <img src={sanitizedSrc} alt={alt} />
             </div>
-            <div className='content'>
-              <p className='desktopTop' dangerouslySetInnerHTML={{ __html: description }} />
-              <h6 className='content-time-img'  >{days()}
+            <div className="content">
+              <p className="desktopTop" dangerouslySetInnerHTML={{ __html: description }} />
+              <h6 className="content-time-img">
+                {days()}
                 <img src={imageUrl} alt="" />
               </h6>
             </div>
           </div>
         </>
-        :
-        <div className='league-card'>
-          < DisplayComponent />
-          <div className='banner'>
+      ) : (
+        <div className="league-card">
+          <DisplayComponent />
+          <div className="banner">
             <img src={sanitizedSrc} alt={alt} />
           </div>
-          <div className='content'>
+          <div className="content">
             <p>
-              <p className='mobile' dangerouslySetInnerHTML={{ __html: description }} />
+              <p className="mobile" dangerouslySetInnerHTML={{ __html: description }} />
             </p>
-            <div className='date'>
-              <p>{days()}
-                <img src={imageUrl} alt="" /></p>
+            <div className="date">
+              <p>
+                {days()}
+                <img src={imageUrl} alt="" />
+              </p>
             </div>
           </div>
         </div>
-      }
+      )}
     </>
   );
 };
@@ -126,4 +135,3 @@ export default StoryMain;
 function MyComponent({ description }) {
   return <div dangerouslySetInnerHTML={{ __html: description }} />;
 }
-
