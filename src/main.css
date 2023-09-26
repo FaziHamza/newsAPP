@@ -813,7 +813,12 @@ h6 {
 }
 @media screen and (max-width: 1080px) {
   .dark-theme .artical-detail , .artical-detail-box {
-  
     background: #171a1e !important;
+  }
+  .light-theme .artical-detail {
+    background: white !important;
+  }
+  .light-theme .artical-detail-box {
+    background: white !important;
   }
 }

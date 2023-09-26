@@ -31,10 +31,10 @@ const DisplayComponent = ({ topic }) => {
         <>
           <div className="topic" >
             <div className='topic-row'>
-              <div className="title">
+              {/* <div className="title">
                 <img src={logoPath} height={'20px'} />
                 {moreItemName}
-              </div>
+              </div> */}
               <div className="title">
                 {teamName.includes(moreItemName) ? null : (
                   <>
