@@ -43,7 +43,7 @@ export const useMediaQuery = (dimension, value) => {
 
 // Toggles the class on body element for setting the theme
 export const useTheme = () => {
-  const [themeVariant, setThemeVariant] = useState('light');
+  const [themeVariant, setThemeVariant] = useState('dark');
 
   useEffect(() => {
     if (themeVariant === 'dark') {
