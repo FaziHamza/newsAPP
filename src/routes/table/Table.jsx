@@ -66,7 +66,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
 
   useEffect(() => {
     // const address = state?.address ?? 'news/getnews?lang=sv&topic=football&sub1=fbl,ENG,Pr';
-    const address = state?.address ?? 'news/getNewsByTeam?keyword=Pr&lang=en&sport=football&limit=12';
+    // const address = state?.address ?? 'news/getNewsByTeam?keyword=Pr&lang=en&sport=football&limit=12';
+    const address = state?.address ?? 'news/getNewsByTeam?keyword=ENG&lang=en&sport=football&limit=12';
     const tablePromise = () => fetchNewsTable(windowHref + settingsInfo.Api + address);
     run(tablePromise());
   }, [run, state]);
