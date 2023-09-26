@@ -691,6 +691,7 @@ h6 {
   .flag-image img {
     height: 40px;
   }
+
   .sidenav {
     right: auto !important;
     left: 0 !important;
@@ -699,6 +700,15 @@ h6 {
   .sidenav .closebtn {
     left: auto;
     right: 20px;
+  }
+
+  
+}
+@media screen and (max-width: 1080px) {
+  .dark-theme .league-card {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background: #171a1e !important;
   }
 }
 
