@@ -73,15 +73,7 @@ const Root = () => {
                       </div>
                       <div className='item'><Logo name={'Logo'} href="/" alt={'logo'} /></div>
                       <div className='item'><Logo name={'Flag'} href="/" alt={'logo'} /></div>
-                      <div className='item'>
-                    
-                    {/* <Icon
-                      onClick={() => toggleTheme(themeVariant, 'dark', 'light')}
-                      key={themeIcon.key}
-                      className={themeIcon.className}
-                      title={themeIcon.themeText}
-                    /> */}
-                  </div>
+                     
 
                     </div>
                   )}
