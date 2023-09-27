@@ -1,8 +1,9 @@
 import { createSlice,  createAsyncThunk } from "@reduxjs/toolkit";
 
 let temp ={isChecked:'', name: '',link:'', state:{} }
-
-const initialState = [];
+let tempLocal = localStorage.getItem('favouriteMenu')
+console.log("Temp Local Storage ", tempLocal);
+const initialState = tempLocal?.length > 0 ? JSON.parse(tempLocal) : [];
 export const favouriteMenuReducer = createSlice({
   name: "favourite",
   initialState,
@@ -19,7 +20,7 @@ export const favouriteMenuReducer = createSlice({
 
         tempState = newArray
       }
-      // localStorage.setItem('favouriteMenu', tempState)
+      localStorage.setItem('favouriteMenu', JSON.stringify(tempState))
       return tempState
     },
   },
