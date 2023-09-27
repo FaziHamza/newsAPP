@@ -667,7 +667,7 @@ h6 {
   }
 
   .main-body {
-    padding: 70px 10px;
+    padding: 100px 0px;
   }
 
   .league-card {
@@ -871,13 +871,16 @@ h6 {
   overflow-x: scroll;
   display: flex;
   white-space: nowrap;
-  justify-content: center;
+  justify-content: start;
 }
 
 
 .top-bar a.active {
-border-bottom: 1px solid #fff;
-}
+border-bottom: 2px solid #fff;
+} 
+
+
+
 .top-bar a {
   text-decoration: none;
   color: #fff !important;
