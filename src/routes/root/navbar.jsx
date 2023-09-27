@@ -51,7 +51,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   }, {});
 
   const handleFavouriteMenu=(isChecked, name, link, state)=>{
-    console.log("is check  ", isChecked);
+    console.log("is check  ", isChecked, name, link, state);
     dispatch(addFavouriteMenu({isChecked,name, link, state}))
   }
   return (
@@ -194,8 +194,13 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                               onChange={(e)=> handleFavouriteMenu(
                                 e.target.checked,
                                 team.Name,
-                                `../${navType}/${navTopic}`,
-                                 {
+                                !team?.NewsIcon ? `/highlights`: `../${navType}/${navTopic}`,
+                               !team?.NewsIcon ? {
+                                  topicKey: team?.Highlights,
+                                  topicName: team?.Name,
+                                  imagesource: moreItem.Topic.Logo, // Assuming team.LogoTeam is the correct logo path
+                                  // Assuming team.LogoTeam is the correct logo path
+                                }: {
                                 address: navAddress,
                                 topicKey: team?.Highlights,
                                 Name: team.Name,
