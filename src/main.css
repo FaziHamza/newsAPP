@@ -460,8 +460,17 @@ body {
 }
 
 .nav-item-sub-child li .icons a {
-  padding-left: 15px;
   font-size: 16px;
+}
+
+.nav-item-sub-child li .icons a i {
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+.nav-item-sub-child li .icons a img {
+  margin-left: 15px;
+
 }
 
 .nav-item-sub-child li .icons {
@@ -702,8 +711,9 @@ h6 {
     right: 20px;
   }
 
-  
+
 }
+
 @media screen and (max-width: 1080px) {
   .dark-theme .league-card {
     margin-bottom: 10px;
@@ -811,14 +821,67 @@ h6 {
   background: white;
 
 }
+
 @media screen and (max-width: 1080px) {
-  .dark-theme .artical-detail , .artical-detail-box {
+
+  .dark-theme .artical-detail,
+  .artical-detail-box {
     background: #171a1e !important;
   }
+
   .light-theme .artical-detail {
     background: white !important;
   }
+
   .light-theme .artical-detail-box {
     background: white !important;
   }
+}
+
+.nav-item-sub-child li .icons {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item-sub-child li .icons input {
+  height: 15px;
+  width: 15px;
+
+}
+
+
+
+@media only screen and (min-width: 991px) {
+  .lg-d-none {
+    display: none !important;
+  }
+}
+
+.top-bar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  padding: 5px 0px 3px;
+  background: #1b1e23 !important;
+  overflow-x: scroll;
+  display: flex;
+  white-space: nowrap;
+  justify-content: center;
+}
+
+.top-bar a {
+  text-decoration: none;
+  color: #c10206 !important;
+  padding: 0px 12px;
+  font-size: 14px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1020534;
 }

@@ -198,9 +198,9 @@ main {
 }
 
 main.mobileScreen {
-  padding: 7.5rem 1.3rem 0 1.3rem;
+  padding: 10.5rem 1.3rem 0 1.3rem;
 }
- 
+
 .topic-container {
   position: relative;
   margin: 0;
@@ -398,10 +398,10 @@ aside .tile-m p {
 
   .main-body {
     padding: 40px 20px;
-   max-width: 1180px;
-   margin: auto;
+    max-width: 1180px;
+    margin: auto;
 
- } 
+  }
 
   header {
     grid-column: span 4;
@@ -533,8 +533,9 @@ aside .tile-m p {
   border-right: 2px solid #f5f5f5;
   padding-right: 10px;
 }
-.topic .title:last-child{
-border-right:none;
+
+.topic .title:last-child {
+  border-right: none;
 }
 
 .topic {
@@ -796,8 +797,8 @@ ul {
 
 .nav-item-sub-child-content img {
   /* margin-right: 2px !important; */
-    width: 35px;
-    height: 35px;
+  width: 35px;
+  height: 35px;
   object-fit: cover;
 }
 
@@ -814,8 +815,9 @@ ul {
   display: flex;
   align-items: center;
 }
+
 .flx i {
-  margin-right: 10px ;
+  margin-right: 10px;
 }
 
 .flx a {
@@ -827,9 +829,7 @@ ul {
   font-size: 16px !important;
 }
 
-
-
-.content-time-img{
+.content-time-img {
   font-size: 11px;
   font-weight: 500;
   color: #000000c7;

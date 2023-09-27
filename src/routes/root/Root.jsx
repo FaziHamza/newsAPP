@@ -59,7 +59,7 @@ const Root = () => {
                     <div className='item logo'><Logo name={'Logo'} href="/" alt={'logo'} /></div>
                     <div className='item flag'><Logo name={'Flag'} href="/" alt={'logo'} /> <h2 className='logo-title'></h2></div>
                     <div className='item menu'>
-                      <NavbarMobile navList={settingsInfo.MenuItems} setThemeVariant={setThemeVariant} themeVariant={themeVariant}  />
+                      <NavbarMobile navList={settingsInfo.MenuItems} setThemeVariant={setThemeVariant} themeVariant={themeVariant} />
                     </div>
                   </div>
                 )
@@ -73,12 +73,23 @@ const Root = () => {
                       </div>
                       <div className='item'><Logo name={'Logo'} href="/" alt={'logo'} /></div>
                       <div className='item'><Logo name={'Flag'} href="/" alt={'logo'} /></div>
-                     
+
 
                     </div>
                   )}
 
               </header>
+              <div className='top-bar lg-d-none'>
+                <a href="">United States</a>
+                <a href="">Australia</a>
+                <a href="">Canada</a>
+                <a href="">France</a>
+                <a href="">Argentina</a>
+                <a href="">China</a>
+                <a href="">Germany</a>
+                <a href="">Afghanistan</a>
+                <a href="">Canada</a>
+              </div>
               {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
               <Outlet context={fullInfo} />
             </div>

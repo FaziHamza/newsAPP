@@ -22,7 +22,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   };
 
   const [collapsedIds, setCollapsedIds] = useState({});
-  const toggleTheme=()=>{
+  const toggleTheme = () => {
     if (themeVariant === 'light') {
       setThemeVariant('dark');
     } else {
@@ -97,7 +97,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                         <i
                           className={`fa-regular ${collapsedIds[id] ? 'fa-chevron-up' : 'fa-chevron-down'} chevron`}
                           onClick={() => toggleCollapse(id)}
-                          // onClick={() => setThemeVariant()}
+                        // onClick={() => setThemeVariant()}
                         />
                       </>
                     )}
@@ -180,47 +180,47 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                   //fa-light fa-newspaper
                                 )}
                               </a> */}
+                              <input type="checkbox"></input>
+                                {team.NewsIcon !== null && (
 
-                              {team.NewsIcon !== null && (
+                                  <Link
+                                    to={`../${navType}/${navTopic}`}
+                                    onClick={closeNav}
+                                    state={{
+                                      address: navAddress,
+                                      topicKey: team?.Highlights,
+                                      Name: team.Name,
+                                      TopicId: team.TopicID,
+                                      navType,
+                                      navTopic,
+                                      moreItemName: moreItem.Topic.Name,
+                                      SubTopicId: team.SubTopicID,
+                                      LogoPath: moreItem.Topic.Logo,
+                                      LogoTeam: team.Logo,
+                                      IsSql: !team.News,
+                                    }}
+                                    name={team.Name}
+                                  >
+                                    <i className={team.NewsIcon}></i>
+                                  </Link>
+                                )}
 
-                                <Link
-                                  to={`../${navType}/${navTopic}`}
-                                  onClick={closeNav}
-                                  state={{
-                                    address: navAddress,
-                                    topicKey: team?.Highlights,
-                                    Name: team.Name,
-                                    TopicId: team.TopicID,
-                                    navType,
-                                    navTopic,
-                                    moreItemName: moreItem.Topic.Name,
-                                    SubTopicId: team.SubTopicID,
-                                    LogoPath: moreItem.Topic.Logo,
-                                    LogoTeam: team.Logo,
-                                    IsSql: !team.News,
-                                  }}
-                                  name={team.Name}
-                                >
-                                  <i className={team.NewsIcon}></i>
-                                </Link>
-                              )}
+                                {(team.VideoIcon !== null && team.NewsIcon === null) && (
 
-                              {(team.VideoIcon !== null && team.NewsIcon === null) && (
-
-                                <Link
-                                  to="/highlights"
-                                  state={{
-                                    topicKey: team?.Highlights,
-                                    topicName: team?.Name,
-                                    imagesource: team.Logo, // Assuming team.LogoTeam is the correct logo path
-                                    // Assuming team.LogoTeam is the correct logo path
-                                  }}
-                                  onClick={closeNav}
-                                  name={team.Name}
-                                >
-                                  <img src={team.VideoIcon} className='coll-video' alt="" />
-                                </Link>
-                              )}
+                                  <Link
+                                    to="/highlights"
+                                    state={{
+                                      topicKey: team?.Highlights,
+                                      topicName: team?.Name,
+                                      imagesource: team.Logo, // Assuming team.LogoTeam is the correct logo path
+                                      // Assuming team.LogoTeam is the correct logo path
+                                    }}
+                                    onClick={closeNav}
+                                    name={team.Name}
+                                  >
+                                    <img src={team.VideoIcon} className='coll-video' alt="" />
+                                  </Link>
+                                )}
 
                             </div>
                           </li>
@@ -238,7 +238,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
         <div class="separator">Settings</div>
         <div className="nav-item">
           <div className='flx' >
-          Color palette
+            Color palette
           </div>
           <i
             className={`${collapsedIds['switch'] ? 'fa-solid fa-toggle-on' : 'fa-solid fa-toggle-off'}`}
