@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 const Root = () => {
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const {pathname} = useLocation()
-  console.log("use Location ", pathname);
+  // console.log("use Location ", pathname);
 
 
   const { data: settingsInfo, status, error, run } = useAsync({ status: 'pending' });
@@ -91,7 +91,8 @@ const Root = () => {
                      state={m?.state}
                      name={m?.name}
                    >
-                     {m?.name}
+                   { m?.name?.toLowerCase() == 'top news' ? `${m.name} ${m?.state?.moreItemName}` :                   
+                     m?.name}
                    </Link>
                   })}
 

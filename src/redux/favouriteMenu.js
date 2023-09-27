@@ -8,7 +8,7 @@ export const favouriteMenuReducer = createSlice({
   initialState,
   reducers: {
     addFavouriteMenu: (state, action) => {
-      console.log("action from",action?.payload);
+      // console.log("action from",action?.payload);
       // state.isChecked='', state.name= '',state.link='', state.state={}
       let tempState = state
       if(action?.payload?.isChecked){
@@ -19,6 +19,7 @@ export const favouriteMenuReducer = createSlice({
 
         tempState = newArray
       }
+      // localStorage.setItem('favouriteMenu', tempState)
       return tempState
     },
   },
