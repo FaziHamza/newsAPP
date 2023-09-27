@@ -767,12 +767,16 @@ h6 {
   color: #818181;
 }
 
-.dark-theme header,
 .dark-theme main,
 .dark-theme .layout,
 .dark-theme .top-articles,
 .dark-theme .main-header.desktop {
   background: #2d333c !important;
+}
+
+.dark-theme header {
+  background: #171a1e !important;
+
 }
 
 .dark-theme .suggested-card,
@@ -858,28 +862,32 @@ h6 {
 }
 
 .top-bar {
-  position: fixed;
+  /* position: fixed;
   top: 60px;
   left: 0;
-  right: 0;
-  padding: 5px 0px 3px;
-  background: #1b1e23 !important;
+  right: 0; */
+  padding: 0px;
+  /* background: #1b1e23 !important; */
   overflow-x: scroll;
   display: flex;
   white-space: nowrap;
   justify-content: center;
 }
 
+
+.top-bar a.active {
+border-bottom: 1px solid #fff;
+}
 .top-bar a {
   text-decoration: none;
-  color: #c10206 !important;
-  padding: 0px 12px;
+  color: #fff !important;
+  padding: 10px 12px;
   font-size: 14px;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
-  height: 4px;
+  height: 0px;
 }
 
 ::-webkit-scrollbar-thumb {

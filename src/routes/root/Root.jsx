@@ -78,18 +78,19 @@ const Root = () => {
                     </div>
                   )}
 
+                <div className='top-bar lg-d-none'>
+                  <a href="">United States</a>
+                  <a href="">Australia</a>
+                  <a href="">France</a>
+                  <a href="">Argentina</a>
+                  <a href="" className='active'>Canada</a>
+                  <a href="">China</a>
+                  <a href="">Germany</a>
+                  <a href="">Afghanistan</a>
+                  <a href="">Canada</a>
+                </div>
               </header>
-              <div className='top-bar lg-d-none'>
-                <a href="">United States</a>
-                <a href="">Australia</a>
-                <a href="">Canada</a>
-                <a href="">France</a>
-                <a href="">Argentina</a>
-                <a href="">China</a>
-                <a href="">Germany</a>
-                <a href="">Afghanistan</a>
-                <a href="">Canada</a>
-              </div>
+
               {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
               <Outlet context={fullInfo} />
             </div>
