@@ -4,8 +4,13 @@ import { NavLink, Link } from 'react-router-dom';
 import { SideNav } from '../../compositions';
 import { logo, sportLogoBlack, tennis } from '../../assets';
 import { useMediaContext } from '../../utilities/mediaQuery';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavouriteMenu } from '../../redux/favouriteMenu';
 
 function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVariant, ...props }) {
+  const dispatch = useDispatch()
+  const favouriteMenu = useSelector((state) => state?.favouriteMenu);
+
   const navMain = navList.slice(0, inMain);
   const navMore = navList.slice(inMain, navList.length);
   const [isOpen, setIsOpen] = useState(false);
@@ -45,6 +50,10 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
     return groups;
   }, {});
 
+  const handleFavouriteMenu=(isChecked, name, link, state)=>{
+    console.log("is check  ", isChecked);
+    dispatch(addFavouriteMenu({isChecked,name, link, state}))
+  }
   return (
     <div className={themeVariant}>
       <div id="Sidenav" className={`sidenav ${usingScreen} ${isOpen ? 'open' : ''}`}>
@@ -180,7 +189,25 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                   //fa-light fa-newspaper
                                 )}
                               </a> */}
-                              <input type="checkbox"></input>
+                              <input type="checkbox" 
+                              // checked={favouriteMenu?.some(m=>m?.name ==team?.name)}
+                              onChange={(e)=> handleFavouriteMenu(
+                                e.target.checked,
+                                team.Name,
+                                `../${navType}/${navTopic}`,
+                                 {
+                                address: navAddress,
+                                topicKey: team?.Highlights,
+                                Name: team.Name,
+                                TopicId: team.TopicID,
+                                navType,
+                                navTopic,
+                                moreItemName: moreItem.Topic.Name,
+                                SubTopicId: team.SubTopicID,
+                                LogoPath: moreItem.Topic.Logo,
+                                LogoTeam: team.Logo,
+                                IsSql: !team.News,
+                              })} ></input>
                                 {team.NewsIcon !== null && (
 
                                   <Link

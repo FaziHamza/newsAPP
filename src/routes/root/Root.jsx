@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { MediaQueryProvider } from '../../utilities/mediaQuery';
 import { ThemeQueryProvider } from '../../utilities/themeQuery';
 import { useAsync } from '../../utilities/asyncReducer';
@@ -13,7 +13,13 @@ import { useMediaQuery, useTheme } from '../../utilities/hooks';
 import { useEffect, useState } from 'react';
 import { getData } from '../../assets/mockup-assets/data/dataObject';
 import { addresses } from '../../utilities/config';
+import { useSelector } from 'react-redux';
 const Root = () => {
+  const favouriteMenu = useSelector((state) => state?.favouriteMenu);
+  const {pathname} = useLocation()
+  console.log("use Location ", pathname);
+
+
   const { data: settingsInfo, status, error, run } = useAsync({ status: 'pending' });
   const [themeVariant, setThemeVariant] = useTheme('dark'); // 'dark', 'light'
   const [windowHref, setWindowHref] = useState('');
@@ -79,7 +85,17 @@ const Root = () => {
                   )}
 
                 <div className='top-bar lg-d-none'>
-                  <a href="">United States</a>
+                  {favouriteMenu?.map((m,i)=>{
+                    return <Link key={i} className={pathname == `/${m?.state?.navType}/${m?.state?.navTopic}`? 'active' : ''}
+                     to={m.link}
+                     state={m?.state}
+                     name={m?.name}
+                   >
+                     {m?.name}
+                   </Link>
+                  })}
+
+                  {/* <a href="">United States</a>
                   <a href="">Australia</a>
                   <a href="">France</a>
                   <a href="">Argentina</a>
@@ -87,7 +103,7 @@ const Root = () => {
                   <a href="">China</a>
                   <a href="">Germany</a>
                   <a href="">Afghanistan</a>
-                  <a href="">Canada</a>
+                  <a href="">Canada</a> */}
                 </div>
               </header>
 
