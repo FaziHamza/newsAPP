@@ -16,7 +16,7 @@ import { addresses } from '../../utilities/config';
 import { useSelector } from 'react-redux';
 const Root = () => {
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
-  const {pathname} = useLocation()
+  const { pathname } = useLocation()
   // console.log("use Location ", pathname);
 
 
@@ -85,27 +85,26 @@ const Root = () => {
                   )}
 
                 <div className='top-bar lg-d-none'>
-                  {favouriteMenu?.map((m,i)=>{
-                    return <Link key={i} className={pathname == `/${m?.state?.navType}/${m?.state?.navTopic}`? 'active' : ''}
-                     to={m.link}
-                     state={m?.state}
-                     name={m?.name}
-                   >
-                   { m?.name?.toLowerCase() == 'top news' ? `${m.name} ${m?.state?.moreItemName}` :                   
-                     m?.name}
-                   </Link>
+                  {favouriteMenu?.map((m, i) => {
+                    return (
+                      <Link
+                        key={i}
+                        className={pathname == `/${m?.state?.navType}/${m?.state?.navTopic}` ? 'active' : ''}
+                        to={m.link}
+                        state={m?.state}
+                        name={m?.name}
+                      >
+                        {/* Display the LogoTeam image if it exists */}
+                        {m?.name?.toLowerCase() === 'top news' ?
+                          (m?.state?.LogoPath && <img className='action-bar' src={m?.state?.LogoPath} alt={`${m?.name} logo`} />) :
+                          (m?.state?.LogoTeam && <img className='action-bar' src={m?.state?.LogoTeam} alt={`${m?.name} logo`} />)
+                        }
+                        {m?.name?.toLowerCase() == 'top news' ? `${m.name} ${m?.state?.moreItemName}` : m?.name}
+                      </Link>
+                    );
                   })}
-
-                  {/* <a href="">United States</a>
-                  <a href="">Australia</a>
-                  <a href="">France</a>
-                  <a href="">Argentina</a>
-                  <a href="" className='active'>Canada</a>
-                  <a href="">China</a>
-                  <a href="">Germany</a>
-                  <a href="">Afghanistan</a>
-                  <a href="">Canada</a> */}
                 </div>
+
               </header>
 
               {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}

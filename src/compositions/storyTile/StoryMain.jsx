@@ -29,12 +29,12 @@ const DisplayComponent = ({ topic }) => {
     <>
       {logoPath ? (
         <>
-          <div className="topic" >
+          {/* <div className="topic" >
             <div className='topic-row'>
-              {/* <div className="title">
+              <div className="title">
                 <img src={logoPath} height={'20px'} />
                 {moreItemName}
-              </div> */}
+              </div>
               <div className="title">
                 {teamName.includes(moreItemName) ? null : (
                   <>
@@ -51,7 +51,7 @@ const DisplayComponent = ({ topic }) => {
                 <img src={video_play} height={'20px'} />
               </div>
             </Link>
-          </div>
+          </div> */}
         </>
       ) : (
         <h4 className="title"> {defaulttopic}</h4>

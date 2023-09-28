@@ -834,3 +834,9 @@ ul {
   font-weight: 500;
   color: #000000c7;
 }
+
+.action-bar{
+  width: 20px;
+    height: 20px;
+    margin: 0 4px 2px 0px;
+}
