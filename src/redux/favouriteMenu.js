@@ -20,7 +20,7 @@ export const favouriteMenuReducer = createSlice({
 
         tempState = newArray
       }
-      localStorage.setItem('favouriteMenu', JSON.stringify(tempState))
+      // localStorage.setItem('favouriteMenu', JSON.stringify(tempState))
       return tempState
     },
   },

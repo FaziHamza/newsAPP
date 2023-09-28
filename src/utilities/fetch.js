@@ -40,7 +40,7 @@ const fetchPostFunction = (url, body) =>
       console.error('Error', error);
     });
 
-export const fetchConfig = (windowHref) => fetchGetFunction(`${addresses.baseUrl}api/topics-with-subtopics`);
+export const fetchConfig = (windowHref) => fetchGetFunction(`${addresses.baseUrl}api/topics-with-subtopics-Mobile`);
 
 export const fetchArticleTable = (topic) =>{
   debugger
