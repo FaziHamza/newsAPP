@@ -14,6 +14,7 @@ import {
 } from '../../assets';
 import { useThemeContext } from '../../utilities/themeQuery';
 import { divideByPercentage } from '../../utilities/common';
+import { useSelector } from 'react-redux';
 
 export const loader = ({ params }) => {
   return { params };
@@ -47,6 +48,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const themeVariant = useThemeContext();
   const [mainNewsList, setMainNewsList] = useState([]);
   const [asideNewsList, setAsideNewsList] = useState([]);
+  const favouriteMenu = useSelector((state) => state?.favouriteMenu);
+
 
 
   useEffect(() => {
@@ -229,7 +232,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                   < DisplayComponent topic={defaultTopic}/>
                   // <SectionHeader title={defaultTopic.Name} listItems={defaultTopic.Items} />
                 )} */}
-                <main className='mobileScreen'  >
+                <main className={ favouriteMenu?.length > 0 ? 'mobileScreen' : 'mobileScreenFavMenu'}  >
 
 
 
