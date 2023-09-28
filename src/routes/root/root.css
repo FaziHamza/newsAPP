@@ -201,6 +201,8 @@ main.mobileScreen {
   padding: 11.5rem 1.3rem 0 1.3rem;
 }
 
+
+
 .topic-container {
   position: relative;
   margin: 0;
@@ -346,9 +348,9 @@ aside .tile-m p {
   padding: 0
 }
 
-.divider-container {
-  /* padding: 1rem 0 1rem 0; */
-}
+/* .divider-container {
+  padding: 1rem 0 1rem 0;
+} */
 
 .divider-solid {
   margin: 0;

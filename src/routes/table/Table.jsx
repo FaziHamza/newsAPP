@@ -229,7 +229,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                   < DisplayComponent topic={defaultTopic}/>
                   // <SectionHeader title={defaultTopic.Name} listItems={defaultTopic.Items} />
                 )} */}
-                <main className='mobileScreen'>
+                <main className='mobileScreen'  >
 
 
 

@@ -89,16 +89,19 @@ const Root = () => {
                     return (
                       <Link
                         key={i}
-                        className={pathname == `/${m?.state?.navType}/${m?.state?.navTopic}` ? 'active' : ''}
+                        
+                        className={pathname == `/${m?.state?.navType}/${m?.state?.navTopic}` ? 'active tab' : 'tab'}
                         to={m.link}
                         state={m?.state}
                         name={m?.name}
                       >
                         {/* Display the LogoTeam image if it exists */}
+                        <div className='action-bar' >
                         {m?.name?.toLowerCase() === 'top news' ?
-                          (m?.state?.LogoPath && <img className='action-bar' src={m?.state?.LogoPath} alt={`${m?.name} logo`} />) :
-                          (m?.state?.LogoTeam && <img className='action-bar' src={m?.state?.LogoTeam} alt={`${m?.name} logo`} />)
+                          (m?.state?.LogoPath && <img className='action-bar-img' src={m?.state?.LogoPath} alt={`${m?.name} logo`} />) :
+                          (m?.state?.LogoTeam && <img className='action-bar-img' src={m?.state?.LogoTeam} alt={`${m?.name} logo`} />)
                         }
+                          </div>
                         {m?.name?.toLowerCase() == 'top news' ? `${m.name} ${m?.state?.moreItemName}` : m?.name}
                       </Link>
                     );

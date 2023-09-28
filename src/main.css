@@ -876,17 +876,25 @@ h6 {
 
 
 .top-bar a.active {
-border-bottom: 2px solid #fff;
-} 
+  border-bottom: 2px solid #fff;
+}
 
-
-
-.top-bar a {
+.top-bar .tab {
+  display: flex;
+  align-items: center;
+  justify-content: start;
   text-decoration: none;
   color: #fff !important;
   padding: 10px 12px;
   font-size: 14px;
 }
+
+.action-bar-img{
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 ::-webkit-scrollbar {
   width: 10px;
