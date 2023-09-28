@@ -56,10 +56,21 @@ const Root = () => {
               <header>
                 {isDesktop ? (
                   <div className='main-header desktop'>
+
+                    <div className='item-container item-one' >
                     <div className='item logo'><Logo name={'Logo'} href="/" alt={'logo'} /></div>
                     <div className='item flag'><Logo name={'Flag'} href="/" alt={'logo'} /> <h2 className='logo-title'></h2></div>
+                    </div>
+
+                    <div className='item-container item-two' >
+
+                  <a href='https://www.sportspotnews-landingpage.com/' target='_blank' className='playstore item' >
+
+                  </a>
+
                     <div className='item menu'>
                       <NavbarMobile navList={settingsInfo.MenuItems} setThemeVariant={setThemeVariant} themeVariant={themeVariant}  />
+                    </div>
                     </div>
                   </div>
                 )
@@ -76,12 +87,21 @@ const Root = () => {
                      
 
                     </div>
+
+
                   )}
 
               </header>
+
+
               {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
               <Outlet context={fullInfo} />
             </div>
+            <footer>
+              <a href='https://www.sportspotnews-landingpage.com/' target='_blank' className='footer-img footer' >
+                    
+              </a>
+            </footer>
           </ThemeQueryProvider>
         </MediaQueryProvider>
       );

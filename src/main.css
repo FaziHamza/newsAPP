@@ -80,6 +80,49 @@ header>div {
   padding: 14px 0px;
 }
 
+  .item-container{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .item-one{
+    width: 60%;
+    
+  }
+  
+  .item-two{
+    width: 40%;
+    height: 60px;
+  }
+ 
+.dark-theme .desktop  .item-container .playstore{
+  background: url('https://siteofsports.com/v2/content/topiclogo/Google_play_dark.jpg') no-repeat center center/cover;
+}
+
+.light-theme .desktop  .item-container .playstore{
+  background: url('https://siteofsports.com/v2/content/topiclogo/Google_play.jpg') no-repeat center center/cover;
+}
+
+
+
+@media screen and (max-width:1023px){
+  
+  .footer{
+    width: 100vw;
+    height: 60px;
+    position: fixed;
+    bottom: 0%;
+}
+
+.dark-theme .footer-img{
+  background: url('https://siteofsports.com/v2/content/topiclogo/Google_play_dark.jpg') no-repeat center center/cover;
+}
+
+.light-theme .footer-img{
+  background: url('https://siteofsports.com/v2/content/topiclogo/Google_play.jpg') no-repeat center center/cover;
+}
+
+}
 
 .logo-title {
   margin: auto 10px;
@@ -92,6 +135,12 @@ header>div {
   width: 100%;
 }
 
+/* @media screen and (max-width: 1023px) {
+  .main-header .item {
+    width: 100%;
+  }
+} */
+
 .main-header .item:nth-child(1) {
   display: flex;
   justify-content: flex-start;
@@ -100,6 +149,7 @@ header>div {
 .main-header .item:nth-child(2) {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .main-header .item:nth-child(3) {
