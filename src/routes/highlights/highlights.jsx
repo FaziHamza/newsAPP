@@ -94,7 +94,7 @@ const HighlightsList = () => {
                   <div className='col-11'>
                     <div className="header">
                       <div>
-                        <img src={LogoPath} alt={LogoPath} />
+                        {/* <img src={LogoPath} alt={LogoPath} /> */}
                         {/* why topicName not update here ?? */}
                         <span>{topicName?.replace('senaste nytt', '')}</span> {/* Modify this line */}
                       </div>

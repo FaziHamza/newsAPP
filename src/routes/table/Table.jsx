@@ -221,31 +221,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
               </>
             ) : (
               <>
-
-                {/* {state ? (
-                  // <SectionHeader title={state.Name} listItems={state?.subTopics} />
-                  < DisplayComponent />
-                ) : (
-                  < DisplayComponent topic={defaultTopic}/>
-                  // <SectionHeader title={defaultTopic.Name} listItems={defaultTopic.Items} />
-                )} */}
                 <main className='mobileScreen'>
-
-
-
-                  {/* <div className='suggested-card'>
-                    <div className='banner'>
-                      <img src="https://marketplace.canva.com/EAFLC12zKYg/1/0/1600w/canva-beige-bold-cricket-match-banner-dPokkU7DY2Y.jpg" alt="" />
-                    </div>
-                    <div className='content'>
-                      <p>
-                        Lorem ipsum dolor, sit amet conse veritatis, corrupti dolores eaque?
-                      </p>
-                      <h6>08-09-2023</h6>
-                    </div>
-                  </div> */}
-
-
 
                   {/* 11 */}
 
