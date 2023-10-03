@@ -2,7 +2,6 @@ import { createSlice,  createAsyncThunk } from "@reduxjs/toolkit";
 
 let temp ={isChecked:'', name: '',link:'', state:{} }
 let tempLocal = localStorage.getItem('favouriteMenu')
-console.log("Temp Local Storage ", tempLocal);
 const initialState = tempLocal?.length > 0 ? JSON.parse(tempLocal) : [];
 export const favouriteMenuReducer = createSlice({
   name: "favourite",

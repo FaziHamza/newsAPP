@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dropdown } from '../../compositions';
+import { Dropdown, Logo } from '../../compositions';
 import { NavLink, Link } from 'react-router-dom';
 import { SideNav } from '../../compositions';
 import { logo, sportLogoBlack, tennis } from '../../assets';
@@ -55,7 +55,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   }, {});
 
   const handleFavouriteMenu = (isChecked, name, link, state) => {
-    console.log('is check  ', isChecked, name, link, state);
+    // console.log('is check  ', isChecked, name, link, state);
     dispatch(addFavouriteMenu({ isChecked, name, link, state }));
   };
   const handleOrigin=(e)=>{
@@ -66,7 +66,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
     <div className={themeVariant}>
       <div id="Sidenav" className={`sidenav ${usingScreen} ${isOpen ? 'open' : ''}`}>
         <div className="d-flex justify-content-between align-items-center mx-4">
-          <div>
+          <div className='d-flex' >
+            <Logo />
             <select onChange={handleOrigin}  className={`form-select text-uppercase bg-transparent ${themeVariant == 'light' ? 'text-dark' : 'text-light'} `} aria-label="Default select example">
               <option  className={themeVariant == 'light' ? 'bg-light' : 'bg-dark'}  disabled selected value="">Select Country</option>
             {menu?.map((m)=>{

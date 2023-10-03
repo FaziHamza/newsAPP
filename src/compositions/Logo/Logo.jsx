@@ -9,15 +9,16 @@ import { useEffect } from 'react';
 const Logo = ({ name,  href, alt, className = '' }) => {
   const themeVariant = useThemeContext();
   const selectedOrigin = useSelector((state) => state?.origin?.selectedOrigin);
+  const flagUrl = useSelector((state) => state?.origin?.flagUrl)
 
   useEffect(()=>{
-console.log("Selected Origin ", selectedOrigin);
-  },[selectedOrigin])
+   },[selectedOrigin,flagUrl])
 const flags = {england : engFlag, france : franceFlag}
   return (
       <Link className={`logo ${styles.logo} ${className}`.trim()} to={href}>
         <ImageContainer
-          src={name=='Logo' ? logo : flags[selectedOrigin?.name]}
+          src={name=='Logo' ? logo : flagUrl}
+          // src={name=='Logo' ? logo : engFlag }
           containerClass={name === 'Logo' ? 'logo-image' : 'flag-image'}  // Apply class based on name value
           alt={alt}
       />

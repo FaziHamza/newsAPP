@@ -13,11 +13,13 @@ import { useMediaQuery, useTheme } from '../../utilities/hooks';
 import { useEffect, useState } from 'react';
 import { getData } from '../../assets/mockup-assets/data/dataObject';
 import { addresses } from '../../utilities/config';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFlag } from '../../redux/countries';
 const Root = () => {
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const selectedOrigin = useSelector((state) => state?.origin?.selectedOrigin);
   const { pathname } = useLocation()
+  const dispatch =  useDispatch()
   // console.log("use Location ", pathname);
 
 
@@ -35,11 +37,16 @@ const Root = () => {
   };
 
   useEffect(() => {
-    console.log("Selected Origin./././././ ", selectedOrigin);
+    // console.log("Selected Origin./././././ ", selectedOrigin);
     const settingsPromise = fetchConfig(`${selectedOrigin?.baseUrl}`);
     setWindowHref(`${selectedOrigin?.baseUrl}`);
     run(settingsPromise);
   }, [selectedOrigin]);
+  useEffect(()=>{
+if(settingsInfo){
+  dispatch(setFlag(settingsInfo?.Url))
+}
+  },[settingsInfo])
 
   switch (status) {
     case 'idle':
@@ -56,6 +63,7 @@ const Root = () => {
         return <div>Error: Missing settings information</div>;
       }
       const fullInfo = [settingsInfo, windowHref];
+      // console.log("Image URL ", settingsInfo?.Url);
       return (
 
         <MediaQueryProvider>

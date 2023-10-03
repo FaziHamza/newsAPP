@@ -18,7 +18,6 @@ const HighlightsList = () => {
 
   const location = useLocation();
   const { state } = location;
-  console.log(JSON.stringify(state));
   const { topicKey, topicName } = state;
 
   useEffect(() => {
