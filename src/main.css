@@ -304,7 +304,7 @@ body {
   border: 1px solid #d4c6c6;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  padding-top: 10px;
   scrollbar-width: thin;
   scrollbar-color: #000;
   scrollbar-track-color: #fff;
@@ -708,7 +708,7 @@ h6 {
 
   .sidenav .closebtn {
     left: auto;
-    right: 20px;
+    /* right: 20px; */
   }
 
 

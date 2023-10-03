@@ -16,6 +16,7 @@ import { addresses } from '../../utilities/config';
 import { useSelector } from 'react-redux';
 const Root = () => {
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
+  const selectedOrigin = useSelector((state) => state?.origin?.selectedOrigin);
   const { pathname } = useLocation()
   // console.log("use Location ", pathname);
 
@@ -34,10 +35,11 @@ const Root = () => {
   };
 
   useEffect(() => {
-    const settingsPromise = fetchConfig(`${addresses.baseUrl}`);
-    setWindowHref(`${addresses.baseUrl}`);
+    console.log("Selected Origin./././././ ", selectedOrigin);
+    const settingsPromise = fetchConfig(`${selectedOrigin?.baseUrl}`);
+    setWindowHref(`${selectedOrigin?.baseUrl}`);
     run(settingsPromise);
-  }, []);
+  }, [selectedOrigin]);
 
   switch (status) {
     case 'idle':
