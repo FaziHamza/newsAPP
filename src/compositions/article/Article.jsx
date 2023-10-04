@@ -57,8 +57,8 @@ const Article = ({ articleChosen, chooseArticle, className = '' }) => {
     error: articleError,
     run,
   } = useAsync({ status: 'pending' });
-
-  useEffect(() => {
+  
+   useEffect(() => {
     const articlePromise = fetchNews(articleChosen);
     run(articlePromise);
   }, [run, articleChosen]);

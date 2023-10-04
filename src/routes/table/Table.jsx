@@ -3,7 +3,15 @@ import { Link, useLocation, useOutletContext } from 'react-router-dom';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { useAsync } from '../../utilities/asyncReducer';
 import { fetchNewsTable } from '../../utilities/fetch';
-import { StoryTile, StoryMain, AdMobile, AdRemote, Promo, Dropdown, ListedTopics } from '../../compositions';
+import {
+  StoryTile,
+  StoryMain,
+  AdMobile,
+  AdRemote,
+  Promo,
+  Dropdown,
+  ListedTopics,
+} from '../../compositions';
 import { addresses } from '../../utilities/config';
 
 import {
@@ -32,7 +40,6 @@ const SectionHeader = ({ title = 'missingTitle', listItems }) => {
         />
       ) : (
         <h4 className="topic-title">{title}</h4>
-
       )}
     </>
   );
@@ -49,7 +56,6 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const themeVariant = useThemeContext();
   const [mainNewsList, setMainNewsList] = useState([]);
   const [asideNewsList, setAsideNewsList] = useState([]);
-
 
   useEffect(() => {
     if (tableInfo?.length > 0) {
@@ -69,8 +75,10 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   useEffect(() => {
     // const address = state?.address ?? 'news/getnews?lang=sv&topic=football&sub1=fbl,ENG,Pr';
     // const address = state?.address ?? 'news/getNewsByTeam?keyword=Pr&lang=en&sport=football&limit=12';
-    const address = state?.address ?? `news/getNewsByTeam?keyword=${addresses.siteKeyword}&lang=${addresses.siteLang}&sport=football&limit=${addresses.siteLimit}`;
-    
+    const address =
+      state?.address ??
+      `news/getNewsByTeam?keyword=${addresses.siteKeyword}&lang=${addresses.siteLang}&sport=football&limit=${addresses.siteLimit}`;
+
     const tablePromise = () => fetchNewsTable(windowHref + settingsInfo.Api + address);
     run(tablePromise());
   }, [run, state]);
@@ -101,10 +109,10 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
             ) : null}
             {isDesktop === 'desktop' ? (
               <>
-                <div className='main-body dark'>
-                  <div className='row'>
-                    <div className='col-lg-8'>
-                      {(mainNewsList?.length > 0) ?
+                <div className="main-body dark">
+                  <div className="row">
+                    <div className="col-lg-8">
+                      {mainNewsList?.length > 0 ? (
                         <main>
                           {/* {state ? (
                       <SectionHeader title={state.Name} listItems={state?.subTopics} />
@@ -118,14 +126,15 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             state={{
                               articleInfo: mainNewsList[0],
                               tableInfo: tableInfo,
-                              baseUrl: settingsInfo.Url + settingsInfo.Api,
-                              imgUrl: settingsInfo.Url + mainNewsList[0]?._medias[0]?.href,
+                              baseUrl: addresses.baseUrl + settingsInfo.Api,
+                              imgUrl: addresses.baseUrl + mainNewsList[0]?._medias[0]?.href,
                             }}
                             to={
                               state
                                 ? mainNewsList[0]?._id
-                                : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${mainNewsList[0]?._id
-                                }`
+                                : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
+                                    mainNewsList[0]?._id
+                                  }`
                             }>
                             <StoryMain
                               description={mainNewsList[0]?._content}
@@ -137,10 +146,10 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             />
                           </Link>
                         </main>
-                        : null}
+                      ) : null}
                       <div className="top-articles">
                         {/* 11 */}
-                        {mainNewsList?.slice(1)?.map(tileItem => {
+                        {mainNewsList?.slice(1)?.map((tileItem) => {
                           return (
                             <>
                               <Link
@@ -149,14 +158,16 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 state={{
                                   articleInfo: tileItem,
                                   tableInfo: tableInfo,
-                                  baseUrl: settingsInfo.Url + settingsInfo.Api,
-                                  imgUrl: settingsInfo.Url + tileItem._medias[0].href,
+                                  baseUrl: addresses.baseUrl + settingsInfo.Api,
+                                  imgUrl: addresses.baseUrl + tileItem._medias[0].href,
                                 }}
                                 to={
                                   state
                                     ? tileItem._id
-                                    : `news/${defaultTopic?.Name?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
-                                    }`
+                                    : `news/${defaultTopic?.Name?.toLowerCase().replace(
+                                        /\s/g,
+                                        '_'
+                                      )}/${tileItem._id}`
                                 }>
                                 <StoryTile
                                   isDesktopScreen={true}
@@ -167,21 +178,20 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   time={tileItem._published}
                                 />
                               </Link>
-
                             </>
                           );
                         })}
                       </div>
                     </div>
-                    <div className='col-lg-4'>
-                      {asideNewsList?.length > 0 ?
+                    <div className="col-lg-4">
+                      {asideNewsList?.length > 0 ? (
                         <aside className="aside-right">
                           {/* <AdRemote to="www.google.com" badge={appStoreRemote} />
                   <div className="divider-container">
                     <hr className="divider-solid" />
                   </div> */}
                           {/* 11 */}
-                          {asideNewsList?.map(tileItem => {
+                          {asideNewsList?.map((tileItem) => {
                             return (
                               <>
                                 <Link
@@ -190,14 +200,16 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   state={{
                                     articleInfo: tileItem,
                                     tableInfo: tableInfo,
-                                    baseUrl: settingsInfo.Url + settingsInfo.Api,
-                                    imgUrl: settingsInfo.Url + tileItem._medias[0].href,
+                                    baseUrl: addresses.baseUrl + settingsInfo.Api,
+                                    imgUrl: addresses.baseUrl + tileItem._medias[0].href,
                                   }}
                                   to={
                                     state
                                       ? tileItem._id
-                                      : `news/${defaultTopic?.Name?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
-                                      }`
+                                      : `news/${defaultTopic?.Name?.toLowerCase().replace(
+                                          /\s/g,
+                                          '_'
+                                        )}/${tileItem._id}`
                                   }>
                                   <StoryTile
                                     description={tileItem._abstract}
@@ -215,94 +227,78 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                     <hr className="divider-solid" />
                   </div> */}
                         </aside>
-                        : null}
+                      ) : null}
                     </div>
                   </div>
-
                 </div>
-
               </>
             ) : (
               <>
-                <main className='mobileScreen'>
-
+                <main className="mobileScreen">
                   {/* 11 */}
 
-                  {tableInfo.length > 0 && tableInfo.map((tileItem, index) => {
-                    if (index <= topStoryLimit + adSpan)
-                      return (
-                        <>
-
-                          {index === 0 ? (
-
-                            <Link
-                              className="story-link"
-                              key={tileItem._id}
-                              state={{
-                                articleInfo: tileItem,
-                                baseUrl: settingsInfo.Url + settingsInfo.Api,
-                                imgUrl: settingsInfo.Url + tileItem._medias[0].href,
-                              }}
-                              to={
-                                state
-                                  ? tileItem._id
-                                  : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
-                                  }`
-                              }>
-
-
-                              <StoryMain
-                                description={tileItem._abstract}
-
-                                src={windowHref + tileItem._medias[0].href}
-                                alt={tileItem._medias[0]?.href}
-                                time={tileItem._published}
-                              />
-
-
-
-
-                            </Link>
-                          ) : <Link
-                            className="story-link"
-                            key={tileItem._id}
-                            state={{
-                              articleInfo: tileItem,
-                              baseUrl: settingsInfo.Url + settingsInfo.Api,
-                              imgUrl: settingsInfo.Url + tileItem._medias[0].href,
-                            }}
-                            to={
-                              state
-                                ? tileItem._id
-                                : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
-                                }`
-                            }>
-
-                            <StoryTile
-                              description={tileItem._abstract}
-                              className={index === 0 ? '' : 'tile-m'}
-                              src={windowHref + tileItem._medias[0].href}
-                              alt={tileItem._medias[0]?.href}
-                              time={tileItem._published}
-                            />
-
-
-                          </Link>
-
-
-                          }
-
-                        </>
-                      );
-                  })}
-
+                  {tableInfo.length > 0 &&
+                    tableInfo.map((tileItem, index) => {
+                      if (index <= topStoryLimit + adSpan)
+                        return (
+                          <>
+                            {index === 0 ? (
+                              <Link
+                                className="story-link"
+                                key={tileItem._id}
+                                state={{
+                                  articleInfo: tileItem,
+                                  baseUrl: addresses.baseUrl + settingsInfo.Api,
+                                  imgUrl: addresses.baseUrl + tileItem._medias[0].href,
+                                }}
+                                to={
+                                  state
+                                    ? tileItem._id
+                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
+                                        tileItem._id
+                                      }`
+                                }>
+                                <StoryMain
+                                  description={tileItem._abstract}
+                                  src={windowHref + tileItem._medias[0].href}
+                                  alt={tileItem._medias[0]?.href}
+                                  time={tileItem._published}
+                                />
+                              </Link>
+                            ) : (
+                              <Link
+                                className="story-link"
+                                key={tileItem._id}
+                                state={{
+                                  articleInfo: tileItem,
+                                  baseUrl: addresses.baseUrl + settingsInfo.Api,
+                                  imgUrl: addresses.baseUrl + tileItem._medias[0].href,
+                                }}
+                                to={
+                                  state
+                                    ? tileItem._id
+                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
+                                        tileItem._id
+                                      }`
+                                }>
+                                <StoryTile
+                                  description={tileItem._abstract}
+                                  className={index === 0 ? '' : 'tile-m'}
+                                  src={windowHref + tileItem._medias[0].href}
+                                  alt={tileItem._medias[0]?.href}
+                                  time={tileItem._published}
+                                />
+                              </Link>
+                            )}
+                          </>
+                        );
+                    })}
                 </main>
               </>
             )}
           </>
         );
       }
-
     }
     case 'rejected':
       return <div>{error}</div>;
