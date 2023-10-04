@@ -4,6 +4,8 @@ import { useMediaContext } from '../../utilities/mediaQuery';
 import { useAsync } from '../../utilities/asyncReducer';
 import { fetchNewsTable } from '../../utilities/fetch';
 import { StoryTile, StoryMain, AdMobile, AdRemote, Promo, Dropdown, ListedTopics } from '../../compositions';
+import { addresses } from '../../utilities/config';
+
 import {
   appStoreBadgeWhite,
   appStoreBadgeBlack,
@@ -67,7 +69,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   useEffect(() => {
     // const address = state?.address ?? 'news/getnews?lang=sv&topic=football&sub1=fbl,ENG,Pr';
     // const address = state?.address ?? 'news/getNewsByTeam?keyword=Pr&lang=en&sport=football&limit=12';
-    const address = state?.address ?? 'news/getNewsByTeam?keyword=ENG&lang=en&sport=football&limit=12';
+    const address = state?.address ?? `news/getNewsByTeam?keyword=${addresses.siteKeyword}&lang=${addresses.siteLang}&sport=football&limit=${addresses.siteLimit}`;
+    
     const tablePromise = () => fetchNewsTable(windowHref + settingsInfo.Api + address);
     run(tablePromise());
   }, [run, state]);
