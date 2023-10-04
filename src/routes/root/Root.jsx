@@ -13,7 +13,10 @@ import { useMediaQuery, useTheme } from '../../utilities/hooks';
 import { useEffect, useState } from 'react';
 import { getData } from '../../assets/mockup-assets/data/dataObject';
 import { addresses } from '../../utilities/config';
+import { useDispatch } from 'react-redux';
+import { setFlag } from '../../redux/countries';
 const Root = () => {
+ const dispatch =  useDispatch()
   const { data: settingsInfo, status, error, run } = useAsync({ status: 'pending' });
   const [themeVariant, setThemeVariant] = useTheme('dark'); // 'dark', 'light'
   const [windowHref, setWindowHref] = useState('');
@@ -32,6 +35,13 @@ const Root = () => {
     setWindowHref(`${addresses.baseUrl}`);
     run(settingsPromise);
   }, []);
+
+  useEffect(()=>{
+    if(settingsInfo){
+      dispatch(setFlag(settingsInfo?.Url))
+    }
+      },[settingsInfo])
+    
 
   switch (status) {
     case 'idle':
