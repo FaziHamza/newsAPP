@@ -5,7 +5,9 @@ let tempLocal = localStorage.getItem('favouriteMenu');
  const initialState = {
   origin: [
     { id: 1, name: 'england', baseUrl: 'https://siteofsports.com/v2/' },
-    { id: 2, name: 'france', baseUrl: 'https://www.sportspotfrance.dev/frenchbackend/v2/' },
+    { id: 2, name: 'france', baseUrl: 'https://www.sportspotfrance.dev/v4/' },
+    { id: 3, name: 'serbia', baseUrl: 'https://www.sportspotserbia.dev/v4/' },
+
   ],
   selectedOrigin: {id:0, name:'default', baseUrl:'https://siteofsports.com/v2/'},
   flagUrl: ''
