@@ -8,8 +8,8 @@
 // export const addresses = {
 //   settingsUrl: 'http://localhost/SportifiedSpot/api/topics-with-subtopics-Mobile',
 //   baseUrl: 'http://localhost/SportifiedSpot/',
-//   siteLang:"gr",
-//   siteKeyword:"BL",
+//   siteLang:"sr",
+//   siteKeyword:"ESP",
 //   siteLimit:12,
 // };
 
@@ -17,11 +17,40 @@
 //   settingsUrl: 'https://siteofsports.com/v2/api/topics-with-subtopics-Mobile',
 //   baseUrl: 'https://siteofsports.com/v2/',
 // };
-// franc
+// swidish
+// export const addresses = {
+//   settingsUrl: 'https://sportatsite.com/v4/api/topics-with-subtopics-Mobile',
+//   baseUrl: 'https://sportatsite.com/v4/',
+//   siteLang: 'sv',
+//   siteKeyword: 'ENG',
+//   siteLimit: 12,
+// };
+//https://sportspotfrance.dev
+// export const addresses = {
+//   settingsUrl: 'https://sportspotfrance.dev/v4/api/topics-with-subtopics-Mobile',
+//   baseUrl: 'https://sportspotfrance.dev/v4/',
+//   siteLang: 'fr',
+//   siteKeyword: 'ENG',
+//   siteLimit: 12,
+// };
+
+
+// germany
+// export const addresses = {
+//   settingsUrl: 'hhttps://sportspotgermany.dev/v4/api/topics-with-subtopics-Mobile',
+//   baseUrl: 'https://sportspotgermany.dev/v4/',
+//   siteLang: 'gr',
+//   siteKeyword: 'BL',
+//   siteLimit: 12,
+// };
+
+
+
+// serbia
 export const addresses = {
-  settingsUrl: 'https://sportspotspain.dev/frenchbackend/v2/api/topics-with-subtopics-Mobile',
-  baseUrl: 'https://sportspotspain.dev/frenchbackend/v2/',
-  siteLang: 'gr',
-  siteKeyword: 'BL',
+  settingsUrl: 'https://sportspotserbia.dev/v4/api/topics-with-subtopics-Mobile',
+  baseUrl: 'https://sportspotserbia.dev/v4/',
+  siteLang: 'sr',
+  siteKeyword: 'ESP',
   siteLimit: 12,
 };
