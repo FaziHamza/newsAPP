@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dropdown, Logo } from '../../compositions';
 import { NavLink, Link } from 'react-router-dom';
 import { SideNav } from '../../compositions';
 import { logo, sportLogoBlack, tennis } from '../../assets';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFavouriteMenu } from '../../redux/favouriteMenu';
+import { addFavouriteMenu, clearFavouriteMenu } from '../../redux/favouriteMenu';
 import { selectCountry } from '../../redux/countries';
 
 function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVariant, ...props }) {
@@ -60,14 +60,32 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   };
   const handleOrigin=(e)=>{
      dispatch(selectCountry(e?.target?.value))
+     dispatch(clearFavouriteMenu())
 
   }
+
+  useEffect(()=>{
+const currentDate = new Date();
+const currentHour = currentDate.getHours();
+
+const minHour = 6; 
+const maxHour = 18; 
+if (currentHour >= minHour && currentHour < maxHour) {
+  setThemeVariant('light');
+} else {
+  setThemeVariant('dark');
+}
+
+  },[])
   return (
     <div className={themeVariant}>
       <div id="Sidenav" className={`sidenav ${usingScreen} ${isOpen ? 'open' : ''}`}>
         <div className="d-flex justify-content-between align-items-center mx-4">
           <div className='d-flex' >
+            <span className='me-2'>
+
             <Logo />
+            </span>
             <select onChange={handleOrigin}  className={`form-select text-uppercase bg-transparent ${themeVariant == 'light' ? 'text-dark' : 'text-light'} `} aria-label="Default select example">
               <option  className={themeVariant == 'light' ? 'bg-light' : 'bg-dark'}  disabled selected value="">Select Country</option>
             {menu?.map((m)=>{

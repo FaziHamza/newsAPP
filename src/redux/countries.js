@@ -1,15 +1,33 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 let temp = { isChecked: '', name: '', link: '', state: {} };
-let tempLocal = localStorage.getItem('favouriteMenu');
+let tempLocal = localStorage.getItem('selectedOrigin')
+const initialOrigin = tempLocal?.length > 0 ? JSON.parse(tempLocal) : {id:1, name:'england', baseUrl:'https://siteofsports.com/v2/',  siteLang: 'en',
+siteKeyword: 'ENG',
+siteLimit: 12,};
  const initialState = {
   origin: [
-    { id: 1, name: 'england', baseUrl: 'https://siteofsports.com/v2/' },
-    { id: 2, name: 'france', baseUrl: 'https://www.sportspotfrance.dev/v4/' },
-    { id: 3, name: 'serbia', baseUrl: 'https://www.sportspotserbia.dev/v4/' },
+    { id: 1, name: 'england', baseUrl: 'https://siteofsports.com/v2/',  siteLang: 'en',
+    siteKeyword: 'ENG',
+    siteLimit: 12, },
+    { id: 2, name: 'serbia', baseUrl: 'https://www.sportspotserbia.dev/v4/',  siteLang: 'sr',
+    siteKeyword: 'ESP',
+    siteLimit: 12, },
+    { id: 3, name: 'swedish', baseUrl: 'https://sportatsite.com/v4/',  siteLang: 'sv',
+    siteKeyword: 'ENG',
+    siteLimit: 12, },
+    { id: 4, name: 'spain', baseUrl: 'https://sportspotspain.dev/frenchbackend/v2/',  siteLang: 'es',
+    siteKeyword: 'ENG',
+    siteLimit: 12, },
+    { id: 5, name: 'germany', baseUrl: 'https://sportspotgermany.dev/v4/',  siteLang: 'gr',
+    siteKeyword: 'BL',
+    siteLimit: 12, },
+    { id: 6, name: 'france', baseUrl: 'https://sportspotfrance.dev/v4/',  siteLang: 'fr',
+    siteKeyword: 'ENG',
+    siteLimit: 12, },
 
   ],
-  selectedOrigin: {id:0, name:'default', baseUrl:'https://siteofsports.com/v2/'},
+  selectedOrigin: initialOrigin,
   flagUrl: ''
 };
 export const countryReducer = createSlice({
@@ -24,7 +42,7 @@ export const countryReducer = createSlice({
 
       tempState.selectedOrigin = newObj;
 
-      // localStorage.setItem('favouriteMenu', JSON.stringify(tempState))
+      localStorage.setItem('selectedOrigin', JSON.stringify(newObj))
       return tempState;
     },
     setFlag:(state, action)=>{
