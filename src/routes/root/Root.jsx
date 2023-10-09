@@ -154,9 +154,7 @@ const Root = () => {
 
                         {pathname == `/${m?.state?.navType}/${m?.state?.navTopic}` && (
                           <img
-                            className="img-fluid px-2"
-                            width="28"
-                            height="28"
+                            className=" imgg"
                             src={video_play}
                             alt={`${m?.name} logo`}
                           />

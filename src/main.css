@@ -87,6 +87,10 @@ header>div {
   color: #fff;
 }
 
+.main-header {
+  margin-bottom: 10px;
+}
+
 .main-header .item {
   padding: 0px 15px;
   width: 100%;
@@ -340,7 +344,7 @@ body {
   text-decoration: none;
   font-size: 16px;
   color: #818181;
-  display: block;
+  /* display: block; */
   transition: 0.3s;
 }
 
@@ -349,10 +353,10 @@ body {
 }
 
 .sidenav .closebtn {
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 20px;
-  font-size: 36px;
+  font-size: 36px; */
   /* margin-left: 50px; */
 }
 
@@ -698,7 +702,7 @@ h6 {
 
 @media screen and (max-width: 991px) {
   .flag-image img {
-    height: 35px;
+    height: 30px;
   }
 
   .sidenav {
@@ -876,7 +880,16 @@ h6 {
 
 
 .top-bar a.active {
-  border-bottom: 2px solid #fff;
+  background: rgba(255, 255, 255, 0.351);
+  /* color: black !important; */
+  /* border-radius: 5px 5px 0px 0px; */
+}
+
+.top-bar .tab .imgg {
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
+
 }
 
 .top-bar .tab {
@@ -889,7 +902,7 @@ h6 {
   font-size: 14px;
 }
 
-.action-bar-img{
+.action-bar-img {
   width: auto;
   height: 100%;
   object-fit: cover;
@@ -903,4 +916,39 @@ h6 {
 
 ::-webkit-scrollbar-thumb {
   background: #c1020534;
+}
+
+.hyusa {
+  padding: 7px 5px 5px 8px;
+  width: calc(100% - 50px);
+  border-radius: 100px;
+  border: 2px solid lightgray;
+}
+
+.closebtn {
+  height: 40px;
+  border-radius: 100px;
+  /* border: 2px solid lightgray; */
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #c10206;
+
+}
+
+.closebtn i {
+  font-size: 20px;
+  color: white;
+}
+
+
+.hyusa select {
+  border: none;
+  height: 30px;
+  font-size: 14px;
+  padding: 0px;
+  outline: 2px solid transparent !important;
+  box-shadow: none !important;
+  /* border-bottom: 1px solid #615c5c; */
 }
