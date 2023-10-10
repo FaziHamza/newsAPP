@@ -125,8 +125,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             state={{
                               articleInfo: mainNewsList[0],
                               tableInfo: tableInfo,
-                              baseUrl: settingsInfo.Url + settingsInfo.Api,
-                              imgUrl: settingsInfo.Url + mainNewsList[0]?._medias[0]?.href,
+                              baseUrl: origin?.baseUrl + settingsInfo.Api,
+                              imgUrl: origin?.baseUrl + mainNewsList[0]?._medias[0]?.href,
                             }}
                             to={
                               state
@@ -156,8 +156,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 state={{
                                   articleInfo: tileItem,
                                   tableInfo: tableInfo,
-                                  baseUrl: settingsInfo.Url + settingsInfo.Api,
-                                  imgUrl: settingsInfo.Url + tileItem._medias[0].href,
+                                  baseUrl: origin?.baseUrl + settingsInfo.Api,
+                                  imgUrl: origin?.baseUrl + tileItem._medias[0].href,
                                 }}
                                 to={
                                   state
@@ -197,8 +197,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   state={{
                                     articleInfo: tileItem,
                                     tableInfo: tableInfo,
-                                    baseUrl: settingsInfo.Url + settingsInfo.Api,
-                                    imgUrl: settingsInfo.Url + tileItem._medias[0].href,
+                                    baseUrl: origin?.baseUrl + settingsInfo.Api,
+                                    imgUrl: origin?.baseUrl + tileItem._medias[0].href,
                                   }}
                                   to={
                                     state
@@ -271,8 +271,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                               key={tileItem._id}
                               state={{
                                 articleInfo: tileItem,
-                                baseUrl: settingsInfo.Url + settingsInfo.Api,
-                                imgUrl: settingsInfo.Url + tileItem._medias[0].href,
+                                baseUrl: origin?.baseUrl + settingsInfo.Api,
+                                imgUrl: origin?.baseUrl + tileItem._medias[0].href,
                               }}
                               to={
                                 state
@@ -299,8 +299,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             key={tileItem._id}
                             state={{
                               articleInfo: tileItem,
-                              baseUrl: settingsInfo.Url + settingsInfo.Api,
-                              imgUrl: settingsInfo.Url + tileItem._medias[0].href,
+                              baseUrl: origin?.baseUrl + settingsInfo.Api,
+                              imgUrl: origin?.baseUrl + tileItem._medias[0].href,
                             }}
                             to={
                               state

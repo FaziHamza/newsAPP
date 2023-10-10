@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData, useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { useAsync } from '../../utilities/asyncReducer';
@@ -8,6 +8,7 @@ import { removeBetween } from '../../utilities/common';
 import { addresses } from '../../utilities/config';
 
 import { StoryTile } from '../../compositions';
+import { useSelector } from 'react-redux';
 
 const topicSettings = {};
 
@@ -16,8 +17,10 @@ export const loader = ({ params }) => {
 };
 
 const AsideArticle = ({ tableInfo }) => {
+  const origin  = useSelector(state=> state?.origin?.selectedOrigin)
+  const [settingsInfo] = useOutletContext();
   const { params } = useLoaderData();
-  // const { state } = useLocation();
+  const { state } = useLocation();
   // console.log(params);
 
   return (
@@ -25,26 +28,26 @@ const AsideArticle = ({ tableInfo }) => {
       {tableInfo?.filter(item => item._id !== params.id)?.slice(0, 8)?.map((tileItem) => {
         return (
           <>
-            {/* <Link
+            <Link
               className="story-link"
               to={`/${params.type}/${params.topic}/${tileItem._id}`}
               // to={`../${urlPrefix}${tileItem._id}`}
               relative="path"
               key={tileItem._id}
-              // state={{ ...state,
-              //   // articleInfo: state.articleInfo,
-              //   // tableInfo: state.tableInfo,
-              //   // baseUrl: settingsInfo.Url + settingsInfo.Api,
-              //   // imgUrl: settingsInfo.Url + tileItem._medias[0].href,
-              // }}
-              > */}
+              state={{ ...state,
+                articleInfo: state.articleInfo,
+                tableInfo: state.tableInfo,
+                baseUrl: origin.baseUrl + settingsInfo.Api,
+                imgUrl: origin.baseUrl + tileItem._medias[0].href,
+              }}
+              >
             <StoryTile
               description={tileItem._abstract}
               className={'tile-m'}
-              src={addresses.baseUrl + '/' + tileItem._medias[0].href}
+              src={origin.baseUrl + '/' + tileItem._medias[0].href}
               alt={tileItem._medias[0].href}
             />
-            {/* </Link> */}
+         </Link> 
             <div className="divider-container">
               <hr className="divider-solid" />
             </div>
