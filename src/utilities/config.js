@@ -50,6 +50,9 @@
 export const addresses = {
   settingsUrl: 'https://sportspotserbia.dev/v4/api/topics-with-subtopics-Mobile',
   baseUrl: 'https://sportspotserbia.dev/v4/',
+  baseUrlV2: 'https://localhost:44394/',
+  regionId:"1BB4E935-722E-49EC-079A-08DBC9829E37",
+
   siteLang: 'sr',
   siteKeyword: 'ESP',
   siteLimit: 12,

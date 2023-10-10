@@ -53,9 +53,9 @@ const Root = () => {
         </main>
       );
     case 'resolved': {
-      if (!settingsInfo || typeof settingsInfo.MenuItems === 'undefined') {
+      if (!settingsInfo || typeof settingsInfo === 'undefined') {
         // Log or handle the error as you see fit
-        return <div>Error: Missing settings information</div>;
+        return <div>Error: Missing settings information vv</div>;
       }
       const fullInfo = [settingsInfo, windowHref];
       return (
@@ -79,7 +79,7 @@ const Root = () => {
                   </a>
 
                     <div className='item menu'>
-                      <NavbarMobile navList={settingsInfo.MenuItems} setThemeVariant={setThemeVariant} themeVariant={themeVariant}  />
+                      <NavbarMobile navList={settingsInfo.menuItems} setThemeVariant={setThemeVariant} themeVariant={themeVariant}  />
                     </div>
                     </div>
                   </div>
@@ -88,7 +88,7 @@ const Root = () => {
                   (
                     <div className='main-header'>
                       <div className='item'>
-                        <NavbarMobile navList={settingsInfo.MenuItems} setThemeVariant={setThemeVariant} themeVariant={themeVariant} />
+                        <NavbarMobile navList={settingsInfo.menuItems} setThemeVariant={setThemeVariant} themeVariant={themeVariant} />
                         {/* <span style={{ fontSize: '30px', cursor: 'pointer' }}>&#9776;</span> */}
 
                       </div>
@@ -104,7 +104,7 @@ const Root = () => {
               </header>
 
 
-              {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
+              {/* <Navigation className="nav-main" navList={settingsInfo.menuItems} /> */}
               <Outlet context={fullInfo} />
             </div>
             <footer>

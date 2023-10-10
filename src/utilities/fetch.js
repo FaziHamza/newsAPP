@@ -39,7 +39,7 @@ const fetchPostFunction = (url, body) =>
     });
 
 export const fetchConfig = (windowHref) =>
-  fetchGetFunction(`${addresses.baseUrl}api/topics-with-subtopics`);
+  fetchGetFunction(`${addresses.baseUrlV2}api/Topic/GetTopicWithSubTopic?regionId=${addresses.regionId}`);
 
 export const fetchArticleTable = (topic) => {
   debugger;
