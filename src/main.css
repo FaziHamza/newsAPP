@@ -919,10 +919,13 @@ h6 {
 }
 
 .hyusa {
-  padding: 7px 5px 5px 8px;
   width: calc(100% - 50px);
   border-radius: 100px;
   border: 2px solid lightgray;
+}
+
+.hyusa .flag-image {
+  margin: 5px 0px 5px 10px;
 }
 
 .closebtn {
@@ -945,10 +948,9 @@ h6 {
 
 .hyusa select {
   border: none;
-  height: 30px;
+  height: 40px;
   font-size: 14px;
-  padding: 0px;
+  padding: 3px 10px 0px;
   outline: 2px solid transparent !important;
   box-shadow: none !important;
-  /* border-bottom: 1px solid #615c5c; */
 }
