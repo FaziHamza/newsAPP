@@ -876,9 +876,11 @@ h6 {
   /* color: black !important; */
   /* border-radius: 5px 5px 0px 0px; */
 }
+
 .dark-theme .top-bar a.active {
-  background:  rgb(46, 46, 46);
+  background: rgb(46, 46, 46);
 }
+
 .dark-theme .hyusa {
   border: 2px solid rgb(76, 76, 76) !important;
 }
