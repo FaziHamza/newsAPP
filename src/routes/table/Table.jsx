@@ -79,7 +79,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
       state?.address ??
       `news/getNewsByTeam?keyword=${addresses.siteKeyword}&lang=${addresses.siteLang}&sport=football&limit=${addresses.siteLimit}`;
 
-    const tablePromise = () => fetchNewsTable(windowHref + settingsInfo.Api + address);
+    const tablePromise = () => fetchNewsTable("https://sportspotengland.dev/V4//api/" + address);
     run(tablePromise());
   }, [run, state]);
 

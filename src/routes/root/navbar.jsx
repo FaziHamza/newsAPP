@@ -106,15 +106,15 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                   <div id={id} className={`collapse ${collapsedIds[id] ? 'show' : ''}`}>
                     <ul className="nav-item-sub-child">
                       {moreItem.subTopics.map((team) => {
-                        const [navType, navTopic, navAddress] = team.News
+                        const [navType, navTopic, navAddress] = team.news
                           ? ['news', team.name.toLowerCase().replace(/\s/g, '_'), team.news]
                           : ['articles', team.name.toLowerCase().replace(/\s/g, '_'), team.articles];
                         return (
                           <li key={team.name} className='nav-item-sub-child-content'>
                             <div>
                               {/* Check if team.VideoIcon is not null and team.NewsIcon is null */}
-                              {team.VideoIcon !== null ? (
-                                team.NewsIcon !== null ? (
+                              {team.videoIcon !== null ? (
+                                team.newsIcon !== null ? (
                                   <Link
                                     to={`../${navType}/${navTopic}`}
                                     onClick={closeNav}

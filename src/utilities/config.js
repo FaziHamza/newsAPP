@@ -49,9 +49,11 @@
 // serbia
 export const addresses = {
   settingsUrl: 'https://sportspotserbia.dev/v4/api/topics-with-subtopics-Mobile',
-  baseUrl: 'https://sportspotserbia.dev/v4/',
-  baseUrlV2: 'https://localhost:44394/',
-  regionId:"1BB4E935-722E-49EC-079A-08DBC9829E37",
+  baseUrl: 'http://208.109.188.83:8042/',
+  baseUrlApi: 'https://sportspotengland.dev/V4/api/',
+
+  baseUrlV2: 'http://208.109.188.83:8042/',
+  regionId:"d2ce2a84-9bdf-4e30-e17c-08dbca7cbb28",
 
   siteLang: 'en',
   siteKeyword: 'ENG',
