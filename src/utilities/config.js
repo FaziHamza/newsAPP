@@ -44,13 +44,20 @@
 //   siteLimit: 12,
 // };
 
-
-
-// serbia
+// england
 export const addresses = {
-  settingsUrl: 'https://sportspotserbia.dev/v4/api/topics-with-subtopics-Mobile',
-  baseUrl: 'https://sportspotserbia.dev/v4/',
-  siteLang: 'sr',
-  siteKeyword: 'ESP',
+  settingsUrl: 'https://sportspotengland.dev/v4/api/topics-with-subtopics-Mobile',
+  baseUrl: 'https://sportspotengland.dev/v4/',
+  siteLang: 'en',
+  siteKeyword: 'ENG',
   siteLimit: 12,
 };
+
+// serbia
+// export const addresses = {
+//   settingsUrl: 'https://sportspotserbia.dev/v4/api/topics-with-subtopics-Mobile',
+//   baseUrl: 'https://sportspotserbia.dev/v4/',
+//   siteLang: 'sr',
+//   siteKeyword: 'ESP',
+//   siteLimit: 12,
+// };
