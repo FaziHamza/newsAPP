@@ -2,12 +2,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 let temp = { isChecked: '', name: '', link: '', state: {} };
 let tempLocal = localStorage.getItem('selectedOrigin')
-const initialOrigin = tempLocal?.length > 0 ? JSON.parse(tempLocal) : {id:1, name:'england', baseUrl:'https://siteofsports.com/v2/',  siteLang: 'en',
+const initialOrigin = tempLocal?.length > 0 ? JSON.parse(tempLocal) : {id:1, name:'england', baseUrl:'https://sportspotengland.dev/v4/',  siteLang: 'en',
 siteKeyword: 'ENG',
 siteLimit: 12,};
  const initialState = {
   origin: [
-    { id: 1, name: 'england', baseUrl: 'https://siteofsports.com/v2/',  siteLang: 'en',
+    { id: 1, name: 'england', baseUrl: 'https://sportspotengland.dev/v4/',  siteLang: 'en',
     siteKeyword: 'ENG',
     siteLimit: 12, },
     { id: 2, name: 'serbia', baseUrl: 'https://www.sportspotserbia.dev/v4/',  siteLang: 'sr',

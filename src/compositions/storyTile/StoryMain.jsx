@@ -17,8 +17,8 @@ const DisplayComponent = ({ topic }) => {
   const topicKey = state?.topicKey || "england-premier-league";
 
 
-  const logoPath = state?.LogoPath || "https://siteofsports.com/v2/Content/TopicLogo/GB.png";
-  const teamLogoPath = state?.LogoTeam || "https://siteofsports.com/v2/content/topicLogo/premier_league.jpg";
+  const logoPath = state?.LogoPath || "https://sportspotengland.dev/v4/Content/TopicLogo/GB.png";
+  const teamLogoPath = state?.LogoTeam || "https://sportspotengland.dev/v4/content/topicLogo/premier_league.jpg";
   const SubTopicId = state?.SubTopicId;
   const TopicId = state?.TopicId;
   // const TopicId = state?.TopicId;

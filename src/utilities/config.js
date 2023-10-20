@@ -13,11 +13,11 @@ import { useSelector } from 'react-redux';
 // };
 const GetBaseUrl = () => {
   const menu = useSelector((state) => state?.origin?.selectedOrigin);
-  return menu?.baseUrl || "https://siteofsports.com/v2/";
+  return menu?.baseUrl || "https://sportspotengland.dev/v4/";
 };
 // console.log("Get Base URL",()=>GetBaseUrl());
 export const addresses = {
-  settingsUrl: 'https://siteofsports.com/v2/api/topics-with-subtopics-Mobile',
-  baseUrl: 'https://siteofsports.com/v2/',
+  settingsUrl: 'https://sportspotengland.dev/v4/api/topics-with-subtopics-Mobile',
+  baseUrl: 'https://sportspotengland.dev/v4/',
   // baseUrl: GetBaseUrl,
 };
