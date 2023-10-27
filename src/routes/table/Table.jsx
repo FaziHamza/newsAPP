@@ -12,7 +12,7 @@ import {
   Dropdown,
   ListedTopics,
 } from '../../compositions';
-import { addresses } from '../../utilities/config';
+// import { addresses } from '../../utilities/config';
 
 import {
   appStoreBadgeWhite,
@@ -24,6 +24,7 @@ import {
 } from '../../assets';
 import { useThemeContext } from '../../utilities/themeQuery';
 import { divideByPercentage } from '../../utilities/common';
+import { useSelector } from 'react-redux';
 
 export const loader = ({ params }) => {
   return { params };
@@ -46,6 +47,8 @@ const SectionHeader = ({ title = 'missingTitle', listItems }) => {
 };
 
 const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
+  const addresses = useSelector(state=>state.origin.apiOrigin)
+
   const [settingsInfo, windowHref] = useOutletContext();
   const defaultTopic = settingsInfo.Default;
   const { data: tableInfo, status, error, run } = useAsync({ status: 'pending' });
@@ -81,7 +84,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
 
     const tablePromise = () => fetchNewsTable(windowHref + settingsInfo.Api + address);
     run(tablePromise());
-  }, [run, state]);
+  }, [run, state, addresses]);
 
   switch (status) {
     case 'idle':

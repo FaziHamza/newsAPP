@@ -61,3 +61,14 @@ export const addresses = {
 //   siteKeyword: 'ESP',
 //   siteLimit: 12,
 // };
+
+// export const addresses = {
+//   settingsUrl: 'https://sportspotserbia.dev/v4/api/topics-with-subtopics-Mobile',
+//   baseUrl: 'https://sportspotengland.dev/V4/api/',
+//   baseUrlApi: 'https://sportspotengland.dev/V4/api/',
+//   baseUrlV2: 'https://sportspotengland.dev/V4/api/',
+//   regionId:"d2ce2a84-9bdf-4e30-e17c-08dbca7cbb28",
+//   siteLang: 'en',
+//   siteKeyword: 'ENG',
+//   siteLimit: 12,
+// }

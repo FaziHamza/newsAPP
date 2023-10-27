@@ -4,11 +4,13 @@ import { useMediaContext } from '../../utilities/mediaQuery';
 import { useAsync } from '../../utilities/asyncReducer';
 import { fetchNews, fetchNewsTable } from '../../utilities/fetch';
 import { removeBetween } from '../../utilities/common';
-import { addresses } from '../../utilities/config';
+// import { addresses } from '../../utilities/config';
 
 import { StoryTile } from '../';
+import { useSelector } from 'react-redux';
 
 const AsideArticle = ({ chooseArticle }) => {
+  const addresses = useSelector(state=>state.origin.apiOrigin)
   const { data: tableInfo, status, error, run } = useAsync({ status: 'pending' });
 
   useEffect(() => {

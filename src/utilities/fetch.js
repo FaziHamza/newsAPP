@@ -1,6 +1,6 @@
 import { addresses } from './config';
 
-const fetchGetFunction = (url) =>
+export const fetchGetFunction = (url) =>
   fetch(url, {
     headers: {
       'content-type': 'application/json',

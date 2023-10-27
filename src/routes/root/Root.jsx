@@ -5,18 +5,19 @@ import { useAsync } from '../../utilities/asyncReducer';
 import { Icon } from '../../components';
 import './root.css';
 
-import { fetchConfig } from '../../utilities/fetch';
+import { fetchConfig, fetchGetFunction } from '../../utilities/fetch';
 
 import { Logo, NavbarMobile, Navigation } from '../../compositions';
 // Mockup images imports
 import { useMediaQuery, useTheme } from '../../utilities/hooks';
 import { useEffect, useState } from 'react';
 import { getData } from '../../assets/mockup-assets/data/dataObject';
-import { addresses } from '../../utilities/config';
-import { useDispatch } from 'react-redux';
-import { setFlag } from '../../redux/countries';
+// import { addresses } from '../../utilities/config';
+import { useDispatch, useSelector } from 'react-redux';
+import { setApiOrigin, setFlag } from '../../redux/countries';
 const Root = () => {
  const dispatch =  useDispatch()
+ const addresses = useSelector(state=>state.origin.apiOrigin)
   const { data: settingsInfo, status, error, run } = useAsync({ status: 'pending' });
   const [themeVariant, setThemeVariant] = useTheme('dark'); // 'dark', 'light'
   const [windowHref, setWindowHref] = useState('');
@@ -34,13 +35,29 @@ const Root = () => {
     const settingsPromise = fetchConfig(`${addresses.baseUrl}`);
     setWindowHref(`${addresses.baseUrl}`);
     run(settingsPromise);
-  }, []);
+  }, [addresses]);
 
   useEffect(()=>{
     if(settingsInfo){
       dispatch(setFlag(settingsInfo?.Url))
     }
       },[settingsInfo])
+      useEffect(()=>{
+        // let hostName = window.location.host;
+        fetchGetFunction(`https://jsonplaceholder.typicode.com/posts/1`).then(res=>{
+          console.log("Responce From Dummy Request ", res);
+
+          dispatch(setApiOrigin({
+              settingsUrl: 'https://sportspotengland.dev/v4/api/topics-with-subtopics-Mobile',
+              baseUrl: 'https://sportspotengland.dev/v4/',
+              siteLang: 'en',
+              siteKeyword: 'ENG',
+              siteLimit: 12          }))
+        }).catch(err=>{
+          console.log("Error From Dummy Request ", err);
+        })
+
+      },[]);
     
 
   switch (status) {

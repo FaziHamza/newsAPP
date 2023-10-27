@@ -5,9 +5,10 @@ import { useMediaContext } from '../../utilities/mediaQuery';
 import { useAsync } from '../../utilities/asyncReducer';
 import { fetchNews, fetchArticle } from '../../utilities/fetch';
 import { removeBetween } from '../../utilities/common';
-import { addresses } from '../../utilities/config';
+// import { addresses } from '../../utilities/config';
 
 import { StoryTile } from '../../compositions';
+import { useSelector } from 'react-redux';
 
 const topicSettings = {};
 
@@ -16,6 +17,8 @@ export const loader = ({ params }) => {
 };
 
 const AsideArticle = ({ tableInfo }) => {
+  const addresses = useSelector(state=>state.origin.apiOrigin)
+
   const [settingsInfo] = useOutletContext();
 
   const { params } = useLoaderData();

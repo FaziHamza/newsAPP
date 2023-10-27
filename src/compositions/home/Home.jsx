@@ -3,10 +3,13 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { useAsync } from '../../utilities/asyncReducer';
 import { fetchNewsTable } from '../../utilities/fetch';
-import { addresses } from '../../utilities/config';
+// import { addresses } from '../../utilities/config';
 import { StoryTile } from '../';
+import { useSelector } from 'react-redux';
 
 const Home = ({ topStoryLimit = 4 }) => {
+  const addresses = useSelector(state=>state.origin.apiOrigin)
+
   const { data: tableInfo, status, error, run } = useAsync({ status: 'pending' });
 
   const isDesktop = useMediaContext();

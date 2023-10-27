@@ -8,7 +8,14 @@ let tempLocal = localStorage.getItem('favouriteMenu');
     { id: 2, name: 'france', baseUrl: 'https://www.sportspotfrance.dev/frenchbackend/v2/' },
   ],
   selectedOrigin: {id:0, name:'default', baseUrl:'https://siteofsports.com/v2/'},
-  flagUrl: ''
+  flagUrl: '',
+  apiOrigin:{
+      // settingsUrl: 'https://sportspotengland.dev/v4/api/topics-with-subtopics-Mobile',
+      // baseUrl: 'https://sportspotengland.dev/v4/',
+      // siteLang: 'en',
+      // siteKeyword: 'ENG',
+      // siteLimit: 12,
+  }
 };
 export const countryReducer = createSlice({
   name: 'country',
@@ -26,14 +33,19 @@ export const countryReducer = createSlice({
       return tempState;
     },
     setFlag:(state, action)=>{
-      let tempState = state
-      tempState.flagUrl = action.payload
-      return tempState
+      let tempState = state;
+      tempState.flagUrl = action.payload;
+      return tempState;
+    },
+    setApiOrigin:(state, action)=>{
+      let tempState = state;
+      tempState.apiOrigin = action.payload;
+      return tempState;
     }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { selectCountry, setFlag } = countryReducer.actions;
+export const { selectCountry, setFlag , setApiOrigin} = countryReducer.actions;
 
 export default countryReducer.reducer;
