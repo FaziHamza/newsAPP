@@ -6,8 +6,8 @@ import { logo, sportLogoBlack, tennis } from '../../assets';
 import { useMediaContext } from '../../utilities/mediaQuery';
 
 function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVariant, ...props }) {
-  const navMain = navList.slice(0, inMain);
-  const navMore = navList.slice(inMain, navList.length);
+ // const navMain = navList.slice(0, inMain);
+ // const navMore = navList.slice(inMain, navList.length);
   const [isOpen, setIsOpen] = useState(false);
   const usingScreen = useMediaContext();
   const isDesktop = usingScreen === 'desktop' ? true : false;
@@ -37,14 +37,14 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   };
 
   const groupedNavItems = filteredNavItems.reduce((groups, item) => {
-    const heading = item.Topic.MainHeading;
+    const heading = item.topic.mainHeading;
     if (!groups[heading]) {
       groups[heading] = [];
     }
     groups[heading].push(item);
     return groups;
   }, {});
-
+  
   return (
     <div className={themeVariant}>
       <div id="Sidenav" className={`sidenav ${usingScreen} ${isOpen ? 'open' : ''}`}>
@@ -55,9 +55,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
         {Object.entries(groupedNavItems).map(([heading, items]) => (
           <div key={heading}>
             <div class="separator">{heading}</div>
-            {/* <div className="sidebar-heading">{heading} </div> */}
+                        {/* <div className="sidebar-heading">{heading} </div> */}
             {items.map((moreItem) => {
-              const id = moreItem.topic.name.toLowerCase().replace(/\s+/g, '-');
+                            const id = moreItem.topic.name.toLowerCase().replace(/\s+/g, '-');
               const [topicNavType, topicNavTopic, topicNavAddress] = moreItem.topic.news
                 ? [
                     'news',
@@ -135,6 +135,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     state={{
                                       address: navAddress,
                                       topicKey: team?.highlights,
+                                      topictype:team?.highlightType,
                                       Name: team.name,
                                       TopicId: team.topicID,
                                       navType,
@@ -153,6 +154,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     to="/highlights"
                                     state={{
                                       topicKey: team?.highlights,
+                                      topictype:team?.highlightType,
                                       topicName: team?.name,
                                       imagesource: moreItem.topic.logo, // Assuming team.LogoTeam is the correct logo path
                                       // Assuming team.LogoTeam is the correct logo path
@@ -169,6 +171,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                   state={{
                                     address: navAddress,
                                     topicKey: team?.highlights,
+                                    topictype:team?.highlightType,
                                     Name: team.name,
                                     TopicId: team.topicID,
                                     navType,
@@ -200,6 +203,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                   state={{
                                     address: navAddress,
                                     topicKey: team?.Highlights,
+                                    topictype:team?.highlightType,
                                     Name: team.name,
                                     TopicId: team.topicID,
                                     navType,
@@ -220,6 +224,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                   to="/highlights"
                                   state={{
                                     topicKey: team?.highlights,
+                                    topictype:team?.highlightType,
                                     topicName: team?.name,
                                     imagesource: team.logo, // Assuming team.LogoTeam is the correct logo path
                                     // Assuming team.LogoTeam is the correct logo path

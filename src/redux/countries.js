@@ -10,11 +10,17 @@ let tempLocal = localStorage.getItem('favouriteMenu');
   selectedOrigin: {id:0, name:'default', baseUrl:'https://siteofsports.com/v2/'},
   flagUrl: '',
   apiOrigin:{
-      // settingsUrl: 'https://sportspotengland.dev/v4/api/topics-with-subtopics-Mobile',
-      // baseUrl: 'https://sportspotengland.dev/v4/',
-      // siteLang: 'en',
-      // siteKeyword: 'ENG',
-      // siteLimit: 12,
+    id: null,
+    domainName: null,
+    desc: null,
+    nonSQLDBName: null,
+    hostName: null,
+    settingsUrl: null,
+    baseUrl: null,
+    baseUrlApi: null,
+    siteLang: null,
+    siteKeyword: null,
+    siteLimit: 12
   }
 };
 export const countryReducer = createSlice({

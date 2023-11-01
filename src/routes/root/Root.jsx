@@ -32,7 +32,26 @@ const Root = () => {
   };
 
   useEffect(() => {
-    if (addresses) {
+    let hostName = window.location.host;
+    fetchGetFunction(
+      // `https://www.sportspotengland.dev`
+      `http://208.109.188.83:8042/api/Region/GetRegionByHostName?hostName=sportspotengland.dev`
+      // `http://208.109.188.83:8042/api/Region/GetRegionByHostName?hostName=${hostName}`
+    )
+      .then((res) => {
+        console.log('Responce From Dummy Request ', res);
+        dispatch(
+          setApiOrigin(res?.data)
+        );
+      })
+      .catch((err) => {
+        console.log('Error From Dummy Request ', err);
+      });
+  }, []);
+
+  useEffect(() => {
+
+    if (addresses.hostName!=null) {
       const settingsPromise = fetchConfig(`${addresses.baseUrlApi}`, addresses.id);
       setWindowHref(`${addresses.baseUrl}`);
       run(settingsPromise);
@@ -40,37 +59,14 @@ const Root = () => {
   }, [addresses]);
 
   useEffect(() => {
+    console.log('sss',settingsInfo)
     if (settingsInfo) {
       dispatch(setFlag(settingsInfo?.Url));
     }
 
     console.log('Settings Info  ', settingsInfo);
   }, [settingsInfo]);
-  useEffect(() => {
-    let hostName = window.location.host;
-    fetchGetFunction(
-      // `https://www.sportspotengland.dev`
-      `http://208.109.188.83:8042/api/Region/GetRegionByHostName?hostName=sportspotgermany.dev`
-      // `http://208.109.188.83:8042/api/Region/GetRegionByHostName?hostName=${hostName}`
-    )
-      .then((res) => {
-        console.log('Responce From Dummy Request ', res);
 
-        dispatch(
-          setApiOrigin(res?.data)
-          // setApiOrigin({
-          //   settingsUrl: 'https://sportspotengland.dev/v4/api/topics-with-subtopics-Mobile',
-          //   baseUrl: 'https://sportspotengland.dev/v4/',
-          //   siteLang: 'en',
-          //   siteKeyword: 'ENG',
-          //   siteLimit: 12,
-          // })
-        );
-      })
-      .catch((err) => {
-        console.log('Error From Dummy Request ', err);
-      });
-  }, []);
 
   switch (status) {
     case 'idle':
@@ -82,9 +78,10 @@ const Root = () => {
         </main>
       );
     case 'resolved': {
-      if (!settingsInfo || typeof settingsInfo.MenuItems === 'undefined') {
+      if (!settingsInfo || typeof settingsInfo.menuItems === 'undefined') {
         // Log or handle the error as you see fit
-        return <div>Error: Missing settings information</div>;
+        
+        return <div>  Error: Missing settings information</div>;
       }
       const fullInfo = [settingsInfo, windowHref];
       return (
@@ -112,7 +109,7 @@ const Root = () => {
 
                       <div className="item menu">
                         <NavbarMobile
-                          navList={settingsInfo.MenuItems}
+                          navList={settingsInfo.menuItems}
                           setThemeVariant={setThemeVariant}
                           themeVariant={themeVariant}
                         />
@@ -123,7 +120,7 @@ const Root = () => {
                   <div className="main-header">
                     <div className="item">
                       <NavbarMobile
-                        navList={settingsInfo.MenuItems}
+                        navList={settingsInfo.menuItems}
                         setThemeVariant={setThemeVariant}
                         themeVariant={themeVariant}
                       />

@@ -8,13 +8,14 @@ import { sportspotsverige, AFP_news } from '../../assets';
 const DisplayComponent = ({ topic }) => {
   const location = useLocation();
   const { state } = location;
-
+  
   // Now you can access the passed state values
 
   const moreItemName = state?.moreItemName || "England";
   const teamName = state?.Name || "Premier League";
   const defaulttopic = topic?.Name || "Premier League";
   const topicKey = state?.topicKey || "england-premier-league";
+  const topictype = state?.topictype||'competition';
 
 
   const logoPath = state?.LogoPath || "https://siteofsports.com/v2/Content/TopicLogo/GB.png";
@@ -45,7 +46,7 @@ const DisplayComponent = ({ topic }) => {
               </div>
 
             </div>
-            <Link to="/highlights" state={{ topicKey, topicName: teamName, imagesource: teamLogoPath }}>
+            <Link to="/highlights" state={{ topicKey,topictype, topicName: teamName, imagesource: teamLogoPath }}>
               <div className="highlights">
 
                 <img src={video_play} height={'20px'} />

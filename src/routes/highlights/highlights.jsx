@@ -19,7 +19,7 @@ const HighlightsList = () => {
   const location = useLocation();
   const { state } = location;
   console.log(JSON.stringify(state));
-  const { topicKey, topicName } = state;
+  const { topicKey, topicName,topictype } = state;
 
   useEffect(() => {
     if (highlightsData?.length) {
@@ -34,17 +34,8 @@ const HighlightsList = () => {
   useEffect(() => {
     const fetchHighlights = async () => {
       if (topicKey) {
-        const detailOf =
-          topicKey === 'england-premier-league' ||
-          topicKey === 'germany-bundesliga' ||
-          topicKey === 'italy-serie-a' ||
-          topicKey == 'italy-serie-a' ||
-          topicKey == 'france-ligue-1' ||
-          topicKey === 'spain-la-liga' ||
-          topicKey === 'germany-bundesliga'
-            ? 'competition'
-            : 'team';
-        const url = `https://www.scorebat.com/video-api/v3/${detailOf}/${topicKey}/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy`;
+ 
+        const url = `https://www.scorebat.com/video-api/v3/${topictype}/${topicKey}/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy`;
 
         try {
           const response = await fetch(url);
