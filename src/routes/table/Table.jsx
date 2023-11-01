@@ -47,7 +47,7 @@ const SectionHeader = ({ title = 'missingTitle', listItems }) => {
 };
 
 const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
-  const addresses = useSelector(state=>state.origin.apiOrigin)
+  const addresses = useSelector((state) => state.origin.apiOrigin);
 
   const [settingsInfo, windowHref] = useOutletContext();
   const defaultTopic = settingsInfo.Default;
@@ -82,7 +82,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
       state?.address ??
       `news/getNewsByTeam?keyword=${addresses.siteKeyword}&lang=${addresses.siteLang}&sport=football&limit=${addresses.siteLimit}`;
 
-    const tablePromise = () => fetchNewsTable(windowHref + settingsInfo.Api + address);
+    const tablePromise = () => fetchNewsTable(windowHref + '/' + settingsInfo.Api + address);
     run(tablePromise());
   }, [run, state, addresses]);
 

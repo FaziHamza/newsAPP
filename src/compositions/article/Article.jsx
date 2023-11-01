@@ -10,7 +10,7 @@ import { StoryTile } from '../';
 import { useSelector } from 'react-redux';
 
 const AsideArticle = ({ chooseArticle }) => {
-  const addresses = useSelector(state=>state.origin.apiOrigin)
+  const addresses = useSelector((state) => state.origin.apiOrigin);
   const { data: tableInfo, status, error, run } = useAsync({ status: 'pending' });
 
   useEffect(() => {
@@ -59,8 +59,8 @@ const Article = ({ articleChosen, chooseArticle, className = '' }) => {
     error: articleError,
     run,
   } = useAsync({ status: 'pending' });
-  
-   useEffect(() => {
+
+  useEffect(() => {
     const articlePromise = fetchNews(articleChosen);
     run(articlePromise);
   }, [run, articleChosen]);
@@ -98,15 +98,15 @@ const Article = ({ articleChosen, chooseArticle, className = '' }) => {
             </>
           ) : (
             <main className={`article ${className}`.trim()}>
-              <h2 className='artical-detail' >{articleInfo?._title}</h2>
-              <figure className='artical-detail'>
+              <h2 className="artical-detail">{articleInfo?._title}</h2>
+              <figure className="artical-detail">
                 <img
                   src={addresses.baseUrl + '/' + articleInfo?.imageUrl}
                   alt={articleInfo?.imageUrl}
                 />
               </figure>
-              <h4 >{articleInfo?.title}</h4>
-              <p className='artical-detail-box'>
+              <h4>{articleInfo?.title}</h4>
+              <p className="artical-detail-box">
                 <ContentParsed content={articleInfo?.fullContent} />
               </p>
             </main>

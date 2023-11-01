@@ -22,13 +22,13 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   };
 
   const [collapsedIds, setCollapsedIds] = useState({});
-  const toggleTheme=()=>{
+  const toggleTheme = () => {
     if (themeVariant === 'light') {
       setThemeVariant('dark');
     } else {
       setThemeVariant('light');
     }
-  }
+  };
   const toggleCollapse = (id) => {
     setCollapsedIds((prev) => ({
       ...prev,
@@ -48,22 +48,32 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   return (
     <div className={themeVariant}>
       <div id="Sidenav" className={`sidenav ${usingScreen} ${isOpen ? 'open' : ''}`}>
-        <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
+        <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
+          &times;
+        </a>
 
         {Object.entries(groupedNavItems).map(([heading, items]) => (
           <div key={heading}>
             <div class="separator">{heading}</div>
             {/* <div className="sidebar-heading">{heading} </div> */}
             {items.map((moreItem) => {
-              const id = moreItem.Topic.Name.toLowerCase().replace(/\s+/g, '-');
-              const [topicNavType, topicNavTopic, topicNavAddress] = moreItem.Topic.News
-                ? ['news', moreItem.Topic.Name.toLowerCase().replace(/\s/g, '_'), moreItem.Topic.News]
-                : ['articles', moreItem.Topic.Name.toLowerCase().replace(/\s/g, '_'), moreItem.Topic.Articles];
+              const id = moreItem.topic.name.toLowerCase().replace(/\s+/g, '-');
+              const [topicNavType, topicNavTopic, topicNavAddress] = moreItem.topic.news
+                ? [
+                    'news',
+                    moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
+                    moreItem.topic.news,
+                  ]
+                : [
+                    'articles',
+                    moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
+                    moreItem.topic.articles,
+                  ];
 
               return (
-                <div className='try' key={moreItem.Topic.Name.toUpperCase()} >
+                <div className="try" key={moreItem.topic.name.toUpperCase()}>
                   <div className="nav-item">
-                    <div className='flx' >
+                    <div className="flx">
                       {/* {
                         moreItem.Topic.NavLogo ? (
                           <img className='nav-item-img' src={moreItem.Topic.NavLogo} alt="topic-logo" />
@@ -88,14 +98,15 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                         name={moreItem.Topic.Name}>
                         {moreItem.Topic.Name}
                       </Link> */}
-                      {moreItem.Topic.Name}
+                      {moreItem.topic.name}
                     </div>
 
-
-                    {moreItem.SubTopics.length > 0 && (
+                    {moreItem.subTopics.length > 0 && (
                       <>
                         <i
-                          className={`fa-regular ${collapsedIds[id] ? 'fa-chevron-up' : 'fa-chevron-down'} chevron`}
+                          className={`fa-regular ${
+                            collapsedIds[id] ? 'fa-chevron-up' : 'fa-chevron-down'
+                          } chevron`}
                           onClick={() => toggleCollapse(id)}
                           // onClick={() => setThemeVariant()}
                         />
@@ -104,49 +115,51 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                   </div>
                   <div id={id} className={`collapse ${collapsedIds[id] ? 'show' : ''}`}>
                     <ul className="nav-item-sub-child">
-                      {moreItem.SubTopics.map((team) => {
-                        const [navType, navTopic, navAddress] = team.News
-                          ? ['news', team.Name.toLowerCase().replace(/\s/g, '_'), team.News]
-                          : ['articles', team.Name.toLowerCase().replace(/\s/g, '_'), team.Articles];
+                      {moreItem.subTopics.map((team) => {
+                        const [navType, navTopic, navAddress] = team.news
+                          ? ['news', team.name.toLowerCase().replace(/\s/g, '_'), team.news]
+                          : [
+                              'articles',
+                              team.name.toLowerCase().replace(/\s/g, '_'),
+                              team.articles,
+                            ];
                         return (
-                          <li key={team.Name} className='nav-item-sub-child-content'>
+                          <li key={team.name} className="nav-item-sub-child-content">
                             <div>
                               {/* Check if team.VideoIcon is not null and team.NewsIcon is null */}
-                              {team.VideoIcon !== null ? (
-                                team.NewsIcon !== null ? (
+                              {team.videoIcon !== null ? (
+                                team.newsIcon !== null ? (
                                   <Link
                                     to={`../${navType}/${navTopic}`}
                                     onClick={closeNav}
                                     state={{
                                       address: navAddress,
-                                      topicKey: team?.Highlights,
-                                      Name: team.Name,
-                                      TopicId: team.TopicID,
+                                      topicKey: team?.highlights,
+                                      Name: team.name,
+                                      TopicId: team.topicID,
                                       navType,
                                       navTopic,
-                                      moreItemName: moreItem.Topic.Name,
-                                      SubTopicId: team.SubTopicID,
-                                      LogoPath: moreItem.Topic.MenuFlag,
-                                      LogoTeam: team.Logo,
-                                      IsSql: !team.News,
+                                      moreItemName: moreItem.topic.name,
+                                      SubTopicId: team.subTopicID,
+                                      LogoPath: moreItem.topic.menuFlag,
+                                      LogoTeam: team.logo,
+                                      IsSql: !team.news,
                                     }}
-                                    name={team.Name}
-                                  >
-                                    {team.Name}
+                                    name={team.name}>
+                                    {team.name}
                                   </Link>
                                 ) : (
                                   <Link
                                     to="/highlights"
                                     state={{
-                                      topicKey: team?.Highlights,
-                                      topicName: team?.Name,
-                                      imagesource: moreItem.Topic.Logo, // Assuming team.LogoTeam is the correct logo path
+                                      topicKey: team?.highlights,
+                                      topicName: team?.name,
+                                      imagesource: moreItem.topic.logo, // Assuming team.LogoTeam is the correct logo path
                                       // Assuming team.LogoTeam is the correct logo path
                                     }}
                                     onClick={closeNav}
-                                    name={team.Name}
-                                  >
-                                    {team.Name}
+                                    name={team.name}>
+                                    {team.name}
                                   </Link>
                                 )
                               ) : (
@@ -155,24 +168,23 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                   onClick={closeNav}
                                   state={{
                                     address: navAddress,
-                                    topicKey: team?.Highlights,
-                                    Name: team.Name,
-                                    TopicId: team.TopicID,
+                                    topicKey: team?.highlights,
+                                    Name: team.name,
+                                    TopicId: team.topicID,
                                     navType,
                                     navTopic,
-                                    moreItemName: moreItem.Topic.Name,
-                                    SubTopicId: team.SubTopicID,
-                                    LogoPath: moreItem.Topic.Logo,
-                                    LogoTeam: team.Logo,
-                                    IsSql: !team.News,
+                                    moreItemName: moreItem.topic.name,
+                                    SubTopicId: team.subTopicID,
+                                    LogoPath: moreItem.topic.logo,
+                                    LogoTeam: team.logo,
+                                    IsSql: !team.news,
                                   }}
-                                  name={team.Name}
-                                >
-                                  {team.Name}
+                                  name={team.name}>
+                                  {team.name}
                                 </Link>
                               )}
                             </div>
-                            <div className='icons'>
+                            <div className="icons">
                               {/* 
                               <a href="">
                                 {team.NewsIcon !== null && (
@@ -182,51 +194,44 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                               </a> */}
 
                               {team.NewsIcon !== null && (
-
                                 <Link
                                   to={`../${navType}/${navTopic}`}
                                   onClick={closeNav}
                                   state={{
                                     address: navAddress,
                                     topicKey: team?.Highlights,
-                                    Name: team.Name,
-                                    TopicId: team.TopicID,
+                                    Name: team.name,
+                                    TopicId: team.topicID,
                                     navType,
                                     navTopic,
-                                    moreItemName: moreItem.Topic.Name,
-                                    SubTopicId: team.SubTopicID,
-                                    LogoPath: moreItem.Topic.Logo,
-                                    LogoTeam: team.Logo,
-                                    IsSql: !team.News,
+                                    moreItemName: moreItem.topic.name,
+                                    SubTopicId: team.subTopicID,
+                                    LogoPath: moreItem.topic.logo,
+                                    LogoTeam: team.logo,
+                                    IsSql: !team.news,
                                   }}
-                                  name={team.Name}
-                                >
-                                  <i className={team.NewsIcon}></i>
+                                  name={team.name}>
+                                  <i className={team.newsIcon}></i>
                                 </Link>
                               )}
 
-                              {(team.VideoIcon !== null && team.NewsIcon === null) && (
-
+                              {team.videoIcon !== null && team.newsIcon === null && (
                                 <Link
                                   to="/highlights"
                                   state={{
-                                    topicKey: team?.Highlights,
-                                    topicName: team?.Name,
-                                    imagesource: team.Logo, // Assuming team.LogoTeam is the correct logo path
+                                    topicKey: team?.highlights,
+                                    topicName: team?.name,
+                                    imagesource: team.logo, // Assuming team.LogoTeam is the correct logo path
                                     // Assuming team.LogoTeam is the correct logo path
                                   }}
                                   onClick={closeNav}
-                                  name={team.Name}
-                                >
-                                  <img src={team.VideoIcon} className='coll-video' alt="" />
+                                  name={team.name}>
+                                  <img src={team.videoIcon} className="coll-video" alt="" />
                                 </Link>
                               )}
-
                             </div>
                           </li>
                         );
-
-
                       })}
                     </ul>
                   </div>
@@ -237,17 +242,18 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
         ))}
         <div class="separator">Settings</div>
         <div className="nav-item">
-          <div className='flx' >
-          Color palette
-          </div>
+          <div className="flx">Color palette</div>
           <i
-            className={`${collapsedIds['switch'] ? 'fa-solid fa-toggle-on' : 'fa-solid fa-toggle-off'}`}
+            className={`${
+              collapsedIds['switch'] ? 'fa-solid fa-toggle-on' : 'fa-solid fa-toggle-off'
+            }`}
             onClick={() => toggleTheme('switch')}
           />
         </div>
-
       </div>
-      <span style={{ fontSize: '20px', cursor: 'pointer', color: 'white' }} onClick={openNav}>&#9776;</span>
+      <span style={{ fontSize: '20px', cursor: 'pointer', color: 'white' }} onClick={openNav}>
+        &#9776;
+      </span>
     </div>
   );
 }

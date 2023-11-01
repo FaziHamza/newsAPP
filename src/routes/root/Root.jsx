@@ -16,8 +16,8 @@ import { getData } from '../../assets/mockup-assets/data/dataObject';
 import { useDispatch, useSelector } from 'react-redux';
 import { setApiOrigin, setFlag } from '../../redux/countries';
 const Root = () => {
- const dispatch =  useDispatch()
- const addresses = useSelector(state=>state.origin.apiOrigin)
+  const dispatch = useDispatch();
+  const addresses = useSelector((state) => state.origin.apiOrigin);
   const { data: settingsInfo, status, error, run } = useAsync({ status: 'pending' });
   const [themeVariant, setThemeVariant] = useTheme('dark'); // 'dark', 'light'
   const [windowHref, setWindowHref] = useState('');
@@ -32,33 +32,45 @@ const Root = () => {
   };
 
   useEffect(() => {
-    const settingsPromise = fetchConfig(`${addresses.baseUrl}`);
-    setWindowHref(`${addresses.baseUrl}`);
-    run(settingsPromise);
+    if (addresses) {
+      const settingsPromise = fetchConfig(`${addresses.baseUrlApi}`, addresses.id);
+      setWindowHref(`${addresses.baseUrl}`);
+      run(settingsPromise);
+    }
   }, [addresses]);
 
-  useEffect(()=>{
-    if(settingsInfo){
-      dispatch(setFlag(settingsInfo?.Url))
+  useEffect(() => {
+    if (settingsInfo) {
+      dispatch(setFlag(settingsInfo?.Url));
     }
-      },[settingsInfo])
-      useEffect(()=>{
-        // let hostName = window.location.host;
-        fetchGetFunction(`https://jsonplaceholder.typicode.com/posts/1`).then(res=>{
-          console.log("Responce From Dummy Request ", res);
 
-          dispatch(setApiOrigin({
-              settingsUrl: 'https://sportspotengland.dev/v4/api/topics-with-subtopics-Mobile',
-              baseUrl: 'https://sportspotengland.dev/v4/',
-              siteLang: 'en',
-              siteKeyword: 'ENG',
-              siteLimit: 12          }))
-        }).catch(err=>{
-          console.log("Error From Dummy Request ", err);
-        })
+    console.log('Settings Info  ', settingsInfo);
+  }, [settingsInfo]);
+  useEffect(() => {
+    let hostName = window.location.host;
+    fetchGetFunction(
+      // `https://www.sportspotengland.dev`
+      `http://208.109.188.83:8042/api/Region/GetRegionByHostName?hostName=sportspotgermany.dev`
+      // `http://208.109.188.83:8042/api/Region/GetRegionByHostName?hostName=${hostName}`
+    )
+      .then((res) => {
+        console.log('Responce From Dummy Request ', res);
 
-      },[]);
-    
+        dispatch(
+          setApiOrigin(res?.data)
+          // setApiOrigin({
+          //   settingsUrl: 'https://sportspotengland.dev/v4/api/topics-with-subtopics-Mobile',
+          //   baseUrl: 'https://sportspotengland.dev/v4/',
+          //   siteLang: 'en',
+          //   siteKeyword: 'ENG',
+          //   siteLimit: 12,
+          // })
+        );
+      })
+      .catch((err) => {
+        console.log('Error From Dummy Request ', err);
+      });
+  }, []);
 
   switch (status) {
     case 'idle':
@@ -76,58 +88,65 @@ const Root = () => {
       }
       const fullInfo = [settingsInfo, windowHref];
       return (
-
         <MediaQueryProvider>
           <ThemeQueryProvider value={themeVariant}>
             <div className={'App dark'}>
               <header>
                 {isDesktop ? (
-                  <div className='main-header desktop'>
-
-                    <div className='item-container item-one' >
-                    <div className='item logo'><Logo name={'Logo'} href="/" alt={'logo'} /></div>
-                    <div className='item flag'><Logo name={'Flag'} href="/" alt={'logo'} /> <h2 className='logo-title'></h2></div>
+                  <div className="main-header desktop">
+                    <div className="item-container item-one">
+                      <div className="item logo">
+                        <Logo name={'Logo'} href="/" alt={'logo'} />
+                      </div>
+                      <div className="item flag">
+                        <Logo name={'Flag'} href="/" alt={'logo'} />{' '}
+                        <h2 className="logo-title"></h2>
+                      </div>
                     </div>
 
-                    <div className='item-container item-two' >
+                    <div className="item-container item-two">
+                      <a
+                        href="https://www.sportspotnews-landingpage.com/"
+                        target="_blank"
+                        className="playstore item"></a>
 
-                  <a href='https://www.sportspotnews-landingpage.com/' target='_blank' className='playstore item' >
-
-                  </a>
-
-                    <div className='item menu'>
-                      <NavbarMobile navList={settingsInfo.MenuItems} setThemeVariant={setThemeVariant} themeVariant={themeVariant}  />
-                    </div>
+                      <div className="item menu">
+                        <NavbarMobile
+                          navList={settingsInfo.MenuItems}
+                          setThemeVariant={setThemeVariant}
+                          themeVariant={themeVariant}
+                        />
+                      </div>
                     </div>
                   </div>
-                )
-                  :
-                  (
-                    <div className='main-header'>
-                      <div className='item'>
-                        <NavbarMobile navList={settingsInfo.MenuItems} setThemeVariant={setThemeVariant} themeVariant={themeVariant} />
-                        {/* <span style={{ fontSize: '30px', cursor: 'pointer' }}>&#9776;</span> */}
-
-                      </div>
-                      <div className='item'><Logo name={'Logo'} href="/" alt={'logo'} /></div>
-                      <div className='item'><Logo name={'Flag'} href="/" alt={'logo'} /></div>
-                     
-
+                ) : (
+                  <div className="main-header">
+                    <div className="item">
+                      <NavbarMobile
+                        navList={settingsInfo.MenuItems}
+                        setThemeVariant={setThemeVariant}
+                        themeVariant={themeVariant}
+                      />
+                      {/* <span style={{ fontSize: '30px', cursor: 'pointer' }}>&#9776;</span> */}
                     </div>
-
-
-                  )}
-
+                    <div className="item">
+                      <Logo name={'Logo'} href="/" alt={'logo'} />
+                    </div>
+                    <div className="item">
+                      <Logo name={'Flag'} href="/" alt={'logo'} />
+                    </div>
+                  </div>
+                )}
               </header>
-
 
               {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
               <Outlet context={fullInfo} />
             </div>
             <footer>
-              <a href='https://www.sportspotnews-landingpage.com/' target='_blank' className='footer-img footer' >
-                    
-              </a>
+              <a
+                href="https://www.sportspotnews-landingpage.com/"
+                target="_blank"
+                className="footer-img footer"></a>
             </footer>
           </ThemeQueryProvider>
         </MediaQueryProvider>

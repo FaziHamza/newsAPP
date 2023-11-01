@@ -38,8 +38,11 @@ const fetchPostFunction = (url, body) =>
       console.error('Error', error);
     });
 
-export const fetchConfig = (windowHref) =>
-  fetchGetFunction(`${addresses.baseUrl}api/topics-with-subtopics`);
+export const fetchConfig = (baseUrlApi, regionId) => {
+  console.log('Address From Fetch  ZZAZAZAZ', baseUrlApi);
+
+  return fetchGetFunction(`${baseUrlApi}/api/Topic/GetTopicWithSubTopic?regionId=${regionId}`);
+};
 
 export const fetchArticleTable = (topic) => {
   debugger;
