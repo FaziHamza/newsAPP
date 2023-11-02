@@ -36,7 +36,7 @@ const Root = () => {
     fetchGetFunction(
       // `https://www.sportspotengland.dev`
       // `http://208.109.188.83:8042/api/Region/GetRegionByHostName?hostName=localhost`
-      `http://208.109.188.83:8042/api/Region/GetRegionByHostName?hostName=${hostName}`
+      `https://sportspotserbia.dev/api/Region/GetRegionByHostName?hostName=${hostName}`
     )
       .then((res) => {
         console.log('Responce From Dummy Request ', res);
