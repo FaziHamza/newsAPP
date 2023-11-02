@@ -32,11 +32,11 @@ const Root = () => {
   };
 
   useEffect(() => {
-    let hostName = window.location.host;
+    let hostName = window.location.hostname;
     fetchGetFunction(
       // `https://www.sportspotengland.dev`
-      `http://208.109.188.83:8042/api/Region/GetRegionByHostName?hostName=sportspotengland.dev`
-      // `http://208.109.188.83:8042/api/Region/GetRegionByHostName?hostName=${hostName}`
+      // `http://208.109.188.83:8042/api/Region/GetRegionByHostName?hostName=localhost`
+      `http://208.109.188.83:8042/api/Region/GetRegionByHostName?hostName=${hostName}`
     )
       .then((res) => {
         console.log('Responce From Dummy Request ', res);
@@ -61,7 +61,8 @@ const Root = () => {
   useEffect(() => {
     console.log('sss',settingsInfo)
     if (settingsInfo) {
-      dispatch(setFlag(settingsInfo?.Url));
+      dispatch(setFlag(settingsInfo?.url
+        ));
     }
 
     console.log('Settings Info  ', settingsInfo);
