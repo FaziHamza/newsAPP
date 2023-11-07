@@ -136,6 +136,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                       address: navAddress,
                                       topicKey: team?.highlights,
                                       topictype:team?.highlightType,
+                                      IsSubtopicVideo:team?.isSubtopicVideo,
                                       Name: team.name,
                                       TopicId: team.topicID,
                                       navType,
@@ -155,6 +156,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     state={{
                                       topicKey: team?.highlights,
                                       topictype:team?.highlightType,
+                                      IsSubtopicVideo:team?.isSubtopicVideo,
                                       topicName: team?.name,
                                       imagesource: moreItem.topic.logo, // Assuming team.LogoTeam is the correct logo path
                                       // Assuming team.LogoTeam is the correct logo path
@@ -172,6 +174,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     address: navAddress,
                                     topicKey: team?.highlights,
                                     topictype:team?.highlightType,
+                                    IsSubtopicVideo:team?.isSubtopicVideo,
                                     Name: team.name,
                                     TopicId: team.topicID,
                                     navType,
@@ -204,6 +207,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     address: navAddress,
                                     topicKey: team?.Highlights,
                                     topictype:team?.highlightType,
+                                    IsSubtopicVideo:team?.isSubtopicVideo,
                                     Name: team.name,
                                     TopicId: team.topicID,
                                     navType,
@@ -225,6 +229,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                   state={{
                                     topicKey: team?.highlights,
                                     topictype:team?.highlightType,
+                                    IsSubtopicVideo:team?.isSubtopicVideo,
                                     topicName: team?.name,
                                     imagesource: team.logo, // Assuming team.LogoTeam is the correct logo path
                                     // Assuming team.LogoTeam is the correct logo path

@@ -16,7 +16,7 @@ const DisplayComponent = ({ topic }) => {
   const defaulttopic = topic?.Name || "Premier League";
   const topicKey = state?.topicKey || "england-premier-league";
   const topictype = state?.topictype||'competition';
-
+  const IsSubtopicVideo=state?.IsSubtopicVideo || false;
 
   const logoPath = state?.LogoPath || "https://siteofsports.com/v2/Content/TopicLogo/GB.png";
   const teamLogoPath = state?.LogoTeam || "https://siteofsports.com/v2/content/topicLogo/premier_league.jpg";
@@ -46,12 +46,20 @@ const DisplayComponent = ({ topic }) => {
               </div>
 
             </div>
-            <Link to="/highlights" state={{ topicKey,topictype, topicName: teamName, imagesource: teamLogoPath }}>
+                  {IsSubtopicVideo ?(
+                     <Link to="/videohighlights" state={{ topicKey,topictype, topicName: teamName, imagesource: teamLogoPath }}>
+                     <div className="highlights">
+                       <img src={video_play} height={'20px'} />
+                     </div>
+                   </Link>
+                  ):(
+          <Link to="/highlights" state={{ topicKey,topictype, topicName: teamName, imagesource: teamLogoPath }}>
               <div className="highlights">
-
                 <img src={video_play} height={'20px'} />
               </div>
             </Link>
+                  )}
+            
           </div>
         </>
       ) : (
