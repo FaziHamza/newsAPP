@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import DataNotFound from '../../components/dataNotFound';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { divideByPercentage } from '../../utilities/common';
+ import { videHighlight } from '../../utilities/config';
 
 const VideoHighlightsList = () => {
   const [showModal, setShowModal] = useState(false);
@@ -20,7 +21,7 @@ const VideoHighlightsList = () => {
   const { state } = location;
   console.log(JSON.stringify(state));
   const { topicKey, topicName,topictype } = state;
-
+   const thumnbailbaseurl=videHighlight.thumbnailurl ;
   useEffect(() => {
     if (highlightsData?.length) {
       const [forty, sixty] = divideByPercentage(highlightsData.length);
@@ -33,19 +34,9 @@ const VideoHighlightsList = () => {
 
   useEffect(() => {
     const fetchVideoHighlights = async () => {
-      if (topicKey) {
-        const url = "https://localhost:44394/api/VideoHighlight/GetVideoHighlight";
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImVkNzgzZDQ4LTg0NzYtNDIyMi01YmJlLTA4ZGJjYWYzNGE2OSIsIlVzZXJJZCI6ImVkNzgzZDQ4LTg0NzYtNDIyMi01YmJlLTA4ZGJjYWYzNGE2OSIsIkVtYWlsIjoiYWRtaW5Ad2ViLmNvbSIsIm5iZiI6MTY5OTM1NTQ3NiwiZXhwIjoxNjk5NTI4Mjc2LCJpYXQiOjE2OTkzNTU0NzYsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzcwLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzcwLyJ9.jq72K6KxxywWIa-6O3GoMXm7ghAC6UvdDZBUXnmUZwI";
-    
+        const url = videHighlight.videobaseurl+ "/api/VideoHighlight/GetVideoHighlight";
         try {
-          const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json',
-            },
-          });
-    
+          const response = await fetch(url);
           if (response.status === 200) {
             const res = await response.json();
             console.log(res.data);
@@ -56,7 +47,6 @@ const VideoHighlightsList = () => {
         } catch (error) {
           console.error(error);
         }
-      }
     };
     
     fetchVideoHighlights();
@@ -127,9 +117,9 @@ const VideoHighlightsList = () => {
                 </div>
                 <div
                   className="video-banner"
-                  //style={{ backgroundImage: `url(${highlightsData[0]?.thumbnail})` }}
-                  style={{ backgroundImage: `url(https://www.scorebat.com/og/m/og1359305.jpeg)` }}
-                  onClick={() => handleVideoClick(highlight[0]?.embededCode)}>
+                  style={{ backgroundImage: `url(${thumnbailbaseurl+highlightsData[0]?.thumbnail})` }}
+                  // style={{ backgroundImage: `url(https://www.scorebat.com/og/m/og1359305.jpeg)` }}
+                  onClick={() => handleVideoClick(highlight.embededCode)}>
                   <i className="fa-solid fa-circle-play"></i>
                 </div>
                 <div className="content">
@@ -164,9 +154,9 @@ const VideoHighlightsList = () => {
                   <div key={index} className="secondary-card">
                     <div
                       className="video-banner"
-                  // style={{ backgroundImage: `url(${highlight.thumbnail})` }}
-                   style={{ backgroundImage: `url(https://www.scorebat.com/og/m/og1359305.jpeg)` }}
-                      onClick={() => handleVideoClick(highlight[0]?.embededCode)}>
+                  style={{ backgroundImage: `url(${thumnbailbaseurl+ highlight.thumbnail})` }}
+                  //  style={{ backgroundImage: `url(https://www.scorebat.com/og/m/og1359305.jpeg)` }}
+                      onClick={() => handleVideoClick(highlight.embededCode)}>
                       <i className="fa-solid fa-circle-play"></i>
                     </div>
                     <div className="content">
@@ -189,9 +179,9 @@ const VideoHighlightsList = () => {
                     <div key={index} className="secondary-card">
                       <div
                         className="video-banner"
-                             // style={{ backgroundImage: `url(${highlight.thumbnail})` }}
-                        style={{ backgroundImage: `url(https://www.scorebat.com/og/m/og1359305.jpeg)` }}
-                        onClick={() => handleVideoClick(highlight[0]?.embededCode)}>
+                             style={{ backgroundImage: `url(${thumnbailbaseurl+highlight.thumbnail})` }}
+                        // style={{ backgroundImage: `url(https://www.scorebat.com/og/m/og1359305.jpeg)` }}
+                        onClick={() => handleVideoClick(highlight.embededCode)}>
                         <i className="fa-solid fa-circle-play"></i>
                       </div>
                       <div className="content">

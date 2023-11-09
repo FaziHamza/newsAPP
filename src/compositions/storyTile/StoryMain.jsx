@@ -15,15 +15,23 @@ const DisplayComponent = ({ topic }) => {
   const teamName = state?.Name || "Premier League";
   const defaulttopic = topic?.Name || "Premier League";
   const topicKey = state?.topicKey || "england-premier-league";
-  const topictype = state?.topictype||'competition';
-  const IsSubtopicVideo=state?.IsSubtopicVideo || false;
+  const topictype = state?.topictype || 'competition';
+  const IsSubtopicVideo = state?.IsSubtopicVideo || false;
 
   const logoPath = state?.LogoPath || "https://siteofsports.com/v2/Content/TopicLogo/GB.png";
   const teamLogoPath = state?.LogoTeam || "https://siteofsports.com/v2/content/topicLogo/premier_league.jpg";
   const SubTopicId = state?.SubTopicId;
   const TopicId = state?.TopicId;
   // const TopicId = state?.TopicId;
-
+  const linkProps = {
+    to: IsSubtopicVideo ? "/highlights" : "/videohighlights",
+    state: {
+      topicKey,
+      topictype,
+      topicName: teamName,
+      imagesource: teamLogoPath,
+    },
+  };
   const IsSql = state?.IsSql;
 
   return (
@@ -46,20 +54,12 @@ const DisplayComponent = ({ topic }) => {
               </div>
 
             </div>
-                  {IsSubtopicVideo ?(
-                     <Link to="/videohighlights" state={{ topicKey,topictype, topicName: teamName, imagesource: teamLogoPath }}>
-                     <div className="highlights">
-                       <img src={video_play} height={'20px'} />
-                     </div>
-                   </Link>
-                  ):(
-          <Link to="/highlights" state={{ topicKey,topictype, topicName: teamName, imagesource: teamLogoPath }}>
+
+            <Link {...linkProps}>
               <div className="highlights">
                 <img src={video_play} height={'20px'} />
               </div>
             </Link>
-                  )}
-            
           </div>
         </>
       ) : (
@@ -72,12 +72,12 @@ const DisplayComponent = ({ topic }) => {
 const StoryMain = ({idforlogo, description, className = '', src, alt, time, isDesktopScreen }) => {
   const location = useLocation();
   const { state } = location;
-    let imageUrl;
-    if(idforlogo.length === 7) { 
-      imageUrl = AFP_news;
-    } else {
-      imageUrl = SPORSpot_News;
-    }
+  let imageUrl;
+  if (idforlogo.length === 7) {
+    imageUrl = AFP_news;
+  } else {
+    imageUrl = SPORSpot_News;
+  }
   const days = () => {
     const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
     const day = Math.floor(timeDifference / 24);

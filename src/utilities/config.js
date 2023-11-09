@@ -53,6 +53,7 @@ export const addresses = {
   siteLimit: 12,
 };
 
+
 // serbia
 // export const addresses = {
 //   settingsUrl: 'https://sportspotserbia.dev/v4/api/topics-with-subtopics-Mobile',
@@ -72,3 +73,8 @@ export const addresses = {
 //   siteKeyword: 'ENG',
 //   siteLimit: 12,
 // }
+
+export const videHighlight ={
+    thumbnailurl:'https://sportifiedspot.com/',
+    videobaseurl:'https://localhost:44394'
+}
