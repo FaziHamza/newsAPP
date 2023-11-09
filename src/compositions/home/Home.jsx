@@ -33,6 +33,7 @@ const Home = ({ topStoryLimit = 4 }) => {
               <main>
                 <Link key={tableInfo[0]._id} to={`/${tableInfo[0]._id}`}>
                   <StoryTile
+                   idforlogo={tileItem._id}
                     description={tableInfo[0]._abstract}
                     className={'tile-l'}
                     src={addresses.baseUrl + '/' + tableInfo[0]._medias[0].href}
@@ -46,6 +47,7 @@ const Home = ({ topStoryLimit = 4 }) => {
                     return (
                       <Link key={tileItem._id} to={`/${tileItem._id}`}>
                         <StoryTile
+                          idforlogo={tileItem._id}
                           description={tileItem._abstract}
                           className={'tile-m'}
                           src={addresses.baseUrl + '/' + tileItem._medias[0].href}
@@ -62,6 +64,7 @@ const Home = ({ topStoryLimit = 4 }) => {
                     return (
                       <Link key={tileItem._id} to={`/${tileItem._id}`}>
                         <StoryTile
+                         idforlogo={tileItem._id}
                           description={tileItem._abstract}
                           className={'tile-m'}
                           src={addresses.baseUrl + '/' + tileItem._medias[0].href}
@@ -79,6 +82,7 @@ const Home = ({ topStoryLimit = 4 }) => {
                 return (
                   <Link key={tileItem._id} to={`/${tileItem._id}`}>
                     <StoryTile
+                     idforlogo={tileItem._id}
                       description={tileItem._abstract}
                       className={index === 0 ? '' : 'tile-m'}
                       src={addresses.baseUrl + '/' + tileItem._medias[0].href}

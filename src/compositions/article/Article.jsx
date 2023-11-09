@@ -29,6 +29,7 @@ const AsideArticle = ({ chooseArticle }) => {
           {tableInfo.map((tileItem) => {
             return (
               <StoryTile
+                idforlogo={tileItem._id}
                 description={tileItem._abstract}
                 key={tileItem._id}
                 className={'tile-m'}

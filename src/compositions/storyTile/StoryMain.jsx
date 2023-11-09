@@ -2,7 +2,7 @@ import { timeQuery } from '../../utilities/timeQuery';
 import { json, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { logo, video_play } from '../../assets';
-import { sportspotsverige, AFP_news } from '../../assets';
+import { sportspotsverige, AFP_news ,SPORSpot_News} from '../../assets';
 
 
 const DisplayComponent = ({ topic }) => {
@@ -69,14 +69,15 @@ const DisplayComponent = ({ topic }) => {
     </>
   );
 }
-const StoryMain = ({ description, className = '', src, alt, time, isDesktopScreen }) => {
+const StoryMain = ({idforlogo, description, className = '', src, alt, time, isDesktopScreen }) => {
   const location = useLocation();
   const { state } = location;
-  const IsSql = state?.IsSql;
-  const imageUrl = IsSql
-    ? sportspotsverige
-    : AFP_news;
-
+    let imageUrl;
+    if(idforlogo.length === 7) { 
+      imageUrl = AFP_news;
+    } else {
+      imageUrl = SPORSpot_News;
+    }
   const days = () => {
     const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
     const day = Math.floor(timeDifference / 24);

@@ -140,6 +140,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   }`
                             }>
                             <StoryMain
+                              idforlogo={mainNewsList[0]?._id}
                               description={mainNewsList[0]?._content}
                               className={'tile-l'}
                               isDesktopScreen={true}
@@ -173,6 +174,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                       )}/${tileItem._id}`
                                 }>
                                 <StoryTile
+                                  idforlogo={tileItem._id}
                                   isDesktopScreen={true}
                                   description={tileItem._content}
                                   className={'tile-m main-list'}
@@ -215,6 +217,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                         )}/${tileItem._id}`
                                   }>
                                   <StoryTile
+                                   idforlogo={tileItem._id}
                                     description={tileItem._abstract}
                                     className={'tile-m'}
                                     src={windowHref + tileItem._medias[0].href}
@@ -262,6 +265,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                       }`
                                 }>
                                 <StoryMain
+                                  idforlogo={tileItem._id}
                                   description={tileItem._abstract}
                                   src={windowHref + tileItem._medias[0].href}
                                   alt={tileItem._medias[0]?.href}
@@ -285,6 +289,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                       }`
                                 }>
                                 <StoryTile
+                                  idforlogo={tileItem._id}
                                   description={tileItem._abstract}
                                   className={index === 0 ? '' : 'tile-m'}
                                   src={windowHref + tileItem._medias[0].href}
