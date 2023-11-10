@@ -76,5 +76,10 @@ export const addresses = {
 
 export const videHighlight ={
     thumbnailurl:'https://sportifiedspot.com/',
-    videobaseurl:'https://localhost:44394'
+    videobaseurl:'https://sportifiedspot.com/',
+    
+}
+export const RootUrl={
+  Baseurl:'https://sportifiedspot.com/',
+  HostName:'www.sportspotsverige.se'
 }

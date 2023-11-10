@@ -39,6 +39,12 @@ const HighlightsList = () => {
 
         try {
           const response = await fetch(url);
+          // Check if the response status is 404
+          if (response.status === 404) {
+             console.error('Resource not found. Handle this case accordingly.');
+             setHighlightsData(null);
+             return;
+          }
           const data = await response.json();
           setHighlightsData(data.response);
         } catch (error) {
@@ -67,6 +73,9 @@ const HighlightsList = () => {
 
   const LogoPath = state?.imagesource;
 
+  if(highlightsData==null || highlightsData==undefined){
+    return <DataNotFound />;
+  }
   if (highlightsData.length === 0) {
     return <div>Loading...</div>;
   } else if (!topicName || !topicKey) {

@@ -20,7 +20,7 @@ const VideoHighlightsList = () => {
   const location = useLocation();
   const { state } = location;
   console.log(JSON.stringify(state));
-  const { topicKey, topicName,topictype } = state;
+  const { topicKey, topicName,topictype,Subtopicid } = state;
    const thumnbailbaseurl=videHighlight.thumbnailurl ;
   useEffect(() => {
     if (highlightsData?.length) {
@@ -34,7 +34,7 @@ const VideoHighlightsList = () => {
 
   useEffect(() => {
     const fetchVideoHighlights = async () => {
-        const url = videHighlight.videobaseurl+ "/api/VideoHighlight/GetVideoHighlight";
+        const url = videHighlight.videobaseurl+ "/api/VideoHighlight/GetVideoHighlightBySubtopicIdonly?subtopicId="+Subtopicid;
         try {
           const response = await fetch(url);
           if (response.status === 200) {
@@ -104,7 +104,7 @@ const VideoHighlightsList = () => {
                   <div className="col-1">
                     <div>
                       {/* <img src="assets/images/22.png" alt="" /> */}
-                      {/* <span>SUBTOPIC : {SubTopicId} </span> */}
+                      {/* <span>SUBTOPIC : {state.Subtopicid} </span> */}
                     </div>
                     <button
                       type="button"
@@ -119,7 +119,7 @@ const VideoHighlightsList = () => {
                   className="video-banner"
                   style={{ backgroundImage: `url(${thumnbailbaseurl+highlightsData[0]?.thumbnail})` }}
                   // style={{ backgroundImage: `url(https://www.scorebat.com/og/m/og1359305.jpeg)` }}
-                  onClick={() => handleVideoClick(highlight.embededCode)}>
+                  onClick={() => handleVideoClick(highlightsData[0].embededCode)}>
                   <i className="fa-solid fa-circle-play"></i>
                 </div>
                 <div className="content">
@@ -204,6 +204,7 @@ const VideoHighlightsList = () => {
             <button onClick={handleCloseModal} className="close-button">
               X
             </button>
+            
             <div className="video-wrapper" dangerouslySetInnerHTML={{ __html: videoEmbed }} />
           </div>
         </div>

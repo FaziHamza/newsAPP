@@ -4,6 +4,7 @@ import { ThemeQueryProvider } from '../../utilities/themeQuery';
 import { useAsync } from '../../utilities/asyncReducer';
 import { Icon } from '../../components';
 import './root.css';
+ import { RootUrl } from '../../utilities/config';
 
 import { fetchConfig, fetchGetFunction } from '../../utilities/fetch';
 
@@ -36,7 +37,7 @@ const Root = () => {
     fetchGetFunction(
       // `https://www.sportspotengland.dev`
       // `http://208.109.188.83:8042/api/Region/GetRegionByHostName?hostName=localhost`
-      `https://sportifiedspot.com/api/Region/GetRegionByHostName?hostName=www.sportspotsverige.se`
+      `${RootUrl.Baseurl}api/Region/GetRegionByHostName?hostName=${RootUrl.HostName}`
     )
       .then((res) => {
         console.log('Responce From Dummy Request ', res);

@@ -24,12 +24,13 @@ const DisplayComponent = ({ topic }) => {
   const TopicId = state?.TopicId;
   // const TopicId = state?.TopicId;
   const linkProps = {
-    to: IsSubtopicVideo ? "/highlights" : "/videohighlights",
+    to: IsSubtopicVideo ? "/videohighlights" : "/highlights",
     state: {
       topicKey,
       topictype,
       topicName: teamName,
       imagesource: teamLogoPath,
+      Subtopicid:SubTopicId
     },
   };
   const IsSql = state?.IsSql;
@@ -50,7 +51,7 @@ const DisplayComponent = ({ topic }) => {
                     <img src={teamLogoPath} height={'20px'} />
                   </>
                 )}
-                {teamName.replace(moreItemName, '')}
+                {/* {teamName.replace(moreItemName, '')} */}
               </div>
 
             </div>
