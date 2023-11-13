@@ -1,14 +1,14 @@
 import { timeQuery } from '../../utilities/timeQuery';
 import { json, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { logo, video_play } from '../../assets';
-import { sportspotsverige, AFP_news ,SPORSpot_News} from '../../assets';
+import { logo, video_play, microphone } from '../../assets';
+import { sportspotsverige, AFP_news, SPORSpot_News } from '../../assets';
 
 
 const DisplayComponent = ({ topic }) => {
   const location = useLocation();
   const { state } = location;
-  
+
   // Now you can access the passed state values
 
   const moreItemName = state?.moreItemName || "England";
@@ -23,14 +23,24 @@ const DisplayComponent = ({ topic }) => {
   const SubTopicId = state?.SubTopicId;
   const TopicId = state?.TopicId;
   // const TopicId = state?.TopicId;
-  const linkProps = {
+  const linkPropsforhighlight = {
     to: IsSubtopicVideo ? "/videohighlights" : "/highlights",
     state: {
       topicKey,
       topictype,
       topicName: teamName,
       imagesource: teamLogoPath,
-      Subtopicid:SubTopicId
+      Subtopicid: SubTopicId
+    },
+  };
+  const linkPropsforpodcast = {
+    to: "/podcast",
+    state: {
+      topicKey,
+      topictype,
+      topicName: teamName,
+      imagesource: teamLogoPath,
+      Subtopicid: SubTopicId
     },
   };
   const IsSql = state?.IsSql;
@@ -56,11 +66,19 @@ const DisplayComponent = ({ topic }) => {
 
             </div>
 
-            <Link {...linkProps}>
-              <div className="highlights">
-                <img src={video_play} height={'20px'} />
-              </div>
-            </Link>
+            <div style={{display:'flex'}}>
+              <Link {...linkPropsforhighlight}>
+                <div className="highlights">
+                  <img src={video_play} height={'20px'} />
+                </div>
+              </Link>
+              {/* <Link {...linkPropsforpodcast}>
+                <div className="highlights">
+                  <img src={microphone} height={'20px'} />
+                </div>
+              </Link> */}
+            </div>
+
           </div>
         </>
       ) : (
@@ -70,7 +88,7 @@ const DisplayComponent = ({ topic }) => {
     </>
   );
 }
-const StoryMain = ({idforlogo, description, className = '', src, alt, time, isDesktopScreen }) => {
+const StoryMain = ({ idforlogo, description, className = '', src, alt, time, isDesktopScreen }) => {
   const location = useLocation();
   const { state } = location;
   let imageUrl;

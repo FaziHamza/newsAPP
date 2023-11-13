@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Root, ErrorPage, Table, Article, topicLoader, articleLoader ,Highlights, VideoHighlights  } from './routes';
+import { Root, ErrorPage, Table, Article, topicLoader, articleLoader ,Highlights, VideoHighlights, PodCast  } from './routes';
 import './main.css';
 import { Provider } from 'react-redux';
 import store from './redux/store'
@@ -16,6 +16,7 @@ const router = createBrowserRouter([
       { path: ':type/:topic/:id', element: <Article />, loader: articleLoader },
       { path: 'highlights', element: <Highlights /> }, // <-- Add this line
       { path: 'videohighlights', element: <VideoHighlights /> }, // <-- Add this line
+      { path: 'podcast', element: <PodCast /> }, // <-- Add this line
 
     ],
   },

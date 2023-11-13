@@ -176,7 +176,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 <StoryTile
                                   idforlogo={tileItem._id}
                                   isDesktopScreen={true}
-                                  description={tileItem._content}
+                                  description={tileItem._abstract}
                                   className={'tile-m main-list'}
                                   src={windowHref + tileItem._medias[0].href}
                                   alt={tileItem._medias[0]?.href}

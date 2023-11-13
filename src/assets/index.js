@@ -12,6 +12,7 @@ export { default as flag } from './images/engFlag.png';
 export { default as tennis } from './images/Tennis.png';
 
 export { default as video_play } from './images/video_play.png';
+export { default as microphone } from './images/microphone.png';
 export { default as AFP_news } from './images/AFP_news.png';
 export { default as SPORSpot_News } from './images/SPORSpot_News.png';
 export { default as sportspotsverige } from './images/sportspotsverige.png';
