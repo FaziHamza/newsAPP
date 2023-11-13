@@ -1,7 +1,7 @@
 import { timeQuery } from '../../utilities/timeQuery';
 import { json, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { logo, video_play, microphone } from '../../assets';
+import { logo, video_play, podcast } from '../../assets';
 import { sportspotsverige, AFP_news, SPORSpot_News } from '../../assets';
 
 
@@ -61,22 +61,22 @@ const DisplayComponent = ({ topic }) => {
                     <img src={teamLogoPath} height={'20px'} />
                   </>
                 )}
-                {/* {teamName.replace(moreItemName, '')} */}
+                {teamName.replace(moreItemName, '')}
               </div>
 
             </div>
 
             <div style={{display:'flex'}}>
+              <Link {...linkPropsforpodcast}>
+                <div className="highlights">
+                  <img src={podcast} height={'20px'} />
+                </div>
+              </Link>
               <Link {...linkPropsforhighlight}>
                 <div className="highlights">
                   <img src={video_play} height={'20px'} />
                 </div>
               </Link>
-              {/* <Link {...linkPropsforpodcast}>
-                <div className="highlights">
-                  <img src={microphone} height={'20px'} />
-                </div>
-              </Link> */}
             </div>
 
           </div>

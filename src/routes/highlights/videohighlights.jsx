@@ -40,7 +40,10 @@ const VideoHighlightsList = () => {
           if (response.status === 200) {
             const res = await response.json();
             console.log(res.data);
-            setVideoHighlightsData(res.data);
+              // Sorting the data in descending order based on the datetime property
+        const sortedData = res.data.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
+        // Updating the state with the sorted data
+        setVideoHighlightsData(sortedData);
           } else {
             console.error(`HTTP Error: ${response.status}`);
           }
@@ -81,6 +84,8 @@ const VideoHighlightsList = () => {
   if (highlightsData?.length > 0 && isDesktop === 'desktop') {
     mainHightLights = highlightsData.slice(1, asideHighlightsQuantity);
     asideHightLights = highlightsData.slice(mainHighlightsQuantity);
+    console.log(mainHightLights)
+    console.log(asideHightLights)
   }
 
   return (

@@ -129,6 +129,7 @@ const Article = ({ className = '' }) => {
                   <p></p>
                   </div>
                 </div>
+                <hr/>
                   </figure>
                   <p>
                     <ContentParsed content={articleInfo._content} />
@@ -171,6 +172,7 @@ const Article = ({ className = '' }) => {
                   <p></p>
                   </div>
                 </div>
+                <hr/>
           </figure>
           <p className="artical-detail-box">
             <ContentParsed content={articleInfo._content} />
