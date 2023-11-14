@@ -67,11 +67,11 @@ const DisplayComponent = ({ topic }) => {
             </div>
 
             <div style={{display:'flex'}}>
-              <Link {...linkPropsforpodcast}>
+              {/* <Link {...linkPropsforpodcast}>
                 <div className="highlights">
                   <img src={podcast} height={'20px'} />
                 </div>
-              </Link>
+              </Link> */}
               <Link {...linkPropsforhighlight}>
                 <div className="highlights">
                   <img src={video_play} height={'20px'} />
