@@ -84,9 +84,10 @@ const VideoHighlightsList = () => {
   if (highlightsData?.length > 0 && isDesktop === 'desktop') {
     console.log(asideHighlightsQuantity)
     console.log(mainHighlightsQuantity)
-    mainHightLights = highlightsData.slice(0, asideHighlightsQuantity);
-    asideHightLights = highlightsData.slice(mainHighlightsQuantity);
-
+    // mainHightLights = highlightsData.slice(0, asideHighlightsQuantity);
+    // asideHightLights = highlightsData.slice(mainHighlightsQuantity);
+    mainHightLights = highlightsData.slice(1, 4);
+    asideHightLights = highlightsData.length > 4 ? highlightsData.slice(4, 12) : [];
     // mainHightLights = highlightsData.slice(0, mainHighlightsQuantity);
     // asideHightLights = highlightsData.slice(mainHighlightsQuantity, mainHighlightsQuantity + asideHighlightsQuantity);
 
