@@ -20,7 +20,7 @@ const PodcastList = () => {
   const location = useLocation();
   const { state } = location;
   console.log(JSON.stringify(state));
-  const { topicKey, topicName,topictype,Subtopicid } = state;
+  const {  topicName,topictype,Subtopicid } = state;
    const thumnbailbaseurl=videHighlight.thumbnailurl ;
   useEffect(() => {
     if (PodcastListsData?.length) {
@@ -34,7 +34,7 @@ const PodcastList = () => {
 
   useEffect(() => {
     const fetchPodcast = async () => {
-        const url = videHighlight.videobaseurl+ "/api/VideoHighlight/GetVideoHighlightBySubtopicIdonly?subtopicId="+Subtopicid;
+        const url = videHighlight.videobaseurl+ "/api/VideoPodcast/GetVideoPodcastBySubtopicIdonly?subtopicId="+Subtopicid;
         try {
           const response = await fetch(url);
           if (response.status === 200) {
@@ -71,7 +71,7 @@ const PodcastList = () => {
 
   if (PodcastListsData.length === 0) {
     return <div>Loading...</div>;
-  } else if (!topicName || !topicKey) {
+  } else if (!topicName) {
     return <DataNotFound />;
   }
 
