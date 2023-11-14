@@ -8,21 +8,20 @@ import { sportspotsverige, AFP_news, SPORSpot_News } from '../../assets';
 const DisplayComponent = ({ topic }) => {
   const location = useLocation();
   const { state } = location;
-
+  console.log(state)
   // Now you can access the passed state values
-
-  const moreItemName = state?.moreItemName || "England";
-  const teamName = state?.Name || "Premier League";
-  const defaulttopic = topic?.Name || "Premier League";
-  const topicKey = state?.topicKey || "england-premier-league";
-  const topictype = state?.topictype || 'competition';
+  const moreItemName = state?.moreItemName || null;
+  const teamName = state?.Name|| null ;
+  const defaulttopic = topic?.Name || null ;
+  const topicKey = state?.topicKey || null;
+  const topictype = state?.topictype || null;
   const IsSubtopicVideo = state?.IsSubtopicVideo || false;
 
-  const logoPath = state?.LogoPath || "https://siteofsports.com/v2/Content/TopicLogo/GB.png";
-  const teamLogoPath = state?.LogoTeam || "https://siteofsports.com/v2/content/topicLogo/premier_league.jpg";
-  const SubTopicId = state?.SubTopicId;
+  const logoPath = state?.LogoPath || null;
+  const teamLogoPath = state?.LogoTeam || null;
+ const SubTopicId = state?.SubTopicId;
   const TopicId = state?.TopicId;
-  // const TopicId = state?.TopicId;
+
   const linkPropsforhighlight = {
     to: IsSubtopicVideo ? "/videohighlights" : "/highlights",
     state: {
@@ -47,7 +46,7 @@ const DisplayComponent = ({ topic }) => {
 
   return (
     <>
-      {logoPath ? (
+      {teamLogoPath ? (
         <>
           <div className="topic" >
             <div className='topic-row'>
@@ -67,11 +66,11 @@ const DisplayComponent = ({ topic }) => {
             </div>
 
             <div style={{display:'flex'}}>
-              {/* <Link {...linkPropsforpodcast}>
+              <Link {...linkPropsforpodcast}>
                 <div className="highlights">
                   <img src={podcast} height={'20px'} />
                 </div>
-              </Link> */}
+              </Link>
               <Link {...linkPropsforhighlight}>
                 <div className="highlights">
                   <img src={video_play} height={'20px'} />
@@ -82,7 +81,9 @@ const DisplayComponent = ({ topic }) => {
           </div>
         </>
       ) : (
-        <h4 className="title"> {defaulttopic}</h4>
+        <h4 className="title">   
+        {teamName}
+        </h4>
 
       )}
     </>
