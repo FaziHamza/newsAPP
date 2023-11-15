@@ -141,7 +141,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             }>
                             <StoryMain
                               idforlogo={mainNewsList[0]?._id}
-                              description={mainNewsList[0]?._content}
+                              description={mainNewsList[0]?._abstract}
                               className={'tile-l'}
                               isDesktopScreen={true}
                               src={windowHref + mainNewsList[0]?._medias[0]?.href}

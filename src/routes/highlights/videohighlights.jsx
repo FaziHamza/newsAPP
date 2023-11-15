@@ -104,17 +104,20 @@ const VideoHighlightsList = () => {
             <div className="main-card-section">
               <div className="main-card">
                 <div className="row">
-                  <div className="col-11">
+                  <div className="col-3">
                     <div className="header">
                       <div>
-                        {/* <img src={LogoPath} alt={LogoPath} /> */}
+                        <img src={LogoPath} alt={LogoPath} />
                         {/* why topicName not update here ?? */}
                         <span>{topicName?.replace('senaste nytt', '')}</span>{' '}
                         {/* Modify this line */}
                       </div>
                     </div>
                   </div>
-                  <div className="col-1">
+                  <div className="col-6" style={{textAlign:"center"}}>
+                        <h2>VIDEO</h2>
+                  </div>
+                  <div className="col-3">
                     <div>
                       {/* <img src="assets/images/22.png" alt="" /> */}
                       {/* <span>SUBTOPIC : {state.Subtopicid} </span> */}
