@@ -74,7 +74,7 @@ const VideoHighlightsList = () => {
 
   if (highlightsData.length === 0) {
     return <div>Loading...</div>;
-  } else if (!topicName || !topicKey) {
+  } else if (!topicName) {
     return <DataNotFound />;
   }
 
