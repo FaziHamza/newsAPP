@@ -3,23 +3,24 @@ import { json, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { logo, video_play, podcast } from '../../assets';
 import { sportspotsverige, AFP_news, SPORSpot_News } from '../../assets';
-
+import { useSelector } from 'react-redux';
 
 const DisplayComponent = ({ topic }) => {
   const location = useLocation();
+  const initialload = useSelector((state) => state.origin.initialload);
   const { state } = location;
   console.log(state)
   // Now you can access the passed state values
   const moreItemName = state?.moreItemName || null;
-  const teamName = state?.Name|| null ;
+  const teamName = state?.Name|| initialload[0].name ;
   const defaulttopic = topic?.Name || null ;
-  const topicKey = state?.topicKey || null;
-  const topictype = state?.topictype || null;
-  const IsSubtopicVideo = state?.IsSubtopicVideo || false;
+  const topicKey = state?.topicKey || initialload[0].highlights;
+  const topictype = state?.topictype || initialload[0].highlightType;
+  const IsSubtopicVideo = state?.IsSubtopicVideo || initialload[0].isSubtopicVideo;
 
   const logoPath = state?.LogoPath || null;
-  const teamLogoPath = state?.LogoTeam || null;
- const SubTopicId = state?.SubTopicId;
+  const teamLogoPath = state?.LogoTeam || initialload[0].logo;
+ const SubTopicId = state?.SubTopicId || initialload[0].subTopicID;
   const TopicId = state?.TopicId;
 
   const linkPropsforhighlight = {

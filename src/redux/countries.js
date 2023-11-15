@@ -21,6 +21,13 @@ let tempLocal = localStorage.getItem('favouriteMenu');
     siteLang: null,
     siteKeyword: null,
     siteLimit: 12
+  },
+  initialload:{
+    highlightType:null,
+    highlights:null,
+    logo:null,
+    subTopicID:null,
+    isSubtopicVideo:null
   }
 };
 export const countryReducer = createSlice({
@@ -47,11 +54,16 @@ export const countryReducer = createSlice({
       let tempState = state;
       tempState.apiOrigin = action.payload;
       return tempState;
+    },
+    setinitialload:(state, action)=>{
+      let tempState = state;
+      tempState.initialload = action.payload;
+      return tempState;
     }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { selectCountry, setFlag , setApiOrigin} = countryReducer.actions;
+export const { selectCountry, setFlag , setApiOrigin,setinitialload} = countryReducer.actions;
 
 export default countryReducer.reducer;
