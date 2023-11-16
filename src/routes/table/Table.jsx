@@ -24,8 +24,8 @@ import {
 } from '../../assets';
 import { useThemeContext } from '../../utilities/themeQuery';
 import { divideByPercentage } from '../../utilities/common';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setarticlevideo } from '../../redux/countries';
 export const loader = ({ params }) => {
   return { params };
 };
@@ -47,13 +47,14 @@ const SectionHeader = ({ title = 'missingTitle', listItems }) => {
 };
 
 const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
+  const dispatch = useDispatch();
   const addresses = useSelector((state) => state.origin.apiOrigin);
-
+  const topicwithsubtopic = useSelector((state) => state.origin.topicwithsubtopic);
   const [settingsInfo, windowHref] = useOutletContext();
   const defaultTopic = settingsInfo.Default;
   const { data: tableInfo, status, error, run } = useAsync({ status: 'pending' });
   const { state } = useLocation();
-   // console.log(state.Name)
+  // console.log(state.Name)
   const [promoVisible, setPromoVisible] = useState(false);
   const isDesktop = useMediaContext();
   const themeVariant = useThemeContext();
@@ -78,6 +79,33 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   useEffect(() => {
     // const address = state?.address ?? 'news/getnews?lang=sv&topic=football&sub1=fbl,ENG,Pr';
     // const address = state?.address ?? 'news/getNewsByTeam?keyword=Pr&lang=en&sport=football&limit=12';
+    // console.log(addresses.siteKeyword)
+
+    if (state?.address !== undefined) {
+      // Assuming 'state.address' is a URL
+      const url = state.address;
+      // Regular expression to match the 'keyword' parameter
+      const keywordRegex = /[\?&]keyword=([^&#]*)/;
+      // Extract the value of 'keyword' from the URL
+      const match = url.match(keywordRegex);
+      if (match && match[1]) {
+        const keyword = decodeURIComponent(match[1]);
+        console.log(topicwithsubtopic)
+        console.log(keyword);
+
+         // Assuming your object is stored in a variable called 'settingsInfo'
+    const foundItems = topicwithsubtopic
+    .filter(item => item.topic && item.subTopics.some(subtopic => subtopic.keyword.toLowerCase() === keyword.toLowerCase()))
+    .map(item => {
+      const filteredSubTopics = item.subTopics.filter(subtopic => subtopic.keyword.toLowerCase() === keyword.toLowerCase());
+       dispatch(setarticlevideo(filteredSubTopics))
+      return { subTopics: filteredSubTopics };
+    });
+  console.log('Settings Info  ', foundItems);
+      } else {
+        console.error("Keyword not found in the URL");
+      }
+    }
     const address =
       state?.address ??
       `news/getNewsByTeam?keyword=${addresses.siteKeyword}&lang=${addresses.siteLang}&sport=football&limit=${addresses.siteLimit}`;
@@ -135,9 +163,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             to={
                               state
                                 ? mainNewsList[0]?._id
-                                : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
-                                    mainNewsList[0]?._id
-                                  }`
+                                : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${mainNewsList[0]?._id
+                                }`
                             }>
                             <StoryMain
                               idforlogo={mainNewsList[0]?._id}
@@ -169,9 +196,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   state
                                     ? tileItem._id
                                     : `news/${defaultTopic?.Name?.toLowerCase().replace(
-                                        /\s/g,
-                                        '_'
-                                      )}/${tileItem._id}`
+                                      /\s/g,
+                                      '_'
+                                    )}/${tileItem._id}`
                                 }>
                                 <StoryTile
                                   idforlogo={tileItem._id}
@@ -212,12 +239,12 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                     state
                                       ? tileItem._id
                                       : `news/${defaultTopic?.Name?.toLowerCase().replace(
-                                          /\s/g,
-                                          '_'
-                                        )}/${tileItem._id}`
+                                        /\s/g,
+                                        '_'
+                                      )}/${tileItem._id}`
                                   }>
                                   <StoryTile
-                                   idforlogo={tileItem._id}
+                                    idforlogo={tileItem._id}
                                     description={tileItem._abstract}
                                     className={'tile-m'}
                                     src={windowHref + tileItem._medias[0].href}
@@ -260,9 +287,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 to={
                                   state
                                     ? tileItem._id
-                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
-                                        tileItem._id
-                                      }`
+                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
+                                    }`
                                 }>
                                 <StoryMain
                                   idforlogo={tileItem._id}
@@ -284,9 +310,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 to={
                                   state
                                     ? tileItem._id
-                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
-                                        tileItem._id
-                                      }`
+                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
+                                    }`
                                 }>
                                 <StoryTile
                                   idforlogo={tileItem._id}

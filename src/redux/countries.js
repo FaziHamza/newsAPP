@@ -28,7 +28,15 @@ let tempLocal = localStorage.getItem('favouriteMenu');
     logo:null,
     subTopicID:null,
     isSubtopicVideo:null
-  }
+  },
+  articlevideo:{
+    highlightType:null,
+    highlights:null,
+    logo:null,
+    subTopicID:null,
+    isSubtopicVideo:null
+  },
+  topicwithsubtopic:null
 };
 export const countryReducer = createSlice({
   name: 'country',
@@ -59,11 +67,21 @@ export const countryReducer = createSlice({
       let tempState = state;
       tempState.initialload = action.payload;
       return tempState;
+    },
+    setarticlevideo:(state, action)=>{
+      let tempState = state;
+      tempState.articlevideo = action.payload;
+      return tempState;
+    },
+    settopiwithsubtopic:(state, action)=>{
+      let tempState = state;
+      tempState.topicwithsubtopic  = action.payload;
+      return tempState;
     }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { selectCountry, setFlag , setApiOrigin,setinitialload} = countryReducer.actions;
+export const { selectCountry, setFlag , setApiOrigin,setinitialload,setarticlevideo,settopiwithsubtopic} = countryReducer.actions;
 
 export default countryReducer.reducer;

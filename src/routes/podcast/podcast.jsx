@@ -39,7 +39,7 @@ const PodcastList = () => {
           const response = await fetch(url);
           if (response.status === 200) {
             const res = await response.json();
-            console.log(res.data);
+
             setPodcastListData(res.data);
           } else {
             console.error(`HTTP Error: ${response.status}`);

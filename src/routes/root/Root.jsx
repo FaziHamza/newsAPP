@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 import { getData } from '../../assets/mockup-assets/data/dataObject';
 // import { addresses } from '../../utilities/config';
 import { useDispatch, useSelector } from 'react-redux';
-import { setApiOrigin, setFlag, setinitialload } from '../../redux/countries';
+import { setApiOrigin, setFlag, setinitialload,setarticlevideo ,settopiwithsubtopic} from '../../redux/countries';
 const Root = () => {
   const dispatch = useDispatch();
   const addresses = useSelector((state) => state.origin.apiOrigin);
@@ -60,21 +60,20 @@ const Root = () => {
   }, [addresses]);
 
   useEffect(() => {
-    console.log('sss',settingsInfo)
+    // console.log('sss',settingsInfo)
     if (settingsInfo) {
-      dispatch(setFlag(settingsInfo?.url
-        ));
+      dispatch(setFlag(settingsInfo?.url));
+      dispatch(settopiwithsubtopic(settingsInfo?.menuItems));
     }
     // Assuming your object is stored in a variable called 'settingsInfo'
     const foundItems = settingsInfo?.menuItems
       .filter(item => item.topic && item.subTopics.some(subtopic => subtopic.keyword.toLowerCase() === addresses.siteKeyword?.toLowerCase()))
       .map(item => {
         const filteredSubTopics = item.subTopics.filter(subtopic => subtopic.keyword.toLowerCase() === addresses.siteKeyword?.toLowerCase());
-
         dispatch(setinitialload(filteredSubTopics))
+        dispatch(setarticlevideo(filteredSubTopics))
         return { subTopics: filteredSubTopics };
       });
-    console.log('Settings Info  ', settingsInfo);
   }, [settingsInfo]);
 
 

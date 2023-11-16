@@ -9,7 +9,7 @@ import { removeBetween } from '../../utilities/common';
 import { timeQuery } from '../../utilities/timeQuery';
 import { StoryTile } from '../../compositions';
 import { useSelector } from 'react-redux';
-import { AFP_news, SPORSpot_News } from '../../assets';
+import { AFP_news, SPORSpot_News, video_play } from '../../assets';
 const topicSettings = {};
 
 export const loader = ({ params }) => {
@@ -17,14 +17,15 @@ export const loader = ({ params }) => {
 };
 
 const AsideArticle = ({ tableInfo }) => {
-  const addresses = useSelector(state=>state.origin.apiOrigin)
+  const addresses = useSelector(state => state.origin.apiOrigin)
 
   const [settingsInfo] = useOutletContext();
 
+
   const { params } = useLoaderData();
   const { state } = useLocation();
-  console.log(settingsInfo)
-  console.log(state)
+  // console.log(settingsInfo)
+  // console.log(state)
   return (
     <aside className="aside-right">
       {tableInfo
@@ -34,25 +35,26 @@ const AsideArticle = ({ tableInfo }) => {
           return (
             <>
               <Link
-              className="story-link"
-              to={`/${params.type}/${params.topic}/${tileItem._id}`}
-              // to={`../${urlPrefix}${tileItem._id}`}
-              relative="path"
-              key={tileItem._id}
-              state={{ ...state,
-                articleInfo: state.articleInfo,
-                tableInfo: state.tableInfo,
-                baseUrl: addresses.baseUrl + settingsInfo.Api,
-                imgUrl: addresses.baseUrl + tileItem._medias[0].href,
-              }}
+                className="story-link"
+                to={`/${params.type}/${params.topic}/${tileItem._id}`}
+                // to={`../${urlPrefix}${tileItem._id}`}
+                relative="path"
+                key={tileItem._id}
+                state={{
+                  ...state,
+                  articleInfo: state.articleInfo,
+                  tableInfo: state.tableInfo,
+                  baseUrl: addresses.baseUrl + settingsInfo.Api,
+                  imgUrl: addresses.baseUrl + tileItem._medias[0].href,
+                }}
               >
-              <StoryTile
-                 idforlogo={tileItem._id}
-                description={tileItem._abstract}
-                className={'tile-m'}
-                src={addresses.baseUrl + '/' + tileItem._medias[0].href}
-                alt={tileItem._medias[0].href}
-              />
+                <StoryTile
+                  idforlogo={tileItem._id}
+                  description={tileItem._abstract}
+                  className={'tile-m'}
+                  src={addresses.baseUrl + '/' + tileItem._medias[0].href}
+                  alt={tileItem._medias[0].href}
+                />
               </Link>
               <div className="divider-container">
                 <hr className="divider-solid" />
@@ -65,8 +67,30 @@ const AsideArticle = ({ tableInfo }) => {
 };
 
 const Article = ({ className = '' }) => {
-  const isDesktop = useMediaContext();
+
   const { state } = useLocation();
+  const articlevideo = useSelector((state) => state.origin.articlevideo);
+  // Now you can access the passed state values
+  const teamName = state?.Name || articlevideo[0].name;
+  const topicKey = state?.topicKey || articlevideo[0].highlights;
+  const topictype = state?.topictype || articlevideo[0].highlightType;
+  const IsSubtopicVideo = state?.IsSubtopicVideo || articlevideo[0].isSubtopicVideo;
+  const teamLogoPath = state?.LogoTeam || articlevideo[0].logo;
+  const SubTopicId = state?.SubTopicId || articlevideo[0].subTopicID;
+
+  const linkPropsforhighlight = {
+    to: IsSubtopicVideo ? "/videohighlights" : "/highlights",
+    state: {
+      topicKey,
+      topictype,
+      topicName: teamName,
+      imagesource: teamLogoPath,
+      Subtopicid: SubTopicId
+    },
+  };
+
+  const isDesktop = useMediaContext();
+  // const { state } = useLocation();
   const navigate = useNavigate();
   const ContentParsed = ({ content = 'Text Missing' }) => {
     const parsedContent = parse(removeBetween(content, 'style="', '"'));
@@ -76,12 +100,12 @@ const Article = ({ className = '' }) => {
 
   const { articleInfo, tableInfo } = state;
 
-    let imageUrl;
-    if(articleInfo._id.length === 7) { 
-      imageUrl = AFP_news;
-    } else {
-      imageUrl = SPORSpot_News;
-    }
+  let imageUrl;
+  if (articleInfo._id.length === 7) {
+    imageUrl = AFP_news;
+  } else {
+    imageUrl = SPORSpot_News;
+  }
   const days = () => {
     const timeDifference = timeQuery(articleInfo._published); // Assuming timeQuery returns the difference in hours
     const day = Math.floor(timeDifference / 24);
@@ -118,18 +142,22 @@ const Article = ({ className = '' }) => {
                   </div>
                   <figure>
                     <img src={state.imgUrl} alt={state.imgUrl} />
-                <div class="main-article">
-                  <div class="left-article">
-                  <h6>
-                      {days()} 
-                      <img src={imageUrl} alt="logo" />
-                      </h6>
-                  </div>
-                  <div class="right-article">
-                  <p></p>
-                  </div>
-                </div>
-                <hr/>
+                    <div class="main-article">
+                      <div class="left-article">
+                        <h6>
+                          {days()}
+                          <img src={imageUrl} alt="logo" />
+                        </h6>
+                      </div>
+                      <div class="right-article">
+                        <Link {...linkPropsforhighlight}>
+                          <div className="highlights">
+                            <img src={video_play} style={{ height: '20px' }} />
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+                    <hr />
                   </figure>
                   <p>
                     <ContentParsed content={articleInfo._content} />
@@ -162,17 +190,21 @@ const Article = ({ className = '' }) => {
           <figure className="artical-detail">
             <img src={state.imgUrl} alt={state.imgUrl} />
             <div class="main-article">
-                  <div class="left-article">
-                  <h6>
-                      {days()} 
-                      <img src={imageUrl} alt="logo" />
-                      </h6>
+              <div class="left-article">
+                <h6>
+                  {days()}
+                  <img src={imageUrl} alt="logo" />
+                </h6>
+              </div>
+              <div class="right-article">
+                <Link {...linkPropsforhighlight}>
+                  <div className="highlights">
+                    <img src={video_play} style={{ height: '20px' }} />
                   </div>
-                  <div class="right-article">
-                  <p></p>
-                  </div>
-                </div>
-                <hr/>
+                </Link>
+              </div>
+            </div>
+            <hr />
           </figure>
           <p className="artical-detail-box">
             <ContentParsed content={articleInfo._content} />
