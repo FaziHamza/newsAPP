@@ -12,15 +12,21 @@ const DisplayComponent = ({ topic }) => {
   console.log(state)
   // Now you can access the passed state values
   const moreItemName = state?.moreItemName || null;
-  const teamName = state?.Name|| initialload[0].name ;
-  const defaulttopic = topic?.Name || null ;
+  const teamName = state?.Name || initialload[0].name;
+  const defaulttopic = topic?.Name || null;
   const topicKey = state?.topicKey || initialload[0].highlights;
   const topictype = state?.topictype || initialload[0].highlightType;
-  const IsSubtopicVideo = state?.IsSubtopicVideo || initialload[0].isSubtopicVideo;
+  var IsSubtopicVideo ;
+  if (state == undefined) {
+    IsSubtopicVideo = initialload[0].isSubtopicVideo;
+  }
+  else {
+    IsSubtopicVideo = state?.IsSubtopicVideo;
+  }
 
   const logoPath = state?.LogoPath || null;
   const teamLogoPath = state?.LogoTeam || initialload[0].logo;
- const SubTopicId = state?.SubTopicId || initialload[0].subTopicID;
+  const SubTopicId = state?.SubTopicId || initialload[0].subTopicID;
   const TopicId = state?.TopicId;
 
   const linkPropsforhighlight = {
@@ -66,7 +72,7 @@ const DisplayComponent = ({ topic }) => {
 
             </div>
 
-            <div style={{display:'flex'}}>
+            <div style={{ display: 'flex' }}>
               <Link {...linkPropsforpodcast}>
                 <div className="highlights">
                   <img src={podcast} height={'20px'} />
@@ -82,8 +88,8 @@ const DisplayComponent = ({ topic }) => {
           </div>
         </>
       ) : (
-        <h4 className="title">   
-        {teamName}
+        <h4 className="title">
+          {teamName}
         </h4>
 
       )}
