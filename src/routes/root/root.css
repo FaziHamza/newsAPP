@@ -850,3 +850,16 @@ ul {
   height: 20px;
   margin: auto;
 }
+
+.podcast-video{
+  font-family: 'Source Sans 3';
+  font-size: 14px;
+  margin: 3px;
+}
+.podcast-video span{
+  padding-left: 3px;
+}
+
+.underline-hide{
+  text-decoration: none !important;
+}

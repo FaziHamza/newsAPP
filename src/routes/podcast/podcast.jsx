@@ -58,7 +58,19 @@ const PodcastList = () => {
   };
 
   const handleVideoClick = (embedCode) => {
-    setVideoEmbed(embedCode);
+    // Parse the embed code as HTML
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(embedCode, 'text/html');
+    const iframe = doc.querySelector('iframe');
+    // Modify width and height attributes
+    if (iframe) {
+      iframe.width = '100%';
+      iframe.height = '100%';
+    }
+    // Get the modified HTML string
+    const modifiedEmbedCode = doc.documentElement.innerHTML;
+    // Set the modified embed code in the state
+    setVideoEmbed(modifiedEmbedCode);
     setShowModal(true);
   };
 
@@ -79,8 +91,10 @@ const PodcastList = () => {
   let asideHightLights = [];
 
   if (PodcastListsData?.length > 0 && isDesktop === 'desktop') {
-    mainHightLights = PodcastListsData.slice(1, asideHighlightsQuantity);
-    asideHightLights = PodcastListsData.slice(mainHighlightsQuantity);
+    // mainHightLights = PodcastListsData.slice(1, asideHighlightsQuantity);
+    // asideHightLights = PodcastListsData.slice(mainHighlightsQuantity);
+    mainHightLights = PodcastListsData.slice(1, 4);
+    asideHightLights = PodcastListsData.length > 4 ? PodcastListsData.slice(4, 12) : [];
   }
 
   return (

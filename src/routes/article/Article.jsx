@@ -71,13 +71,13 @@ const Article = ({ className = '' }) => {
   const { state } = useLocation();
   const articlevideo = useSelector((state) => state.origin.articlevideo);
   // Now you can access the passed state values
-  const teamName = state?.Name || articlevideo[0].name;
-  const topicKey = state?.topicKey || articlevideo[0].highlights;
-  const topictype = state?.topictype || articlevideo[0].highlightType;
-  const IsSubtopicVideo = state?.IsSubtopicVideo || articlevideo[0].isSubtopicVideo;
-  const teamLogoPath = state?.LogoTeam || articlevideo[0].logo;
-  const SubTopicId = state?.SubTopicId || articlevideo[0].subTopicID;
-
+  const teamName =  articlevideo[0].name;
+  const topicKey =  articlevideo[0].highlights;
+  const topictype = articlevideo[0].highlightType;
+  const teamLogoPath =  articlevideo[0].logo;
+  const SubTopicId = articlevideo[0].subTopicID;
+  var IsSubtopicVideo =articlevideo[0].isSubtopicVideo ;
+  
   const linkPropsforhighlight = {
     to: IsSubtopicVideo ? "/videohighlights" : "/highlights",
     state: {

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import DataNotFound from '../../components/dataNotFound';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { divideByPercentage } from '../../utilities/common';
- import { videHighlight } from '../../utilities/config';
+import { videHighlight } from '../../utilities/config';
 
 const VideoHighlightsList = () => {
   const [showModal, setShowModal] = useState(false);
@@ -20,8 +20,8 @@ const VideoHighlightsList = () => {
   const location = useLocation();
   const { state } = location;
   console.log(JSON.stringify(state));
-  const { topicKey, topicName,topictype,Subtopicid } = state;
-   const thumnbailbaseurl=videHighlight.thumbnailurl ;
+  const { topicKey, topicName, topictype, Subtopicid } = state;
+  const thumnbailbaseurl = videHighlight.thumbnailurl;
   useEffect(() => {
     if (highlightsData?.length) {
       const [forty, sixty] = divideByPercentage(highlightsData.length);
@@ -34,24 +34,24 @@ const VideoHighlightsList = () => {
 
   useEffect(() => {
     const fetchVideoHighlights = async () => {
-        const url = videHighlight.videobaseurl+ "/api/VideoHighlight/GetVideoHighlightBySubtopicIdonly?subtopicId="+Subtopicid;
-        try {
-          const response = await fetch(url);
-          if (response.status === 200) {
-            const res = await response.json();
-            console.log(res.data);
-              // Sorting the data in descending order based on the datetime property
-        const sortedData = res.data.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
-        // Updating the state with the sorted data
-        setVideoHighlightsData(sortedData);
-          } else {
-            console.error(`HTTP Error: ${response.status}`);
-          }
-        } catch (error) {
-          console.error(error);
+      const url = videHighlight.videobaseurl + "/api/VideoHighlight/GetVideoHighlightBySubtopicIdonly?subtopicId=" + Subtopicid;
+      try {
+        const response = await fetch(url);
+        if (response.status === 200) {
+          const res = await response.json();
+          console.log(res.data);
+          // Sorting the data in descending order based on the datetime property
+          const sortedData = res.data.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
+          // Updating the state with the sorted data
+          setVideoHighlightsData(sortedData);
+        } else {
+          console.error(`HTTP Error: ${response.status}`);
         }
+      } catch (error) {
+        console.error(error);
+      }
     };
-    
+
     fetchVideoHighlights();
   }, [state]);
 
@@ -61,7 +61,19 @@ const VideoHighlightsList = () => {
   };
 
   const handleVideoClick = (embedCode) => {
-    setVideoEmbed(embedCode);
+    // Parse the embed code as HTML
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(embedCode, 'text/html');
+    const iframe = doc.querySelector('iframe');
+    // Modify width and height attributes
+    if (iframe) {
+      iframe.width = '100%';
+      iframe.height = '100%';
+    }
+    // Get the modified HTML string
+    const modifiedEmbedCode = doc.documentElement.innerHTML;
+    // Set the modified embed code in the state
+    setVideoEmbed(modifiedEmbedCode);
     setShowModal(true);
   };
 
@@ -104,8 +116,8 @@ const VideoHighlightsList = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-6" style={{textAlign:"center"}}>
-                        <h2>VIDEO</h2>
+                  <div className="col-6" style={{ textAlign: "center" }}>
+                    <h2>VIDEO</h2>
                   </div>
                   <div className="col-3">
                     <div>
@@ -123,14 +135,14 @@ const VideoHighlightsList = () => {
                 </div>
                 <div
                   className="video-banner"
-                  style={{ backgroundImage: `url(${thumnbailbaseurl+highlightsData[0]?.thumbnail})` }}
+                  style={{ backgroundImage: `url(${thumnbailbaseurl + highlightsData[0]?.thumbnail})` }}
                   // style={{ backgroundImage: `url(https://www.scorebat.com/og/m/og1359305.jpeg)` }}
                   onClick={() => handleVideoClick(highlightsData[0].embededCode)}>
                   <i className="fa-solid fa-circle-play"></i>
                 </div>
                 <div className="content">
                   <h5>{highlightsData[0]?.text}</h5>
-                  
+
                   <small>{new Date(highlightsData[0]?.datetime).toLocaleString()}</small>
                 </div>
                 {showMathInfoModal && (
@@ -160,8 +172,8 @@ const VideoHighlightsList = () => {
                   <div key={index} className="secondary-card">
                     <div
                       className="video-banner"
-                  style={{ backgroundImage: `url(${thumnbailbaseurl+ highlight.thumbnail})` }}
-                  //  style={{ backgroundImage: `url(https://www.scorebat.com/og/m/og1359305.jpeg)` }}
+                      style={{ backgroundImage: `url(${thumnbailbaseurl + highlight.thumbnail})` }}
+                      //  style={{ backgroundImage: `url(https://www.scorebat.com/og/m/og1359305.jpeg)` }}
                       onClick={() => handleVideoClick(highlight.embededCode)}>
                       <i className="fa-solid fa-circle-play"></i>
                     </div>
@@ -185,14 +197,14 @@ const VideoHighlightsList = () => {
                     <div key={index} className="secondary-card">
                       <div
                         className="video-banner"
-                             style={{ backgroundImage: `url(${thumnbailbaseurl+highlight.thumbnail})` }}
+                        style={{ backgroundImage: `url(${thumnbailbaseurl + highlight.thumbnail})` }}
                         // style={{ backgroundImage: `url(https://www.scorebat.com/og/m/og1359305.jpeg)` }}
                         onClick={() => handleVideoClick(highlight.embededCode)}>
                         <i className="fa-solid fa-circle-play"></i>
                       </div>
                       <div className="content">
                         <h5>{highlight.text}</h5>
-                       
+
                         <small>{new Date(highlight.datetime).toLocaleString()}</small>
                       </div>
                     </div>
@@ -210,7 +222,7 @@ const VideoHighlightsList = () => {
             <button onClick={handleCloseModal} className="close-button">
               X
             </button>
-            
+
             <div className="video-wrapper" dangerouslySetInnerHTML={{ __html: videoEmbed }} />
           </div>
         </div>

@@ -17,7 +17,7 @@ const DisplayComponent = ({ topic }) => {
   const topicKey = state?.topicKey || initialload[0].highlights;
   const topictype = state?.topictype || initialload[0].highlightType;
   var IsSubtopicVideo ;
-  if (state == undefined) {
+  if (state == undefined || state==null) {
     IsSubtopicVideo = initialload[0].isSubtopicVideo;
   }
   else {
@@ -73,15 +73,17 @@ const DisplayComponent = ({ topic }) => {
             </div>
 
             <div style={{ display: 'flex' }}>
-              <Link {...linkPropsforpodcast}>
-                <div className="highlights">
+              <Link {...linkPropsforpodcast} className='underline-hide'>
+                <div className="highlights podcast-video">
                   <img src={podcast} height={'20px'} />
+                  <span style={{ textDecoration: 'none ',color:'red ' }}>Podcasts</span>
                 </div>
               </Link>
-              <Link {...linkPropsforhighlight}>
-                <div className="highlights">
+              <Link {...linkPropsforhighlight} className='underline-hide'>
+                <div className="highlights podcast-video">
                   <img src={video_play} height={'20px'} />
-                </div>
+                  <span>Videos</span>
+                </div>                
               </Link>
             </div>
 
