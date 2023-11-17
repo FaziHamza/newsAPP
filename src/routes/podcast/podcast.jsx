@@ -39,8 +39,10 @@ const PodcastList = () => {
           const response = await fetch(url);
           if (response.status === 200) {
             const res = await response.json();
-
-            setPodcastListData(res.data);
+          // Sorting the data in descending order based on the datetime property
+            const sortedData = res.data.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
+      
+            setPodcastListData(sortedData);
           } else {
             console.error(`HTTP Error: ${response.status}`);
           }
