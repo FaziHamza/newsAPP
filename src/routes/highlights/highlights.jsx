@@ -19,8 +19,10 @@ const HighlightsList = () => {
   const location = useLocation();
   const { state } = location;
   console.log(JSON.stringify(state));
-  const { topicKey, topicName,topictype } = state;
-
+  var { topicKey, topicName,topictype } = state;
+  if(topictype==='compition'){
+    topictype='competition';
+  }
   useEffect(() => {
     if (highlightsData?.length) {
       const [forty, sixty] = divideByPercentage(highlightsData.length);

@@ -76,7 +76,7 @@ const DisplayComponent = ({ topic }) => {
               <Link {...linkPropsforpodcast} className='underline-hide'>
                 <div className="highlights podcast-video">
                   <img src={podcast} height={'20px'} />
-                  <span style={{ textDecoration: 'none ',color:'red ' }}>Podcasts</span>
+                  <span>Podcasts</span>
                 </div>
               </Link>
               <Link {...linkPropsforhighlight} className='underline-hide'>
