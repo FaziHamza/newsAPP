@@ -19,14 +19,19 @@ export const favouriteMenuReducer = createSlice({
 
         tempState = newArray
       }
-      // localStorage.setItem('favouriteMenu', JSON.stringify(tempState))
+      localStorage.setItem('favouriteMenu', JSON.stringify(tempState))
       return tempState
     },
+    clearFavouriteMenu:(state)=>{
+      localStorage.setItem('favouriteMenu', JSON.stringify([]))
+
+      return []
+    }
   },
 
 });
 
 // Action creators are generated for each case reducer function
-export const { addFavouriteMenu } = favouriteMenuReducer.actions;
+export const { addFavouriteMenu, clearFavouriteMenu } = favouriteMenuReducer.actions;
 
 export default favouriteMenuReducer.reducer;

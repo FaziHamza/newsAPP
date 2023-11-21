@@ -73,6 +73,7 @@ export const addresses = {
 //   siteKeyword: 'ENG',
 //   siteLimit: 12,
 // }
+export const IsMobile=false;
 
 export const videHighlight ={
     thumbnailurl:'https://sportifiedspot.com/',

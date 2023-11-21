@@ -49,7 +49,10 @@ const SectionHeader = ({ title = 'missingTitle', listItems }) => {
 const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const dispatch = useDispatch();
   const addresses = useSelector((state) => state.origin.apiOrigin);
+  const allorigin = useSelector((state) => state.origin);
+  console.log(allorigin)
   const topicwithsubtopic = useSelector((state) => state.origin.topicwithsubtopic);
+  const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const [settingsInfo, windowHref] = useOutletContext();
   const defaultTopic = settingsInfo.Default;
   const { data: tableInfo, status, error, run } = useAsync({ status: 'pending' });
@@ -267,7 +270,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
               </>
             ) : (
               <>
-                <main className="mobileScreen">
+                <main className={ favouriteMenu?.length > 0 ? 'mobileScreen' : 'mobileScreenFavMenu'}>
                   {/* 11 */}
 
                   {tableInfo.length > 0 &&

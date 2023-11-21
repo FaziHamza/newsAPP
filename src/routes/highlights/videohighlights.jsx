@@ -4,7 +4,7 @@ import DataNotFound from '../../components/dataNotFound';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { divideByPercentage } from '../../utilities/common';
 import { videHighlight } from '../../utilities/config';
-
+import { useSelector } from 'react-redux';
 const VideoHighlightsList = () => {
   const [showModal, setShowModal] = useState(false);
   const [videoEmbed, setVideoEmbed] = useState('');
@@ -13,7 +13,7 @@ const VideoHighlightsList = () => {
   const [highlightsData, setVideoHighlightsData] = useState([]);
   const isDesktop = useMediaContext();
   const navigate = useNavigate();
-
+  const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const [mainHighlightsQuantity, setMainHighlightsQuantity] = useState(0);
   const [asideHighlightsQuantity, setAsideHighlightsQuantity] = useState(0);
 
@@ -99,7 +99,7 @@ const VideoHighlightsList = () => {
   }
 
   return (
-    <div className="main-body dark">
+    <div className={`dark ${favouriteMenu?.length > 0 ? 'main-bodyFavmenu ' : 'main-body'}`}>
       <div className="row">
         <div className="col-lg-8">
           <div className={`layout ${isDesktop}`}>

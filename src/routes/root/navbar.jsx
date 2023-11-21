@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dropdown } from '../../compositions';
 import { NavLink, Link } from 'react-router-dom';
 import { SideNav } from '../../compositions';
 import { logo, sportLogoBlack, tennis } from '../../assets';
 import { useMediaContext } from '../../utilities/mediaQuery';
+import { IsMobile } from '../../utilities/config';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavouriteMenu, clearFavouriteMenu } from '../../redux/favouriteMenu';
 
 function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVariant, ...props }) {
- // const navMain = navList.slice(0, inMain);
- // const navMore = navList.slice(inMain, navList.length);
+  const dispatch = useDispatch();
+  // const navMain = navList.slice(0, inMain);
+  // const navMore = navList.slice(inMain, navList.length);
   const [isOpen, setIsOpen] = useState(false);
   const usingScreen = useMediaContext();
   const isDesktop = usingScreen === 'desktop' ? true : false;
@@ -44,7 +48,24 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
     groups[heading].push(item);
     return groups;
   }, {});
-  
+
+  const handleFavouriteMenu = (isChecked, name, link, state) => {
+    // console.log('is check  ', isChecked, name, link, state);
+    dispatch(addFavouriteMenu({ isChecked, name, link, state }));
+  };
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+
+    const minHour = 6;
+    const maxHour = 18;
+    if (currentHour >= minHour && currentHour < maxHour) {
+      setThemeVariant('light');
+    } else {
+      setThemeVariant('dark');
+    }
+  }, []);
   return (
     <div className={themeVariant}>
       <div id="Sidenav" className={`sidenav ${usingScreen} ${isOpen ? 'open' : ''}`}>
@@ -55,9 +76,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
         {Object.entries(groupedNavItems).map(([heading, items]) => (
           <div key={heading}>
             <div class="separator">{heading}</div>
-                        {/* <div className="sidebar-heading">{heading} </div> */}
+            {/* <div className="sidebar-heading">{heading} </div> */}
             {items.map((moreItem) => {
-                            const id = moreItem.topic.name.toLowerCase().replace(/\s+/g, '-');
+              const id = moreItem.topic.name.toLowerCase().replace(/\s+/g, '-');
               const [topicNavType, topicNavTopic, topicNavAddress] = moreItem.topic.news
                 ? [
                     'news',
@@ -103,6 +124,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
 
                     {moreItem.subTopics.length > 0 && (
                       <>
+                        {IsMobile && <span className='my-action-bar'>My  <br/> Action Bar</span>}
                         <i
                           className={`fa-regular ${
                             collapsedIds[id] ? 'fa-chevron-up' : 'fa-chevron-down'
@@ -135,8 +157,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     state={{
                                       address: navAddress,
                                       topicKey: team?.highlights,
-                                      topictype:team?.highlightType,
-                                      IsSubtopicVideo:team?.isSubtopicVideo,
+                                      topictype: team?.highlightType,
+                                      IsSubtopicVideo: team?.isSubtopicVideo,
                                       Name: team.name,
                                       TopicId: team.topicID,
                                       navType,
@@ -155,8 +177,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     to="/highlights"
                                     state={{
                                       topicKey: team?.highlights,
-                                      topictype:team?.highlightType,
-                                      IsSubtopicVideo:team?.isSubtopicVideo,
+                                      topictype: team?.highlightType,
+                                      IsSubtopicVideo: team?.isSubtopicVideo,
                                       topicName: team?.name,
                                       imagesource: moreItem.topic.logo, // Assuming team.LogoTeam is the correct logo path
                                       // Assuming team.LogoTeam is the correct logo path
@@ -173,8 +195,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                   state={{
                                     address: navAddress,
                                     topicKey: team?.highlights,
-                                    topictype:team?.highlightType,
-                                    IsSubtopicVideo:team?.isSubtopicVideo,
+                                    topictype: team?.highlightType,
+                                    IsSubtopicVideo: team?.isSubtopicVideo,
                                     Name: team.name,
                                     TopicId: team.topicID,
                                     navType,
@@ -198,16 +220,49 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                   //fa-light fa-newspaper
                                 )}
                               </a> */}
-
-                              {team.NewsIcon !== null && (
+                              {IsMobile && (
+                                <input
+                                  type="checkbox"
+                                  // checked={favouriteMenu?.some(m=>m?.name ==team?.name)}
+                                  onChange={(e) =>
+                                    handleFavouriteMenu(
+                                      e.target.checked,
+                                      team.name,
+                                      team?.newsIcon ? `/highlights` : `../${navType}/${navTopic}`,
+                                      team?.newsIcon
+                                        ? {
+                                            topicKey: team?.highlights,
+                                            topicName: team?.name,
+                                            // imagesource: moreItem.Topic.Logo, // Assuming team.LogoTeam is the correct logo path
+                                            // Assuming team.LogoTeam is the correct logo path
+                                          }
+                                        : {
+                                            address: navAddress,
+                                            topicKey: team?.Highlights,
+                                            topictype: team?.highlightType,
+                                            IsSubtopicVideo: team?.isSubtopicVideo,
+                                            Name: team.name,
+                                            TopicId: team.topicID,
+                                            navType,
+                                            navTopic,
+                                            moreItemName: moreItem.topic.name,
+                                            SubTopicId: team.subTopicID,
+                                            LogoPath: moreItem.topic.logo,
+                                            LogoTeam: team.logo,
+                                            IsSql: !team.news,
+                                          }
+                                    )
+                                  }></input>
+                              )}
+                              {team.newsIcon !== null && (
                                 <Link
                                   to={`../${navType}/${navTopic}`}
                                   onClick={closeNav}
                                   state={{
                                     address: navAddress,
                                     topicKey: team?.Highlights,
-                                    topictype:team?.highlightType,
-                                    IsSubtopicVideo:team?.isSubtopicVideo,
+                                    topictype: team?.highlightType,
+                                    IsSubtopicVideo: team?.isSubtopicVideo,
                                     Name: team.name,
                                     TopicId: team.topicID,
                                     navType,
@@ -228,8 +283,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                   to="/highlights"
                                   state={{
                                     topicKey: team?.highlights,
-                                    topictype:team?.highlightType,
-                                    IsSubtopicVideo:team?.isSubtopicVideo,
+                                    topictype: team?.highlightType,
+                                    IsSubtopicVideo: team?.isSubtopicVideo,
                                     topicName: team?.name,
                                     imagesource: team.logo, // Assuming team.LogoTeam is the correct logo path
                                     // Assuming team.LogoTeam is the correct logo path
