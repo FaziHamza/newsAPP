@@ -16,7 +16,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   const usingScreen = useMediaContext();
   const isDesktop = usingScreen === 'desktop' ? true : false;
   const filteredNavItems = navList;
-
+  const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const openNav = () => {
     setIsOpen(true);
   };
@@ -223,7 +223,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                               {IsMobile && (
                                 <input
                                   type="checkbox"
-                                  // checked={favouriteMenu?.some(m=>m?.name ==team?.name)}
+                                   checked={favouriteMenu?.some(m=>m?.name ==team?.name)}
                                   onChange={(e) =>
                                     handleFavouriteMenu(
                                       e.target.checked,
