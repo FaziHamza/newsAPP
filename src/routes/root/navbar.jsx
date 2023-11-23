@@ -238,7 +238,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                           }
                                         : {
                                             address: navAddress,
-                                            topicKey: team?.Highlights,
+                                            topicKey: team?.highlights,
                                             topictype: team?.highlightType,
                                             IsSubtopicVideo: team?.isSubtopicVideo,
                                             Name: team.name,
