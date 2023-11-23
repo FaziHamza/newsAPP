@@ -57,31 +57,17 @@ const Root = () => {
       // dispatch(clearFavouriteMenu());
     };
     if (IsMobile) {
-    useEffect(() => {
-      const authToken =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImVkNzgzZDQ4LTg0NzYtNDIyMi01YmJlLTA4ZGJjYWYzNGE2OSIsIlVzZXJJZCI6ImVkNzgzZDQ4LTg0NzYtNDIyMi01YmJlLTA4ZGJjYWYzNGE2OSIsIkVtYWlsIjoiYWRtaW5Ad2ViLmNvbSIsIm5iZiI6MTcwMDU1MzAyOCwiZXhwIjoxNzAwNzI1ODI4LCJpYXQiOjE3MDA1NTMwMjgsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzcwLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzcwLyJ9.71ZGiI9OuQ3d0plxVuVvGnW3D2gFo_A2ZmaazB7kwhs';
-      const apiUrl = `${RootUrl.Baseurl}api/Region/GetRegion`;
-      fetch(apiUrl, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${authToken}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log('All Region', data.data);
-          const dynamicData = data.data;
-          dispatch(setallregion(data.data));
-        })
-        .catch((err) => {
-          console.log('Error From Dummy Request', err);
-        });
-    }, []);
-
     // useEffect(() => {
+    //   const authToken =
+    //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImVkNzgzZDQ4LTg0NzYtNDIyMi01YmJlLTA4ZGJjYWYzNGE2OSIsIlVzZXJJZCI6ImVkNzgzZDQ4LTg0NzYtNDIyMi01YmJlLTA4ZGJjYWYzNGE2OSIsIkVtYWlsIjoiYWRtaW5Ad2ViLmNvbSIsIm5iZiI6MTcwMDU1MzAyOCwiZXhwIjoxNzAwNzI1ODI4LCJpYXQiOjE3MDA1NTMwMjgsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzcwLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzcwLyJ9.71ZGiI9OuQ3d0plxVuVvGnW3D2gFo_A2ZmaazB7kwhs';
     //   const apiUrl = `${RootUrl.Baseurl}api/Region/GetRegion`;
-    //   fetch(apiUrl)
+    //   fetch(apiUrl, {
+    //     method: 'GET',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       Authorization: `Bearer ${authToken}`,
+    //     },
+    //   })
     //     .then((res) => res.json())
     //     .then((data) => {
     //       console.log('All Region', data.data);
@@ -92,6 +78,20 @@ const Root = () => {
     //       console.log('Error From Dummy Request', err);
     //     });
     // }, []);
+
+    useEffect(() => {
+      const apiUrl = `${RootUrl.Baseurl}api/Region/GetRegion`;
+      fetch(apiUrl)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('All Region', data.data);
+          const dynamicData = data.data;
+          dispatch(setallregion(data.data));
+        })
+        .catch((err) => {
+          console.log('Error From Dummy Request', err);
+        });
+    }, []);
   }
 
   useEffect(() => {

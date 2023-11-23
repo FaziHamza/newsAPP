@@ -92,21 +92,31 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
       // Extract the value of 'keyword' from the URL
       const match = url.match(keywordRegex);
       if (match && match[1]) {
-        const keyword = decodeURIComponent(match[1]);
-        console.log(topicwithsubtopic)
-        console.log(keyword);
+        if (topicwithsubtopic !== null) {
+          const keyword = decodeURIComponent(match[1]);
+          console.log(topicwithsubtopic);
+          console.log(keyword);
 
-         // Assuming your object is stored in a variable called 'settingsInfo'
-    const foundItems = topicwithsubtopic
-    .filter(item => item.topic && item.subTopics.some(subtopic => subtopic.keyword.toLowerCase() === keyword.toLowerCase()))
-    .map(item => {
-      const filteredSubTopics = item.subTopics.filter(subtopic => subtopic.keyword.toLowerCase() === keyword.toLowerCase());
-       dispatch(setarticlevideo(filteredSubTopics))
-      return { subTopics: filteredSubTopics };
-    });
-  console.log('Settings Info  ', foundItems);
+          // Assuming your object is stored in a variable called 'settingsInfo'
+          const foundItems = topicwithsubtopic
+            .filter(
+              (item) =>
+                item.topic &&
+                item.subTopics.some(
+                  (subtopic) => subtopic.keyword.toLowerCase() === keyword.toLowerCase()
+                )
+            )
+            .map((item) => {
+              const filteredSubTopics = item.subTopics.filter(
+                (subtopic) => subtopic.keyword.toLowerCase() === keyword.toLowerCase()
+              );
+              dispatch(setarticlevideo(filteredSubTopics));
+              return { subTopics: filteredSubTopics };
+            });
+            console.log('Settings Info  ', foundItems);
+        }
       } else {
-        console.error("Keyword not found in the URL");
+        console.error('Keyword not found in the URL');
       }
     }
     const address =
@@ -166,8 +176,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             to={
                               state
                                 ? mainNewsList[0]?._id
-                                : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${mainNewsList[0]?._id
-                                }`
+                                : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
+                                    mainNewsList[0]?._id
+                                  }`
                             }>
                             <StoryMain
                               idforlogo={mainNewsList[0]?._id}
@@ -199,9 +210,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   state
                                     ? tileItem._id
                                     : `news/${defaultTopic?.Name?.toLowerCase().replace(
-                                      /\s/g,
-                                      '_'
-                                    )}/${tileItem._id}`
+                                        /\s/g,
+                                        '_'
+                                      )}/${tileItem._id}`
                                 }>
                                 <StoryTile
                                   idforlogo={tileItem._id}
@@ -242,9 +253,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                     state
                                       ? tileItem._id
                                       : `news/${defaultTopic?.Name?.toLowerCase().replace(
-                                        /\s/g,
-                                        '_'
-                                      )}/${tileItem._id}`
+                                          /\s/g,
+                                          '_'
+                                        )}/${tileItem._id}`
                                   }>
                                   <StoryTile
                                     idforlogo={tileItem._id}
@@ -270,7 +281,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
               </>
             ) : (
               <>
-                <main className={ favouriteMenu?.length > 0 ? 'mobileScreen' : 'mobileScreenFavMenu'}>
+                <main
+                  className={favouriteMenu?.length > 0 ? 'mobileScreen' : 'mobileScreenFavMenu'}>
                   {/* 11 */}
 
                   {tableInfo.length > 0 &&
@@ -290,8 +302,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 to={
                                   state
                                     ? tileItem._id
-                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
-                                    }`
+                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
+                                        tileItem._id
+                                      }`
                                 }>
                                 <StoryMain
                                   idforlogo={tileItem._id}
@@ -313,8 +326,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 to={
                                   state
                                     ? tileItem._id
-                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
-                                    }`
+                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
+                                        tileItem._id
+                                      }`
                                 }>
                                 <StoryTile
                                   idforlogo={tileItem._id}
