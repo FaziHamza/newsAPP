@@ -223,7 +223,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                               {IsMobile && (
                                 <input
                                   type="checkbox"
-                                  checked={favouriteMenu?.some(m => m?.name == team?.name)}
+                                  // checked={favouriteMenu?.some(m => m?.name == team?.name)}
                                   onChange={(e) =>
                                     handleFavouriteMenu(
                                       e.target.checked,
