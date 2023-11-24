@@ -880,7 +880,17 @@ ul {
   height: 20px;
   margin: 0 4px 2px 0px;
 }
+/* For light theme */
+.bg-light {
+  background-color: #f8f9fa; /* Change this color as needed */
+  color: #000; /* Change this color as needed */
+}
 
+/* For dark theme */
+.bg-dark {
+  background-color: #343a40; /* Change this color as needed */
+  color: #fff; /* Change this color as needed */
+}
 /* For the selected item in light theme */
 .bg-light.active-light {
   background-color: red !important; /* Change this color as needed */
