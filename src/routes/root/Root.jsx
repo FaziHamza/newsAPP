@@ -51,37 +51,23 @@ const Root = () => {
     }
   };
 
-  const handleOrigin = (e) => {
-    console.log(e?.target?.value);
-    dispatch(selectCountry(e?.target?.value));
+  const handleOrigin = (e, id) => {
+    e.preventDefault();
+    dispatch(selectCountry(id));
     // dispatch(clearFavouriteMenu());
   };
   if (IsMobile) {
-    // useEffect(() => {
-    //   const authToken =
-    //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImVkNzgzZDQ4LTg0NzYtNDIyMi01YmJlLTA4ZGJjYWYzNGE2OSIsIlVzZXJJZCI6ImVkNzgzZDQ4LTg0NzYtNDIyMi01YmJlLTA4ZGJjYWYzNGE2OSIsIkVtYWlsIjoiYWRtaW5Ad2ViLmNvbSIsIm5iZiI6MTcwMDU1MzAyOCwiZXhwIjoxNzAwNzI1ODI4LCJpYXQiOjE3MDA1NTMwMjgsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzcwLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzcwLyJ9.71ZGiI9OuQ3d0plxVuVvGnW3D2gFo_A2ZmaazB7kwhs';
-    //   const apiUrl = `${RootUrl.Baseurl}api/Region/GetRegion`;
-    //   fetch(apiUrl, {
-    //     method: 'GET',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       Authorization: `Bearer ${authToken}`,
-    //     },
-    //   })
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       console.log('All Region', data.data);
-    //       const dynamicData = data.data;
-    //       dispatch(setallregion(data.data));
-    //     })
-    //     .catch((err) => {
-    //       console.log('Error From Dummy Request', err);
-    //     });
-    // }, []);
-
     useEffect(() => {
+      const authToken =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImVkNzgzZDQ4LTg0NzYtNDIyMi01YmJlLTA4ZGJjYWYzNGE2OSIsIlVzZXJJZCI6ImVkNzgzZDQ4LTg0NzYtNDIyMi01YmJlLTA4ZGJjYWYzNGE2OSIsIkVtYWlsIjoiYWRtaW5Ad2ViLmNvbSIsIm5iZiI6MTcwMDgxMTQ4MSwiZXhwIjoxNzAwOTg0MjgxLCJpYXQiOjE3MDA4MTE0ODEsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzcwLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzcwLyJ9.hqrB76meJoPr_xwQ8nZvtnvsTidzIapbhPlZvFppGIk';
       const apiUrl = `${RootUrl.Baseurl}api/Region/GetRegion`;
-      fetch(apiUrl)
+      fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${authToken}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           console.log('All Region', data.data);
@@ -92,6 +78,20 @@ const Root = () => {
           console.log('Error From Dummy Request', err);
         });
     }, []);
+
+    // useEffect(() => {
+    //   const apiUrl = `${RootUrl.Baseurl}api/Region/GetRegion`;
+    //   fetch(apiUrl)
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       console.log('All Region', data.data);
+    //       const dynamicData = data.data;
+    //       dispatch(setallregion(data.data));
+    //     })
+    //     .catch((err) => {
+    //       console.log('Error From Dummy Request', err);
+    //     });
+    // }, []);
   }
 
   useEffect(() => {
@@ -219,46 +219,39 @@ const Root = () => {
                     <div className="item">
                       {IsMobile ? (
                         <div className="c-dropdown">
-
                           <div class="dropdown">
-                            <div class="  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div
+                              class="  dropdown-toggle"
+                              type="button"
+                              id="dropdownMenuButton1"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false">
                               <span>
                                 <Logo alt={'logo'} />
                               </span>
                             </div>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                              <li><a class="dropdown-item" href="#">Action</a></li>
-                              <li><a class="dropdown-item" href="#">Another action</a></li>
-                              <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                          </div>
-                          {/* <select
-                              onChange={handleOrigin}
-                              className={`form-select text-uppercase bg-transparent ${
-                                themeVariant == 'light' ? 'text-dark' : 'text-light'
-                              } `}
-                              aria-label="Default select example">
-                              <option
-                                className={themeVariant == 'light' ? 'bg-light' : 'bg-dark'}
-                                disabled
-                                selected
-                                value="">
-                                Select Country
-                              </option>
                               {allregion?.map((m) => {
+                                const isActive = selectedMenu?.id === m?.id;
                                 return (
-                                  <option
+                                  <li
                                     key={m?.id}
-                                    selected={selectedMenu?.id == m?.id}
-                                    className={` text-uppercase ${
-                                      themeVariant == 'light' ? 'bg-light' : 'bg-dark'
+                                    className={`dropdown-item text-uppercase ${
+                                      themeVariant === 'light'
+                                        ? isActive
+                                          ? 'bg-light active-light'
+                                          : 'bg-light'
+                                        : isActive
+                                        ? 'bg-dark active-dark'
+                                        : 'bg-dark'
                                     }`}
-                                    value={`${m?.id}`}>
-                                    {m?.domainName}{' '}
-                                  </option>
+                                    onClick={(e) => handleOrigin(e, m?.id)}>
+                                    {m?.domainName}
+                                  </li>
                                 );
                               })}
-                            </select> */}
+                            </ul>
+                          </div>
                         </div>
                       ) : (
                         <Logo name={'Flag'} href="/" alt={'logo'} />
@@ -286,19 +279,19 @@ const Root = () => {
                           <div className="action-bar">
                             {m?.name?.toLowerCase() === 'top news'
                               ? m?.state?.LogoPath && (
-                                <img
-                                  className="action-bar-img"
-                                  src={m?.state?.LogoPath}
-                                  alt={`${m?.name} logo`}
-                                />
-                              )
+                                  <img
+                                    className="action-bar-img"
+                                    src={m?.state?.LogoPath}
+                                    alt={`${m?.name} logo`}
+                                  />
+                                )
                               : m?.state?.LogoTeam && (
-                                <img
-                                  className="action-bar-img"
-                                  src={m?.state?.LogoTeam}
-                                  alt={`${m?.name} logo`}
-                                />
-                              )}
+                                  <img
+                                    className="action-bar-img"
+                                    src={m?.state?.LogoTeam}
+                                    alt={`${m?.name} logo`}
+                                  />
+                                )}
                           </div>
                           {m?.name?.toLowerCase() == 'top news'
                             ? `${m.name} ${m?.state?.moreItemName}`

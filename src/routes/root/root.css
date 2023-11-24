@@ -880,3 +880,15 @@ ul {
   height: 20px;
   margin: 0 4px 2px 0px;
 }
+
+/* For the selected item in light theme */
+.bg-light.active-light {
+  background-color: red !important; /* Change this color as needed */
+  color: #fff; /* Change this color as needed */
+}
+
+/* For the selected item in dark theme */
+.bg-dark.active-dark {
+  background-color: white !important;
+  color: black !important;
+}
