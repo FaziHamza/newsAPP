@@ -33,8 +33,8 @@ const Root = () => {
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const allregion = useSelector((state) => state?.origin?.allregion);
   const selectedMenu = useSelector((state) => state?.origin?.apiOrigin);
-
   const { pathname } = useLocation();
+  const [filteredFavouriteMenu, setFilteredFavouriteMenu] = useState([]);
   console.log('selectedMenu ', selectedMenu);
 
   const addresses = useSelector((state) => state.origin.apiOrigin);
@@ -123,8 +123,16 @@ const Root = () => {
     if (settingsInfo) {
       dispatch(setFlag(settingsInfo?.url));
       dispatch(settopiwithsubtopic(settingsInfo?.menuItems));
+
+      const subTopicIds = settingsInfo?.menuItems.flatMap((item) =>
+        item.subTopics.map((subtopic) => subtopic.subTopicID)
+      );
+      const filteredMenu = favouriteMenu.filter((item) =>
+      subTopicIds.includes(item.state.SubTopicId)
+    );
+      setFilteredFavouriteMenu(filteredMenu);
+      console.log('filtereremwnu',filteredFavouriteMenu)
     }
-    // Assuming your object is stored in a variable called 'settingsInfo'
     const foundItems = settingsInfo?.menuItems
       .filter(
         (item) =>
@@ -141,7 +149,7 @@ const Root = () => {
         dispatch(setarticlevideo(filteredSubTopics));
         return { subTopics: filteredSubTopics };
       });
-  }, [settingsInfo]);
+  }, [settingsInfo,favouriteMenu]);
 
   function ScrollToActiveTab(id) {
     // Get references to the div and the target element
@@ -261,7 +269,8 @@ const Root = () => {
                 )}
                 <div className="top-bar lg-d-none" id="scrollableDiv">
                   {IsMobile &&
-                    favouriteMenu?.map((m, i) => {
+                    // {favouriteMenu?.some(m => m?.name == team?.name)}
+                    filteredFavouriteMenu?.map((m, i) => {
                       return (
                         <Link
                           key={i}

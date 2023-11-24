@@ -236,6 +236,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                         ? {
                                           topicKey: team?.highlights,
                                           topicName: team?.name,
+                                          SubTopicId: team.subTopicID,
+                                          TopicId: team.topicID
                                           // imagesource: moreItem.Topic.Logo, // Assuming team.LogoTeam is the correct logo path
                                           // Assuming team.LogoTeam is the correct logo path
                                         }
