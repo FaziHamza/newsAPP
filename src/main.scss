@@ -280,9 +280,15 @@ header>div {
 @media only screen and (max-width: 768px) {
     .suggested-card .content p {
         display: -webkit-box;
-        -webkit-line-clamp: 5;
+        -webkit-line-clamp: 3;
+        font-size: 12px;
         -webkit-box-orient: vertical;
     }
+
+    .suggested-card {
+        min-height: auto !important;
+    }
+
 }
 
 @media only screen and (max-width: 1023px) {
@@ -957,7 +963,7 @@ h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #c1020534;
+    background: #c10206;
 }
 
 .hyusa {
@@ -1033,4 +1039,9 @@ h6 {
         background: #171a1e !important;
         border: 1px solid #f5f5f572;
     }
+
+    .topic img {
+        filter: invert(1);
+    }
+
 }
