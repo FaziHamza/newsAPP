@@ -23,6 +23,7 @@ export const favouriteMenuReducer = createSlice({
       return tempState
     },
     clearFavouriteMenu:(state)=>{
+      
       localStorage.setItem('favouriteMenu', JSON.stringify([]))
 
       return []

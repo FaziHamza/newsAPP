@@ -33,6 +33,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
       setThemeVariant('light');
     }
   };
+  const ClearStorage=()=>{
+   dispatch(clearFavouriteMenu());
+  }
   const toggleCollapse = (id) => {
     setCollapsedIds((prev) => ({
       ...prev,
@@ -313,6 +316,10 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
               }`}
             onClick={() => toggleTheme('switch')}
           />
+        </div>
+        <div className="nav-item">
+          <div className="flx">Clear Cache</div>
+          <i class="fa-duotone fa-trash" onClick={()=>ClearStorage()}></i>
         </div>
       </div>
       <span style={{ fontSize: '20px', cursor: 'pointer', color: 'white' }} onClick={openNav}>
