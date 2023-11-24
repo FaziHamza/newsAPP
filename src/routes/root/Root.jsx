@@ -50,13 +50,13 @@ const Root = () => {
       setThemeVariant(valueOne);
     }
   };
- 
-    const handleOrigin = (e) => {
-      console.log(e?.target?.value);
-      dispatch(selectCountry(e?.target?.value));
-      // dispatch(clearFavouriteMenu());
-    };
-    if (IsMobile) {
+
+  const handleOrigin = (e) => {
+    console.log(e?.target?.value);
+    dispatch(selectCountry(e?.target?.value));
+    // dispatch(clearFavouriteMenu());
+  };
+  if (IsMobile) {
     // useEffect(() => {
     //   const authToken =
     //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImVkNzgzZDQ4LTg0NzYtNDIyMi01YmJlLTA4ZGJjYWYzNGE2OSIsIlVzZXJJZCI6ImVkNzgzZDQ4LTg0NzYtNDIyMi01YmJlLTA4ZGJjYWYzNGE2OSIsIkVtYWlsIjoiYWRtaW5Ad2ViLmNvbSIsIm5iZiI6MTcwMDU1MzAyOCwiZXhwIjoxNzAwNzI1ODI4LCJpYXQiOjE3MDA1NTMwMjgsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzcwLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzcwLyJ9.71ZGiI9OuQ3d0plxVuVvGnW3D2gFo_A2ZmaazB7kwhs';
@@ -218,12 +218,21 @@ const Root = () => {
                     </div>
                     <div className="item">
                       {IsMobile ? (
-                        <div className="d-flex justify-content-between align-items-center mx-4">
-                          <div className="d-flex hyusa">
-                            <span>
-                              <Logo alt={'logo'} />
-                            </span>
-                            <select
+                        <div className="c-dropdown">
+
+                          <div class="dropdown">
+                            <div class="  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                              <span>
+                                <Logo alt={'logo'} />
+                              </span>
+                            </div>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li><a class="dropdown-item" href="#">Action</a></li>
+                              <li><a class="dropdown-item" href="#">Another action</a></li>
+                              <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                          </div>
+                          {/* <select
                               onChange={handleOrigin}
                               className={`form-select text-uppercase bg-transparent ${
                                 themeVariant == 'light' ? 'text-dark' : 'text-light'
@@ -249,8 +258,7 @@ const Root = () => {
                                   </option>
                                 );
                               })}
-                            </select>
-                          </div>
+                            </select> */}
                         </div>
                       ) : (
                         <Logo name={'Flag'} href="/" alt={'logo'} />
@@ -278,19 +286,19 @@ const Root = () => {
                           <div className="action-bar">
                             {m?.name?.toLowerCase() === 'top news'
                               ? m?.state?.LogoPath && (
-                                  <img
-                                    className="action-bar-img"
-                                    src={m?.state?.LogoPath}
-                                    alt={`${m?.name} logo`}
-                                  />
-                                )
+                                <img
+                                  className="action-bar-img"
+                                  src={m?.state?.LogoPath}
+                                  alt={`${m?.name} logo`}
+                                />
+                              )
                               : m?.state?.LogoTeam && (
-                                  <img
-                                    className="action-bar-img"
-                                    src={m?.state?.LogoTeam}
-                                    alt={`${m?.name} logo`}
-                                  />
-                                )}
+                                <img
+                                  className="action-bar-img"
+                                  src={m?.state?.LogoTeam}
+                                  alt={`${m?.name} logo`}
+                                />
+                              )}
                           </div>
                           {m?.name?.toLowerCase() == 'top news'
                             ? `${m.name} ${m?.state?.moreItemName}`

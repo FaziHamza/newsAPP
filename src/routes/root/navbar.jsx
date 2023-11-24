@@ -81,15 +81,15 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
               const id = moreItem.topic.name.toLowerCase().replace(/\s+/g, '-');
               const [topicNavType, topicNavTopic, topicNavAddress] = moreItem.topic.news
                 ? [
-                    'news',
-                    moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
-                    moreItem.topic.news,
-                  ]
+                  'news',
+                  moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
+                  moreItem.topic.news,
+                ]
                 : [
-                    'articles',
-                    moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
-                    moreItem.topic.articles,
-                  ];
+                  'articles',
+                  moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
+                  moreItem.topic.articles,
+                ];
 
               return (
                 <div className="try" key={moreItem.topic.name.toUpperCase()}>
@@ -121,19 +121,19 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                       </Link> */}
                       {moreItem.topic.name}
                     </div>
-
-                    {moreItem.subTopics.length > 0 && (
-                      <>
-                        {IsMobile && <span className='my-action-bar'>My  <br/> Action Bar</span>}
-                        <i
-                          className={`fa-regular ${
-                            collapsedIds[id] ? 'fa-chevron-up' : 'fa-chevron-down'
-                          } chevron`}
-                          onClick={() => toggleCollapse(id)}
+                    <div className='action-bar-icon'>
+                      {moreItem.subTopics.length > 0 && (
+                        <>
+                          {IsMobile && <span className='my-action-bar'>My Action Bar</span>}
+                          <i
+                            className={`fa-regular ${collapsedIds[id] ? 'fa-chevron-up' : 'fa-chevron-down'
+                              } chevron`}
+                            onClick={() => toggleCollapse(id)}
                           // onClick={() => setThemeVariant()}
-                        />
-                      </>
-                    )}
+                          />
+                        </>
+                      )}
+                    </div>
                   </div>
                   <div id={id} className={`collapse ${collapsedIds[id] ? 'show' : ''}`}>
                     <ul className="nav-item-sub-child">
@@ -141,10 +141,10 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                         const [navType, navTopic, navAddress] = team.news
                           ? ['news', team.name.toLowerCase().replace(/\s/g, '_'), team.news]
                           : [
-                              'articles',
-                              team.name.toLowerCase().replace(/\s/g, '_'),
-                              team.articles,
-                            ];
+                            'articles',
+                            team.name.toLowerCase().replace(/\s/g, '_'),
+                            team.articles,
+                          ];
                         return (
                           <li key={team.name} className="nav-item-sub-child-content">
                             <div>
@@ -223,7 +223,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                               {IsMobile && (
                                 <input
                                   type="checkbox"
-                                   checked={favouriteMenu?.some(m=>m?.name ==team?.name)}
+                                  checked={favouriteMenu?.some(m => m?.name == team?.name)}
                                   onChange={(e) =>
                                     handleFavouriteMenu(
                                       e.target.checked,
@@ -231,26 +231,26 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                       team?.newsIcon ? `/highlights` : `../${navType}/${navTopic}`,
                                       team?.newsIcon
                                         ? {
-                                            topicKey: team?.highlights,
-                                            topicName: team?.name,
-                                            // imagesource: moreItem.Topic.Logo, // Assuming team.LogoTeam is the correct logo path
-                                            // Assuming team.LogoTeam is the correct logo path
-                                          }
+                                          topicKey: team?.highlights,
+                                          topicName: team?.name,
+                                          // imagesource: moreItem.Topic.Logo, // Assuming team.LogoTeam is the correct logo path
+                                          // Assuming team.LogoTeam is the correct logo path
+                                        }
                                         : {
-                                            address: navAddress,
-                                            topicKey: team?.highlights,
-                                            topictype: team?.highlightType,
-                                            IsSubtopicVideo: team?.isSubtopicVideo,
-                                            Name: team.name,
-                                            TopicId: team.topicID,
-                                            navType,
-                                            navTopic,
-                                            moreItemName: moreItem.topic.name,
-                                            SubTopicId: team.subTopicID,
-                                            LogoPath: moreItem.topic.logo,
-                                            LogoTeam: team.logo,
-                                            IsSql: !team.news,
-                                          }
+                                          address: navAddress,
+                                          topicKey: team?.highlights,
+                                          topictype: team?.highlightType,
+                                          IsSubtopicVideo: team?.isSubtopicVideo,
+                                          Name: team.name,
+                                          TopicId: team.topicID,
+                                          navType,
+                                          navTopic,
+                                          moreItemName: moreItem.topic.name,
+                                          SubTopicId: team.subTopicID,
+                                          LogoPath: moreItem.topic.logo,
+                                          LogoTeam: team.logo,
+                                          IsSql: !team.news,
+                                        }
                                     )
                                   }></input>
                               )}
@@ -309,9 +309,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
         <div className="nav-item">
           <div className="flx">Color palette</div>
           <i
-            className={`${
-              collapsedIds['switch'] ? 'fa-solid fa-toggle-on' : 'fa-solid fa-toggle-off'
-            }`}
+            className={`${collapsedIds['switch'] ? 'fa-solid fa-toggle-on' : 'fa-solid fa-toggle-off'
+              }`}
             onClick={() => toggleTheme('switch')}
           />
         </div>
