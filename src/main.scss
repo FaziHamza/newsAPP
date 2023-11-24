@@ -208,9 +208,8 @@ header>div {
 
 .suggested-card {
     width: 100%;
-    /* min-height: 200px; */
     padding: 10px;
-    border-radius: 6px;
+    border-radius: 4px;
     background: white;
     display: flex;
     justify-content: space-evenly;
@@ -301,7 +300,7 @@ header>div {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border-radius: 4%;
+    border-radius: 3px;
 }
 
 .suggested-card.tile-m.main-list .banner img {
@@ -731,9 +730,7 @@ h6 {
     }
 
 
-    .suggested-card .banner img {
-        height: auto;
-    }
+
 
 }
 
