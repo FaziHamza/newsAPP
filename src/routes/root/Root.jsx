@@ -124,14 +124,14 @@ const Root = () => {
       dispatch(setFlag(settingsInfo?.url));
       dispatch(settopiwithsubtopic(settingsInfo?.menuItems));
 
-    //   const subTopicIds = settingsInfo?.menuItems.flatMap((item) =>
-    //     item.subTopics.map((subtopic) => subtopic.subTopicID)
-    //   );
-    //   const filteredMenu = favouriteMenu.filter((item) =>
-    //   subTopicIds.includes(item.state.SubTopicId)
-    // );
-    //   setFilteredFavouriteMenu(filteredMenu);
-    //   console.log('filtereremwnu',filteredFavouriteMenu)
+      const subTopicIds = settingsInfo?.menuItems.flatMap((item) =>
+        item.subTopics.map((subtopic) => subtopic.subTopicID)
+      );
+      const filteredMenu = favouriteMenu.filter((item) =>
+      subTopicIds.includes(item.state.SubTopicId)
+    );
+      setFilteredFavouriteMenu(filteredMenu);
+      console.log('filtereremwnu',filteredFavouriteMenu)
     //favouriteMenu
     }
     const foundItems = settingsInfo?.menuItems
@@ -150,7 +150,7 @@ const Root = () => {
         dispatch(setarticlevideo(filteredSubTopics));
         return { subTopics: filteredSubTopics };
       });
-  }, [settingsInfo]);
+  }, [settingsInfo,favouriteMenu]);
 
   function ScrollToActiveTab(id) {
     // Get references to the div and the target element
@@ -271,7 +271,7 @@ const Root = () => {
                 <div className="top-bar lg-d-none" id="scrollableDiv">
                   {IsMobile &&
                     // {favouriteMenu?.some(m => m?.name == team?.name)}
-                    favouriteMenu?.map((m, i) => {
+                    filteredFavouriteMenu?.map((m, i) => {
                       return (
                         <Link
                           key={i}
