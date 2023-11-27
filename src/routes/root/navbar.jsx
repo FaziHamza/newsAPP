@@ -131,7 +131,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                     <div className="action-bar-icon">
                       {moreItem.subTopics.length > 0 && (
                         <>
-                          {IsMobile && <span className="my-action-bar">My Action Bar</span>}
+                          {IsMobile && collapsedIds[id] &&  <span className="my-action-bar">My Action Bar</span>}
                           <i
                             className={`fa-regular ${
                               collapsedIds[id] ? 'fa-chevron-up' : 'fa-chevron-down'
@@ -220,7 +220,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                 </Link>
                               )}
                             </div>
-                            <div className="icons">
+                            <div className="icons" style={{ paddingRight: team.newsIcon !== "" ? '15px' : '46px' ,display:'flex'}}>
                               {/* 
                               <a href="">
                                 {team.NewsIcon !== null && (
@@ -266,7 +266,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     )
                                   }></input>
                               )}
-                              {team.newsIcon !== null && (
+                              {team.newsIcon !== "" && (
                                 <Link
                                   to={`../${navType}/${navTopic}`}
                                   onClick={closeNav}
