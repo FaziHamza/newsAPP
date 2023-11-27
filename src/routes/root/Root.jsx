@@ -50,7 +50,11 @@ const Root = () => {
       setThemeVariant(valueOne);
     }
   };
-
+ const getBaseUrlFromStorage=() =>{
+    const storedRegion = localStorage.getItem('selectedRegion');
+    var parsedRegion = storedRegion ? JSON.parse(storedRegion) : null;
+    return parsedRegion ? parsedRegion.hostName : null;
+}
   const handleOrigin = (e, id) => {
     e.preventDefault();
     dispatch(selectCountry(id));
@@ -95,11 +99,15 @@ const Root = () => {
   }
 
   useEffect(() => {
-    let hostName = window.location.hostname;
+   // let hostName = window.location.hostname;
+    var hostName = getBaseUrlFromStorage();
+    if(hostName===null || hostName===undefined){
+      hostName=RootUrl.HostName;
+    }
     fetchGetFunction(
       // `https://www.sportspotengland.dev`
       // `http://208.109.188.83:8042/api/Region/GetRegionByHostName?hostName=localhost`
-      `${RootUrl.Baseurl}api/Region/GetRegionByHostName?hostName=${RootUrl.HostName}`
+      `${RootUrl.Baseurl}api/Region/GetRegionByHostName?hostName=${hostName}`
     )
       .then((res) => {
         console.log('Responce From Dummy Request ', res);

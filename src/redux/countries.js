@@ -38,10 +38,20 @@ export const countryReducer = createSlice({
   initialState,
   reducers: {
     selectCountry: (state, action) => {
-       let tempState = state;
-       const newObj = tempState?.allregion.find((s) => s.id == action?.payload);
-       tempState.apiOrigin = newObj;
-       return tempState;
+      //  let tempState = state;
+      //  const newObj = tempState?.allregion.find((s) => s.id == action?.payload);
+      //  tempState.apiOrigin = newObj;
+      //  return tempState;
+      let tempState = { ...state }; // Create a shallow copy to avoid modifying the original state directly
+      // Find the selected region based on the payload ID
+      const selectedRegion = tempState?.allregion.find((region) => region.id === action?.payload);
+      // Update the state with the selected region
+      tempState.apiOrigin = selectedRegion;
+      // Save the selected region information to localStorage
+      if (selectedRegion) {
+        localStorage.setItem('selectedRegion', JSON.stringify(selectedRegion));
+      }
+      return tempState;
     },
     setFlag: (state, action) => {
       let tempState = state;
@@ -79,12 +89,13 @@ export const countryReducer = createSlice({
 // Action creators are generated for each case reducer function
 export const {
   selectCountry,
+  getSelectedRegionFromStorage,
   setFlag,
   setApiOrigin,
   setinitialload,
   setarticlevideo,
   settopiwithsubtopic,
-  setallregion
+  setallregion,
 } = countryReducer.actions;
 
 export default countryReducer.reducer;
