@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useOutletContext } from 'react-router-dom';
+import { Link, useLocation, useOutletContext,useNavigate } from 'react-router-dom';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { useAsync } from '../../utilities/asyncReducer';
 import { fetchNewsTable } from '../../utilities/fetch';
@@ -48,6 +48,7 @@ const SectionHeader = ({ title = 'missingTitle', listItems }) => {
 
 const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const addresses = useSelector((state) => state.origin.apiOrigin);
   const allorigin = useSelector((state) => state.origin);
   console.log(allorigin)
@@ -57,13 +58,40 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const defaultTopic = settingsInfo.Default;
   const { data: tableInfo, status, error, run } = useAsync({ status: 'pending' });
   const { state } = useLocation();
-  // console.log(state.Name)
+  const topicKey=state?.topicKey||null;
+  const topictype=state?.topictype||null;
+  const teamName = state?.Name||null;
+  const teamLogoPath = state?.LogoTeam||null;
+  const SubTopicId = state?.SubTopicId||null;
+  const subtopicvideo = state?.IsSubtopicVideo;
+
   const [promoVisible, setPromoVisible] = useState(false);
   const isDesktop = useMediaContext();
   const themeVariant = useThemeContext();
   const [mainNewsList, setMainNewsList] = useState([]);
   const [asideNewsList, setAsideNewsList] = useState([]);
+  const [shouldNavigate, setShouldNavigate] = useState(false);
 
+  const linkPropsforhighlight = {
+    to: subtopicvideo ? "/videohighlights" : "/highlights",
+    state: {
+      topicKey,
+      topictype,
+      topicName: teamName,
+      imagesource: teamLogoPath,
+      Subtopicid: SubTopicId
+    },
+  };
+  useEffect(() => {
+    if (shouldNavigate) {
+      try {
+        navigate(linkPropsforhighlight.to, { state: linkPropsforhighlight.state });
+      } catch (error) {
+        console.error('Error during navigation:', error);
+        // Handle the error as needed
+      }
+    }
+  }, [shouldNavigate, linkPropsforhighlight, navigate]);
   useEffect(() => {
     if (tableInfo?.length > 0) {
       let mainList = tableInfo || [];
@@ -76,6 +104,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
 
       setMainNewsList(mainList);
       setAsideNewsList(asideList);
+    }
+    if(tableInfo?.length===0){
+      setShouldNavigate(true)
     }
   }, [tableInfo]);
 

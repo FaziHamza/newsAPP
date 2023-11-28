@@ -131,7 +131,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                     <div className="action-bar-icon">
                       {moreItem.subTopics.length > 0 && (
                         <>
-                          {IsMobile && collapsedIds[id] &&  <span className="my-action-bar">My Action Bar</span>}
+                          {IsMobile && collapsedIds[id] &&  <span className="my-action-bar">{moreItem.topic.actionBar}</span>}
                           <i
                             className={`fa-regular ${
                               collapsedIds[id] ? 'fa-chevron-up' : 'fa-chevron-down'
@@ -157,8 +157,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                           <li key={team.name} className="nav-item-sub-child-content">
                             <div>
                               {/* Check if team.VideoIcon is not null and team.NewsIcon is null */}
-                              {team.videoIcon !== null ? (
-                                team.newsIcon !== null ? (
+                              {team.videoIcon !== "" ? (
+                                team.newsIcon !== "" ? (
                                   <Link
                                     to={`../${navType}/${navTopic}`}
                                     onClick={closeNav}
