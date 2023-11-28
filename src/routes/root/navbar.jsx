@@ -235,20 +235,40 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     (m) => m?.state.SubTopicId == team?.subTopicID
                                   )}
                                   onChange={(e) =>
+                                    // handleFavouriteMenu(
+                                    //   e.target.checked,
+                                    //   team.name,
+                                    //   team?.newsIcon ? `/highlights` : `../${navType}/${navTopic}`,
+                                    //   team?.newsIcon
+                                    //     ? {
+                                    //         topicKey: team?.highlights,
+                                    //         topicName: team?.name,
+                                    //         SubTopicId: team.subTopicID,
+                                    //         TopicId: team.topicID,
+                                    //         // imagesource: moreItem.Topic.Logo, // Assuming team.LogoTeam is the correct logo path
+                                    //         // Assuming team.LogoTeam is the correct logo path
+                                    //       }
+                                    //     : {
+                                    //         address: navAddress,
+                                    //         topicKey: team?.highlights,
+                                    //         topictype: team?.highlightType,
+                                    //         IsSubtopicVideo: team?.isSubtopicVideo,
+                                    //         Name: team.name,
+                                    //         TopicId: team.topicID,
+                                    //         navType,
+                                    //         navTopic,
+                                    //         moreItemName: moreItem.topic.name,
+                                    //         SubTopicId: team.subTopicID,
+                                    //         LogoPath: moreItem.topic.logo,
+                                    //         LogoTeam: team.logo,
+                                    //         IsSql: !team.news,
+                                    //       }
+                                    // )
                                     handleFavouriteMenu(
                                       e.target.checked,
                                       team.name,
-                                      team?.newsIcon ? `/highlights` : `../${navType}/${navTopic}`,
-                                      team?.newsIcon
-                                        ? {
-                                            topicKey: team?.highlights,
-                                            topicName: team?.name,
-                                            SubTopicId: team.subTopicID,
-                                            TopicId: team.topicID,
-                                            // imagesource: moreItem.Topic.Logo, // Assuming team.LogoTeam is the correct logo path
-                                            // Assuming team.LogoTeam is the correct logo path
-                                          }
-                                        : {
+                                       `../${navType}/${navTopic}`,
+                                     {
                                             address: navAddress,
                                             topicKey: team?.highlights,
                                             topictype: team?.highlightType,
