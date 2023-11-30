@@ -917,13 +917,14 @@ h6 {
 
 
 .top-bar a.active {
-    background: rgba(255, 255, 255, 0.351);
+    background: white ;
+    color: #000 ;
     /* color: black !important; */
     /* border-radius: 5px 5px 0px 0px; */
 }
 
 .dark-theme .top-bar a.active {
-    background: rgb(46, 46, 46);
+    background: rgb(46, 46, 46) !important;
 }
 
 .dark-theme .hyusa {
@@ -942,7 +943,8 @@ h6 {
     align-items: center;
     justify-content: start;
     text-decoration: none;
-    color: #fff !important;
+    // color: #fff !important;
+    color: rgb(158, 13, 13) !important;
     padding: 10px 12px;
     font-size: 14px;
 }

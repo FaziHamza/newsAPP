@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DataNotFound = () => {
+const DataNotFound = ({ customMessage }) => {
     return (
         <div style={{
             display: 'flex',
@@ -10,7 +10,7 @@ const DataNotFound = () => {
             height: '100vh',
             textAlign: 'center'
         }}>
-            <h1>Data Not Found</h1>
+            <h1> {customMessage} Data Not Found</h1>
             <p>We couldn't find the data you're looking for.</p>
         </div>
     );

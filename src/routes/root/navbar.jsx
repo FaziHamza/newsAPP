@@ -176,6 +176,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                       LogoPath: moreItem.topic.menuFlag,
                                       LogoTeam: team.logo,
                                       IsSql: !team.news,
+                                      SubttopicHeadline:team.subtopicHeadline
                                     }}
                                     name={team.name}>
                                     {team.name}
@@ -188,7 +189,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                       topictype: team?.highlightType,
                                       IsSubtopicVideo: team?.isSubtopicVideo,
                                       topicName: team?.name,
-                                      imagesource: moreItem.topic.logo, // Assuming team.LogoTeam is the correct logo path
+                                      imagesource: moreItem.topic.logo,
+                                      SubttopicHeadline:team.subtopicHeadline // Assuming team.LogoTeam is the correct logo path
                                       // Assuming team.LogoTeam is the correct logo path
                                     }}
                                     onClick={closeNav}
@@ -214,6 +216,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     LogoPath: moreItem.topic.logo,
                                     LogoTeam: team.logo,
                                     IsSql: !team.news,
+                                    SubttopicHeadline:team.subtopicHeadline
                                   }}
                                   name={team.name}>
                                   {team.name}
@@ -282,6 +285,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                             LogoPath: moreItem.topic.logo,
                                             LogoTeam: team.logo,
                                             IsSql: !team.news,
+                                            SubttopicHeadline:team.subtopicHeadline
                                           }
                                     )
                                   }></input>
@@ -304,6 +308,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     LogoPath: moreItem.topic.logo,
                                     LogoTeam: team.logo,
                                     IsSql: !team.news,
+                                    SubttopicHeadline:team.subtopicHeadline
                                   }}
                                   name={team.name}>
                                   <i className={team.newsIcon}></i>
@@ -318,7 +323,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     topictype: team?.highlightType,
                                     IsSubtopicVideo: team?.isSubtopicVideo,
                                     topicName: team?.name,
-                                    imagesource: team.logo, // Assuming team.LogoTeam is the correct logo path
+                                    imagesource: team.logo,
+                                    SubttopicHeadline:team.subtopicHeadline  // Assuming team.LogoTeam is the correct logo path
                                     // Assuming team.LogoTeam is the correct logo path
                                   }}
                                   onClick={closeNav}
