@@ -37,7 +37,7 @@ const HighlightsList = () => {
     const fetchHighlights = async () => {
       if (topicKey) {
  
-        const url = `https://www.scorebat.com/video-api/v3/${topictype}/${topicKey}/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy`;
+        const url = `https://www.scorebat.com/video-api/v3/${topictype}/${topicKey.replace(/\s/g, '')}/?token=ODE3NDNfMTY5MjUxODgyM18yNDEwMTkwOTQzNGM3NDIxY2MwZjZkNjM3NzNjMGY4NjFmZmNjZTYy`;
 
         try {
           const response = await fetch(url);
@@ -76,7 +76,7 @@ const HighlightsList = () => {
   const LogoPath = state?.imagesource;
 
   if(highlightsData==null || highlightsData==undefined){
-    return <DataNotFound />;
+    return <DataNotFound customMessage={'Video'}/>;
   }
   if (highlightsData.length === 0) {
     return <div>Loading...</div>;

@@ -106,7 +106,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
       setAsideNewsList(asideList);
     }
     if(tableInfo?.length===0){
-      setShouldNavigate(false)
+      setShouldNavigate(true)
     }
   }, [tableInfo]);
 

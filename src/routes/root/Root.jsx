@@ -35,7 +35,7 @@ const Root = () => {
   const selectedMenu = useSelector((state) => state?.origin?.apiOrigin);
   const { pathname } = useLocation();
   const [filteredFavouriteMenu, setFilteredFavouriteMenu] = useState([]);
-  console.log('selectedMenu ', selectedMenu);
+  const decodedPathname = decodeURIComponent(pathname);
 
   const addresses = useSelector((state) => state.origin.apiOrigin);
   const { data: settingsInfo, status, error, run } = useAsync({ status: 'pending' });
@@ -285,7 +285,7 @@ const Root = () => {
                           key={i}
                           id={`targetId-${i}`}
                           className={
-                            pathname == `/${m?.state?.navType}/${m?.state?.navTopic}`
+                            decodedPathname == `/${m?.state?.navType}/${m?.state?.navTopic}`
                               ? 'active fw-bold tab'
                               : 'tab'
                           }
