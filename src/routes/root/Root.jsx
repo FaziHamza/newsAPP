@@ -313,7 +313,7 @@ const Root = () => {
                           </div>
                           {m?.name?.toLowerCase() == 'top news'
                             ? `${m.name} ${m?.state?.moreItemName}`
-                            : m?.name}
+                            : m?.name.replace('SHL', '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0')}
 
                           {/* {pathname == `/${m?.state?.navType}/${m?.state?.navTopic}` && (
                           <img className=" imgg" src={video_play} alt={`${m?.name} logo`} />
