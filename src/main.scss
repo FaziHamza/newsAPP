@@ -191,6 +191,9 @@ header>div {
 
 }
 
+.dark-theme .league-card .content p img {
+    filter: invert(1);
+}
 .league-card .content p img {
     height: 20px;
 }
@@ -216,6 +219,9 @@ header>div {
     margin-bottom: 10px;
 }
 
+.dark-theme .suggested-card h6 img {
+    filter: invert(1);
+}
 .suggested-card h6 img {
     height: 20px;
 
