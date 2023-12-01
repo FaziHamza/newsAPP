@@ -12,11 +12,26 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   const dispatch = useDispatch();
   // const navMain = navList.slice(0, inMain);
   // const navMore = navList.slice(inMain, navList.length);
+  const [colorState, setColorState] = useState({});
+  const [cacheState, setCacheState] = useState({});
+  const regionjson = useSelector((state) => state.origin.apiOrigin.regionJson);
+  const jsonArray = JSON.parse(regionjson);
   const [isOpen, setIsOpen] = useState(false);
   const usingScreen = useMediaContext();
   const isDesktop = usingScreen === 'desktop' ? true : false;
   const filteredNavItems = navList;
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
+  useEffect(() => {
+    // Ensure regionjson is an array
+    if (Array.isArray(jsonArray)) {
+      // Filter and set state based on "type"
+      const colorObject = jsonArray.find(item => item.type === "color");
+      const cacheObject = jsonArray.find(item => item.type === "cache");
+
+      if (colorObject) setColorState(colorObject);
+      if (cacheObject) setCacheState(cacheObject);
+    }
+  }, []);
   const openNav = () => {
     setIsOpen(true);
   };
@@ -344,19 +359,28 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
           </div>
         ))}
         <div class="separator">Settings</div>
+        {colorState.value &&
         <div className="nav-item">
-          <div className="flx">Color palette</div>
-          <i
+          <div className="flx">{colorState.name}</div>  
+          {/* <i
             className={`${
               collapsedIds['switch'] ? 'fa-solid fa-toggle-on' : 'fa-solid fa-toggle-off'
             }`}
             onClick={() => toggleTheme('switch')}
+          /> */}
+           <i
+            className={colorState.icon}
+            onClick={() => toggleTheme('switch')}
           />
         </div>
+        }
+        {cacheState.value &&
         <div className="nav-item">
-          <div className="flx">Clear Cache</div>
-          <i class="fa-duotone fa-trash" onClick={() => ClearStorage(filteredMenuIds)}></i>
+          <div className="flx">{cacheState.name}</div>
+          {/* <i class="fa-duotone fa-trash" onClick={() => ClearStorage(filteredMenuIds)}></i> */}
+          <i className={cacheState.icon} onClick={() => ClearStorage(filteredMenuIds)}></i>
         </div>
+        }
       </div>
       <span style={{ fontSize: '20px', cursor: 'pointer', color: 'white' }} onClick={openNav}>
         &#9776;

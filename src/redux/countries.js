@@ -15,6 +15,7 @@ const initialState = {
     baseUrlApi: null,
     siteLang: null,
     siteKeyword: null,
+    regionJson:null,
     siteLimit: 12,
   },
   initialload: {

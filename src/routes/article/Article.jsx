@@ -70,6 +70,7 @@ const Article = ({ className = '' }) => {
 
   const { state } = useLocation();
   const articlevideo = useSelector((state) => state.origin.articlevideo);
+  const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   // Now you can access the passed state values
   const teamName =  articlevideo[0].name;
   const topicKey =  articlevideo[0].highlights;
@@ -172,7 +173,7 @@ const Article = ({ className = '' }) => {
           {/* <AsideArticle /> */}
         </>
       ) : (
-        <main className={`article ${className}`.trim()}>
+        <main className={`article ${className}`.trim() + ` ${favouriteMenu?.length > 0 ? 'mobileScreen' : 'mobileScreenFavMenu'}`}>
           <div className="row">
             <div className="col-11">
               <h2 dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>
