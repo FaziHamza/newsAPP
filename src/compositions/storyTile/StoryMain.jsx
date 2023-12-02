@@ -96,7 +96,7 @@ const DisplayComponent = ({ topic }) => {
             </div>
 
             <div style={{ display: 'flex' }}>
-              {isShowPodcastIcon && IsSubtopicVideo &&
+              {isShowPodcastIcon &&
               <Link {...linkPropsforpodcast} className="underline-hide">
                 <div className="highlights podcast-video">
                   <img src={podcast} height={'20px'} />
