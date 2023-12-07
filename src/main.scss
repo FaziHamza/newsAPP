@@ -60,7 +60,7 @@ body {
 }
 
 header {
-    background: #c10206;
+    background: #000000;
 }
 
 header>div {
@@ -189,7 +189,7 @@ header>div {
     height: 100%;
     width: 100%;
     object-fit: cover;
-
+    border-radius: 10px;
 
 }
 
@@ -211,7 +211,9 @@ header>div {
     -webkit-box-orient: vertical;
     overflow: hidden
 }
-
+.abstart-color{
+    font-weight: normal !important;
+}
 .suggested-card {
     width: 100%;
     padding: 10px;
@@ -317,7 +319,7 @@ header>div {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 
 .suggested-card.tile-m.main-list .banner img {
@@ -920,24 +922,30 @@ h6 {
 }
 
 .top-bar {
-    /* position: fixed;
-  top: 60px;
-  left: 0;
-  right: 0; */
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    right: 0;
     padding: 0px;
     /* background: #1b1e23 !important; */
-    overflow-x: scroll;
+    overflow: hidden;
     display: flex;
     white-space: nowrap;
     justify-content: start;
-}
-
+    background-color: #000;
+    color: white;
+  }
+  
+  .top-bar:hover {
+    overflow-x: scroll;
+  }
+  
 
 .top-bar a.active {
-    background: white;
-    color: #000;
-    /* color: black !important; */
-    /* border-radius: 5px 5px 0px 0px; */
+    background: #fff !important;
+    color: black !important;
+    margin: 10px;
+    border-radius: 10px;
 }
 
 .dark-theme .top-bar a.active {
@@ -961,7 +969,8 @@ h6 {
     justify-content: start;
     text-decoration: none;
     // color: #fff !important;
-    color: rgb(158, 13, 13) !important;
+    color: rgb(255, 255, 255) !important;
+    background-color: #000 !important;
     padding: 10px 12px;
     font-size: 14px;
 }

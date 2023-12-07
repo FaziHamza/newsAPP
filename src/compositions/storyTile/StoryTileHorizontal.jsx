@@ -10,31 +10,51 @@ const StoryTileHorizonal = ({idforlogo, description, className = '', src, alt, t
   } else {
     imageUrl = SPORSpot_News;
   }
+// const days = () => {
+  //   const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
+  //   const day = Math.floor(timeDifference / 24);
+  //   const hours = timeDifference % 24;
+
+  //   if (timeDifference < 24) {
+  //     return `${hours.toFixed(2)} hours `; // Swedish for hours
+  //   } else {
+  //     return `${day} Day  `; // Swedish for days
+  //   }
+  // };
   const days = () => {
     const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
-    const day = Math.floor(timeDifference / 24);
-    const hours = timeDifference % 24;
-
-    if (timeDifference < 24) {
-      return `${hours.toFixed(2)} Tim `; // Swedish for hours
+    const days = Math.floor(timeDifference / 24);
+    const hours = Math.floor(timeDifference % 24);
+    const remainingMinutes = Math.round((timeDifference - Math.floor(timeDifference)) * 60);
+  
+    if (timeDifference < 1) {
+      return `${remainingMinutes} minutes`; // Return minutes if less than 1 hour
+    } else if (timeDifference < 24) {
+      return `${hours} hours ago`; // Return hours and minutes if less than 1 day
     } else {
-      return `${day} Dag  `; // Swedish for days
+      return `${days} Day ago`; // Return days, hours, and minutes
     }
   };
-
   const sanitizedSrc = src.replace(/([^:]\/)\/+/g, "$1");
-
+  const timecss = {
+    background: '#ece8e8',
+    borderRadius: '30px',
+    padding: '0px 10px',
+    width: 'fit-content',
+  };
+  
   return (
-    <div className={`suggested-card ${className}`}>
+    <div className={`suggested-card ${className}`} style={{height:'100%'}}>
       <div className='content' style={{ width: '100%' }}>
-        {/* <h6 className='content-time-img'>
-          {days()}
-          <img src={imageUrl} alt="" />
-        </h6> */}
+       
         <div className='horizontal-banner'>
           <img src={sanitizedSrc} alt={alt} />
         </div>
         <p className={!!isDesktopScreen ? 'desktop' : 'mobile'} dangerouslySetInnerHTML={{ __html: description }} />
+        <p className='content-time-img' style={timecss}>
+          {days()}
+          {/* <img src={imageUrl} alt="" /> */}
+        </p>
       </div>
       
     </div>

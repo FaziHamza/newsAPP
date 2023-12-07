@@ -282,17 +282,17 @@ const Root = () => {
               <Outlet context={fullInfo} />
             </div>
             <footer>
-              <a
+              {/* <a
                 href="https://www.sportspotnews-landingpage.com/"
                 target="_blank"
-                className="footer-img footer"></a>
+                className="footer-img footer"></a> */}
             </footer>
-            <div className='mobile-bottom-nav'>
+            {/* <div className='mobile-bottom-nav'>
               <button className='btn btn-light'>Arsenal</button>
               <button className='btn btn-light active'>Manchester</button>
               <button className='btn btn-light'>Malmo Hock</button>
-            </div>
-            <div className="top-bar lg-d-none mobile-bottom-nav" id="scrollableDiv">
+            </div> */}
+            <div className="top-bar lg-d-none " id="scrollableDiv">
                   {IsMobile &&
                     // {favouriteMenu?.some(m => m?.name == team?.name)}
                     filteredFavouriteMenu?.map((m, i) => {
@@ -302,7 +302,7 @@ const Root = () => {
                           id={`targetId-${i}`}
                           className={
                             decodedPathname == `/${m?.state?.navType}/${m?.state?.navTopic}`
-                              ? 'active fw-bold tab btn-light active'
+                              ? 'active tab btn-light active'
                               : 'tab btn-light'
                           }
                           to={m.link}

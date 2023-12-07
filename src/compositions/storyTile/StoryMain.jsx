@@ -130,18 +130,32 @@ const StoryMain = ({ idforlogo,heading, description, className = '', src, alt, t
   } else {
     imageUrl = SPORSpot_News;
   }
+  // const days = () => {
+  //   const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
+  //   const day = Math.floor(timeDifference / 24);
+  //   const hours = timeDifference % 24;
+
+  //   if (timeDifference < 24) {
+  //     return `${hours.toFixed(2)} hours `; // Swedish for hours
+  //   } else {
+  //     return `${day} Day  `; // Swedish for days
+  //   }
+  // };
   const days = () => {
     const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
-    const day = Math.floor(timeDifference / 24);
-    const hours = timeDifference % 24;
-
-    if (timeDifference < 24) {
-      return `${hours.toFixed(2)} Tim `; // Swedish for hours
+    const days = Math.floor(timeDifference / 24);
+    const hours = Math.floor(timeDifference % 24);
+    const remainingMinutes = Math.round((timeDifference - Math.floor(timeDifference)) * 60);
+  
+    if (timeDifference < 1) {
+      return `${remainingMinutes} minutes`; // Return minutes if less than 1 hour
+    } else if (timeDifference < 24) {
+      return `${hours} hours ago`; // Return hours and minutes if less than 1 day
     } else {
-      return `${day} Dag  `; // Swedish for days
+      return `${days} Day ago`; // Return days, hours, and minutes
     }
   };
-
+  
   const sanitizedSrc = src.replace(/([^:]\/)\/+/g, '$1');
 
   return (
@@ -173,9 +187,9 @@ const StoryMain = ({ idforlogo,heading, description, className = '', src, alt, t
           <div>
             {IsMobile &&
                   SubTopicHeadline &&(
-                    <p>
+                    <span style={{background:'#fde42f',padding:'3px',borderRadius:'30px',height:'10px'}}>
                       {SubTopicHeadline}
-                    </p>
+                    </span>
                   )
             }
             </div>
@@ -186,9 +200,9 @@ const StoryMain = ({ idforlogo,heading, description, className = '', src, alt, t
             </p>
             <div className="date">
               <p className='abstart-color'>
-                
+              {days()}
                 <img src={imageUrl} alt="" />
-                {days()}
+               
               </p>
             </div>
           </div>
