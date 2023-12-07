@@ -173,7 +173,7 @@ const Article = ({ className = '' }) => {
           {/* <AsideArticle /> */}
         </>
       ) : (
-        <main >
+        <main className='article'>
           <div className="row">
             <div className="col-11">
               <h2 dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>

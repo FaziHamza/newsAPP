@@ -275,52 +275,7 @@ const Root = () => {
                     </div>
                   </div>
                 )}
-                <div className="top-bar lg-d-none" id="scrollableDiv">
-                  {IsMobile &&
-                    // {favouriteMenu?.some(m => m?.name == team?.name)}
-                    filteredFavouriteMenu?.map((m, i) => {
-                      return (
-                        <Link
-                          key={i}
-                          id={`targetId-${i}`}
-                          className={
-                            decodedPathname == `/${m?.state?.navType}/${m?.state?.navTopic}`
-                              ? 'active fw-bold tab'
-                              : 'tab'
-                          }
-                          to={m.link}
-                          state={m?.state}
-                          name={m?.name}
-                          onClick={() => ScrollToActiveTab(i)}>
-                          {/* Display the LogoTeam image if it exists */}
-                          <div className="action-bar">
-                            {m?.name?.toLowerCase() === 'top news'
-                              ? m?.state?.LogoPath && (
-                                <img
-                                  className="action-bar-img"
-                                  src={m?.state?.LogoPath}
-                                  alt={`${m?.name} logo`}
-                                />
-                              )
-                              : m?.state?.LogoTeam && (
-                                <img
-                                  className="action-bar-img"
-                                  src={m?.state?.LogoTeam}
-                                  alt={`${m?.name} logo`}
-                                />
-                              )}
-                          </div>
-                          {m?.name?.toLowerCase() == 'top news'
-                            ? `${m.name} ${m?.state?.moreItemName}`
-                            : m?.name.replace('SHL', '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0')}
-
-                          {/* {pathname == `/${m?.state?.navType}/${m?.state?.navTopic}` && (
-                          <img className=" imgg" src={video_play} alt={`${m?.name} logo`} />
-                        )} */}
-                        </Link>
-                      );
-                    })}
-                </div>
+                
               </header>
 
               {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
@@ -337,6 +292,52 @@ const Root = () => {
               <button className='btn btn-light active'>Manchester</button>
               <button className='btn btn-light'>Malmo Hock</button>
             </div>
+            <div className="top-bar lg-d-none mobile-bottom-nav" id="scrollableDiv">
+                  {IsMobile &&
+                    // {favouriteMenu?.some(m => m?.name == team?.name)}
+                    filteredFavouriteMenu?.map((m, i) => {
+                      return (
+                        <Link
+                          key={i}
+                          id={`targetId-${i}`}
+                          className={
+                            decodedPathname == `/${m?.state?.navType}/${m?.state?.navTopic}`
+                              ? 'active fw-bold tab btn-light active'
+                              : 'tab btn-light'
+                          }
+                          to={m.link}
+                          state={m?.state}
+                          name={m?.name}
+                          onClick={() => ScrollToActiveTab(i)}>
+                          {/* Display the LogoTeam image if it exists */}
+                          {/* <div className="action-bar">
+                            {m?.name?.toLowerCase() === 'top news'
+                              ? m?.state?.LogoPath && (
+                                <img
+                                  className="action-bar-img"
+                                  src={m?.state?.LogoPath}
+                                  alt={`${m?.name} logo`}
+                                />
+                              )
+                              : m?.state?.LogoTeam && (
+                                <img
+                                  className="action-bar-img"
+                                  src={m?.state?.LogoTeam}
+                                  alt={`${m?.name} logo`}
+                                />
+                              )}
+                          </div> */}
+                          {m?.name?.toLowerCase() == 'top news'
+                            ? `${m.name} ${m?.state?.moreItemName}`
+                            : m?.name}
+
+                          {/* {pathname == `/${m?.state?.navType}/${m?.state?.navTopic}` && (
+                          <img className=" imgg" src={video_play} alt={`${m?.name} logo`} />
+                        )} */}
+                        </Link>
+                      );
+                    })}
+                </div>
           </ThemeQueryProvider>
         </MediaQueryProvider>
       );

@@ -11,6 +11,7 @@ import {
   Promo,
   Dropdown,
   ListedTopics,
+  StoryTileHorizon,
 } from '../../compositions';
 // import { addresses } from '../../utilities/config';
 
@@ -51,7 +52,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const navigate = useNavigate();
   const addresses = useSelector((state) => state.origin.apiOrigin);
   const allorigin = useSelector((state) => state.origin);
-  console.log(allorigin)
+  console.log(allorigin);
   const topicwithsubtopic = useSelector((state) => state.origin.topicwithsubtopic);
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const [settingsInfo, windowHref] = useOutletContext();
@@ -73,13 +74,13 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const [shouldNavigate, setShouldNavigate] = useState(false);
 
   const linkPropsforhighlight = {
-    to: subtopicvideo ? "/videohighlights" : "/highlights",
+    to: subtopicvideo ? '/videohighlights' : '/highlights',
     state: {
       topicKey,
       topictype,
       topicName: teamName,
       imagesource: teamLogoPath,
-      Subtopicid: SubTopicId
+      Subtopicid: SubTopicId,
     },
   };
   useEffect(() => {
@@ -106,7 +107,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
       setAsideNewsList(asideList);
     }
     if (tableInfo?.length === 0) {
-      setShouldNavigate(true)
+      setShouldNavigate(true);
     }
   }, [tableInfo]);
 
@@ -207,8 +208,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             to={
                               state
                                 ? mainNewsList[0]?._id
-                                : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${mainNewsList[0]?._id
-                                }`
+                                : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
+                                    mainNewsList[0]?._id
+                                  }`
                             }>
                             <StoryMain
                               idforlogo={mainNewsList[0]?._id}
@@ -240,9 +242,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   state
                                     ? tileItem._id
                                     : `news/${defaultTopic?.Name?.toLowerCase().replace(
-                                      /\s/g,
-                                      '_'
-                                    )}/${tileItem._id}`
+                                        /\s/g,
+                                        '_'
+                                      )}/${tileItem._id}`
                                 }>
                                 <StoryTile
                                   idforlogo={tileItem._id}
@@ -283,9 +285,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                     state
                                       ? tileItem._id
                                       : `news/${defaultTopic?.Name?.toLowerCase().replace(
-                                        /\s/g,
-                                        '_'
-                                      )}/${tileItem._id}`
+                                          /\s/g,
+                                          '_'
+                                        )}/${tileItem._id}`
                                   }>
                                   <StoryTile
                                     idforlogo={tileItem._id}
@@ -332,11 +334,13 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 to={
                                   state
                                     ? tileItem._id
-                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
-                                    }`
+                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
+                                        tileItem._id
+                                      }`
                                 }>
                                 <StoryMain
                                   idforlogo={tileItem._id}
+                                  heading={tileItem._title}
                                   description={tileItem._abstract}
                                   src={windowHref + tileItem._medias[0].href}
                                   alt={tileItem._medias[0]?.href}
@@ -344,7 +348,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 />
                               </Link>
                             ) : (
-                              <div className='story-link-card'>
+                              <div className="story-link-card">
                                 <Link
                                   className="story-link"
                                   key={tileItem._id}
@@ -356,17 +360,59 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   to={
                                     state
                                       ? tileItem._id
-                                      : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${tileItem._id
-                                      }`
+                                      : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
+                                          tileItem._id
+                                        }`
                                   }>
-                                  <StoryTile
-                                    idforlogo={tileItem._id}
-                                    description={tileItem._abstract}
-                                    className={index === 0 ? '' : 'tile-m'}
-                                    src={windowHref + tileItem._medias[0].href}
-                                    alt={tileItem._medias[0]?.href}
-                                    time={tileItem._published}
-                                  />
+                                  <>
+                                    {index != null && index >= 1 && index <= 4 ? (
+                                      <>
+                                        {(index === 1 || index === 3) &&
+                                        tableInfo[index] != null &&
+                                        tableInfo[index + 1] != null ? (
+                                          <StoryTileHorizon
+                                            idforlogo={tileItem._id}
+                                            leftdescription={tileItem._title}
+                                            leftimagesrc={windowHref + tileItem._medias[0].href}
+                                            leftimagealt={tileItem._medias[0]?.href}
+                                            rightdecription={tableInfo[index + 1]._title || ''}
+                                            rightimagesrc={
+                                              windowHref +
+                                              (tableInfo[index + 1]._medias[0]?.href || '')
+                                            }
+                                            rightimagealt={
+                                              tableInfo[index + 1]._medias[0]?.href || ''
+                                            }
+                                            time={tileItem._published}
+                                          />
+                                        ) : (
+                                          <>
+                                            {index!==2 && index === 3  ? (
+                                              <StoryTile
+                                                idforlogo={tileItem._id}
+                                                description={tileItem._title}
+                                                className={index === 0 ? '' : 'tile-m'}
+                                                src={windowHref + tileItem._medias[0].href}
+                                                alt={tileItem._medias[0]?.href}
+                                                time={tileItem._published}
+                                              />
+                                            ) : (
+                                              null
+                                            )}
+                                          </>
+                                        )}
+                                      </>
+                                    ) : (
+                                      <StoryTile
+                                        idforlogo={tileItem._id}
+                                        description={tileItem._title}
+                                        className={index === 0 ? '' : 'tile-m'}
+                                        src={windowHref + tileItem._medias[0].href}
+                                        alt={tileItem._medias[0]?.href}
+                                        time={tileItem._published}
+                                      />
+                                    )}
+                                  </>
                                 </Link>
                               </div>
                             )}
