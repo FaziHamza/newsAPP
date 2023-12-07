@@ -1,7 +1,7 @@
 import { timeQuery } from '../../utilities/timeQuery';
 import { json, useLocation } from 'react-router-dom';
 import { sportspotsverige, AFP_news,SPORSpot_News } from '../../assets';
-const StoryTileHorizontal = ({idforlogo, leftdescription, className = '', leftimagesrc, leftimagealt,rightdecription,rightimagesrc,rightimagealt, time, isDesktopScreen }) => {
+const StoryTileHorizonal = ({idforlogo, description, className = '', src, alt, time, isDesktopScreen }) => {
   const location = useLocation();
   const { state } = location;
   let imageUrl;
@@ -22,56 +22,24 @@ const StoryTileHorizontal = ({idforlogo, leftdescription, className = '', leftim
     }
   };
 
-  //const sanitizedSrc = src.replace(/([^:]\/)\/+/g, "$1");
-  const containerStyles = {
-    display: 'flex',
-    justifyContent: 'space-between',
-  };
-  const leftInstanceData = {
-    sanitizedSrc: leftimagesrc.replace(/([^:]\/)\/+/g, "$1"),
-    alt: leftimagealt,
-    description: leftdescription,
-    // Other left-specific data
-  };
-  
-  const rightInstanceData = {
-    sanitizedSrc: rightimagesrc.replace(/([^:]\/)\/+/g, "$1"),
-    alt: rightimagealt,
-    description: rightdecription,
-    // Other right-specific data
-  };
-  
+  const sanitizedSrc = src.replace(/([^:]\/)\/+/g, "$1");
+
   return (
-    <>
-
-<div style={containerStyles}>
-  {/* Left instance */}
-  <div className={`suggested-card ${className}`}>
-    <div className='content'>
-      <div className='horizontal-banner'>
-        <img src={leftInstanceData.sanitizedSrc} alt={leftInstanceData.alt} />
+    <div className={`suggested-card ${className}`} style={{ display: 'flex' }}>
+      <div className='content' style={{ width: '100%' }}>
+        {/* <h6 className='content-time-img'>
+          {days()}
+          <img src={imageUrl} alt="" />
+        </h6> */}
+        <div className='horizontal-banner'>
+          <img src={sanitizedSrc} alt={alt} />
+        </div>
+        <p className={!!isDesktopScreen ? 'desktop' : 'mobile'} dangerouslySetInnerHTML={{ __html: description }} />
       </div>
-      <p className={!!isDesktopScreen ? 'desktop' : 'mobile'} dangerouslySetInnerHTML={{ __html: leftInstanceData.description }} />
-      {/* Additional left-specific content */}
+      
     </div>
-  </div>
-
-  {/* Right instance */}
-  <div className={`suggested-card ${className}`}>
-    <div className='content'>
-      <div className='horizontal-banner'>
-        <img src={rightInstanceData.sanitizedSrc} alt={rightInstanceData.alt} />
-      </div>
-      <p className={!!isDesktopScreen ? 'desktop' : 'mobile'} dangerouslySetInnerHTML={{ __html: rightInstanceData.description }} />
-      {/* Additional right-specific content */}
-    </div>
-  </div>
-</div>
-
-
-
-    </>
   );
+    
 };
 
-export default StoryTileHorizontal;
+export default StoryTileHorizonal;

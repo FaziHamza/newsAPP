@@ -322,7 +322,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                       if (index <= topStoryLimit + adSpan)
                         return (
                           <>
-                            {index === 0 ? (
+                            {/* {index === 0 ? (
                               <Link
                                 className="story-link"
                                 key={tileItem._id}
@@ -370,24 +370,33 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                         {(index === 1 || index === 3) &&
                                         tableInfo[index] != null &&
                                         tableInfo[index + 1] != null ? (
+                                          // <StoryTileHorizon
+                                          //   idforlogo={tileItem._id}
+                                          //   leftdescription={tileItem._title}
+                                          //   leftimagesrc={windowHref + tileItem._medias[0].href}
+                                          //   leftimagealt={tileItem._medias[0]?.href}
+                                          //   rightdecription={tableInfo[index + 1]._title || ''}
+                                          //   rightimagesrc={
+                                          //     windowHref +
+                                          //     (tableInfo[index + 1]._medias[0]?.href || '')
+                                          //   }
+                                          //   rightimagealt={
+                                          //     tableInfo[index + 1]._medias[0]?.href || ''
+                                          //   }
+                                          //   time={tileItem._published}
+                                          // />
+
                                           <StoryTileHorizon
                                             idforlogo={tileItem._id}
-                                            leftdescription={tileItem._title}
-                                            leftimagesrc={windowHref + tileItem._medias[0].href}
-                                            leftimagealt={tileItem._medias[0]?.href}
-                                            rightdecription={tableInfo[index + 1]._title || ''}
-                                            rightimagesrc={
-                                              windowHref +
-                                              (tableInfo[index + 1]._medias[0]?.href || '')
-                                            }
-                                            rightimagealt={
-                                              tableInfo[index + 1]._medias[0]?.href || ''
-                                            }
+                                            description={tileItem._title}
+                                            className={index === 0 ? '' : 'tile-m'}
+                                            src={windowHref + tileItem._medias[0].href}
+                                            alt={tileItem._medias[0]?.href}
                                             time={tileItem._published}
                                           />
                                         ) : (
                                           <>
-                                            {index!==2 && index === 3  ? (
+                                            {index !== 2 && index === 3 ? (
                                               <StoryTile
                                                 idforlogo={tileItem._id}
                                                 description={tileItem._title}
@@ -397,7 +406,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                                 time={tileItem._published}
                                               />
                                             ) : (
-                                              null
+                                              <p>ad</p>
                                             )}
                                           </>
                                         )}
@@ -412,6 +421,143 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                         time={tileItem._published}
                                       />
                                     )}
+                                  </>
+                                </Link>
+                              </div>
+                            )} */}
+
+                            {index === 0 ? (
+                              <Link
+                              className="story-link"
+                              key={tileItem._id}
+                              state={{
+                                articleInfo: tileItem,
+                                baseUrl: addresses.baseUrl + settingsInfo.Api,
+                                imgUrl: addresses.baseUrl + tileItem._medias[0].href,
+                              }}
+                              to={
+                                state
+                                  ? tileItem._id
+                                  : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
+                                      tileItem._id
+                                    }`
+                              }>
+                              <StoryMain
+                                idforlogo={tileItem._id}
+                                heading={tileItem._title}
+                                description={tileItem._abstract}
+                                src={windowHref + tileItem._medias[0].href}
+                                alt={tileItem._medias[0]?.href}
+                                time={tileItem._published}
+                              />
+                            </Link>
+                            ) : index >= 1 && index <= 4 ? (
+                              <div className="story-link-card second" style={{ display: 'flex' }}>
+                                      {(index === 1 || index === 3) &&
+                                        tableInfo[index] != null &&
+                                        tableInfo[index + 1] != null ? (
+                                            <>
+                                            <Link
+                                className="story-link"
+                                key={tableInfo[index]._id}
+                                state={{
+                                  articleInfo: tableInfo[index],
+                                  baseUrl: addresses.baseUrl + settingsInfo.Api,
+                                  imgUrl: addresses.baseUrl + tableInfo[index]._medias[0].href,
+                                }}
+                                to={
+                                  state
+                                    ? tableInfo[index]._id
+                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
+                                      tableInfo[index]._id
+                                      }`
+                                      
+                                }
+                                >
+                                <>
+                                <StoryTileHorizon
+                                          idforlogo={tableInfo[index]._id}
+                                          description={tableInfo[index]._title}
+                                          className={index === 0 ? '' : 'tile-m'}
+                                          src={windowHref + tableInfo[index]._medias[0].href}
+                                          alt={tableInfo[index]._medias[0]?.href}
+                                          time={tableInfo[index]._published}
+                                        />
+                                </>
+                              </Link>
+                              
+                              <Link
+                                className="story-link"
+                                key={tableInfo[index +1]._id}
+                                state={{
+                                  articleInfo: tableInfo[index+1],
+                                  baseUrl: addresses.baseUrl + settingsInfo.Api,
+                                  imgUrl: addresses.baseUrl + tableInfo[index+1]._medias[0].href,
+                                }}
+                                to={
+                                  state
+                                    ? tableInfo[index+1]._id
+                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
+                                      tableInfo[index+1]._id
+                                      }`
+                                      
+                                }
+                                >
+                                <>
+                                <StoryTileHorizon
+                                          idforlogo={tableInfo[index+1]._id}
+                                          description={tableInfo[index+1]._title}
+                                          className={index === 0 ? '' : 'tile-m'}
+                                          src={windowHref + tableInfo[index+1]._medias[0].href}
+                                          alt={tableInfo[index+1]._medias[0]?.href}
+                                          time={tableInfo[index+1]._published}
+                                        />
+                                </>
+                              </Link>
+                                            </>
+                                        ) : (
+                                          <>
+                                            {index !== 2 && index === 3 ? (
+                                              <StoryTile
+                                                idforlogo={tileItem._id}
+                                                description={tileItem._title}
+                                                className={index === 0 ? '' : 'tile-m'}
+                                                src={windowHref + tileItem._medias[0].href}
+                                                alt={tileItem._medias[0]?.href}
+                                                time={tileItem._published}
+                                              />
+                                            ) : (
+                                             null
+                                            )}
+                                          </>
+                                        )}
+                            </div>
+                            ) : (
+                              <div className="story-link-card">
+                                <Link
+                                  className="story-link"
+                                  key={tileItem._id}
+                                  state={{
+                                    articleInfo: tileItem,
+                                    baseUrl: addresses.baseUrl + settingsInfo.Api,
+                                    imgUrl: addresses.baseUrl + tileItem._medias[0].href,
+                                  }}
+                                  to={
+                                    state
+                                      ? tileItem._id
+                                      : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
+                                          tileItem._id
+                                        }`
+                                  }>
+                                  <>
+                                      <StoryTile
+                                        idforlogo={tileItem._id}
+                                        description={tileItem._title}
+                                        className={index === 0 ? '' : 'tile-m'}
+                                        src={windowHref + tileItem._medias[0].href}
+                                        alt={tileItem._medias[0]?.href}
+                                        time={tileItem._published}
+                                      />
                                   </>
                                 </Link>
                               </div>
