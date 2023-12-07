@@ -25,7 +25,7 @@ const StoryTileHorizonal = ({idforlogo, description, className = '', src, alt, t
   const sanitizedSrc = src.replace(/([^:]\/)\/+/g, "$1");
 
   return (
-    <div className={`suggested-card ${className}`} style={{ display: 'flex' }}>
+    <div className={`suggested-card ${className}`}>
       <div className='content' style={{ width: '100%' }}>
         {/* <h6 className='content-time-img'>
           {days()}

@@ -473,6 +473,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                       }`
                                       
                                 }
+                                style={{width:'100%'}}
                                 >
                                 <>
                                 <StoryTileHorizon
@@ -502,6 +503,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                       }`
                                       
                                 }
+                                style={{width:'100%'}}
                                 >
                                 <>
                                 <StoryTileHorizon
