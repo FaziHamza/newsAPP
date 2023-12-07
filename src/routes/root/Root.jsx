@@ -192,7 +192,7 @@ const Root = () => {
         <MediaQueryProvider>
           <ThemeQueryProvider value={themeVariant}>
             <div className={'App dark'}>
-              <header>
+              <header className={isDesktop ? 'desktop-header' : 'mobile-header'}>
                 {isDesktop ? (
                   <div className="main-header desktop">
                     <div className="item-container item-one">

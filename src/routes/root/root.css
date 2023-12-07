@@ -927,3 +927,10 @@ ul {
   -o-object-fit: cover;
   object-fit: cover;
 }
+.desktop-header {
+  background-color: #c10206;
+}
+
+.mobile-header {
+  background-color: black;
+}
