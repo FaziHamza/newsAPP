@@ -276,7 +276,14 @@ const Root = () => {
                     </div>
                   </div>
                 )}
-                <div className="top-bar lg-d-none" id="scrollableDiv">
+
+              </header>
+
+              {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
+              <Outlet context={fullInfo} />
+            </div>
+            <footer className='footer-fixed'>
+            <div className="top-bar lg-d-none" id="scrollableDiv">
                   {IsMobile &&
                     // {favouriteMenu?.some(m => m?.name == team?.name)}
                     filteredFavouriteMenu?.map((m, i) => {
@@ -294,7 +301,7 @@ const Root = () => {
                           name={m?.name}
                           onClick={() => ScrollToActiveTab(i)}>
                           {/* Display the LogoTeam image if it exists */}
-                          <div className="action-bar">
+                          {/* <div className="action-bar">
                             {m?.name?.toLowerCase() === 'top news'
                               ? m?.state?.LogoPath && (
                                   <img
@@ -310,7 +317,7 @@ const Root = () => {
                                     alt={`${m?.name} logo`}
                                   />
                                 )}
-                          </div>
+                          </div> */}
                           {m?.name?.toLowerCase() == 'top news'
                             ? `${m.name} ${m?.state?.moreItemName}`
                             : m?.name.replace('SHL', '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0')}
@@ -322,16 +329,7 @@ const Root = () => {
                       );
                     })}
                 </div>
-              </header>
-
-              {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
-              <Outlet context={fullInfo} />
-            </div>
-            <footer>
-              <a
-                href="https://www.sportspotnews-landingpage.com/"
-                target="_blank"
-                className="footer-img footer"></a>
+              
             </footer>
           </ThemeQueryProvider>
         </MediaQueryProvider>

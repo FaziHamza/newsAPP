@@ -10,7 +10,7 @@ export { default as SideNav } from './../routes/root/sideNav';
 export { default as Navigation } from './navigation/Navigation';
 export { default as StoryTile } from './storyTile/StoryTile';
 export { default as StoryMain } from './storyTile/StoryMain';
-
+export { default as StoryTileHorizon } from './storyTile/StoryTileHorizontal';
 export { default as Dropdown } from './dropdown/Dropdown';
 export { default as Home } from './home/Home';
 export { default as Promo } from './promo/Promo';

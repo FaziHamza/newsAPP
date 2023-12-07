@@ -173,7 +173,7 @@ const Article = ({ className = '' }) => {
           {/* <AsideArticle /> */}
         </>
       ) : (
-        <main className={`article ${className}`.trim() + ` ${favouriteMenu?.length > 0 ? 'mobileScreen' : 'mobileScreenFavMenu'}`}>
+        <main >
           <div className="row">
             <div className="col-11">
               <h2 dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>

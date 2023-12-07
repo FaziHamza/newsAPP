@@ -204,7 +204,7 @@ header>div {
     font-weight: 600;
     margin-bottom: 0px;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    // -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden
 }
@@ -231,7 +231,9 @@ header>div {
     width: 75%;
 
 }
-
+.suggested-card .horizontal-banner{
+    width: 100%;
+}
 .suggested-card.tile-l .banner img {
     height: 100% !important;
 
@@ -301,8 +303,7 @@ header>div {
         padding: 5px;
     }
 }
-
-.suggested-card .banner img {
+.suggested-card .horizontal-banner,.suggested-card .banner img {
     height: 100%;
     width: 100%;
     object-fit: cover;

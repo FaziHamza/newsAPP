@@ -75,14 +75,6 @@ const DisplayComponent = ({ topic }) => {
                 {moreItemName}
               </div> */}
               <div className="title">
-                {IsMobile &&
-                SubTopicHeadline !== null &&
-                SubTopicHeadline !== undefined &&
-                SubTopicHeadline ? (
-                  // If block
-                  SubTopicHeadline
-                ) : (
-                  // Else block
                   <>
                     {teamName.includes(moreItemName) ? null : (
                       <>
@@ -91,7 +83,6 @@ const DisplayComponent = ({ topic }) => {
                     )}
                     {teamName.replace(moreItemName, '')}
                   </>
-                )}
               </div>
             </div>
 
@@ -129,9 +120,10 @@ const DisplayComponent = ({ topic }) => {
     </>
   );
 };
-const StoryMain = ({ idforlogo, description, className = '', src, alt, time, isDesktopScreen }) => {
+const StoryMain = ({ idforlogo,heading, description, className = '', src, alt, time, isDesktopScreen }) => {
   const location = useLocation();
   const { state } = location;
+  const SubTopicHeadline = state?.SubttopicHeadline;
   let imageUrl;
   if (idforlogo.length === 7) {
     imageUrl = AFP_news;
@@ -161,11 +153,13 @@ const StoryMain = ({ idforlogo, description, className = '', src, alt, time, isD
             <div className="banner">
               <img src={sanitizedSrc} alt={alt} />
             </div>
+            <div>
+            </div>
             <div className="content">
               <p className="desktopTop" dangerouslySetInnerHTML={{ __html: description }} />
               <h6 className="content-time-img">
-                {days()}
                 <img src={imageUrl} alt="" />
+                {days()}
               </h6>
             </div>
           </div>
@@ -176,14 +170,25 @@ const StoryMain = ({ idforlogo, description, className = '', src, alt, time, isD
           <div className="banner">
             <img src={sanitizedSrc} alt={alt} />
           </div>
+          <div>
+            {IsMobile &&
+                  SubTopicHeadline &&(
+                    <p>
+                      {SubTopicHeadline}
+                    </p>
+                  )
+            }
+            </div>
           <div className="content">
             <p>
-              <p className="mobile" dangerouslySetInnerHTML={{ __html: description }} />
+              <h1 className="heading-bold">{heading}</h1>
+              <p className="abstart-color" dangerouslySetInnerHTML={{ __html: description }} />
             </p>
             <div className="date">
-              <p>
-                {days()}
+              <p className='abstart-color'>
+                
                 <img src={imageUrl} alt="" />
+                {days()}
               </p>
             </div>
           </div>

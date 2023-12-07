@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useOutletContext,useNavigate } from 'react-router-dom';
+import { Link, useLocation, useOutletContext, useNavigate } from 'react-router-dom';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { useAsync } from '../../utilities/asyncReducer';
 import { fetchNewsTable } from '../../utilities/fetch';
@@ -11,6 +11,7 @@ import {
   Promo,
   Dropdown,
   ListedTopics,
+  StoryTileHorizon,
 } from '../../compositions';
 // import { addresses } from '../../utilities/config';
 
@@ -51,18 +52,18 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const navigate = useNavigate();
   const addresses = useSelector((state) => state.origin.apiOrigin);
   const allorigin = useSelector((state) => state.origin);
-  console.log(allorigin)
+  console.log(allorigin);
   const topicwithsubtopic = useSelector((state) => state.origin.topicwithsubtopic);
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const [settingsInfo, windowHref] = useOutletContext();
   const defaultTopic = settingsInfo.Default;
   const { data: tableInfo, status, error, run } = useAsync({ status: 'pending' });
   const { state } = useLocation();
-  const topicKey=state?.topicKey||null;
-  const topictype=state?.topictype||null;
-  const teamName = state?.Name||null;
-  const teamLogoPath = state?.LogoTeam||null;
-  const SubTopicId = state?.SubTopicId||null;
+  const topicKey = state?.topicKey || null;
+  const topictype = state?.topictype || null;
+  const teamName = state?.Name || null;
+  const teamLogoPath = state?.LogoTeam || null;
+  const SubTopicId = state?.SubTopicId || null;
   const subtopicvideo = state?.IsSubtopicVideo;
 
   const [promoVisible, setPromoVisible] = useState(false);
@@ -73,13 +74,13 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const [shouldNavigate, setShouldNavigate] = useState(false);
 
   const linkPropsforhighlight = {
-    to: subtopicvideo ? "/videohighlights" : "/highlights",
+    to: subtopicvideo ? '/videohighlights' : '/highlights',
     state: {
       topicKey,
       topictype,
       topicName: teamName,
       imagesource: teamLogoPath,
-      Subtopicid: SubTopicId
+      Subtopicid: SubTopicId,
     },
   };
   useEffect(() => {
@@ -105,8 +106,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
       setMainNewsList(mainList);
       setAsideNewsList(asideList);
     }
-    if(tableInfo?.length===0){
-      setShouldNavigate(true)
+    if (tableInfo?.length === 0) {
+      setShouldNavigate(true);
     }
   }, [tableInfo]);
 
@@ -144,7 +145,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
               dispatch(setarticlevideo(filteredSubTopics));
               return { subTopics: filteredSubTopics };
             });
-            console.log('Settings Info  ', foundItems);
+          console.log('Settings Info  ', foundItems);
         }
       } else {
         console.error('Keyword not found in the URL');
@@ -213,6 +214,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             }>
                             <StoryMain
                               idforlogo={mainNewsList[0]?._id}
+                              heading={mainNewsList[0]?._title}
                               description={mainNewsList[0]?._abstract}
                               className={'tile-l'}
                               isDesktopScreen={true}
@@ -312,8 +314,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
               </>
             ) : (
               <>
-                <main
-                  className={favouriteMenu?.length > 0 ? 'mobileScreen' : 'mobileScreenFavMenu'}>
+                <main>
                   {/* 11 */}
 
                   {tableInfo.length > 0 &&
@@ -339,6 +340,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 }>
                                 <StoryMain
                                   idforlogo={tileItem._id}
+                                  heading={tileItem._title}
                                   description={tileItem._abstract}
                                   src={windowHref + tileItem._medias[0].href}
                                   alt={tileItem._medias[0]?.href}
@@ -361,14 +363,31 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                         tileItem._id
                                       }`
                                 }>
-                                <StoryTile
-                                  idforlogo={tileItem._id}
-                                  description={tileItem._abstract}
-                                  className={index === 0 ? '' : 'tile-m'}
-                                  src={windowHref + tileItem._medias[0].href}
-                                  alt={tileItem._medias[0]?.href}
-                                  time={tileItem._published}
-                                />
+                                <>
+                                  {index === 1 || index === 3 ? (
+                                    <StoryTileHorizon
+                                      idforlogo={tileItem._id}
+                                      leftdescription={tileItem._title}
+                                      leftimagesrc={windowHref + tileItem._medias[0].href}
+                                      leftimagealt={tileItem._medias[0]?.href}
+                                      rightdecription={tableInfo[index + 1]._title}
+                                      rightimagesrc={
+                                        windowHref + tableInfo[index + 1]._medias[0].href
+                                      }
+                                      rightimagealt={tableInfo[index + 1]._medias[0]?.href}
+                                      time={tileItem._published}
+                                    />
+                                  ) : index !== 2 && index !== 4  ? (
+                                    <StoryTile
+                                      idforlogo={tileItem._id}
+                                      description={tileItem._title}
+                                      className={index === 0 ? '' : 'tile-m'}
+                                      src={windowHref + tileItem._medias[0].href}
+                                      alt={tileItem._medias[0]?.href}
+                                      time={tileItem._published}
+                                    />
+                                  ) : null}
+                                </>
                               </Link>
                             )}
                           </>
