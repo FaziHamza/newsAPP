@@ -50,11 +50,11 @@ const Root = () => {
       setThemeVariant(valueOne);
     }
   };
- const getBaseUrlFromStorage=() =>{
+  const getBaseUrlFromStorage = () => {
     const storedRegion = localStorage.getItem('selectedRegion');
     var parsedRegion = storedRegion ? JSON.parse(storedRegion) : null;
     return parsedRegion ? parsedRegion.hostName : null;
-}
+  }
   const handleOrigin = (e, id) => {
     e.preventDefault();
     dispatch(selectCountry(id));
@@ -99,10 +99,10 @@ const Root = () => {
   }
 
   useEffect(() => {
-   // let hostName = window.location.hostname;
+    // let hostName = window.location.hostname;
     var hostName = getBaseUrlFromStorage();
-    if(hostName===null || hostName===undefined){
-      hostName=RootUrl.HostName;
+    if (hostName === null || hostName === undefined) {
+      hostName = RootUrl.HostName;
     }
     fetchGetFunction(
       // `https://www.sportspotengland.dev`
@@ -136,11 +136,11 @@ const Root = () => {
         item.subTopics.map((subtopic) => subtopic.subTopicID)
       );
       const filteredMenu = favouriteMenu.filter((item) =>
-      subTopicIds.includes(item.state.SubTopicId)
-    );
+        subTopicIds.includes(item.state.SubTopicId)
+      );
       setFilteredFavouriteMenu(filteredMenu);
-      console.log('filtereremwnu',filteredFavouriteMenu)
-    //favouriteMenu
+      console.log('filtereremwnu', filteredFavouriteMenu)
+      //favouriteMenu
     }
     const foundItems = settingsInfo?.menuItems
       .filter(
@@ -158,7 +158,7 @@ const Root = () => {
         dispatch(setarticlevideo(filteredSubTopics));
         return { subTopics: filteredSubTopics };
       });
-  }, [settingsInfo,favouriteMenu]);
+  }, [settingsInfo, favouriteMenu]);
 
   function ScrollToActiveTab(id) {
     // Get references to the div and the target element
@@ -253,15 +253,14 @@ const Root = () => {
                                 return (
                                   <li
                                     key={m?.id}
-                                    className={`dropdown-item text-uppercase ${
-                                      themeVariant === 'light'
+                                    className={`dropdown-item text-uppercase ${themeVariant === 'light'
                                         ? isActive
                                           ? 'bg-light active-light'
                                           : 'bg-light'
                                         : isActive
-                                        ? 'bg-dark active-dark'
-                                        : 'bg-dark'
-                                    }`}
+                                          ? 'bg-dark active-dark'
+                                          : 'bg-dark'
+                                      }`}
                                     onClick={(e) => handleOrigin(e, m?.id)}>
                                     {m?.domainName}
                                   </li>
@@ -276,14 +275,7 @@ const Root = () => {
                     </div>
                   </div>
                 )}
-
-              </header>
-
-              {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
-              <Outlet context={fullInfo} />
-            </div>
-            <footer className='footer-fixed'>
-            <div className="top-bar lg-d-none" id="scrollableDiv">
+                <div className="top-bar lg-d-none" id="scrollableDiv">
                   {IsMobile &&
                     // {favouriteMenu?.some(m => m?.name == team?.name)}
                     filteredFavouriteMenu?.map((m, i) => {
@@ -301,29 +293,26 @@ const Root = () => {
                           name={m?.name}
                           onClick={() => ScrollToActiveTab(i)}>
                           {/* Display the LogoTeam image if it exists */}
-                          {/* <div className="action-bar">
+                          <div className="action-bar">
                             {m?.name?.toLowerCase() === 'top news'
                               ? m?.state?.LogoPath && (
-                                  <img
-                                    className="action-bar-img"
-                                    src={m?.state?.LogoPath}
-                                    alt={`${m?.name} logo`}
-                                  />
-                                )
+                                <img
+                                  className="action-bar-img"
+                                  src={m?.state?.LogoPath}
+                                  alt={`${m?.name} logo`}
+                                />
+                              )
                               : m?.state?.LogoTeam && (
-                                  <img
-                                    className="action-bar-img"
-                                    src={m?.state?.LogoTeam}
-                                    alt={`${m?.name} logo`}
-                                  />
-                                )}
-                          </div> */}
-                          {/* {m?.name?.toLowerCase() == 'top news'
-                            ? `${m.name} ${m?.state?.moreItemName}`
-                            : m?.name.replace('SHL', '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0')} */}
+                                <img
+                                  className="action-bar-img"
+                                  src={m?.state?.LogoTeam}
+                                  alt={`${m?.name} logo`}
+                                />
+                              )}
+                          </div>
                           {m?.name?.toLowerCase() == 'top news'
                             ? `${m.name} ${m?.state?.moreItemName}`
-                            : m?.name}
+                            : m?.name.replace('SHL', '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0')}
 
                           {/* {pathname == `/${m?.state?.navType}/${m?.state?.navTopic}` && (
                           <img className=" imgg" src={video_play} alt={`${m?.name} logo`} />
@@ -332,8 +321,22 @@ const Root = () => {
                       );
                     })}
                 </div>
-              
+              </header>
+
+              {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
+              <Outlet context={fullInfo} />
+            </div>
+            <footer>
+              <a
+                href="https://www.sportspotnews-landingpage.com/"
+                target="_blank"
+                className="footer-img footer"></a>
             </footer>
+            <div className='mobile-bottom-nav'>
+              <button className='btn btn-light'>Arsenal</button>
+              <button className='btn btn-light active'>Manchester</button>
+              <button className='btn btn-light'>Malmo Hock</button>
+            </div>
           </ThemeQueryProvider>
         </MediaQueryProvider>
       );
