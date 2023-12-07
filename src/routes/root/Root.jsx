@@ -230,10 +230,8 @@ const Root = () => {
                       />
                       {/* <span style={{ fontSize: '30px', cursor: 'pointer' }}>&#9776;</span> */}
                     </div>
-                    <div className="item">
+                    <div className="item mid-logo">
                       <Logo name={'Logo'} href="/" alt={'logo'} />
-                    </div>
-                    <div className="item">
                       {IsMobile ? (
                         <div className="c-dropdown">
                           <div class="dropdown">
@@ -272,6 +270,46 @@ const Root = () => {
                       ) : (
                         <Logo name={'Flag'} href="/" alt={'logo'} />
                       )}
+                    </div>
+                    <div className="item">
+                      {/* {IsMobile ? (
+                        <div className="c-dropdown">
+                          <div class="dropdown">
+                            <div
+                              class="  dropdown-toggle"
+                              type="button"
+                              id="dropdownMenuButton1"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false">
+                              <span>
+                                <Logo alt={'logo'} />
+                              </span>
+                            </div>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              {allregion?.map((m) => {
+                                const isActive = selectedMenu?.id === m?.id;
+                                return (
+                                  <li
+                                    key={m?.id}
+                                    className={`dropdown-item text-uppercase ${themeVariant === 'light'
+                                        ? isActive
+                                          ? 'bg-light active-light'
+                                          : 'bg-light'
+                                        : isActive
+                                          ? 'bg-dark active-dark'
+                                          : 'bg-dark'
+                                      }`}
+                                    onClick={(e) => handleOrigin(e, m?.id)}>
+                                    {m?.domainName}
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        </div>
+                      ) : (
+                        <Logo name={'Flag'} href="/" alt={'logo'} />
+                      )} */}
                     </div>
                   </div>
                 )}

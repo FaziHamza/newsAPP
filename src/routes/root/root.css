@@ -48,6 +48,7 @@ header {
   right: 0;
   z-index: 40;
   width: 100%;
+  height: 100px;
   align-items: center;
   display: grid;
   /* padding: 0 1.3rem 0 0.3rem; */
@@ -193,7 +194,8 @@ nav a:hover {
 }
 
 main {
-  padding: 7.5rem 1.3rem 0 1.3rem;
+  /* padding: 7.5rem 1.3rem 0 1.3rem; */
+  padding:11.5rem 1.3rem 0 1.3rem;
   background-color: #FDFFFC;
 }
 
@@ -913,4 +915,15 @@ ul {
 .heading-bold{
   font-weight: bold;
   font-size: 25px;
+}
+.mid-logo .c-dropdown{
+  position: relative;
+  top: 30px;
+  right: 40px;
+}
+.mid-logo .c-dropdown .flag-image img{
+  height: 30px;
+  width: 40px;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
