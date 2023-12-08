@@ -11,6 +11,7 @@ const DisplayComponent = ({ topic }) => {
   const initialload = useSelector((state) => state.origin.initialload);
   const { state } = location;
   console.log(state)
+  console.log(initialload)
   // Now you can access the passed state values
   const moreItemName = state?.moreItemName || null;
   const teamName = state?.Name || initialload[0].name;
@@ -38,7 +39,7 @@ const DisplayComponent = ({ topic }) => {
       topictype,
       topicName: teamName,
       imagesource: teamLogoPath,
-      Subtopicid: SubTopicId,
+      SubTopicId: SubTopicId,
     },
   };
   const linkPropsforpodcast = {
@@ -48,7 +49,7 @@ const DisplayComponent = ({ topic }) => {
       topictype,
       topicName: teamName,
       imagesource: teamLogoPath,
-      Subtopicid: SubTopicId,
+      SubTopicId: SubTopicId,
     },
   };
   const IsSql = state?.IsSql;
@@ -180,7 +181,10 @@ const StoryMain = ({ idforlogo,heading, description, className = '', src, alt, t
         </>
       ) : (
         <div className="league-card">
-          <DisplayComponent />
+          {
+            !IsMobile &&          
+            <DisplayComponent />
+          }
           <div className="banner">
             <img src={sanitizedSrc} alt={alt} />
           </div>

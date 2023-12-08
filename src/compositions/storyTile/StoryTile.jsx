@@ -48,8 +48,9 @@ const StoryTile = ({idforlogo, description, className = '', src, alt, time, isDe
         <div className='content'>
           {/* <p>{description}</p> */}
           <p className={!!isDesktopScreen ? 'desktop' : 'mobile'} dangerouslySetInnerHTML={{ __html: description }} />
-          <h6 className='content-time-img'  >{days()}
+          <h6 className='content-time-img'  >
             <img src={imageUrl} alt="" />
+            {days()}
           </h6>
         </div>
       </div>

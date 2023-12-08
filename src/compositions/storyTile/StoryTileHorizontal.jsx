@@ -51,10 +51,10 @@ const StoryTileHorizonal = ({idforlogo, description, className = '', src, alt, t
           <img src={sanitizedSrc} alt={alt} />
         </div>
         <p className={!!isDesktopScreen ? 'desktop' : 'mobile'} dangerouslySetInnerHTML={{ __html: description }} />
-        <p className='content-time-img' style={timecss}>
+        <h6 className='content-time-img' style={timecss}>
+          <img src={imageUrl} alt="" />
           {days()}
-          {/* <img src={imageUrl} alt="" /> */}
-        </p>
+        </h6>
       </div>
       
     </div>

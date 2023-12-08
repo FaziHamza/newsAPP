@@ -11,7 +11,7 @@ import { fetchConfig, fetchGetFunction } from '../../utilities/fetch';
 import { Logo, NavbarMobile, Navigation } from '../../compositions';
 // Mockup images imports
 import { useMediaQuery, useTheme } from '../../utilities/hooks';
-import { useEffect, useState } from 'react';
+import { useEffect, useState ,useRef } from 'react';
 import { getData } from '../../assets/mockup-assets/data/dataObject';
 // import { addresses } from '../../utilities/config';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,6 +27,7 @@ import { video_play } from '../../assets';
 import { clearFavouriteMenu } from '../../redux/favouriteMenu';
 import { IsMobile } from '../../utilities/config';
 import { selectCountry } from '../../redux/countries';
+import DisplayComponentforheader from './DisplayComponentforheader';
 
 const Root = () => {
   const dispatch = useDispatch();
@@ -125,6 +126,7 @@ const Root = () => {
       run(settingsPromise);
     }
   }, [addresses]);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     // console.log('sss',settingsInfo)
@@ -156,9 +158,11 @@ const Root = () => {
         );
         dispatch(setinitialload(filteredSubTopics));
         dispatch(setarticlevideo(filteredSubTopics));
+        setVisible(true)
         return { subTopics: filteredSubTopics };
       });
   }, [settingsInfo, favouriteMenu]);
+
 
   function ScrollToActiveTab(id) {
     // Get references to the div and the target element
@@ -171,7 +175,53 @@ const Root = () => {
     // Scroll the div to the target position
     scrollableDiv.scrollLeft = targetPosition;
   }
+  const scrollableDivRef = useRef(null);
 
+  useEffect(() => {
+    const centerSelectedItem = () => {
+      const scrollableDiv = scrollableDivRef.current;
+  
+      if (scrollableDiv) {
+        const selectedTab = scrollableDiv.querySelector('.active');
+  
+        if (selectedTab) {
+          const scrollableDivRect = scrollableDiv.getBoundingClientRect();
+          const selectedTabRect = selectedTab.getBoundingClientRect();
+  
+          let scrollLeft =
+            selectedTabRect.left +
+            selectedTabRect.width / 2 -
+            scrollableDivRect.left -
+            scrollableDivRect.width / 2;
+  
+          const padding = 20; // Adjust the padding value as needed
+  
+          // Ensure that there's padding on both sides
+          scrollLeft = Math.max(
+            Math.min(
+              scrollLeft,
+              scrollableDiv.scrollWidth - scrollableDivRect.width - padding
+            ),
+            0
+          );
+  
+          // Scroll to the calculated position
+          scrollableDiv.scrollLeft = scrollLeft;
+        }
+      }
+    };
+  
+    // Call the function initially and on window resize
+    centerSelectedItem();
+    window.addEventListener('resize', centerSelectedItem);
+  
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', centerSelectedItem);
+    };
+  }, []);
+  
+  
   switch (status) {
     case 'idle':
       return <div>idle</div>;
@@ -221,6 +271,7 @@ const Root = () => {
                     </div>
                   </div>
                 ) : (
+                  <>
                   <div className="main-header">
                     <div className="item">
                       <NavbarMobile
@@ -232,46 +283,6 @@ const Root = () => {
                     </div>
                     <div className="item mid-logo">
                       <Logo name={'Logo'} href="/" alt={'logo'} />
-                      {IsMobile ? (
-                        <div className="c-dropdown">
-                          <div class="dropdown">
-                            <div
-                              class="  dropdown-toggle"
-                              type="button"
-                              id="dropdownMenuButton1"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <span>
-                                <Logo alt={'logo'} />
-                              </span>
-                            </div>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                              {allregion?.map((m) => {
-                                const isActive = selectedMenu?.id === m?.id;
-                                return (
-                                  <li
-                                    key={m?.id}
-                                    className={`dropdown-item text-uppercase ${themeVariant === 'light'
-                                        ? isActive
-                                          ? 'bg-light active-light'
-                                          : 'bg-light'
-                                        : isActive
-                                          ? 'bg-dark active-dark'
-                                          : 'bg-dark'
-                                      }`}
-                                    onClick={(e) => handleOrigin(e, m?.id)}>
-                                    {m?.domainName}
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          </div>
-                        </div>
-                      ) : (
-                        <Logo name={'Flag'} href="/" alt={'logo'} />
-                      )}
-                    </div>
-                    <div className="item">
                       {/* {IsMobile ? (
                         <div className="c-dropdown">
                           <div class="dropdown">
@@ -311,26 +322,63 @@ const Root = () => {
                         <Logo name={'Flag'} href="/" alt={'logo'} />
                       )} */}
                     </div>
+                    <div className="item">
+                      {IsMobile ? (
+                        <div className="c-dropdown">
+                          <div class="dropdown">
+                            <div
+                              class="  dropdown-toggle"
+                              type="button"
+                              id="dropdownMenuButton1"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false">
+                              <span>
+                                <Logo alt={'logo'} />
+                              </span>
+                            </div>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              {allregion?.map((m) => {
+                                const isActive = selectedMenu?.id === m?.id;
+                                return (
+                                  <li
+                                    key={m?.id}
+                                    className={`dropdown-item text-uppercase ${themeVariant === 'light'
+                                        ? isActive
+                                          ? 'bg-light active-light'
+                                          : 'bg-light'
+                                        : isActive
+                                          ? 'bg-dark active-dark'
+                                          : 'bg-dark'
+                                      }`}
+                                    onClick={(e) => handleOrigin(e, m?.id)}>
+                                    {m?.domainName}
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          </div>
+                        </div>
+                      ) : (
+                        <Logo name={'Flag'} href="/" alt={'logo'} />
+                      )}
+                    </div>
                   </div>
+                  <div className='header-nav'>
+                        {IsMobile && visible &&
+                         <DisplayComponentforheader/>
+                        }  
+                       
+                  </div>
+                  </>
                 )}
                 
               </header>
-
+                        
               {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
               <Outlet context={fullInfo} />
             </div>
             <footer>
-              {/* <a
-                href="https://www.sportspotnews-landingpage.com/"
-                target="_blank"
-                className="footer-img footer"></a> */}
-            </footer>
-            {/* <div className='mobile-bottom-nav'>
-              <button className='btn btn-light'>Arsenal</button>
-              <button className='btn btn-light active'>Manchester</button>
-              <button className='btn btn-light'>Malmo Hock</button>
-            </div> */}
-            <div className="top-bar lg-d-none " id="scrollableDiv">
+            <div className="top-bar lg-d-none " id="scrollableDiv" ref={scrollableDivRef}>
                   {IsMobile &&
                     // {favouriteMenu?.some(m => m?.name == team?.name)}
                     filteredFavouriteMenu?.map((m, i) => {
@@ -347,35 +395,15 @@ const Root = () => {
                           state={m?.state}
                           name={m?.name}
                           onClick={() => ScrollToActiveTab(i)}>
-                          {/* Display the LogoTeam image if it exists */}
-                          {/* <div className="action-bar">
-                            {m?.name?.toLowerCase() === 'top news'
-                              ? m?.state?.LogoPath && (
-                                <img
-                                  className="action-bar-img"
-                                  src={m?.state?.LogoPath}
-                                  alt={`${m?.name} logo`}
-                                />
-                              )
-                              : m?.state?.LogoTeam && (
-                                <img
-                                  className="action-bar-img"
-                                  src={m?.state?.LogoTeam}
-                                  alt={`${m?.name} logo`}
-                                />
-                              )}
-                          </div> */}
+                          
                           {m?.name?.toLowerCase() == 'top news'
                             ? `${m.name} ${m?.state?.moreItemName}`
                             : m?.name}
-
-                          {/* {pathname == `/${m?.state?.navType}/${m?.state?.navTopic}` && (
-                          <img className=" imgg" src={video_play} alt={`${m?.name} logo`} />
-                        )} */}
                         </Link>
                       );
                     })}
                 </div>
+                </footer>
           </ThemeQueryProvider>
         </MediaQueryProvider>
       );
@@ -386,5 +414,118 @@ const Root = () => {
       return <div>anotherError</div>;
   }
 };
+const DisplayComponentForMobile = ({ topic }) => {
+  const location = useLocation();
+  const initialload = useSelector((state) => state.origin.initialload);
+  const { state } = location;
+  console.log(state)
+  // Now you can access the passed state values
+  const moreItemName = state?.moreItemName || null;
+  const teamName = state?.Name || initialload[0].name;
+  const SubTopicHeadline = state?.SubttopicHeadline;
+  const defaulttopic = topic?.Name || null;
+  const topicKey = state?.topicKey || initialload[0].highlights;
+  const topictype = state?.topictype || initialload[0].highlightType;
+  var IsSubtopicVideo;
+  if (state == undefined || state == null) {
+    IsSubtopicVideo = initialload[0].isSubtopicVideo;
+  } else {
+    IsSubtopicVideo = state?.IsSubtopicVideo;
+  }
+  const [isShowPodcastIcon,setisshowPodcaseIcon]=useState(null);
+  const [isShowVideoIcon,setisShowVideoIcon]=useState(null);
+  const logoPath = state?.LogoPath || null;
+  const teamLogoPath = state?.LogoTeam || initialload[0].logo;
+  const SubTopicId = state?.SubTopicId || initialload[0].subTopicID;
+  const TopicId = state?.TopicId;
 
+  const linkPropsforhighlight = {
+    to: IsSubtopicVideo ? '/videohighlights' : '/highlights',
+    state: {
+      topicKey,
+      topictype,
+      topicName: teamName,
+      imagesource: teamLogoPath,
+      SubTopicId: SubTopicId,
+    },
+  };
+  const linkPropsforpodcast = {
+    to: '/podcast',
+    state: {
+      topicKey,
+      topictype,
+      topicName: teamName,
+      imagesource: teamLogoPath,
+      SubTopicId: SubTopicId,
+    },
+  };
+  const IsSql = state?.IsSql;
+  useEffect(() => {
+  const apiUrl = `${RootUrl.Baseurl}api/Subtopic/GetVideoStatusBySubtopicId?id=${SubTopicId}`;
+    fetch(apiUrl)
+      .then((res) => res.json())
+      .then((response) => {
+          setisshowPodcaseIcon(response.data.videoPodcast)
+          setisShowVideoIcon(response.data.videoHighlight)
+      })
+      .catch((err) => {
+        console.log('Error', err);
+      });
+  }, []);
+  return (
+    <>
+      {teamLogoPath ? (
+        <>
+          <div className="topic">
+            <div className="topic-row">
+              {/* <div className="title">
+                <img src={logoPath} height={'20px'} />
+                {moreItemName}
+              </div> */}
+              <div className="title">
+                  <>
+                    {teamName.includes(moreItemName) ? null : (
+                      <>
+                        <img src={teamLogoPath} height={'20px'} />
+                      </>
+                    )}
+                    {teamName.replace(moreItemName, '')}
+                  </>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex' }}>
+              {isShowPodcastIcon &&
+              <Link {...linkPropsforpodcast} className="underline-hide">
+                <div className="highlights podcast-video">
+                  <img src={podcast} height={'20px'} />
+                  <span>Podcasts</span>
+                </div>
+              </Link>
+              }
+              {isShowVideoIcon && IsSubtopicVideo &&
+              <Link {...linkPropsforhighlight} className="underline-hide">
+                <div className="highlights podcast-video">
+                  <img src={video_play} height={'20px'} />
+                  <span>Videos</span>
+                </div>
+              </Link>
+              }
+               {!IsSubtopicVideo &&
+              <Link {...linkPropsforhighlight} className="underline-hide">
+                <div className="highlights podcast-video">
+                  <img src={video_play} height={'20px'} />
+                  <span>Videos</span>
+                </div>
+              </Link>
+              }
+            </div>
+          </div>
+        </>
+      ) : (
+        <h4 className="title">{teamName}</h4>
+      )}
+    </>
+  );
+};
 export default Root;

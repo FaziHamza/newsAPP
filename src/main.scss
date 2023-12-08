@@ -926,9 +926,9 @@ h6 {
     bottom: 0px;
     left: 0;
     right: 0;
-    padding: 0px;
+    padding: 10px;
     /* background: #1b1e23 !important; */
-    overflow: hidden;
+    overflow-x: scroll;
     display: flex;
     white-space: nowrap;
     justify-content: start;
@@ -936,15 +936,14 @@ h6 {
     color: white;
   }
   
-  .top-bar:hover {
-    overflow-x: scroll;
-  }
+//   .top-bar:hover {
+//     overflow-x: scroll;
+//   }
   
 
 .top-bar a.active {
     background: #fff !important;
     color: black !important;
-    margin: 10px;
     border-radius: 10px;
 }
 
@@ -988,7 +987,7 @@ h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #c10206;
+    background: #090909;
 }
 
 .hyusa {

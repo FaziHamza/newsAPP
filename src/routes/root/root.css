@@ -195,7 +195,7 @@ nav a:hover {
 
 main {
   /* padding: 7.5rem 1.3rem 0 1.3rem; */
-  padding:11.5rem 1.3rem 0 1.3rem;
+  padding:11.5rem 1.3rem 7rem 1.3rem;
   background-color: #FDFFFC;
 }
 
@@ -869,7 +869,9 @@ ul {
 .underline-hide {
   text-decoration: none !important;
 }
-
+.header-icon{
+  margin: 0px 10px 0px;
+}
 .action-bar {
   width: 20px;
   height: 20px;
@@ -933,4 +935,19 @@ ul {
 
 .mobile-header {
   background-color: black;
+}
+
+/* Apply styles to the horizontal scrollbar */
+#scrollableDiv {
+
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #000000;
+  }
+}
+
+header .header-nav{
+  display: block;
+  /* background-color: white; */
+  color: white;
 }

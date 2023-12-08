@@ -478,7 +478,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 <>
                                 <StoryTileHorizon
                                           idforlogo={tableInfo[index]._id}
-                                          description={tableInfo[index]._title}
+                                          description={tableInfo[index]._abstract}
                                           className={index === 0 ? '' : 'tile-m'}
                                           src={windowHref + tableInfo[index]._medias[0].href}
                                           alt={tableInfo[index]._medias[0]?.href}
@@ -508,7 +508,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 <>
                                 <StoryTileHorizon
                                           idforlogo={tableInfo[index+1]._id}
-                                          description={tableInfo[index+1]._title}
+                                          description={tableInfo[index+1]._abstract}
                                           className={index === 0 ? '' : 'tile-m'}
                                           src={windowHref + tableInfo[index+1]._medias[0].href}
                                           alt={tableInfo[index+1]._medias[0]?.href}

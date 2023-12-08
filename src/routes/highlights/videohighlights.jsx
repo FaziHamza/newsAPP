@@ -20,7 +20,7 @@ const VideoHighlightsList = () => {
   const location = useLocation();
   const { state } = location;
   console.log(JSON.stringify(state));
-  const { topicKey, topicName, topictype, Subtopicid } = state;
+  const { topicKey, topicName, topictype, SubTopicId } = state;
   const thumnbailbaseurl = videHighlight.thumbnailurl;
   useEffect(() => {
     if (highlightsData?.length>0) {
@@ -35,7 +35,7 @@ const VideoHighlightsList = () => {
   useEffect(() => {
     setStatus('pending');
     const fetchVideoHighlights = async () => {
-      const url = videHighlight.videobaseurl + "/api/VideoHighlight/GetVideoHighlightBySubtopicIdonly?subtopicId=" + Subtopicid;
+      const url = videHighlight.videobaseurl + "/api/VideoHighlight/GetVideoHighlightBySubtopicIdonly?subtopicId=" + SubTopicId;
       try {
         const response = await fetch(url);
         if (response.status === 200) {
