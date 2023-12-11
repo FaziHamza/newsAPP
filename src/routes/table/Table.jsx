@@ -61,7 +61,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const { state } = useLocation();
   const topicKey = state?.topicKey || null;
   const topictype = state?.topictype || null;
-  const teamName = state?.Name || null;
+  const teamName = state?.topicName || null;
   const teamLogoPath = state?.LogoTeam || null;
   const SubTopicId = state?.SubTopicId || null;
   const subtopicvideo = state?.IsSubtopicVideo;
@@ -313,8 +313,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
               </>
             ) : (
               <>
-                <main
-                  className={favouriteMenu?.length > 0 ? 'mobileScreen' : 'mobileScreenFavMenu'}>
+                <main >
+                  {/* // className={favouriteMenu?.length > 0 ? 'mobileScreen' : 'mobileScreenFavMenu'} */}
                   {/* 11 */}
 
                   {tableInfo.length > 0 &&
@@ -522,7 +522,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                             {index !== 2 && index === 3 ? (
                                               <StoryTile
                                                 idforlogo={tileItem._id}
-                                                description={tileItem._title}
+                                                description={tileItem._abstract}
                                                 className={index === 0 ? '' : 'tile-m'}
                                                 src={windowHref + tileItem._medias[0].href}
                                                 alt={tileItem._medias[0]?.href}
@@ -554,7 +554,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   <>
                                       <StoryTile
                                         idforlogo={tileItem._id}
-                                        description={tileItem._title}
+                                        description={tileItem._abstract}
                                         className={index === 0 ? '' : 'tile-m'}
                                         src={windowHref + tileItem._medias[0].href}
                                         alt={tileItem._medias[0]?.href}

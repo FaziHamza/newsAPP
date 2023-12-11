@@ -24,7 +24,7 @@ const Navigation = ({ className = '', navList, inMain = 4, ...props }) => {
                 state={{
                   address: navAddress,
                   subTopics: navItem.Items,
-                  Name: navItem.Name,
+                  topicName: navItem.Name,
                   navType,
                   navTopic,
                 }}
@@ -56,7 +56,7 @@ const Navigation = ({ className = '', navList, inMain = 4, ...props }) => {
                   <NavLink
                     className={({ isActive }) => (isActive ? 'active' : '')}
                     to={`${navType}/${navTopic}`}
-                    state={{ address: navAddress, subTopics: moreItem.Items, Name: moreItem.Name }}
+                    state={{ address: navAddress, subTopics: moreItem.Items, topicName: moreItem.Name }}
                     name={moreItem.Name}>
                     {moreItem.Name}
                   </NavLink>
