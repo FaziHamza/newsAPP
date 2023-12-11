@@ -204,7 +204,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                       topictype: team?.highlightType,
                                       IsSubtopicVideo: team?.isSubtopicVideo,
                                       topicName: team?.name,
-                                      imagesource: moreItem.topic.logo,
+                                      LogoTeam: moreItem.topic.logo,
                                       SubttopicHeadline:team.subtopicHeadline // Assuming team.LogoTeam is the correct logo path
                                       // Assuming team.LogoTeam is the correct logo path
                                     }}
@@ -263,7 +263,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     //         topicName: team?.name,
                                     //         SubTopicId: team.subTopicID,
                                     //         TopicId: team.topicID,
-                                    //         // imagesource: moreItem.Topic.Logo, // Assuming team.LogoTeam is the correct logo path
+                                    //         // LogoTeam: moreItem.Topic.Logo, // Assuming team.LogoTeam is the correct logo path
                                     //         // Assuming team.LogoTeam is the correct logo path
                                     //       }
                                     //     : {
@@ -338,7 +338,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     topictype: team?.highlightType,
                                     IsSubtopicVideo: team?.isSubtopicVideo,
                                     topicName: team?.name,
-                                    imagesource: team.logo,
+                                    LogoTeam: team.logo,
                                     SubttopicHeadline:team.subtopicHeadline  // Assuming team.LogoTeam is the correct logo path
                                     // Assuming team.LogoTeam is the correct logo path
                                   }}

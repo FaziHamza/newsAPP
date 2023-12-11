@@ -79,7 +79,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
       topicKey,
       topictype,
       topicName: teamName,
-      imagesource: teamLogoPath,
+      LogoTeam: teamLogoPath,
       Subtopicid: SubTopicId,
     },
   };

@@ -83,7 +83,7 @@ const VideoHighlightsList = () => {
     setVideoEmbed('');
   };
 
-  const LogoPath = state?.imagesource;
+  const LogoPath = state?.LogoTeam;
   let mainHightLights = highlightsData || [];
   let asideHightLights = [];
 

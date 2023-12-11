@@ -85,7 +85,7 @@ const Article = ({ className = '' }) => {
       topicKey,
       topictype,
       topicName: teamName,
-      imagesource: teamLogoPath,
+      LogoTeam: teamLogoPath,
       Subtopicid: SubTopicId
     },
   };

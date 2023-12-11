@@ -14,7 +14,7 @@ const DisplayComponent = ({ topic }) => {
   console.log(initialload)
   // Now you can access the passed state values
   const moreItemName = state?.moreItemName || null;
-  const teamName = state?.Name || initialload[0].name;
+  const teamName = state?.topicName || initialload[0].name;
   const SubTopicHeadline = state?.SubttopicHeadline;
   const defaulttopic = topic?.Name || null;
   const topicKey = state?.topicKey || initialload[0].highlights;
@@ -38,7 +38,7 @@ const DisplayComponent = ({ topic }) => {
       topicKey,
       topictype,
       topicName: teamName,
-      imagesource: teamLogoPath,
+      LogoTeam: teamLogoPath,
       SubTopicId: SubTopicId,
     },
   };
@@ -48,7 +48,7 @@ const DisplayComponent = ({ topic }) => {
       topicKey,
       topictype,
       topicName: teamName,
-      imagesource: teamLogoPath,
+      LogoTeam: teamLogoPath,
       SubTopicId: SubTopicId,
     },
   };

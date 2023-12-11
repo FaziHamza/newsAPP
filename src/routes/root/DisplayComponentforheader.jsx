@@ -40,10 +40,10 @@ const DisplayComponentforheader = ({ topic }) => {
         topicKey,
         topictype,
         topicName: teamName,
-        imagesource: teamLogoPath,
         SubTopicId: SubTopicId,
         LogoTeam:teamLogoPath,
-        Name:teamName
+        Name:teamName,
+        IsSubtopicVideo:IsSubtopicVideo
       },
     };
     const linkPropsforpodcast = {
@@ -52,10 +52,10 @@ const DisplayComponentforheader = ({ topic }) => {
         topicKey,
         topictype,
         topicName: teamName,
-        imagesource: teamLogoPath,
         SubTopicId: SubTopicId,
         LogoTeam:teamLogoPath,
-        Name:teamName
+        Name:teamName,
+        IsSubtopicVideo:IsSubtopicVideo
       },
     };
     const IsSql = state?.IsSql;

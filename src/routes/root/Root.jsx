@@ -445,7 +445,7 @@ const DisplayComponentForMobile = ({ topic }) => {
       topicKey,
       topictype,
       topicName: teamName,
-      imagesource: teamLogoPath,
+      LogoTeam: teamLogoPath,
       SubTopicId: SubTopicId,
     },
   };
@@ -455,7 +455,7 @@ const DisplayComponentForMobile = ({ topic }) => {
       topicKey,
       topictype,
       topicName: teamName,
-      imagesource: teamLogoPath,
+      LogoTeam: teamLogoPath,
       SubTopicId: SubTopicId,
     },
   };

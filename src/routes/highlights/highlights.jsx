@@ -73,7 +73,7 @@ const HighlightsList = () => {
     setVideoEmbed('');
   };
 
-  const LogoPath = state?.imagesource;
+  const LogoPath = state?.LogoTeam;
 
   if(highlightsData==null || highlightsData==undefined){
     return <DataNotFound customMessage={'Video'}/>;
