@@ -5,8 +5,7 @@ import { Root, ErrorPage, Table, Article, topicLoader, articleLoader ,Highlights
 import './main.css';
 import { Provider } from 'react-redux';
 import store from './redux/store'
-import Iframe from './compositions/storyTile/Iframe';
-const urlToOpen = 'https://www.svt.se/sport/ridsport/henrik-von-eckermann-tva-i-den-stjarnspackade-finalen-shit-happens--erkdxn';
+import ExternalArticle from './compositions/storyTile/ExternalArticle';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +19,7 @@ const router = createBrowserRouter([
       { path: 'highlights', element: <Highlights /> }, // <-- Add this line
       { path: 'videohighlights', element: <VideoHighlights /> }, // <-- Add this line
       { path: 'podcast', element: <PodCast /> }, // <-- Add this line
-      { path: 'iframe', element: <Iframe iframeUrl={urlToOpen}/> }, // <-- Add this line
+      { path: 'external', element: <ExternalArticle /> }, // <-- Add this line
 
     ],
   },
