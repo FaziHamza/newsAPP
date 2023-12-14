@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { MediaQueryProvider } from '../../utilities/mediaQuery';
 import { ThemeQueryProvider } from '../../utilities/themeQuery';
 import { useAsync } from '../../utilities/asyncReducer';
@@ -11,7 +11,7 @@ import { fetchConfig, fetchGetFunction } from '../../utilities/fetch';
 import { Logo, NavbarMobile, Navigation } from '../../compositions';
 // Mockup images imports
 import { useMediaQuery, useTheme } from '../../utilities/hooks';
-import { useEffect, useState ,useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { getData } from '../../assets/mockup-assets/data/dataObject';
 // import { addresses } from '../../utilities/config';
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,6 +42,11 @@ const Root = () => {
   const { data: settingsInfo, status, error, run } = useAsync({ status: 'pending' });
   const [themeVariant, setThemeVariant] = useTheme('dark'); // 'dark', 'light'
   const [windowHref, setWindowHref] = useState('');
+
+  const [minItem, setMinItem] = useState();
+
+  const navigate = useNavigate();
+
   const isDesktop = useMediaQuery('width', 1024);
   const themeIcon = getData().themeIcon;
   const toggleTheme = (inputValue, valueOne, valueTwo) => {
@@ -55,7 +60,7 @@ const Root = () => {
     const storedRegion = localStorage.getItem('selectedRegion');
     var parsedRegion = storedRegion ? JSON.parse(storedRegion) : null;
     return parsedRegion ? parsedRegion.hostName : null;
-  }
+  };
   const handleOrigin = (e, id) => {
     e.preventDefault();
     dispatch(selectCountry(id));
@@ -63,16 +68,39 @@ const Root = () => {
   };
   if (IsMobile) {
     useEffect(() => {
-      const authToken =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImVkNzgzZDQ4LTg0NzYtNDIyMi01YmJlLTA4ZGJjYWYzNGE2OSIsIlVzZXJJZCI6ImVkNzgzZDQ4LTg0NzYtNDIyMi01YmJlLTA4ZGJjYWYzNGE2OSIsIkVtYWlsIjoiYWRtaW5Ad2ViLmNvbSIsIm5iZiI6MTcwMDgxMTQ4MSwiZXhwIjoxNzAwOTg0MjgxLCJpYXQiOjE3MDA4MTE0ODEsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzcwLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzcwLyJ9.hqrB76meJoPr_xwQ8nZvtnvsTidzIapbhPlZvFppGIk';
+
+      const x = setInterval(() => {
+        const x = scrollableDivRef.current?.scrollLeft;
+        let min_dist = Infinity;
+        let min_item = Infinity;
+        let y = 0;
+        for (let index = 0; index < scrollableDivRef.current?.children.length; index++) {
+          const element = scrollableDivRef.current?.children[index];
+          y += element.scrollWidth;
+          let thisDistance = Math.abs(x - y);
+          if (thisDistance < min_dist) {
+            min_dist = thisDistance;
+            min_item = index;
+          }
+        }
+        if (minItem != min_item ) {
+          // alert(minItem)
+          console.log(min_item);
+
+          ScrollToActiveTab(min_item);
+          // setMinItem(min_item);
+          // navigate(filteredFavouriteMenu?.[min_item]?.link, {
+          //   state: filteredFavouriteMenu?.[min_item]?.state,
+          // });
+        } // if(minItem!=undefined)ScrollToActiveTab(minItem)
+      }, 1500);
+
+      return ()=>clearInterval(x)
+    }, []);
+
+    useEffect(() => {
       const apiUrl = `${RootUrl.Baseurl}api/Region/GetRegion`;
-      fetch(apiUrl, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${authToken}`,
-        },
-      })
+      fetch(apiUrl)
         .then((res) => res.json())
         .then((data) => {
           console.log('All Region', data.data);
@@ -83,20 +111,6 @@ const Root = () => {
           console.log('Error From Dummy Request', err);
         });
     }, []);
-
-    // useEffect(() => {
-    //   const apiUrl = `${RootUrl.Baseurl}api/Region/GetRegion`;
-    //   fetch(apiUrl)
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       console.log('All Region', data.data);
-    //       const dynamicData = data.data;
-    //       dispatch(setallregion(data.data));
-    //     })
-    //     .catch((err) => {
-    //       console.log('Error From Dummy Request', err);
-    //     });
-    // }, []);
   }
 
   useEffect(() => {
@@ -141,7 +155,7 @@ const Root = () => {
         subTopicIds.includes(item.state.SubTopicId)
       );
       setFilteredFavouriteMenu(filteredMenu);
-      console.log('filtereremwnu', filteredFavouriteMenu)
+      console.log('filtereremwnu', filteredFavouriteMenu);
       //favouriteMenu
     }
     const foundItems = settingsInfo?.menuItems
@@ -158,11 +172,10 @@ const Root = () => {
         );
         dispatch(setinitialload(filteredSubTopics));
         dispatch(setarticlevideo(filteredSubTopics));
-        setVisible(true)
+        setVisible(true);
         return { subTopics: filteredSubTopics };
       });
   }, [settingsInfo, favouriteMenu]);
-
 
   function ScrollToActiveTab(id) {
     // Get references to the div and the target element
@@ -170,58 +183,15 @@ const Root = () => {
     let tempId = 'targetId-' + id;
     var targetElement = document.getElementById(tempId);
 
-    var targetPosition = targetElement?.offsetLeft - window.innerWidth * 0.4;
-
+    var targetPosition =
+      targetElement?.offsetLeft + targetElement?.clientWidth / 2 - window.innerWidth * 0.5;
+    console.log('ont', scrollableDiv.scrollLeft, targetPosition);
     // Scroll the div to the target position
     scrollableDiv.scrollLeft = targetPosition;
   }
   const scrollableDivRef = useRef(null);
 
-  useEffect(() => {
-    const centerSelectedItem = () => {
-      const scrollableDiv = scrollableDivRef.current;
-  
-      if (scrollableDiv) {
-        const selectedTab = scrollableDiv.querySelector('.active');
-  
-        if (selectedTab) {
-          const scrollableDivRect = scrollableDiv.getBoundingClientRect();
-          const selectedTabRect = selectedTab.getBoundingClientRect();
-  
-          let scrollLeft =
-            selectedTabRect.left +
-            selectedTabRect.width / 2 -
-            scrollableDivRect.left -
-            scrollableDivRect.width / 2;
-  
-          const padding = 20; // Adjust the padding value as needed
-  
-          // Ensure that there's padding on both sides
-          scrollLeft = Math.max(
-            Math.min(
-              scrollLeft,
-              scrollableDiv.scrollWidth - scrollableDivRect.width - padding
-            ),
-            0
-          );
-  
-          // Scroll to the calculated position
-          scrollableDiv.scrollLeft = scrollLeft;
-        }
-      }
-    };
-  
-    // Call the function initially and on window resize
-    centerSelectedItem();
-    window.addEventListener('resize', centerSelectedItem);
-  
-    // Cleanup event listener on component unmount
-    return () => {
-      window.removeEventListener('resize', centerSelectedItem);
-    };
-  }, []);
-  
-  
+
   switch (status) {
     case 'idle':
       return <div>idle</div>;
@@ -272,18 +242,18 @@ const Root = () => {
                   </div>
                 ) : (
                   <>
-                  <div className="main-header">
-                    <div className="item">
-                      <NavbarMobile
-                        navList={settingsInfo.menuItems}
-                        setThemeVariant={setThemeVariant}
-                        themeVariant={themeVariant}
-                      />
-                      {/* <span style={{ fontSize: '30px', cursor: 'pointer' }}>&#9776;</span> */}
-                    </div>
-                    <div className="item mid-logo">
-                      <Logo name={'Logo'} href="/" alt={'logo'} />
-                      {/* {IsMobile ? (
+                    <div className="main-header">
+                      <div className="item">
+                        <NavbarMobile
+                          navList={settingsInfo.menuItems}
+                          setThemeVariant={setThemeVariant}
+                          themeVariant={themeVariant}
+                        />
+                        {/* <span style={{ fontSize: '30px', cursor: 'pointer' }}>&#9776;</span> */}
+                      </div>
+                      <div className="item mid-logo">
+                        <Logo name={'Logo'} href="/" alt={'logo'} />
+                        {/* {IsMobile ? (
                         <div className="c-dropdown">
                           <div class="dropdown">
                             <div
@@ -321,67 +291,100 @@ const Root = () => {
                       ) : (
                         <Logo name={'Flag'} href="/" alt={'logo'} />
                       )} */}
-                    </div>
-                    <div className="item">
-                      {IsMobile ? (
-                        <div className="c-dropdown">
-                          <div class="dropdown">
-                            <div
-                              class="  dropdown-toggle"
-                              type="button"
-                              id="dropdownMenuButton1"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <span>
-                                <Logo alt={'logo'} />
-                              </span>
-                            </div>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                              {allregion?.map((m) => {
-                                const isActive = selectedMenu?.id === m?.id;
-                                return (
-                                  <li
-                                    key={m?.id}
-                                    className={`dropdown-item text-uppercase ${themeVariant === 'light'
-                                        ? isActive
-                                          ? 'bg-light active-light'
-                                          : 'bg-light'
-                                        : isActive
+                      </div>
+                      <div className="item">
+                        {IsMobile ? (
+                          <div className="c-dropdown">
+                            <div class="dropdown">
+                              <div
+                                class="  dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <span>
+                                  <Logo alt={'logo'} />
+                                </span>
+                              </div>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                {allregion?.map((m) => {
+                                  const isActive = selectedMenu?.id === m?.id;
+                                  return (
+                                    <li
+                                      key={m?.id}
+                                      className={`dropdown-item text-uppercase ${
+                                        themeVariant === 'light'
+                                          ? isActive
+                                            ? 'bg-light active-light'
+                                            : 'bg-light'
+                                          : isActive
                                           ? 'bg-dark active-dark'
                                           : 'bg-dark'
                                       }`}
-                                    onClick={(e) => handleOrigin(e, m?.id)}>
-                                    {m?.domainName}
-                                  </li>
-                                );
-                              })}
-                            </ul>
+                                      onClick={(e) => handleOrigin(e, m?.id)}>
+                                      {m?.domainName}
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </div>
                           </div>
-                        </div>
-                      ) : (
-                        <Logo name={'Flag'} href="/" alt={'logo'} />
-                      )}
+                        ) : (
+                          <Logo name={'Flag'} href="/" alt={'logo'} />
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div className='header-nav'>
-                        {IsMobile && visible &&
-                         <DisplayComponentforheader/>
-                        }  
-                       
-                  </div>
+                    <div className="header-nav">
+                      {IsMobile && visible && <DisplayComponentforheader />}
+                    </div>
                   </>
                 )}
-                
               </header>
                         
               {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
               <Outlet context={fullInfo} />
             </div>
             <footer>
-            <div className="top-bar lg-d-none " id="scrollableDiv" ref={scrollableDivRef}>
-                  {IsMobile &&
-                    // {favouriteMenu?.some(m => m?.name == team?.name)}
-                    filteredFavouriteMenu?.map((m, i) => {
+              <div
+                className="top-bar lg-d-none "
+                id="scrollableDiv"
+                ref={scrollableDivRef}
+                // onDragEnd={()=>console.log('DRAG-END')}
+                onScroll={() => {
+                  // console.log(scrollableDivRef?.current?.children);
+                  // (window.width)
+                  const x = scrollableDivRef.current?.scrollLeft;
+                  let min_dist = Infinity;
+                  let min_item = Infinity;
+                  let y = 0;
+                  for (let index = 0; index < scrollableDivRef.current?.children.length; index++) {
+                    const element = scrollableDivRef.current?.children[index];
+                    y += element.scrollWidth;
+                    let thisDistance = Math.abs(x - y);
+                    if (thisDistance < min_dist) {
+                      min_dist = thisDistance;
+                      min_item = index;
+                    }
+                  }
+                  if (minItem != min_item) {
+                    // alert(minItem)
+                    console.log(min_item);
+
+                    ScrollToActiveTab(min_item);
+                    setMinItem(min_item);
+                    navigate(filteredFavouriteMenu[min_item]?.link, {
+                      state: filteredFavouriteMenu[min_item]?.state,
+                    });
+                  }
+                  // console.log(min_tem);
+                  // ScrollToActiveTab(min_item)
+                }}>
+                {IsMobile && (
+                  // {favouriteMenu?.some(m => m?.name == team?.name)}
+                  <>
+                     <div style={{ marginRight: '200px' }}>
+                    </div>
+                    {filteredFavouriteMenu?.map((m, i) => {
                       return (
                         <Link
                           key={i}
@@ -395,15 +398,18 @@ const Root = () => {
                           state={m?.state}
                           name={m?.name}
                           onClick={() => ScrollToActiveTab(i)}>
-                          
                           {m?.name?.toLowerCase() == 'top news'
                             ? `${m.name} ${m?.state?.moreItemName}`
                             : m?.name}
                         </Link>
                       );
                     })}
-                </div>
-                </footer>
+                    <div style={{ marginLeft: '200px' }}>
+                    </div>
+                  </>
+                )}
+              </div>
+            </footer>
           </ThemeQueryProvider>
         </MediaQueryProvider>
       );
