@@ -150,13 +150,13 @@ const Article = ({ className = '' }) => {
                           <img src={imageUrl} alt="logo" />
                         </h6>
                       </div>
-                      <div class="right-article">
+                      {/* <div class="right-article">
                         <Link {...linkPropsforhighlight}>
                           <div className="highlights">
                             <img src={video_play} style={{ height: '20px' }} />
                           </div>
                         </Link>
-                      </div>
+                      </div> */}
                     </div>
                     <hr />
                   </figure>
@@ -175,10 +175,10 @@ const Article = ({ className = '' }) => {
       ) : (
         <main className='article'>
           <div className="row">
-            <div className="col-11">
+            <div className="col-12">
               <h2 dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>
             </div>
-            <div className="col-1">
+            {/* <div className="col-1">
               <button
                 type="button"
                 class="btn text-light close-btn rounded-circle "
@@ -186,7 +186,7 @@ const Article = ({ className = '' }) => {
                 onClick={() => navigate(-1)}>
                 <i class="fa-solid fa-xmark"></i>
               </button>
-            </div>
+            </div> */}
           </div>
           <figure className="artical-detail">
             <img src={state.imgUrl} alt={state.imgUrl} />
@@ -197,13 +197,13 @@ const Article = ({ className = '' }) => {
                   <img src={imageUrl} alt="logo" />
                 </h6>
               </div>
-              <div class="right-article">
+              {/* <div class="right-article">
                 <Link {...linkPropsforhighlight}>
                   <div className="highlights">
                     <img src={video_play} style={{ height: '20px' }} />
                   </div>
                 </Link>
-              </div>
+              </div> */}
             </div>
             <hr />
           </figure>
