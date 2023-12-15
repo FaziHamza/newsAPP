@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { logo, video_play, podcast } from '../../assets';
 import { sportspotsverige, AFP_news, SPORSpot_News } from '../../assets';
 import { useSelector } from 'react-redux';
-import { IsMobile,RootUrl } from '../../utilities/config';
+import { IsMobile, RootUrl } from '../../utilities/config';
 import { useEffect, useState } from 'react';
 const DisplayComponent = ({ topic }) => {
   const location = useLocation();
   const initialload = useSelector((state) => state.origin.initialload);
   const { state } = location;
-  console.log(state)
-  console.log(initialload)
+  console.log(state);
+  console.log(initialload);
   // Now you can access the passed state values
   const moreItemName = state?.moreItemName || null;
   const teamName = state?.topicName || initialload[0].name;
@@ -25,8 +25,8 @@ const DisplayComponent = ({ topic }) => {
   } else {
     IsSubtopicVideo = state?.IsSubtopicVideo;
   }
-  const [isShowPodcastIcon,setisshowPodcaseIcon]=useState(null);
-  const [isShowVideoIcon,setisShowVideoIcon]=useState(null);
+  const [isShowPodcastIcon, setisshowPodcaseIcon] = useState(null);
+  const [isShowVideoIcon, setisShowVideoIcon] = useState(null);
   const logoPath = state?.LogoPath || null;
   const teamLogoPath = state?.LogoTeam || initialload[0].logo;
   const SubTopicId = state?.SubTopicId || initialload[0].subTopicID;
@@ -54,12 +54,12 @@ const DisplayComponent = ({ topic }) => {
   };
   const IsSql = state?.IsSql;
   useEffect(() => {
-  const apiUrl = `${RootUrl.Baseurl}api/Subtopic/GetVideoStatusBySubtopicId?id=${SubTopicId}`;
+    const apiUrl = `${RootUrl.Baseurl}api/Subtopic/GetVideoStatusBySubtopicId?id=${SubTopicId}`;
     fetch(apiUrl)
       .then((res) => res.json())
       .then((response) => {
-          setisshowPodcaseIcon(response.data.videoPodcast)
-          setisShowVideoIcon(response.data.videoHighlight)
+        setisshowPodcaseIcon(response.data.videoPodcast);
+        setisShowVideoIcon(response.data.videoHighlight);
       })
       .catch((err) => {
         console.log('Error', err);
@@ -76,42 +76,42 @@ const DisplayComponent = ({ topic }) => {
                 {moreItemName}
               </div> */}
               <div className="title">
-                  <>
-                    {teamName.includes(moreItemName) ? null : (
-                      <>
-                        <img src={teamLogoPath} height={'20px'} />
-                      </>
-                    )}
-                    {teamName.replace(moreItemName, '')}
-                  </>
+                <>
+                  {teamName.includes(moreItemName) ? null : (
+                    <>
+                      <img src={teamLogoPath} height={'20px'} />
+                    </>
+                  )}
+                  {teamName.replace(moreItemName, '')}
+                </>
               </div>
             </div>
 
             <div style={{ display: 'flex' }}>
-              {isShowPodcastIcon &&
-              <Link {...linkPropsforpodcast} className="underline-hide">
-                <div className="highlights podcast-video">
-                  <img src={podcast} height={'20px'} />
-                  <span>Podcasts</span>
-                </div>
-              </Link>
-              }
-              {isShowVideoIcon && IsSubtopicVideo &&
-              <Link {...linkPropsforhighlight} className="underline-hide">
-                <div className="highlights podcast-video">
-                  <img src={video_play} height={'20px'} />
-                  <span>Videos</span>
-                </div>
-              </Link>
-              }
-               {!IsSubtopicVideo &&
-              <Link {...linkPropsforhighlight} className="underline-hide">
-                <div className="highlights podcast-video">
-                  <img src={video_play} height={'20px'} />
-                  <span>Videos</span>
-                </div>
-              </Link>
-              }
+              {isShowPodcastIcon && (
+                <Link {...linkPropsforpodcast} className="underline-hide">
+                  <div className="highlights podcast-video">
+                    <img src={podcast} height={'20px'} />
+                    <span>Podcasts</span>
+                  </div>
+                </Link>
+              )}
+              {isShowVideoIcon && IsSubtopicVideo && (
+                <Link {...linkPropsforhighlight} className="underline-hide">
+                  <div className="highlights podcast-video">
+                    <img src={video_play} height={'20px'} />
+                    <span>Videos</span>
+                  </div>
+                </Link>
+              )}
+              {!IsSubtopicVideo && (
+                <Link {...linkPropsforhighlight} className="underline-hide">
+                  <div className="highlights podcast-video">
+                    <img src={video_play} height={'20px'} />
+                    <span>Videos</span>
+                  </div>
+                </Link>
+              )}
             </div>
           </div>
         </>
@@ -121,7 +121,16 @@ const DisplayComponent = ({ topic }) => {
     </>
   );
 };
-const StoryMain = ({ idforlogo,heading, description, className = '', src, alt, time, isDesktopScreen }) => {
+const StoryMain = ({
+  idforlogo,
+  heading,
+  description,
+  className = '',
+  src,
+  alt,
+  time,
+  isDesktopScreen,
+}) => {
   const location = useLocation();
   const { state } = location;
   const SubTopicHeadline = state?.SubttopicHeadline;
@@ -147,16 +156,16 @@ const StoryMain = ({ idforlogo,heading, description, className = '', src, alt, t
     const days = Math.floor(timeDifference / 24);
     const hours = Math.floor(timeDifference % 24);
     const remainingMinutes = Math.round((timeDifference - Math.floor(timeDifference)) * 60);
-  
+
     if (timeDifference < 1) {
       return `${remainingMinutes} minutes`; // Return minutes if less than 1 hour
     } else if (timeDifference < 24) {
-      return `${hours} hours ago`; // Return hours and minutes if less than 1 day
+      return `${hours} hours`; // Return hours and minutes if less than 1 day
     } else {
-      return `${days} Day ago`; // Return days, hours, and minutes
+      return `${days} Day`; // Return days, hours, and minutes
     }
   };
-  
+
   const sanitizedSrc = src.replace(/([^:]\/)\/+/g, '$1');
 
   return (
@@ -168,8 +177,7 @@ const StoryMain = ({ idforlogo,heading, description, className = '', src, alt, t
             <div className="banner">
               <img src={sanitizedSrc} alt={alt} />
             </div>
-            <div>
-            </div>
+            <div></div>
             <div className="content">
               <p className="desktopTop" dangerouslySetInnerHTML={{ __html: description }} />
               <h6 className="content-time-img">
@@ -181,32 +189,36 @@ const StoryMain = ({ idforlogo,heading, description, className = '', src, alt, t
         </>
       ) : (
         <div className="league-card">
-          {
-            !IsMobile &&          
-            <DisplayComponent />
-          }
+          {!IsMobile && <DisplayComponent />}
           <div className="banner">
             <img src={sanitizedSrc} alt={alt} />
+  
           </div>
           <div>
-            {IsMobile &&
-                  SubTopicHeadline &&(
-                    <span style={{background:'#fde42f',padding:'3px',borderRadius:'30px',height:'10px'}}>
-                      {SubTopicHeadline}
-                    </span>
-                  )
-            }
-            </div>
+            {IsMobile && SubTopicHeadline && (
+              <span
+                style={{
+                  background: '#fde42f',
+                  padding: '3px',
+                  borderRadius: '30px',
+                  height: '10px',
+                }}>
+                {SubTopicHeadline}
+              </span>
+            )}
+          </div>
           <div className="content">
+            <div className='tagcontainer' >
+              <p className="tag">Nyheter</p>
+            </div>
             <p>
               <h1 className="heading-bold">{heading}</h1>
               <p className="abstart-color" dangerouslySetInnerHTML={{ __html: description }} />
             </p>
             <div className="date">
-              <p className='abstart-color'>
-              {days()}
+              <p className="abstart-color">
+                {days()}
                 <img src={imageUrl} alt="" />
-               
               </p>
             </div>
           </div>

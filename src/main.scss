@@ -161,6 +161,7 @@ header>div {
     width: 100%;
     display: flex;
     justify-content: flex-start;
+    padding: 4px 2px;
 }
 
 .league-card .date p {
@@ -211,9 +212,16 @@ header>div {
     -webkit-box-orient: vertical;
     overflow: hidden
 }
-.abstart-color{
+
+.abstart-color {
     font-weight: normal !important;
+    color: gray !important;
+    font-size: 13px !important;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
+
 .suggested-card {
     width: 100%;
     padding: 10px;
@@ -256,7 +264,7 @@ header>div {
 
 .suggested-card .content {
     width: 100%;
-    padding: 0px 15px;
+    // padding: 0px 15px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -298,7 +306,7 @@ header>div {
     .suggested-card .content p {
         display: -webkit-box;
         -webkit-line-clamp: 3;
-        font-size: 12px;
+        font-size: 10px;
         -webkit-box-orient: vertical;
     }
 
@@ -320,6 +328,8 @@ header>div {
     width: 100%;
     object-fit: cover;
     border-radius: 10px;
+    min-height: 95px !important;
+    max-height: 95px !important;
 }
 
 .suggested-card.tile-m.main-list .banner img {
@@ -931,15 +941,15 @@ h6 {
     overflow-x: scroll;
     display: flex;
     white-space: nowrap;
-    justify-content: start;
+    justify-content: center;
     background-color: #000;
     color: white;
-  }
-  
+}
+
 //   .top-bar:hover {
 //     overflow-x: scroll;
 //   }
-  
+
 
 .top-bar a.active {
     background: #fff !important;
@@ -970,7 +980,7 @@ h6 {
     // color: #fff !important;
     color: rgb(255, 255, 255) !important;
     background-color: #000 !important;
-    padding: 10px 12px;
+    padding: 5px 12px;
     font-size: 14px;
 }
 
@@ -1131,4 +1141,32 @@ h6 {
             }
         }
     }
+}
+
+.tagcontainer {
+    border-radius: 18.5px;
+    background: #FDE42F;
+    width: fit-content;
+    padding: 2px 10px;
+    margin: 4px 0px;
+
+    .tag {
+        color: #000 !important;
+        font-size: 13px !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        line-height: normal !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .suggested-card.tile-m .content-time-img{
+            font-size: 7px !important;
+        }
+}
+
+
+.story-link-card.one .banner img{
+    min-height: 40px !important;
+    max-height: 80px !important;
 }

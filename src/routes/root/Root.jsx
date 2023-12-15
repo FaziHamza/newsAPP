@@ -382,8 +382,8 @@ const Root = () => {
                 {IsMobile && (
                   // {favouriteMenu?.some(m => m?.name == team?.name)}
                   <>
-                     <div style={{ marginRight: '40%' }}>
-                    </div>
+                     {/* <div style={{ marginRight: '40%' }}>
+                    </div> */}
                     {filteredFavouriteMenu?.map((m, i) => {
                       return (
                         <Link
@@ -404,8 +404,8 @@ const Root = () => {
                         </Link>
                       );
                     })}
-                    <div style={{ marginLeft: '40%' }}>
-                    </div>
+                    {/* <div style={{ marginLeft: '40%' }}>
+                    </div> */}
                   </>
                 )}
               </div>

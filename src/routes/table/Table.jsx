@@ -380,7 +380,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 />
                               </Link>
                             ) : index >= 1 && index <= 4 ? (
-                              <div className="story-link-card second" style={{ display: 'flex' }}>
+                              <div className="story-link-card second" style={{ display: 'flex' ,paddingBottom : "5px" }}>
                                 {(index === 1 || index === 3) &&
                                 tableInfo[index] != null &&
                                 tableInfo[index + 1] != null ? (
@@ -410,7 +410,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                               ?.toLowerCase()
                                               .replace(/\s/g, '_')}/${tableInfo[index]._id}`
                                       }
-                                      style={{ width: '100%', margin: '5px' }}>
+                                      style={{ width: '100%', marginRight : ' 10px' }}>
                                       <>
                                         <StoryTileHorizon
                                           idforlogo={tableInfo[index]._id}
@@ -448,7 +448,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                               ?.toLowerCase()
                                               .replace(/\s/g, '_')}/${tableInfo[index + 1]._id}`
                                       }
-                                      style={{ width: '100%', margin: '5px' }}>
+                                      style={{ width: '100%', marginlEFT: '10px' }}>
                                       <>
                                         <StoryTileHorizon
                                           idforlogo={tableInfo[index + 1]._id}
@@ -477,7 +477,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 )}
                               </div>
                             ) : (
-                              <div className="story-link-card">
+                              <div className="story-link-card one">
                                 <Link
                                   className="story-link"
                                   key={tileItem._id}

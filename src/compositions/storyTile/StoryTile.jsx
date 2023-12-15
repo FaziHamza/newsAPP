@@ -30,9 +30,9 @@ const StoryTile = ({idforlogo, description, className = '', src, alt, time, isDe
     if (timeDifference < 1) {
       return `${remainingMinutes} minutes`; // Return minutes if less than 1 hour
     } else if (timeDifference < 24) {
-      return `${hours} hours ago`; // Return hours and minutes if less than 1 day
+      return `${hours} hours`; // Return hours and minutes if less than 1 day
     } else {
-      return `${days} Day ago`; // Return days, hours, and minutes
+      return `${days} Day`; // Return days, hours, and minutes
     }
   };
   const sanitizedSrc = src.replace(/([^:]\/)\/+/g, "$1");
@@ -43,7 +43,6 @@ const StoryTile = ({idforlogo, description, className = '', src, alt, time, isDe
       <div className={`suggested-card ${className}`}>
         <div className='banner'>
           <img src={sanitizedSrc} alt={alt} />
-
         </div>
         <div className='content'>
           {/* <p>{description}</p> */}
