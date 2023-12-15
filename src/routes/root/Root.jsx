@@ -382,8 +382,8 @@ const Root = () => {
                 {IsMobile && (
                   // {favouriteMenu?.some(m => m?.name == team?.name)}
                   <>
-                     {/* <div style={{ marginRight: '40%' }}>
-                    </div> */}
+                     <div style={{ marginRight: '40%' }}>
+                    </div>
                     {filteredFavouriteMenu?.map((m, i) => {
                       return (
                         <Link
@@ -398,14 +398,32 @@ const Root = () => {
                           state={m?.state}
                           name={m?.name}
                           onClick={() => ScrollToActiveTab(i)}>
+                             {/* Display the LogoTeam image if it exists */}
+                          <div className="action-bar">
+                            {m?.name?.toLowerCase() === 'top news'
+                              ? m?.state?.LogoPath && (
+                                  <img
+                                    className="action-bar-img"
+                                    src={m?.state?.LogoPath}
+                                    alt={`${m?.name} logo`}
+                                  />
+                                )
+                              : m?.state?.LogoTeam && (
+                                  <img
+                                    className="action-bar-img"
+                                    src={m?.state?.LogoTeam}
+                                    alt={`${m?.name} logo`}
+                                  />
+                                )}
+                          </div>
                           {m?.name?.toLowerCase() == 'top news'
                             ? `${m.name} ${m?.state?.moreItemName}`
                             : m?.name}
                         </Link>
                       );
                     })}
-                    {/* <div style={{ marginLeft: '40%' }}>
-                    </div> */}
+                    <div style={{ marginLeft: '40%' }}>
+                    </div>
                   </>
                 )}
               </div>
