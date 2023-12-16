@@ -936,20 +936,41 @@ h6 {
     bottom: 0px;
     left: 0;
     right: 0;
-    padding: 10px;
-    /* background: #1b1e23 !important; */
-    overflow-x: scroll;
-    display: flex;
-    white-space: nowrap;
-    justify-content: center;
     background-color: #000;
     color: white;
+    height: 100px;
+
+    .curve {
+        width: 100%;
+        height: 30px;
+        background: white;
+        border-bottom-left-radius: 26px;
+        border-bottom-right-radius: 26px;
+    }
+
+    .all-tabs {
+        height: 100%;
+        display: flex;
+        overflow-x: scroll;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 15px;
+        .btn-light {
+            margin: 0px 10px;
+            white-space: nowrap;
+            padding: 0px 10px;
+            height: 32px;
+            font-size: 12px;
+            border-radius: 6px;
+            background: #1b1b1b !important;
+        }
+
+        .btn-light.active {
+            background: white !important;
+            font-weight: 600;
+        }
+    }
 }
-
-//   .top-bar:hover {
-//     overflow-x: scroll;
-//   }
-
 
 .top-bar a.active {
     background: #fff !important;
@@ -977,10 +998,9 @@ h6 {
     align-items: center;
     justify-content: start;
     text-decoration: none;
-    // color: #fff !important;
     color: rgb(255, 255, 255) !important;
     background-color: #000 !important;
-    padding: 5px 12px;
+    padding: 0px 10px;
     font-size: 14px;
 }
 
@@ -1160,13 +1180,13 @@ h6 {
 }
 
 @media screen and (max-width: 768px) {
-    .suggested-card.tile-m .content-time-img{
-            font-size: 7px !important;
-        }
+    .suggested-card.tile-m .content-time-img {
+        font-size: 7px !important;
+    }
 }
 
 
-.story-link-card.one .banner img{
+.story-link-card.one .banner img {
     min-height: 40px !important;
     max-height: 80px !important;
 }

@@ -83,7 +83,7 @@ const Root = () => {
             min_item = index;
           }
         }
-        if (minItem != min_item ) {
+        if (minItem != min_item) {
           // alert(minItem)
           console.log(min_item);
 
@@ -95,7 +95,7 @@ const Root = () => {
         } // if(minItem!=undefined)ScrollToActiveTab(minItem)
       }, 1500);
 
-      return ()=>clearInterval(x)
+      return () => clearInterval(x)
     }, []);
 
     useEffect(() => {
@@ -312,15 +312,14 @@ const Root = () => {
                                   return (
                                     <li
                                       key={m?.id}
-                                      className={`dropdown-item text-uppercase ${
-                                        themeVariant === 'light'
+                                      className={`dropdown-item text-uppercase ${themeVariant === 'light'
                                           ? isActive
                                             ? 'bg-light active-light'
                                             : 'bg-light'
                                           : isActive
-                                          ? 'bg-dark active-dark'
-                                          : 'bg-dark'
-                                      }`}
+                                            ? 'bg-dark active-dark'
+                                            : 'bg-dark'
+                                        }`}
                                       onClick={(e) => handleOrigin(e, m?.id)}>
                                       {m?.domainName}
                                     </li>
@@ -340,13 +339,13 @@ const Root = () => {
                   </>
                 )}
               </header>
-                        
+
               {/* <Navigation className="nav-main" navList={settingsInfo.MenuItems} /> */}
               <Outlet context={fullInfo} />
             </div>
             <footer>
               <div
-                className="top-bar lg-d-none "
+                className="top-bar lg-d-none"
                 id="scrollableDiv"
                 ref={scrollableDivRef}
                 // onDragEnd={()=>console.log('DRAG-END')}
@@ -379,53 +378,56 @@ const Root = () => {
                   // console.log(min_tem);
                   // ScrollToActiveTab(min_item)
                 }}>
-                {IsMobile && (
-                  // {favouriteMenu?.some(m => m?.name == team?.name)}
-                  <>
-                     <div style={{ marginRight: '40%' }}>
-                    </div>
-                    {filteredFavouriteMenu?.map((m, i) => {
-                      return (
-                        <Link
-                          key={i}
-                          id={`targetId-${i}`}
-                          className={
-                            decodedPathname == `/${m?.state?.navType}/${m?.state?.navTopic}`
-                              ? 'active tab btn-light active'
-                              : 'tab btn-light'
-                          }
-                          to={m.link}
-                          state={m?.state}
-                          name={m?.name}
-                          onClick={() => ScrollToActiveTab(i)}>
-                             {/* Display the LogoTeam image if it exists */}
-                          <div className="action-bar">
-                            {m?.name?.toLowerCase() === 'top news'
-                              ? m?.state?.LogoPath && (
+                <div className='curve'></div>
+                <div className='all-tabs'>
+                  {IsMobile && (
+                    // {favouriteMenu?.some(m => m?.name == team?.name)}
+                    <>
+                      <div style={{ marginRight: '40%' }}>
+                      </div>
+                      {filteredFavouriteMenu?.map((m, i) => {
+                        return (
+                          <Link
+                            key={i}
+                            id={`targetId-${i}`}
+                            className={
+                              decodedPathname == `/${m?.state?.navType}/${m?.state?.navTopic}`
+                                ? 'active tab btn-light active'
+                                : 'tab btn-light'
+                            }
+                            to={m.link}
+                            state={m?.state}
+                            name={m?.name}
+                            onClick={() => ScrollToActiveTab(i)}>
+                            {/* Display the LogoTeam image if it exists */}
+                            <div className="action-bar">
+                              {m?.name?.toLowerCase() === 'top news'
+                                ? m?.state?.LogoPath && (
                                   <img
                                     className="action-bar-img"
                                     src={m?.state?.LogoPath}
                                     alt={`${m?.name} logo`}
                                   />
                                 )
-                              : m?.state?.LogoTeam && (
+                                : m?.state?.LogoTeam && (
                                   <img
                                     className="action-bar-img"
                                     src={m?.state?.LogoTeam}
                                     alt={`${m?.name} logo`}
                                   />
                                 )}
-                          </div>
-                          {m?.name?.toLowerCase() == 'top news'
-                            ? `${m.name} ${m?.state?.moreItemName}`
-                            : m?.name}
-                        </Link>
-                      );
-                    })}
-                    <div style={{ marginLeft: '40%' }}>
-                    </div>
-                  </>
-                )}
+                            </div>
+                            {m?.name?.toLowerCase() == 'top news'
+                              ? `${m.name} ${m?.state?.moreItemName}`
+                              : m?.name}
+                          </Link>
+                        );
+                      })}
+                      <div style={{ marginLeft: '40%' }}>
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
             </footer>
           </ThemeQueryProvider>
