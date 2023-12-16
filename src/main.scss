@@ -882,7 +882,7 @@ h6 {
 }
 
 .light-theme .sidenav {
-    background: #f5f5f5;
+    background: #fff;
     border-left: 1px solid lightgray;
 
 }
@@ -955,6 +955,7 @@ h6 {
         align-items: center;
         justify-content: center;
         padding-bottom: 15px;
+
         .btn-light {
             margin: 0px 10px;
             white-space: nowrap;
@@ -1189,4 +1190,110 @@ h6 {
 .story-link-card.one .banner img {
     min-height: 40px !important;
     max-height: 80px !important;
+}
+
+.coll-sidenav {
+    padding: 20px;
+
+    .coll-item {
+        min-height: 40px;
+        width: 100%;
+        padding: 10px 20px;
+        border-radius: 8px;
+        background: #F7F7F7;
+
+        .coll-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .coll-lable {
+                display: flex;
+                align-items: center;
+
+                svg {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        h5 {
+            margin-bottom: 0px;
+            color: #000;
+            font-family: Inter;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+    }
+
+    .coll-item-inner {
+        min-height: 33px;
+        width: 100%;
+        padding: 10px 20px;
+        border-radius: 8px;
+        background: #f1f1f1;
+        margin-top: 10px;
+
+        .coll-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .coll-lable {
+                display: flex;
+                align-items: center;
+
+                svg {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        h5 {
+            color: #000;
+            font-family: Inter;
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        .option {
+            padding: 7px 9px;
+            margin-top: 10px;
+            background: #e8e8e8 !important;
+            border-radius: 8px;
+            min-height: 28px;
+
+            .form-check {
+                display: flex;
+                align-items: center;
+
+                .form-check-input {
+                    margin-right: 5px;
+                    border-radius: 100px;
+                    width: 14px;
+                    height: 14px;
+                }
+
+                .form-check-label {
+                    color: #000;
+                    font-family: Inter;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    padding: 2px 0px;
+
+                    img {
+                        margin-right: 5px;
+
+                    }
+                }
+            }
+        }
+    }
+
 }
