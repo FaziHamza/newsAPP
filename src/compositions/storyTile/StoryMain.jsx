@@ -194,23 +194,18 @@ const StoryMain = ({
             <img src={sanitizedSrc} alt={alt} />
   
           </div>
-          <div>
+          <div className='tagcontainer' >
             {IsMobile && SubTopicHeadline && (
               <span
-                style={{
-                  background: '#fde42f',
-                  padding: '3px',
-                  borderRadius: '30px',
-                  height: '10px',
-                }}>
+                className='tag'>
                 {SubTopicHeadline}
               </span>
             )}
           </div>
           <div className="content">
-            <div className='tagcontainer' >
+            {/* <div className='tagcontainer' >
               <p className="tag">Nyheter</p>
-            </div>
+            </div> */}
             <p>
               <h1 className="heading-bold">{heading}</h1>
               <p className="abstart-color" dangerouslySetInnerHTML={{ __html: description }} />
