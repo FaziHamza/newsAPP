@@ -367,7 +367,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
         <div className="coll-sidenav">
           <div className="coll-item">
             <a
-              className="coll-heading"
+              className="coll-heading collapsed"
               data-bs-toggle="collapse"
               href="#collapseExample"
               role="button"
