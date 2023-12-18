@@ -1338,3 +1338,12 @@ h6 {
     }
 
 }
+
+.coll-heading .arrow {
+    transform: rotate(0deg);
+
+}
+
+.coll-heading.collapsed .arrow {
+    transform: rotate(180deg);
+}

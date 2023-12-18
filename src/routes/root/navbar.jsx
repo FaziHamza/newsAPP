@@ -101,7 +101,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
           {Object.entries(groupedNavItems).map(([heading, items]) => (
             <div className="coll-item" key={heading}>
               <a
-                className="coll-heading"
+                className="coll-heading collapsed"
                 data-bs-toggle="collapse"
                 //href="#collapseExample"
                 href={`#collapseExample-${heading.trim()}`}
@@ -157,9 +157,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
 
                 return (
                   <div class="collapse" id={`collapseExample-${heading.trim()}`}>
-                    <div className="coll-item-inner">
+                    <div className="coll-item-inner ">
                       <a
-                        className="coll-heading"
+                        className="coll-heading collapsed"
                         data-bs-toggle="collapse"
                         href={`#collapseinner1-${id}`}
                         role="button"
