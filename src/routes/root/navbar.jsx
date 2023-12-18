@@ -97,9 +97,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
           &times;
         </a>
         {/* coll-sidenav */}
-        {Object.entries(groupedNavItems).map(([heading, items]) => (
-          <div className="coll-sidenav" key={heading}>
-            <div className="coll-item">
+        <div className="coll-sidenav" >
+          {Object.entries(groupedNavItems).map(([heading, items]) => (
+            <div className="coll-item" key={heading}>
               <a
                 className="coll-heading"
                 data-bs-toggle="collapse"
@@ -145,15 +145,15 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                 const id = moreItem.topic.name.toLowerCase().replace(/\s+/g, '-');
                 const [topicNavType, topicNavTopic, topicNavAddress] = moreItem.topic.news
                   ? [
-                      'news',
-                      moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
-                      moreItem.topic.news,
-                    ]
+                    'news',
+                    moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
+                    moreItem.topic.news,
+                  ]
                   : [
-                      'articles',
-                      moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
-                      moreItem.topic.articles,
-                    ];
+                    'articles',
+                    moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
+                    moreItem.topic.articles,
+                  ];
 
                 return (
                   <div class="collapse" id={`collapseExample-${heading.trim()}`}>
@@ -168,39 +168,41 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                         <div className="coll-lable">
                           <h5>{moreItem.topic.name}</h5>
                         </div>
-                        <div className="action-bar-icon">
-                          {moreItem.subTopics.length > 0 && (
-                            <>
-                              {IsMobile && (
-                                <span className="my-action-bar">{moreItem.topic.actionBar}</span>
-                              )}
-                            </>
-                          )}
-                        </div>
-                        <div className="arrow">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
-                            viewBox="0 0 20 20"
-                            fill="none">
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M2.02322 5.70974C2.26316 5.4698 2.65218 5.4698 2.89212 5.70974L9.83055 12.6482L16.769 5.70974C17.0089 5.4698 17.3979 5.4698 17.6379 5.70974C17.8778 5.94968 17.8778 6.3387 17.6379 6.57864L10.265 13.9515C10.0251 14.1915 9.63604 14.1915 9.3961 13.9515L2.02322 6.57864C1.78328 6.3387 1.78328 5.94968 2.02322 5.70974Z"
-                              fill="black"
-                            />
-                          </svg>
+                        <div className='rightside'>
+                          <div className="action-bar-icon">
+                            {moreItem.subTopics.length > 0 && (
+                              <>
+                                {IsMobile && (
+                                  <span className="my-action-bar">{moreItem.topic.actionBar}</span>
+                                )}
+                              </>
+                            )}
+                          </div>
+                          <div className="arrow">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 20 20"
+                              fill="none">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.02322 5.70974C2.26316 5.4698 2.65218 5.4698 2.89212 5.70974L9.83055 12.6482L16.769 5.70974C17.0089 5.4698 17.3979 5.4698 17.6379 5.70974C17.8778 5.94968 17.8778 6.3387 17.6379 6.57864L10.265 13.9515C10.0251 14.1915 9.63604 14.1915 9.3961 13.9515L2.02322 6.57864C1.78328 6.3387 1.78328 5.94968 2.02322 5.70974Z"
+                                fill="black"
+                              />
+                            </svg>
+                          </div>
                         </div>
                       </a>
                       {moreItem.subTopics.map((team) => {
                         const [navType, navTopic, navAddress] = team.news
                           ? ['news', team.name.toLowerCase().replace(/\s/g, '_'), team.news]
                           : [
-                              'articles',
-                              team.name.toLowerCase().replace(/\s/g, '_'),
-                              team.articles,
-                            ];
+                            'articles',
+                            team.name.toLowerCase().replace(/\s/g, '_'),
+                            team.articles,
+                          ];
                         return (
                           <div class="collapse" key={team.name} id={`collapseinner1-${id}`}>
                             <div className="option">
@@ -357,8 +359,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                 );
               })}
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
 
         <div class="separator"></div>
         {/* coll-sidenav */}
@@ -408,12 +410,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                 <div className="coll-item-inner">
                   <div className="nav-item">
                     <div className="flx">{colorState.name}</div>
-                    {/* <i
-            className={`${
-              collapsedIds['switch'] ? 'fa-solid fa-toggle-on' : 'fa-solid fa-toggle-off'
-            }`}
-            onClick={() => toggleTheme('switch')}
-          /> */}
+
                     <i className={colorState.icon} onClick={() => toggleTheme('switch')} />
                   </div>
                 </div>
@@ -422,7 +419,6 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                 <div className="coll-item-inner">
                   <div className="nav-item">
                     <div className="flx">{cacheState.name}</div>
-                    {/* <i class="fa-duotone fa-trash" onClick={() => ClearStorage(filteredMenuIds)}></i> */}
                     <i
                       className={cacheState.icon}
                       onClick={() => ClearStorage(filteredMenuIds)}></i>

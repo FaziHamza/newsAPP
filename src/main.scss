@@ -345,7 +345,7 @@ body {
 } */
 .sidenav.open {
     /* Apply styles when the sidebar is open, e.g., setting the width */
-    width: calc(100vw - 55px);
+    width: 320px;
     /* padding-left: 30px; */
     padding-right: 5px;
 }
@@ -387,7 +387,7 @@ body {
     border: 1px solid #d4c6c6;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 30px;
     scrollbar-width: thin;
     scrollbar-color: #000;
     scrollbar-track-color: #fff;
@@ -438,12 +438,6 @@ body {
     /* margin-left: 50px; */
 }
 
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 30px;
-    }
-
-}
 
 
 
@@ -1045,7 +1039,7 @@ h6 {
 .my-action-bar {
     font-family: 'Source sans 3';
     font-size: 11px;
-    text-align: center;
+    // text-align: center;
     font-weight: 500;
     color: #c10206;
 }
@@ -1193,12 +1187,13 @@ h6 {
 }
 
 .coll-sidenav {
-    padding: 20px;
+    padding: 20px 15px;
 
     .coll-item {
         min-height: 40px;
         width: 100%;
-        padding: 10px 20px;
+        margin-bottom: 15px;
+        padding: 10px 15px;
         border-radius: 8px;
         background: #F7F7F7;
 
@@ -1206,6 +1201,22 @@ h6 {
             display: flex;
             align-items: center;
             justify-content: space-between;
+
+            .rightside {
+                display: flex;
+                align-items: center;
+
+                .action-bar-icon {
+                    padding: 0px 5px;
+
+                    span {
+                        white-space: nowrap;
+                        width: 50px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
 
             .coll-lable {
                 display: flex;
@@ -1231,7 +1242,7 @@ h6 {
     .coll-item-inner {
         min-height: 33px;
         width: 100%;
-        padding: 10px 20px;
+        padding: 10px 15px;
         border-radius: 8px;
         background: #f1f1f1;
         margin-top: 10px;
@@ -1254,14 +1265,17 @@ h6 {
         h5 {
             color: #000;
             font-family: Inter;
-            font-size: 15px;
-            font-style: normal;
+            font-size: 12px;
             font-weight: 400;
             line-height: normal;
+            white-space: nowrap;
+            width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .option {
-            padding: 7px 9px;
+            padding: 7px 10px;
             margin-top: 10px;
             background: #e8e8e8 !important;
             border-radius: 8px;
@@ -1270,6 +1284,7 @@ h6 {
             .form-check {
                 display: flex;
                 align-items: center;
+                margin-bottom: 0px;
 
                 .form-check-input {
                     margin-right: 5px;
@@ -1285,9 +1300,11 @@ h6 {
                     font-style: normal;
                     font-weight: 400;
                     line-height: normal;
-                    padding: 2px 0px;
+                    display: flex;
+                    align-items: center;
 
                     img {
+                        height: 15px;
                         margin-right: 5px;
 
                     }
