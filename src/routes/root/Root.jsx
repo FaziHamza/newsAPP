@@ -28,6 +28,7 @@ import { clearFavouriteMenu } from '../../redux/favouriteMenu';
 import { IsMobile } from '../../utilities/config';
 import { selectCountry } from '../../redux/countries';
 import DisplayComponentforheader from './DisplayComponentforheader';
+import SettingNavbar from './SettingNavbar';
 
 const Root = () => {
   const dispatch = useDispatch();
@@ -253,7 +254,7 @@ const Root = () => {
                       </div>
                       <div className="item mid-logo">
                         <Logo name={'Logo'} href="/" alt={'logo'} />
-                        {/* {IsMobile ? (
+                        {IsMobile ? (
                         <div className="c-dropdown">
                           <div class="dropdown">
                             <div
@@ -290,10 +291,10 @@ const Root = () => {
                         </div>
                       ) : (
                         <Logo name={'Flag'} href="/" alt={'logo'} />
-                      )} */}
+                      )}
                       </div>
                       <div className="item">
-                        {IsMobile ? (
+                        {/* {IsMobile ? (
                           <div className="c-dropdown">
                             <div class="dropdown">
                               <div
@@ -330,12 +331,17 @@ const Root = () => {
                           </div>
                         ) : (
                           <Logo name={'Flag'} href="/" alt={'logo'} />
-                        )}
+                        )} */}
+                        <SettingNavbar
+                          navList={settingsInfo.menuItems}
+                          setThemeVariant={setThemeVariant}
+                          themeVariant={themeVariant}
+                        />
                       </div>
                     </div>
-                    <div className="header-nav">
+                    {/* <div className="header-nav">
                       {IsMobile && visible && <DisplayComponentforheader />}
-                    </div>
+                    </div> */}
                   </>
                 )}
               </header>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Dropdown } from '../../compositions';
+import { Dropdown, Logo } from '../../compositions';
 import { NavLink, Link } from 'react-router-dom';
 import { SideNav } from '../../compositions';
 import { logo, sportLogoBlack, tennis } from '../../assets';
@@ -12,6 +12,11 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   const dispatch = useDispatch();
   // const navMain = navList.slice(0, inMain);
   // const navMore = navList.slice(inMain, navList.length);
+  const GetCurrentDomain = () => {
+    const storedRegion = localStorage.getItem('selectedRegion');
+    var parsedRegion = storedRegion ? JSON.parse(storedRegion) : null;
+    return parsedRegion ? parsedRegion.hostName : null;
+  };
   const [colorState, setColorState] = useState({});
   const [cacheState, setCacheState] = useState({});
   const regionjson = useSelector((state) => state.origin.apiOrigin.regionJson);
@@ -111,6 +116,14 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
           &times;
         </a>
+
+        <div className='region-container'>
+          <div className='region-title'>
+          <Logo alt={'logo'} />          {GetCurrentDomain()}
+          <img />
+          </div>
+        </div>
+
         {/* coll-sidenav */}
         <div className="coll-sidenav" >
           {Object.entries(groupedNavItems).map(([heading, group]) => (
