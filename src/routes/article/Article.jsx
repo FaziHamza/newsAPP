@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import { Link, useLoaderData, useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { useMediaContext } from '../../utilities/mediaQuery';
@@ -9,7 +9,8 @@ import { removeBetween } from '../../utilities/common';
 import { timeQuery } from '../../utilities/timeQuery';
 import { StoryTile } from '../../compositions';
 import { useSelector } from 'react-redux';
-import { AFP_news, SPORSpot_News, video_play } from '../../assets';
+import { AFP_news, SPORSpot_News, video_play ,podcast} from '../../assets';
+import { RootUrl } from '../../utilities/config';
 const topicSettings = {};
 
 export const loader = ({ params }) => {
@@ -67,29 +68,51 @@ const AsideArticle = ({ tableInfo }) => {
 };
 
 const Article = ({ className = '' }) => {
-
+  const [isShowPodcastIcon, setisshowPodcaseIcon] = useState(null);
+  const [isShowVideoIcon, setisShowVideoIcon] = useState(null);
   const { state } = useLocation();
   const articlevideo = useSelector((state) => state.origin.articlevideo);
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   // Now you can access the passed state values
-  const teamName =  articlevideo[0].name;
-  const topicKey =  articlevideo[0].highlights;
-  const topictype = articlevideo[0].highlightType;
-  const teamLogoPath =  articlevideo[0].logo;
-  const SubTopicId = articlevideo[0].subTopicID;
+  const teamName = state?.topicName || articlevideo[0].name;
+  const topicKey = state?.topicKey || articlevideo[0].highlights;
+  const topictype =state?.topictype|| articlevideo[0].highlightType;
+  const teamLogoPath = state?.LogoTeam ||  articlevideo[0].logo;
+  const SubTopicId =state?.SubTopicId || articlevideo[0].subTopicID;
   var IsSubtopicVideo =articlevideo[0].isSubtopicVideo ;
-  
+
   const linkPropsforhighlight = {
-    to: IsSubtopicVideo ? "/videohighlights" : "/highlights",
+    to: IsSubtopicVideo ? '/videohighlights' : '/highlights',
     state: {
       topicKey,
       topictype,
       topicName: teamName,
       LogoTeam: teamLogoPath,
-      Subtopicid: SubTopicId
+      SubTopicId: SubTopicId,
     },
   };
-
+  const linkPropsforpodcast = {
+    to: '/podcast',
+    state: {
+      topicKey,
+      topictype,
+      topicName: teamName,
+      LogoTeam: teamLogoPath,
+      SubTopicId: SubTopicId,
+    },
+  };
+  useEffect(() => {
+    const apiUrl = `${RootUrl.Baseurl}api/Subtopic/GetVideoStatusBySubtopicId?id=${SubTopicId}`;
+    fetch(apiUrl)
+      .then((res) => res.json())
+      .then((response) => {
+        setisshowPodcaseIcon(response.data.videoPodcast);
+        setisShowVideoIcon(response.data.videoHighlight);
+      })
+      .catch((err) => {
+        console.log('Error', err);
+      });
+  }, []);
   const isDesktop = useMediaContext();
   // const { state } = useLocation();
   const navigate = useNavigate();
@@ -197,13 +220,32 @@ const Article = ({ className = '' }) => {
                   <img src={imageUrl} alt="logo" />
                 </h6>
               </div>
-              {/* <div class="right-article">
-                <Link {...linkPropsforhighlight}>
-                  <div className="highlights">
-                    <img src={video_play} style={{ height: '20px' }} />
+              <div class="right-article d-flex">
+              {isShowPodcastIcon && (
+                <Link {...linkPropsforpodcast} className="underline-hide">
+                  <div className="highlights podcast-video">
+                    <img src={podcast} style={{height:'20px'}}/>
+                    {/* <span>Podcasts</span> */}
                   </div>
                 </Link>
-              </div> */}
+              )}
+              {isShowVideoIcon && IsSubtopicVideo && (
+                <Link {...linkPropsforhighlight} className="underline-hide">
+                  <div className="highlights podcast-video">
+                    <img src={video_play} style={{height:'20px'}} />
+                    {/* <span>Videos</span> */}
+                  </div>
+                </Link>
+              )}
+              {!IsSubtopicVideo && (
+                <Link {...linkPropsforhighlight} className="underline-hide">
+                  <div className="highlights podcast-video">
+                    <img src={video_play} style={{height:'20px'}}/>
+                    {/* <span>Videos</span> */}
+                  </div>
+                </Link>
+              )}
+              </div>
             </div>
             <hr />
           </figure>

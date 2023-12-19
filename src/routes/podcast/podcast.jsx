@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import DataNotFound from '../../components/dataNotFound';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { divideByPercentage } from '../../utilities/common';
- import { videHighlight } from '../../utilities/config';
+ import { IsMobile, videHighlight } from '../../utilities/config';
  import { useSelector } from 'react-redux';
 const PodcastList = () => {
   const [showModal, setShowModal] = useState(false);
@@ -104,6 +104,15 @@ const PodcastList = () => {
         <div className="col-lg-8">
           <div className={`layout ${isDesktop}`}>
             <div className="main-card-section">
+            {IsMobile  && (
+                          <div className='tagcontainerforvideoandpodcast' >
+
+              <span
+                className='tag'>
+                {/* {SubTopicHeadline} */} Podcasts
+              </span>
+              </div>
+            )}
               <div className="main-card">
                 <div className="row">
                 <div className="col-3">
@@ -114,6 +123,7 @@ const PodcastList = () => {
                         <span>{topicName?.replace('senaste nytt', '')}</span>{' '}
                         {/* Modify this line */}
                       </div>
+
                     </div>
                   </div>
                   <div className="col-6" style={{textAlign:"center"}}>

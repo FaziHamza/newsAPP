@@ -10,31 +10,31 @@ const StoryTile = ({idforlogo, description, className = '', src, alt, time, isDe
   } else {
     imageUrl = SPORSpot_News;
   }
-// const days = () => {
-  //   const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
-  //   const day = Math.floor(timeDifference / 24);
-  //   const hours = timeDifference % 24;
-
-  //   if (timeDifference < 24) {
-  //     return `${hours.toFixed(2)} hours `; // Swedish for hours
-  //   } else {
-  //     return `${day} Day  `; // Swedish for days
-  //   }
-  // };
-  const days = () => {
+const days = () => {
     const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
-    const days = Math.floor(timeDifference / 24);
-    const hours = Math.floor(timeDifference % 24);
-    const remainingMinutes = Math.round((timeDifference - Math.floor(timeDifference)) * 60);
-  
-    if (timeDifference < 1) {
-      return `${remainingMinutes} minutes`; // Return minutes if less than 1 hour
-    } else if (timeDifference < 24) {
-      return `${hours} hours`; // Return hours and minutes if less than 1 day
+    const day = Math.floor(timeDifference / 24);
+    const hours = timeDifference % 24;
+
+    if (timeDifference < 24) {
+      return `${hours.toFixed(2)} Tim `; // Swedish for hours
     } else {
-      return `${days} Day`; // Return days, hours, and minutes
+      return `${day} Dag  `; // Swedish for days
     }
   };
+  // const days = () => {
+  //   const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
+  //   const days = Math.floor(timeDifference / 24);
+  //   const hours = Math.floor(timeDifference % 24);
+  //   const remainingMinutes = Math.round((timeDifference - Math.floor(timeDifference)) * 60);
+  
+  //   if (timeDifference < 1) {
+  //     return `${remainingMinutes} minutes`; // Return minutes if less than 1 hour
+  //   } else if (timeDifference < 24) {
+  //     return `${hours} hours`; // Return hours and minutes if less than 1 day
+  //   } else {
+  //     return `${days} Day`; // Return days, hours, and minutes
+  //   }
+  // };
   const sanitizedSrc = src.replace(/([^:]\/)\/+/g, "$1");
 
   return (

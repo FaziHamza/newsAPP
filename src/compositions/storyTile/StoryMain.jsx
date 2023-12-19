@@ -75,6 +75,7 @@ const DisplayComponent = ({ topic }) => {
                 <img src={logoPath} height={'20px'} />
                 {moreItemName}
               </div> */}
+              {!IsMobile &&
               <div className="title">
                 <>
                   {teamName.includes(moreItemName) ? null : (
@@ -85,8 +86,17 @@ const DisplayComponent = ({ topic }) => {
                   {teamName.replace(moreItemName, '')}
                 </>
               </div>
+              }
             </div>
+            {IsMobile && SubTopicHeadline && (
+                          <div className='tagcontainer' >
 
+              <span
+                className='tag'>
+                {SubTopicHeadline}
+              </span>
+              </div>
+            )}
             <div style={{ display: 'flex' }}>
               {isShowPodcastIcon && (
                 <Link {...linkPropsforpodcast} className="underline-hide">
@@ -140,31 +150,32 @@ const StoryMain = ({
   } else {
     imageUrl = SPORSpot_News;
   }
-  // const days = () => {
-  //   const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
-  //   const day = Math.floor(timeDifference / 24);
-  //   const hours = timeDifference % 24;
-
-  //   if (timeDifference < 24) {
-  //     return `${hours.toFixed(2)} hours `; // Swedish for hours
-  //   } else {
-  //     return `${day} Day  `; // Swedish for days
-  //   }
-  // };
   const days = () => {
     const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
-    const days = Math.floor(timeDifference / 24);
-    const hours = Math.floor(timeDifference % 24);
-    const remainingMinutes = Math.round((timeDifference - Math.floor(timeDifference)) * 60);
+    const day = Math.floor(timeDifference / 24);
+    const hours = timeDifference % 24;
 
-    if (timeDifference < 1) {
-      return `${remainingMinutes} minutes`; // Return minutes if less than 1 hour
-    } else if (timeDifference < 24) {
-      return `${hours} hours`; // Return hours and minutes if less than 1 day
+    if (timeDifference < 24) {
+      return `${hours.toFixed(2)} Tim `; // Swedish for hours
     } else {
-      return `${days} Day`; // Return days, hours, and minutes
+      return `${day} Dag  `; // Swedish for days
     }
   };
+  // const days = () => {
+  //   const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
+  //   const days = Math.floor(timeDifference / 24);
+  //   const hours = Math.floor(timeDifference % 24);
+  //   const remainingMinutes = Math.round((timeDifference - Math.floor(timeDifference)) * 60);
+
+  //   if (timeDifference < 1) {
+  //     return `${remainingMinutes} minutes`; // Return minutes if less than 1 hour
+  //   } else if (timeDifference < 24) {
+  //     return `${hours} hours`; // Return hours and minutes if less than 1 day
+  //   } else {
+  //     return `${days} Day`; // Return days, hours, and minutes
+  //   }
+    
+  // };
 
   const sanitizedSrc = src.replace(/([^:]\/)\/+/g, '$1');
 
@@ -189,19 +200,21 @@ const StoryMain = ({
         </>
       ) : (
         <div className="league-card">
-          {!IsMobile && <DisplayComponent />}
+          {/* {!IsMobile && <DisplayComponent />} */}
+          {IsMobile && <DisplayComponent />}
+
           <div className="banner">
             <img src={sanitizedSrc} alt={alt} />
   
           </div>
-          <div className='tagcontainer' >
+          {/* <div className='tagcontainer' >
             {IsMobile && SubTopicHeadline && (
               <span
                 className='tag'>
                 {SubTopicHeadline}
               </span>
             )}
-          </div>
+          </div> */}
           <div className="content">
             {/* <div className='tagcontainer' >
               <p className="tag">Nyheter</p>

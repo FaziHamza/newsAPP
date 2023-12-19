@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import DataNotFound from '../../components/dataNotFound';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { divideByPercentage } from '../../utilities/common';
-import { videHighlight } from '../../utilities/config';
+import { IsMobile, videHighlight } from '../../utilities/config';
 import { useSelector } from 'react-redux';
 const VideoHighlightsList = () => {
   const [showModal, setShowModal] = useState(false);
@@ -107,6 +107,15 @@ const VideoHighlightsList = () => {
             <div className="col-lg-8">
               <div className={`layout ${isDesktop}`}>
                 <div className="main-card-section">
+                {IsMobile  && (
+                          <div className='tagcontainerforvideoandpodcast' >
+
+              <span
+                className='tag'>
+                {/* {SubTopicHeadline} */} Videos
+              </span>
+              </div>
+            )}
                   <div className="main-card">
                     <div className="row">
                       <div className="col-3">
