@@ -432,10 +432,17 @@ body {
 
 .sidenav .closebtn {
     position: absolute;
-    top: 0;
+    top: 8px;
     left: 20px;
     font-size: 36px;
-    /* margin-left: 50px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: red;
+    height: 26px;
+    width: 26px;
+    border-radius: 12px;
+    color: white;
 }
 
 

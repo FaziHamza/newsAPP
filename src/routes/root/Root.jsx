@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate, useMatch } from 'react-router-dom';
 import { MediaQueryProvider } from '../../utilities/mediaQuery';
 import { ThemeQueryProvider } from '../../utilities/themeQuery';
 import { useAsync } from '../../utilities/asyncReducer';
@@ -32,6 +32,10 @@ import SettingNavbar from './SettingNavbar';
 
 const Root = () => {
   const dispatch = useDispatch();
+  //For Header back Button
+  // Define the route pattern you want to match
+  const targetRoutePattern = '/:type/:topic/:id';
+  const isMatchingRoute = useMatch(targetRoutePattern);
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const allregion = useSelector((state) => state?.origin?.allregion);
   const selectedMenu = useSelector((state) => state?.origin?.apiOrigin);
@@ -69,7 +73,6 @@ const Root = () => {
   };
   if (IsMobile) {
     useEffect(() => {
-
       const x = setInterval(() => {
         const x = scrollableDivRef.current?.scrollLeft;
         let min_dist = Infinity;
@@ -96,7 +99,7 @@ const Root = () => {
         } // if(minItem!=undefined)ScrollToActiveTab(minItem)
       }, 1500);
 
-      return () => clearInterval(x)
+      return () => clearInterval(x);
     }, []);
 
     useEffect(() => {
@@ -192,7 +195,6 @@ const Root = () => {
   }
   const scrollableDivRef = useRef(null);
 
-
   switch (status) {
     case 'idle':
       return <div>idle</div>;
@@ -245,53 +247,62 @@ const Root = () => {
                   <>
                     <div className="main-header">
                       <div className="item">
-                        <NavbarMobile
-                          navList={settingsInfo.menuItems}
-                          setThemeVariant={setThemeVariant}
-                          themeVariant={themeVariant}
-                        />
+                        {isMatchingRoute !== null ? (
+                          <span
+                            style={{ fontSize: '20px', cursor: 'pointer', color: 'white' }}
+                            onClick={() => navigate(-1)}>
+                            &#129192;
+                          </span>
+                        ) : (
+                          <NavbarMobile
+                            navList={settingsInfo.menuItems}
+                            setThemeVariant={setThemeVariant}
+                            themeVariant={themeVariant}
+                          />
+                        )}
                         {/* <span style={{ fontSize: '30px', cursor: 'pointer' }}>&#9776;</span> */}
                       </div>
                       <div className="item mid-logo">
                         <Logo name={'Logo'} href="/" alt={'logo'} />
                         {IsMobile ? (
-                        <div className="c-dropdown">
-                          <div class="dropdown">
-                            <div
-                              class="  dropdown-toggle"
-                              type="button"
-                              id="dropdownMenuButton1"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false">
-                              <span>
-                                <Logo alt={'logo'} />
-                              </span>
-                            </div>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                              {allregion?.map((m) => {
-                                const isActive = selectedMenu?.id === m?.id;
-                                return (
-                                  <li
-                                    key={m?.id}
-                                    className={`dropdown-item text-uppercase ${themeVariant === 'light'
-                                        ? isActive
-                                          ? 'bg-light active-light'
-                                          : 'bg-light'
-                                        : isActive
+                          <div className="c-dropdown">
+                            <div class="dropdown">
+                              <div
+                                class="  dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <span>
+                                  <Logo alt={'logo'} />
+                                </span>
+                              </div>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                {allregion?.map((m) => {
+                                  const isActive = selectedMenu?.id === m?.id;
+                                  return (
+                                    <li
+                                      key={m?.id}
+                                      className={`dropdown-item text-uppercase ${
+                                        themeVariant === 'light'
+                                          ? isActive
+                                            ? 'bg-light active-light'
+                                            : 'bg-light'
+                                          : isActive
                                           ? 'bg-dark active-dark'
                                           : 'bg-dark'
                                       }`}
-                                    onClick={(e) => handleOrigin(e, m?.id)}>
-                                    {m?.domainName}
-                                  </li>
-                                );
-                              })}
-                            </ul>
+                                      onClick={(e) => handleOrigin(e, m?.id)}>
+                                      {m?.domainName}
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </div>
                           </div>
-                        </div>
-                      ) : (
-                        <Logo name={'Flag'} href="/" alt={'logo'} />
-                      )}
+                        ) : (
+                          <Logo name={'Flag'} href="/" alt={'logo'} />
+                        )}
                       </div>
                       <div className="item">
                         {/* {IsMobile ? (
@@ -384,13 +395,12 @@ const Root = () => {
                   // console.log(min_tem);
                   // ScrollToActiveTab(min_item)
                 }}>
-                <div className='curve'></div>
-                <div className='all-tabs'>
+                <div className="curve"></div>
+                <div className="all-tabs">
                   {IsMobile && (
                     // {favouriteMenu?.some(m => m?.name == team?.name)}
                     <>
-                      <div style={{ marginRight: '40%' }}>
-                      </div>
+                      <div style={{ marginRight: '40%' }}></div>
                       {filteredFavouriteMenu?.map((m, i) => {
                         return (
                           <Link
@@ -409,19 +419,19 @@ const Root = () => {
                             <div className="action-bar">
                               {m?.name?.toLowerCase() === 'top news'
                                 ? m?.state?.LogoPath && (
-                                  <img
-                                    className="action-bar-img"
-                                    src={m?.state?.LogoPath}
-                                    alt={`${m?.name} logo`}
-                                  />
-                                )
+                                    <img
+                                      className="action-bar-img"
+                                      src={m?.state?.LogoPath}
+                                      alt={`${m?.name} logo`}
+                                    />
+                                  )
                                 : m?.state?.LogoTeam && (
-                                  <img
-                                    className="action-bar-img"
-                                    src={m?.state?.LogoTeam}
-                                    alt={`${m?.name} logo`}
-                                  />
-                                )}
+                                    <img
+                                      className="action-bar-img"
+                                      src={m?.state?.LogoTeam}
+                                      alt={`${m?.name} logo`}
+                                    />
+                                  )}
                             </div>
                             {m?.name?.toLowerCase() == 'top news'
                               ? `${m.name} ${m?.state?.moreItemName}`
@@ -429,8 +439,7 @@ const Root = () => {
                           </Link>
                         );
                       })}
-                      <div style={{ marginLeft: '40%' }}>
-                      </div>
+                      <div style={{ marginLeft: '40%' }}></div>
                     </>
                   )}
                 </div>
