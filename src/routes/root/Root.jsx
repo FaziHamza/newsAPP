@@ -185,6 +185,7 @@ const Root = () => {
     // Get references to the div and the target element
     var scrollableDiv = document.getElementById('scrollableDiv');
     let tempId = 'targetId-' + id;
+    console.log(tempId)
     var targetElement = document.getElementById(tempId);
 
     var targetPosition =
@@ -249,7 +250,20 @@ const Root = () => {
                       <div className="item">
                         {isMatchingRoute !== null ? (
                           <span
-                            style={{ fontSize: '20px', cursor: 'pointer', color: 'white' }}
+                            // style={{ fontSize: '20px', cursor: 'pointer', color: 'white' }}
+                            style={{
+                              height:'35px',
+                              width:'35px',
+                              fontSize: '20px',
+                              cursor: 'pointer',
+                              color: 'white',
+                              display: 'flex',
+                              justifyContent:'center',
+                              alignItems:'center',
+                              border: '2px solid white', // Set the desired border color and width
+                              borderRadius: '50%',
+                              padding: '5px', // Adjust the padding to control the size of the circle
+                            }}
                             onClick={() => navigate(-1)}>
                             &#129192;
                           </span>
@@ -363,7 +377,10 @@ const Root = () => {
             <footer>
               <div
                 className="top-bar lg-d-none"
-                id="scrollableDiv"
+                >
+                <div className="curve"></div>
+                <div className="all-tabs" 
+                 id="scrollableDiv"
                 ref={scrollableDivRef}
                 // onDragEnd={()=>console.log('DRAG-END')}
                 onScroll={() => {
@@ -383,7 +400,7 @@ const Root = () => {
                     }
                   }
                   if (minItem != min_item) {
-                    // alert(minItem)
+                    alert(minItem)
                     console.log(min_item);
 
                     ScrollToActiveTab(min_item);
@@ -395,8 +412,6 @@ const Root = () => {
                   // console.log(min_tem);
                   // ScrollToActiveTab(min_item)
                 }}>
-                <div className="curve"></div>
-                <div className="all-tabs">
                   {IsMobile && (
                     // {favouriteMenu?.some(m => m?.name == team?.name)}
                     <>
@@ -408,7 +423,7 @@ const Root = () => {
                             id={`targetId-${i}`}
                             className={
                               decodedPathname == `/${m?.state?.navType}/${m?.state?.navTopic}`
-                                ? 'active tab btn-light active'
+                                ? 'active tab btn-light '
                                 : 'tab btn-light'
                             }
                             to={m.link}

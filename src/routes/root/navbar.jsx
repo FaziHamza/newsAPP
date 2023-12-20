@@ -80,12 +80,12 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   // }, {});
   const groupedNavItems = filteredNavItems.reduce((groups, item) => {
     const heading = item.topic.mainHeading;
-    const navLogo = item.topic.navLogo;
+    const navLogo = item.topic.mainHeadingLogo;
   
     if (!groups[heading]) {
       groups[heading] = {
         items: [],
-        navLogo: navLogo
+        mainHeadingLogo: navLogo
       };
     }
   
@@ -150,7 +150,10 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                       fill="black"
                     />
                   </svg> */}
-                  <img alt='' src={group.navLogo} />
+                  {
+                    group.mainHeadingLogo &&
+                    <img alt={group.mainHeadingLogo} src={group.mainHeadingLogo} style={{height:'16px', width:'17px'}} />
+                  }
                   {/* <img alt={} /> */}
                   <h5>{heading}</h5>
                 </div>
