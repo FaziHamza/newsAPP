@@ -71,7 +71,7 @@ const Root = () => {
     dispatch(selectCountry(id));
     // dispatch(clearFavouriteMenu());
   };
-  if (IsMobile) {
+  if (!IsMobile) {
     useEffect(() => {
       const x = setInterval(() => {
         const x = scrollableDivRef.current?.scrollLeft;
@@ -192,7 +192,7 @@ const Root = () => {
       targetElement?.offsetLeft + targetElement?.clientWidth / 2 - window.innerWidth * 0.5;
     console.log('ont', scrollableDiv.scrollLeft, targetPosition);
     // Scroll the div to the target position
-    scrollableDiv.scrollLeft = targetPosition;
+    // scrollableDiv.scrollLeft = targetPosition;
   }
   const scrollableDivRef = useRef(null);
 
@@ -390,7 +390,7 @@ const Root = () => {
                   let min_dist = Infinity;
                   let min_item = Infinity;
                   let y = 0;
-                  for (let index = 0; index < scrollableDivRef.current?.children.length; index++) {
+                  for (let index = 0; index < filteredFavouriteMenu.length; index++) {
                     const element = scrollableDivRef.current?.children[index];
                     y += element.scrollWidth;
                     let thisDistance = Math.abs(x - y);
@@ -399,8 +399,8 @@ const Root = () => {
                       min_item = index;
                     }
                   }
-                  if (minItem != min_item) {
-                    alert(minItem)
+                  if (minItem != min_item && min_item != Infinity) {
+                    // alert(minItem)
                     console.log(min_item);
 
                     ScrollToActiveTab(min_item);
