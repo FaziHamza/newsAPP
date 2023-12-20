@@ -23,7 +23,7 @@ import {
   settopiwithsubtopic,
   setallregion,
 } from '../../redux/countries';
-import { video_play } from '../../assets';
+import { video_play,settingicon } from '../../assets';
 import { clearFavouriteMenu } from '../../redux/favouriteMenu';
 import { IsMobile } from '../../utilities/config';
 import { selectCountry } from '../../redux/countries';
@@ -102,21 +102,21 @@ const Root = () => {
       return () => clearInterval(x);
     }, []);
 
-    useEffect(() => {
-      const apiUrl = `${RootUrl.Baseurl}api/Region/GetRegion`;
-      fetch(apiUrl)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log('All Region', data.data);
-          const dynamicData = data.data;
-          dispatch(setallregion(data.data));
-        })
-        .catch((err) => {
-          console.log('Error From Dummy Request', err);
-        });
-    }, []);
+    
   }
-
+  useEffect(() => {
+    const apiUrl = `${RootUrl.Baseurl}api/Region/GetRegion`;
+    fetch(apiUrl)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('All Region', data.data);
+        const dynamicData = data.data;
+        dispatch(setallregion(data.data));
+      })
+      .catch((err) => {
+        console.log('Error From Dummy Request', err);
+      });
+  }, []);
   useEffect(() => {
     // let hostName = window.location.hostname;
     var hostName = getBaseUrlFromStorage();
@@ -183,14 +183,14 @@ const Root = () => {
 
   function ScrollToActiveTab(id) {
     // Get references to the div and the target element
-    var scrollableDiv = document.getElementById('scrollableDiv');
-    let tempId = 'targetId-' + id;
-    console.log(tempId)
-    var targetElement = document.getElementById(tempId);
+    // var scrollableDiv = document.getElementById('scrollableDiv');
+    // let tempId = 'targetId-' + id;
+    // console.log(tempId)
+    // var targetElement = document.getElementById(tempId);
 
-    var targetPosition =
-      targetElement?.offsetLeft + targetElement?.clientWidth / 2 - window.innerWidth * 0.5;
-    console.log('ont', scrollableDiv.scrollLeft, targetPosition);
+    // var targetPosition =
+    //   targetElement?.offsetLeft + targetElement?.clientWidth / 2 - window.innerWidth * 0.5;
+    // console.log('ont', scrollableDiv.scrollLeft, targetPosition);
     // Scroll the div to the target position
     // scrollableDiv.scrollLeft = targetPosition;
   }
@@ -291,7 +291,7 @@ const Root = () => {
                                   <Logo alt={'logo'} />
                                 </span>
                               </div>
-                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              {/* <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 {allregion?.map((m) => {
                                   const isActive = selectedMenu?.id === m?.id;
                                   return (
@@ -311,7 +311,7 @@ const Root = () => {
                                     </li>
                                   );
                                 })}
-                              </ul>
+                              </ul> */}
                             </div>
                           </div>
                         ) : (
@@ -319,7 +319,7 @@ const Root = () => {
                         )}
                       </div>
                       <div className="item">
-                        {/* {IsMobile ? (
+                        {IsMobile ? (
                           <div className="c-dropdown">
                             <div class="dropdown">
                               <div
@@ -329,7 +329,8 @@ const Root = () => {
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <span>
-                                  <Logo alt={'logo'} />
+                                  {/* <Logo alt={'logo'} /> */}
+                                  <img src={settingicon} alt="" srcset="" style={{height:'35px',width:'35px'}}/>
                                 </span>
                               </div>
                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -356,12 +357,12 @@ const Root = () => {
                           </div>
                         ) : (
                           <Logo name={'Flag'} href="/" alt={'logo'} />
-                        )} */}
-                        <SettingNavbar
+                        )}
+                        {/* <SettingNavbar
                           navList={settingsInfo.menuItems}
                           setThemeVariant={setThemeVariant}
                           themeVariant={themeVariant}
-                        />
+                        /> */}
                       </div>
                     </div>
                     {/* <div className="header-nav">
@@ -403,7 +404,7 @@ const Root = () => {
                     // alert(minItem)
                     console.log(min_item);
 
-                    ScrollToActiveTab(min_item);
+                    // ScrollToActiveTab(min_item);
                     setMinItem(min_item);
                     navigate(filteredFavouriteMenu[min_item]?.link, {
                       state: filteredFavouriteMenu[min_item]?.state,

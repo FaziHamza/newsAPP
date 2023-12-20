@@ -18,6 +18,7 @@ export { default as podcast_forheader } from './images/icons8-mic-50.png';
 export { default as AFP_news } from './images/AFP_news.png';
 export { default as SPORSpot_News } from './images/SPORTIFIEDSPOT.COM_A8.png';
 export { default as sportspotsverige } from './images/sportspotsverige.png';
+export { default as settingicon } from './images/setting.png';
 
 
 
