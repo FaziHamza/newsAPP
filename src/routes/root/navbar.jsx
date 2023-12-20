@@ -197,7 +197,42 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                         role="button"
                         aria-expanded="false"
                         aria-controls={`collapseinner1-${id}`}>
-                        <div className="coll-lable">
+
+                     <div className="coll-lable">
+                      {moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
+                          <h5>{moreItem.topic.name}</h5>
+                        }
+                        </div>
+                        <div className='rightside'>
+                        {moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
+                          <div className="action-bar-icon">
+                            {moreItem.subTopics.length > 0 && (
+                              <>
+                                {IsMobile && (
+                                  <span className="my-action-bar">{moreItem.topic.actionBar}</span>
+                                )}
+                              </>
+                            )}
+                          </div>
+              }
+                          <div className="arrow">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 20 20"
+                              fill="none">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.02322 5.70974C2.26316 5.4698 2.65218 5.4698 2.89212 5.70974L9.83055 12.6482L16.769 5.70974C17.0089 5.4698 17.3979 5.4698 17.6379 5.70974C17.8778 5.94968 17.8778 6.3387 17.6379 6.57864L10.265 13.9515C10.0251 14.1915 9.63604 14.1915 9.3961 13.9515L2.02322 6.57864C1.78328 6.3387 1.78328 5.94968 2.02322 5.70974Z"
+                                fill="black"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+
+                       {/* <div className="coll-lable">
                           <h5>{moreItem.topic.name}</h5>
                         </div>
                         <div className='rightside'>
@@ -225,7 +260,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                               />
                             </svg>
                           </div>
-                        </div>
+                        </div>   */}
+                        
                       </a>
                       {moreItem.subTopics.map((team) => {
                         const [navType, navTopic, navAddress] = team.news
