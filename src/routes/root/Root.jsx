@@ -419,6 +419,91 @@ const Root = () => {
                       <div style={{ marginRight: '40%' }}></div>
                       {filteredFavouriteMenu?.map((m, i) => {
                         return (
+                          <div
+                            key={i}
+                            id={`targetId-${i}`}
+                            className={
+                              decodedPathname == `/${m?.state?.navType}/${m?.state?.navTopic}`
+                                ? 'active tab btn-light '
+                                : 'tab btn-light'
+                            }
+                            to={m.link}
+                            name={m?.name}
+                            >
+                            {/* Display the LogoTeam image if it exists */}
+                            <div className="action-bar">
+                              {m?.name?.toLowerCase() === 'top news'
+                                ? m?.state?.LogoPath && (
+                                    <img
+                                      className="action-bar-img"
+                                      src={m?.state?.LogoPath}
+                                      alt={`${m?.name} logo`}
+                                    />
+                                  )
+                                : m?.state?.LogoTeam && (
+                                    <img
+                                      className="action-bar-img"
+                                      src={m?.state?.LogoTeam}
+                                      alt={`${m?.name} logo`}
+                                    />
+                                  )}
+                            </div>
+                            {m?.name?.toLowerCase() == 'top news'
+                              ? `${m.name} ${m?.state?.moreItemName}`
+                              : m?.name}
+                          </div>
+                        );
+                      })}
+                      <div style={{ marginLeft: '40%' }}></div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </footer>
+
+            {/* <footer>
+              <div
+                className="top-bar lg-d-none"
+                >
+                <div className="curve"></div>
+                <div className="all-tabs" 
+                 id="scrollableDiv"
+                ref={scrollableDivRef}
+                // onDragEnd={()=>console.log('DRAG-END')}
+                onScroll={() => {
+                  // console.log(scrollableDivRef?.current?.children);
+                  // (window.width)
+                  const x = scrollableDivRef.current?.scrollLeft;
+                  let min_dist = Infinity;
+                  let min_item = Infinity;
+                  let y = 0;
+                  for (let index = 0; index < filteredFavouriteMenu.length; index++) {
+                    const element = scrollableDivRef.current?.children[index];
+                    y += element.scrollWidth;
+                    let thisDistance = Math.abs(x - y);
+                    if (thisDistance < min_dist) {
+                      min_dist = thisDistance;
+                      min_item = index;
+                    }
+                  }
+                  if (minItem != min_item && min_item != Infinity) {
+                    // alert(minItem)
+                    console.log(min_item);
+
+                    // ScrollToActiveTab(min_item);
+                    setMinItem(min_item);
+                    navigate(filteredFavouriteMenu[min_item]?.link, {
+                      state: filteredFavouriteMenu[min_item]?.state,
+                    });
+                  }
+                  // console.log(min_tem);
+                  // ScrollToActiveTab(min_item)
+                }}>
+                  {IsMobile && (
+                    <>
+                      <div style={{ marginRight: '40%' }}></div>
+                      {filteredFavouriteMenu?.map((m, i) => {
+                        return (
                           <Link
                             key={i}
                             id={`targetId-${i}`}
@@ -431,7 +516,6 @@ const Root = () => {
                             state={m?.state}
                             name={m?.name}
                             onClick={() => ScrollToActiveTab(i)}>
-                            {/* Display the LogoTeam image if it exists */}
                             <div className="action-bar">
                               {m?.name?.toLowerCase() === 'top news'
                                 ? m?.state?.LogoPath && (
@@ -460,7 +544,7 @@ const Root = () => {
                   )}
                 </div>
               </div>
-            </footer>
+            </footer> */}
           </ThemeQueryProvider>
         </MediaQueryProvider>
       );
