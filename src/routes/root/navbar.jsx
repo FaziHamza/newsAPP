@@ -7,7 +7,8 @@ import { useMediaContext } from '../../utilities/mediaQuery';
 import { IsMobile } from '../../utilities/config';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavouriteMenu, clearFavouriteMenu } from '../../redux/favouriteMenu';
-
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVariant, ...props }) {
   const dispatch = useDispatch();
   // const navMain = navList.slice(0, inMain);
@@ -53,6 +54,51 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
       setThemeVariant('light');
     }
   };
+  const [isCustomAlertOpen, setCustomAlertOpen] = useState(true);
+  const ConfirmationforclearStorage = (items) => {
+  
+    // const ClearStorage = (items) => {
+    //   // Your logic to clear storage
+    //   console.log('Storage cleared');
+    //   setCustomAlertOpen(false); // Close the custom alert
+    // };
+  
+  
+    confirmAlert({
+      customUI: ({ onClose }) => (
+        <CustomConfirmation
+          title="Confirm to submit"
+          message="Are you sure you want to Clear Cache?"
+          onConfirm={() => {
+            ClearStorage(items);
+            onClose();
+          }}
+          onCancel={() => {
+            onClose();
+          }}
+        />
+      ),
+    });
+  };
+  const CustomConfirmation = ({ title, message, onConfirm, onCancel }) => {
+    return (
+      <div className="custom-alert">
+        <div className="custom-alert-content">
+          <h1>{title}</h1>
+          <p>{message}</p>
+          <div className="button-container">
+            <button className="confirm-button" onClick={onConfirm}>
+              Yes
+            </button>
+            <button className="cancel-button" onClick={onCancel}>
+              No
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+  
   const ClearStorage = (items) => {
     dispatch(clearFavouriteMenu(items));
   };
@@ -205,6 +251,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                         </div>
                         <div className='rightside'>
                         {moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
+                        <>
                           <div className="action-bar-icon">
                             {moreItem.subTopics.length > 0 && (
                               <>
@@ -214,7 +261,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                               </>
                             )}
                           </div>
-              }
+              
                           <div className="arrow">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -230,6 +277,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                               />
                             </svg>
                           </div>
+                          </>
+              }
                         </div>
 
                        {/* <div className="coll-lable">
@@ -489,7 +538,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                     <div className="flx">{cacheState.name}</div>
                     <i
                       className={cacheState.icon}
-                      onClick={() => ClearStorage(filteredMenuIds)}></i>
+                      onClick={() => ConfirmationforclearStorage(filteredMenuIds)}></i>
                   </div>
                 </div>
               )}
