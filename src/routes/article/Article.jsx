@@ -224,7 +224,7 @@ const Article = ({ className = '' }) => {
               {isShowPodcastIcon && (
                 <Link {...linkPropsforpodcast} className="underline-hide">
                   <div className="highlights podcast-video">
-                    <img src={podcast_black} style={{height:'20px'}}/>
+                    <img src={podcast_black} style={{height:'20px',margin:'0'}}/>
                     {/* <span>Podcasts</span> */}
                   </div>
                 </Link>
@@ -232,7 +232,7 @@ const Article = ({ className = '' }) => {
               {isShowVideoIcon && IsSubtopicVideo && (
                 <Link {...linkPropsforhighlight} className="underline-hide">
                   <div className="highlights podcast-video">
-                    <img src={Video_black} style={{height:'20px'}} />
+                    <img src={Video_black} style={{height:'20px',margin:'0'}} />
                     {/* <span>Videos</span> */}
                   </div>
                 </Link>
@@ -240,7 +240,7 @@ const Article = ({ className = '' }) => {
               {!IsSubtopicVideo && (
                 <Link {...linkPropsforhighlight} className="underline-hide">
                   <div className="highlights podcast-video">
-                    <img src={Video_black} style={{height:'20px'}}/>
+                    <img src={Video_black} style={{height:'20px',margin:'0'}}/>
                     {/* <span>Videos</span> */}
                   </div>
                 </Link>

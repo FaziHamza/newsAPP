@@ -151,11 +151,12 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
 
     const minHour = 6;
     const maxHour = 18;
-    if (currentHour >= minHour && currentHour < maxHour) {
-      setThemeVariant('light');
-    } else {
-      setThemeVariant('dark');
-    }
+    // if (currentHour >= minHour && currentHour < maxHour) {
+    //   setThemeVariant('light');
+    // } else {
+    //   setThemeVariant('dark');
+    // }
+    setThemeVariant('light')  //By Default Light Theme
   }, []);
   return (
     <div className={themeVariant}>
@@ -183,7 +184,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                 role="button"
                 aria-expanded="false"
                 aria-controls={`collapseExample-${heading.trim()}`}>
-                <div className="coll-lable">
+                <div className="coll-lable" >
                   {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -202,7 +203,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                     <img alt={group.mainHeadingLogo} src={group.mainHeadingLogo} style={{height:'16px', width:'17px'}} />
                   }
                   {/* <img alt={} /> */}
-                  <h5>{heading}</h5>
+                  <h5 style={{paddingLeft:'5px'}}>{heading}</h5>
                 </div>
                 <div className="arrow">
                   <svg
@@ -505,7 +506,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                     fill="black"
                   />
                 </svg>
-                <h5>Settings</h5>
+                <h5 style={{paddingLeft:'5px'}}>Settings</h5>
               </div>
               <div className="arrow">
                 <svg
