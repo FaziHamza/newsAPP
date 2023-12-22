@@ -71,32 +71,27 @@ const Root = () => {
     dispatch(selectCountry(id));
     // dispatch(clearFavouriteMenu());
   };
-  if (!IsMobile) {
+  if (IsMobile) {
     useEffect(() => {
       const x = setInterval(() => {
         const x = scrollableDivRef.current?.scrollLeft;
         let min_dist = Infinity;
         let min_item = Infinity;
-        let y = 0;
-        for (let index = 0; index < scrollableDivRef.current?.children.length; index++) {
+        let y = (window?.innerWidth || 0) * 0.04;
+        console.log(y);
+        for (let index = 0; index < filteredFavouriteMenu.length; index++) {
           const element = scrollableDivRef.current?.children[index];
           y += element.scrollWidth;
-          let thisDistance = Math.abs(x - y);
+          let thisDistance = Math.abs(x - (y + element.scrollWidth / 2));
           if (thisDistance < min_dist) {
             min_dist = thisDistance;
             min_item = index;
           }
         }
-        if (minItem != min_item) {
-          // alert(minItem)
-          console.log(min_item);
-
+        console.log(window.innerWidth, min_item);
+        if (minItem != min_item && min_item != Infinity) {
           ScrollToActiveTab(min_item);
-          // setMinItem(min_item);
-          // navigate(filteredFavouriteMenu?.[min_item]?.link, {
-          //   state: filteredFavouriteMenu?.[min_item]?.state,
-          // });
-        } // if(minItem!=undefined)ScrollToActiveTab(minItem)
+        }
       }, 1500);
 
       return () => clearInterval(x);
@@ -183,16 +178,16 @@ const Root = () => {
 
   function ScrollToActiveTab(id) {
     // Get references to the div and the target element
-    // var scrollableDiv = document.getElementById('scrollableDiv');
-    // let tempId = 'targetId-' + id;
-    // console.log(tempId)
-    // var targetElement = document.getElementById(tempId);
+    var scrollableDiv = document.getElementById('scrollableDiv');
+    let tempId = 'targetId-' + id;
+    console.log(tempId);
+    var targetElement = document.getElementById(tempId);
 
-    // var targetPosition =
-    //   targetElement?.offsetLeft + targetElement?.clientWidth / 2 - window.innerWidth * 0.5;
-    // console.log('ont', scrollableDiv.scrollLeft, targetPosition);
+    var targetPosition =
+      targetElement?.offsetLeft + targetElement?.clientWidth / 2 - window.innerWidth * 0.5;
+    console.log('ont', scrollableDiv.scrollLeft, targetPosition);
     // Scroll the div to the target position
-    // scrollableDiv.scrollLeft = targetPosition;
+    scrollableDiv.scrollLeft = targetPosition;
   }
   const scrollableDivRef = useRef(null);
 
@@ -386,39 +381,33 @@ const Root = () => {
                 className="top-bar lg-d-none"
                 >
                 <div className="curve"></div>
-                <div className="all-tabs" 
-                 id="scrollableDiv"
-                ref={scrollableDivRef}
-                // onDragEnd={()=>console.log('DRAG-END')}
-                onScroll={() => {
-                  // console.log(scrollableDivRef?.current?.children);
-                  // (window.width)
-                  const x = scrollableDivRef.current?.scrollLeft;
-                  let min_dist = Infinity;
-                  let min_item = Infinity;
-                  let y = 0;
-                  for (let index = 0; index < filteredFavouriteMenu.length; index++) {
-                    const element = scrollableDivRef.current?.children[index];
-                    y += element.scrollWidth;
-                    let thisDistance = Math.abs(x - y);
-                    if (thisDistance < min_dist) {
-                      min_dist = thisDistance;
-                      min_item = index;
+                <div
+                  className="all-tabs"
+                  id="scrollableDiv"
+                  ref={scrollableDivRef}
+                  onScroll={() => {
+                    const x = scrollableDivRef.current?.scrollLeft;
+                    let min_dist = Infinity;
+                    let min_item = Infinity;
+                    let y = (window?.innerWidth || 0) * 0.04;
+                    console.log(y);
+                    for (let index = 0; index < filteredFavouriteMenu.length; index++) {
+                      const element = scrollableDivRef.current?.children[index];
+                      y += element.scrollWidth;
+                      let thisDistance = Math.abs(x - (y + element.scrollWidth / 2));
+                      if (thisDistance < min_dist) {
+                        min_dist = thisDistance;
+                        min_item = index;
+                      }
                     }
-                  }
-                  if (minItem != min_item && min_item != Infinity) {
-                    // alert(minItem)
-                    console.log(min_item);
-
-                    // ScrollToActiveTab(min_item);
-                    setMinItem(min_item);
-                    navigate(filteredFavouriteMenu[min_item]?.link, {
-                      state: filteredFavouriteMenu[min_item]?.state,
-                    });
-                  }
-                  // console.log(min_tem);
-                  // ScrollToActiveTab(min_item)
-                }}>
+                    if (minItem != min_item && min_item != Infinity) {
+                      ScrollToActiveTab(min_item);
+                      setMinItem(min_item);
+                      navigate(filteredFavouriteMenu[min_item]?.link, {
+                        state: filteredFavouriteMenu[min_item]?.state,
+                      });
+                    }
+                  }}>
                   {IsMobile && (
                     // {favouriteMenu?.some(m => m?.name == team?.name)}
                     <>
@@ -440,6 +429,7 @@ const Root = () => {
                            }
                             to={m.link}
                             name={m?.name}
+                            // onClick={() => ScrollToActiveTab(i)}
                             >
                               {/* {decodedPathname} */}
                             {/* Display the LogoTeam image if it exists */}
