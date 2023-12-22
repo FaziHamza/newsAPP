@@ -72,6 +72,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
           onConfirm={() => {
             ClearStorage(items);
             onClose();
+            closeNav()
           }}
           onCancel={() => {
             onClose();

@@ -9,7 +9,7 @@ import { removeBetween } from '../../utilities/common';
 import { timeQuery } from '../../utilities/timeQuery';
 import { StoryTile } from '../../compositions';
 import { useSelector } from 'react-redux';
-import { AFP_news, SPORSpot_News, video_play ,podcast} from '../../assets';
+import { AFP_news, SPORSpot_News, video_play ,podcast, podcast_black, Video_black} from '../../assets';
 import { RootUrl } from '../../utilities/config';
 const topicSettings = {};
 
@@ -224,7 +224,7 @@ const Article = ({ className = '' }) => {
               {isShowPodcastIcon && (
                 <Link {...linkPropsforpodcast} className="underline-hide">
                   <div className="highlights podcast-video">
-                    <img src={podcast} style={{height:'20px'}}/>
+                    <img src={podcast_black} style={{height:'20px'}}/>
                     {/* <span>Podcasts</span> */}
                   </div>
                 </Link>
@@ -232,7 +232,7 @@ const Article = ({ className = '' }) => {
               {isShowVideoIcon && IsSubtopicVideo && (
                 <Link {...linkPropsforhighlight} className="underline-hide">
                   <div className="highlights podcast-video">
-                    <img src={video_play} style={{height:'20px'}} />
+                    <img src={Video_black} style={{height:'20px'}} />
                     {/* <span>Videos</span> */}
                   </div>
                 </Link>
@@ -240,7 +240,7 @@ const Article = ({ className = '' }) => {
               {!IsSubtopicVideo && (
                 <Link {...linkPropsforhighlight} className="underline-hide">
                   <div className="highlights podcast-video">
-                    <img src={video_play} style={{height:'20px'}}/>
+                    <img src={Video_black} style={{height:'20px'}}/>
                     {/* <span>Videos</span> */}
                   </div>
                 </Link>

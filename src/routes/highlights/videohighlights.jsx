@@ -40,9 +40,21 @@ const VideoHighlightsList = () => {
         const response = await fetch(url);
         if (response.status === 200) {
           const res = await response.json();
-          const sortedData = res.data.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
-          setVideoHighlightsData(sortedData);
-          setStatus(sortedData.length > 0 ? 'resolved' : 'noDataFound');
+
+          if (res.data && res.data.length > 0) {
+            // Check if the 'datetime' property exists before sorting
+            const sortedData = res.data.sort((a, b) => {
+              const dateA = a.datetime ? new Date(a.datetime) : 0;
+              const dateB = b.datetime ? new Date(b.datetime) : 0;
+              return dateB - dateA;
+            });
+        
+            setVideoHighlightsData(sortedData);
+            setStatus('resolved');
+          } else {
+            setVideoHighlightsData([]); // Set an empty array or handle it as needed
+            setStatus('noDataFound');
+          }
         } else {
           console.error(`HTTP Error: ${response.status}`);
           setStatus('error');

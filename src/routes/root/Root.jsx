@@ -23,7 +23,7 @@ import {
   settopiwithsubtopic,
   setallregion,
 } from '../../redux/countries';
-import { video_play,settingicon } from '../../assets';
+import { video_play,settingicon, backbtn } from '../../assets';
 import { clearFavouriteMenu } from '../../redux/favouriteMenu';
 import { IsMobile } from '../../utilities/config';
 import { selectCountry } from '../../redux/countries';
@@ -196,6 +196,11 @@ const Root = () => {
   }
   const scrollableDivRef = useRef(null);
 
+  const location = useLocation();
+  const { state } = location;
+  const teamName = state?.topicName;
+  console.log(teamName)
+
   switch (status) {
     case 'idle':
       return <div>idle</div>;
@@ -249,24 +254,25 @@ const Root = () => {
                     <div className="main-header">
                       <div className="item">
                         {isMatchingRoute !== null ? (
-                          <span
-                            // style={{ fontSize: '20px', cursor: 'pointer', color: 'white' }}
-                            style={{
-                              height:'35px',
-                              width:'35px',
-                              fontSize: '20px',
-                              cursor: 'pointer',
-                              color: 'white',
-                              display: 'flex',
-                              justifyContent:'center',
-                              alignItems:'center',
-                              border: '2px solid white', // Set the desired border color and width
-                              borderRadius: '50%',
-                              padding: '5px', // Adjust the padding to control the size of the circle
-                            }}
-                            onClick={() => navigate(-1)}>
-                            &#129192;
-                          </span>
+                          // <span
+                          //   // style={{ fontSize: '20px', cursor: 'pointer', color: 'white' }}
+                            // style={{
+                            //   height:'35px',
+                            //   width:'35px',
+                            //   fontSize: '20px',
+                            //   cursor: 'pointer',
+                            //   color: 'white',
+                            //   display: 'flex',
+                            //   justifyContent:'center',
+                            //   alignItems:'center',
+                            //   border: '2px solid white', // Set the desired border color and width
+                            //   borderRadius: '50%',
+                            //   padding: '5px', // Adjust the padding to control the size of the circle
+                            // }}
+                          //   onClick={() => navigate(-1)}>
+                          //   &#129192;
+                          // </span>
+                           <img src={backbtn} style={{height:'35px'}} onClick={() => navigate(-1)}/>
                         ) : (
                           <NavbarMobile
                             navList={settingsInfo.menuItems}
@@ -422,14 +428,20 @@ const Root = () => {
                           <div
                             key={i}
                             id={`targetId-${i}`}
+                            // className={
+                            //   decodedPathname == `/${m?.state?.navType}/${m?.state?.navTopic}`
+                            //     ? 'active tab btn-light '
+                            //     : 'tab btn-light'
+                            // }
                             className={
-                              decodedPathname == `/${m?.state?.navType}/${m?.state?.navTopic}`
-                                ? 'active tab btn-light '
-                                : 'tab btn-light'
-                            }
+                              m?.name === teamName
+                               ? 'active tab btn-light'
+                               : 'tab btn-light'
+                           }
                             to={m.link}
                             name={m?.name}
                             >
+                              {/* {decodedPathname} */}
                             {/* Display the LogoTeam image if it exists */}
                             <div className="action-bar">
                               {m?.name?.toLowerCase() === 'top news'
