@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { Link, Outlet, useLocation, useNavigate, useMatch } from 'react-router-dom';
 import { MediaQueryProvider } from '../../utilities/mediaQuery';
 import { ThemeQueryProvider } from '../../utilities/themeQuery';
@@ -23,7 +24,7 @@ import {
   settopiwithsubtopic,
   setallregion,
 } from '../../redux/countries';
-import { video_play,settingicon, backbtn } from '../../assets';
+import { video_play, settingicon, backbtn } from '../../assets';
 import { clearFavouriteMenu } from '../../redux/favouriteMenu';
 import { IsMobile } from '../../utilities/config';
 import { selectCountry } from '../../redux/countries';
@@ -77,27 +78,27 @@ const Root = () => {
         const x = scrollableDivRef.current?.scrollLeft;
         let min_dist = Infinity;
         let min_item = Infinity;
-        let y = (window?.innerWidth || 0) * 0.04;
-        console.log(y);
-        for (let index = 0; index < filteredFavouriteMenu.length; index++) {
-          const element = scrollableDivRef.current?.children[index];
-          y += element.scrollWidth;
-          let thisDistance = Math.abs(x - (y + element.scrollWidth / 2));
+        // console.log(y);
+        for (let index = 0; index < scrollableDivRef.current.children.length; index++) {
+          const element = scrollableDivRef.current?.children?.[index];
+
+          let thisDistance = Math.abs(x - (element.offsetLeft - element.clientWidth / 2));
           if (thisDistance < min_dist) {
             min_dist = thisDistance;
             min_item = index;
           }
         }
-        console.log(window.innerWidth, min_item);
+        // console.log(x, min_item, filteredFavouriteMenu.length);
         if (minItem != min_item && min_item != Infinity) {
           ScrollToActiveTab(min_item);
+          // setMinItem(min_item);
+          // navigate(filteredFavouriteMenu[min_item]?.link, {
+          //   state: filteredFavouriteMenu[min_item]?.state,
+          // });
         }
       }, 1500);
-
       return () => clearInterval(x);
     }, []);
-
-    
   }
   useEffect(() => {
     const apiUrl = `${RootUrl.Baseurl}api/Region/GetRegion`;
@@ -180,12 +181,12 @@ const Root = () => {
     // Get references to the div and the target element
     var scrollableDiv = document.getElementById('scrollableDiv');
     let tempId = 'targetId-' + id;
-    console.log(tempId);
+    // console.log(tempId);
     var targetElement = document.getElementById(tempId);
 
     var targetPosition =
       targetElement?.offsetLeft + targetElement?.clientWidth / 2 - window.innerWidth * 0.5;
-    console.log('ont', scrollableDiv.scrollLeft, targetPosition);
+    // console.log('ont', scrollableDiv.scrollLeft, targetPosition);
     // Scroll the div to the target position
     scrollableDiv.scrollLeft = targetPosition;
   }
@@ -194,7 +195,7 @@ const Root = () => {
   const location = useLocation();
   const { state } = location;
   const teamName = state?.topicName;
-  console.log(teamName)
+  console.log(teamName);
 
   switch (status) {
     case 'idle':
@@ -251,23 +252,27 @@ const Root = () => {
                         {isMatchingRoute !== null ? (
                           // <span
                           //   // style={{ fontSize: '20px', cursor: 'pointer', color: 'white' }}
-                            // style={{
-                            //   height:'35px',
-                            //   width:'35px',
-                            //   fontSize: '20px',
-                            //   cursor: 'pointer',
-                            //   color: 'white',
-                            //   display: 'flex',
-                            //   justifyContent:'center',
-                            //   alignItems:'center',
-                            //   border: '2px solid white', // Set the desired border color and width
-                            //   borderRadius: '50%',
-                            //   padding: '5px', // Adjust the padding to control the size of the circle
-                            // }}
+                          // style={{
+                          //   height:'35px',
+                          //   width:'35px',
+                          //   fontSize: '20px',
+                          //   cursor: 'pointer',
+                          //   color: 'white',
+                          //   display: 'flex',
+                          //   justifyContent:'center',
+                          //   alignItems:'center',
+                          //   border: '2px solid white', // Set the desired border color and width
+                          //   borderRadius: '50%',
+                          //   padding: '5px', // Adjust the padding to control the size of the circle
+                          // }}
                           //   onClick={() => navigate(-1)}>
                           //   &#129192;
                           // </span>
-                           <img src={backbtn} style={{height:'35px'}} onClick={() => navigate(-1)}/>
+                          <img
+                            src={backbtn}
+                            style={{ height: '35px' }}
+                            onClick={() => navigate(-1)}
+                          />
                         ) : (
                           <NavbarMobile
                             navList={settingsInfo.menuItems}
@@ -331,7 +336,12 @@ const Root = () => {
                                 aria-expanded="false">
                                 <span>
                                   {/* <Logo alt={'logo'} /> */}
-                                  <img src={settingicon} alt="" srcset="" style={{height:'35px',width:'35px'}}/>
+                                  <img
+                                    src={settingicon}
+                                    alt=""
+                                    srcset=""
+                                    style={{ height: '35px', width: '35px' }}
+                                  />
                                 </span>
                               </div>
                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -340,14 +350,15 @@ const Root = () => {
                                   return (
                                     <li
                                       key={m?.id}
-                                      className={`dropdown-item text-uppercase ${themeVariant === 'light'
+                                      className={`dropdown-item text-uppercase ${
+                                        themeVariant === 'light'
                                           ? isActive
                                             ? 'bg-light active-light'
                                             : 'bg-light'
                                           : isActive
-                                            ? 'bg-dark active-dark'
-                                            : 'bg-dark'
-                                        }`}
+                                          ? 'bg-dark active-dark'
+                                          : 'bg-dark'
+                                      }`}
                                       onClick={(e) => handleOrigin(e, m?.id)}>
                                       {m?.domainName}
                                     </li>
@@ -377,9 +388,7 @@ const Root = () => {
               <Outlet context={fullInfo} />
             </div>
             <footer>
-              <div
-                className="top-bar lg-d-none"
-                >
+              <div className="top-bar lg-d-none">
                 <div className="curve"></div>
                 <div
                   className="all-tabs"
@@ -389,17 +398,33 @@ const Root = () => {
                     const x = scrollableDivRef.current?.scrollLeft;
                     let min_dist = Infinity;
                     let min_item = Infinity;
-                    let y = (window?.innerWidth || 0) * 0.04;
-                    console.log(y);
-                    for (let index = 0; index < filteredFavouriteMenu.length; index++) {
-                      const element = scrollableDivRef.current?.children[index];
-                      y += element.scrollWidth;
-                      let thisDistance = Math.abs(x - (y + element.scrollWidth / 2));
+                    // console.log(y);
+
+                    for (
+                      let index = 0;
+                      index < scrollableDivRef.current.children.length;
+                      index++
+                    ) {
+                      const element = scrollableDivRef.current?.children?.[index];
+
+                      let thisDistance = Math.abs(
+                        x - (element.offsetLeft - element.clientWidth / 2)
+                      );
                       if (thisDistance < min_dist) {
                         min_dist = thisDistance;
                         min_item = index;
                       }
                     }
+                    // console.log(
+                    //   filteredFavouriteMenu?.[min_item]?.link,
+                    //   min_item,
+                    //   x,
+                    //   // miny,
+                    //   'min_item'
+                    //   // miny.clientWidth,
+                    //   // miny
+                    // );
+                    console.log(x);
                     if (minItem != min_item && min_item != Infinity) {
                       ScrollToActiveTab(min_item);
                       setMinItem(min_item);
@@ -423,15 +448,13 @@ const Root = () => {
                             //     : 'tab btn-light'
                             // }
                             className={
-                              m?.name === teamName
-                               ? 'active tab btn-light'
-                               : 'tab btn-light'
-                           }
+                              m?.name === teamName ? 'active tab btn-light' : 'tab btn-light'
+                            }
                             to={m.link}
                             name={m?.name}
                             // onClick={() => ScrollToActiveTab(i)}
-                            >
-                              {/* {decodedPathname} */}
+                          >
+                            {/* {decodedPathname} */}
                             {/* Display the LogoTeam image if it exists */}
                             <div className="action-bar">
                               {m?.name?.toLowerCase() === 'top news'
