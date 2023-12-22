@@ -164,30 +164,32 @@ const HighlightsList = () => {
               </div>
             </div>
             {mainHightLights?.length > 0 && (
-              <div className="secondary-card-section">
-                {mainHightLights?.map((highlight, index) => (
-                  <div key={index} className="secondary-card">
-                    <div
-                      className="video-banner"
-                      style={{ backgroundImage: `url(${highlight.thumbnail})` }}
-                      onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
-                      <i className="fa-solid fa-circle-play"></i>
-                    </div>
-                    <div className="content">
-                      <h5>{highlight.title}</h5>
-                      <a
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleMathInfoClick(highlight?.matchviewUrl);
-                        }}>
-                        MATH INFO
-                      </a>
-                      <small>{new Date(highlight.date).toLocaleString()}</small>
-                    </div>
-                  </div>
-                ))}
-              </div>
+             <div className="secondary-card-section">
+             {mainHightLights
+               ?.filter((_, index) => index !== 0)
+               .map((highlight, index) => (
+                 <div key={index} className="secondary-card">
+                   <div
+                     className="video-banner"
+                     style={{ backgroundImage: `url(${highlight.thumbnail})` }}
+                     onClick={() => handleVideoClick(highlight.videos[0]?.embed)}>
+                     <i className="fa-solid fa-circle-play"></i>
+                   </div>
+                   <div className="content">
+                     <h5>{highlight.title}</h5>
+                     <a
+                       href="#"
+                       onClick={(e) => {
+                         e.preventDefault();
+                         handleMathInfoClick(highlight?.matchviewUrl);
+                       }}>
+                       MATH INFO
+                     </a>
+                     <small>{new Date(highlight.date).toLocaleString()}</small>
+                   </div>
+                 </div>
+               ))}
+           </div>           
             )}
           </div>
         </div>

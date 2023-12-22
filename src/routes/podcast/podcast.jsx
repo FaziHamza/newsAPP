@@ -178,7 +178,7 @@ const PodcastList = () => {
             </div>
             {mainHightLights?.length > 0 && (
               <div className="secondary-card-section">
-                {mainHightLights?.map((highlight, index) => (
+                {mainHightLights?.filter((_, index) => index !== 0).map((highlight, index) => (
                   <div key={index} className="secondary-card">
                     <div
                       className="video-banner"
