@@ -34,8 +34,16 @@ const Root = () => {
   const dispatch = useDispatch();
   //For Header back Button
   // Define the route pattern you want to match
-  const targetRoutePattern = '/:type/:topic/:id';
-  const isMatchingRoute = useMatch(targetRoutePattern);
+const targetRoutePattern1 = '/:type/:topic/:id';
+const targetRoutePattern2 = 'podcast';
+const targetRoutePattern3 = 'videohighlights';
+const targetRoutePattern4 = 'highlights';
+
+const isMatchingRoute1 = useMatch(targetRoutePattern1);
+const isMatchingRoute2 = useMatch(targetRoutePattern2);
+const isMatchingRoute3 = useMatch(targetRoutePattern3);
+const isMatchingRoute4 = useMatch(targetRoutePattern4);
+
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const allregion = useSelector((state) => state?.origin?.allregion);
   const selectedMenu = useSelector((state) => state?.origin?.apiOrigin);
@@ -248,25 +256,7 @@ const Root = () => {
                   <>
                     <div className="main-header">
                       <div className="item">
-                        {isMatchingRoute !== null ? (
-                          // <span
-                          //   // style={{ fontSize: '20px', cursor: 'pointer', color: 'white' }}
-                            // style={{
-                            //   height:'35px',
-                            //   width:'35px',
-                            //   fontSize: '20px',
-                            //   cursor: 'pointer',
-                            //   color: 'white',
-                            //   display: 'flex',
-                            //   justifyContent:'center',
-                            //   alignItems:'center',
-                            //   border: '2px solid white', // Set the desired border color and width
-                            //   borderRadius: '50%',
-                            //   padding: '5px', // Adjust the padding to control the size of the circle
-                            // }}
-                          //   onClick={() => navigate(-1)}>
-                          //   &#129192;
-                          // </span>
+                        {isMatchingRoute1 !== null ||isMatchingRoute2!==null ||isMatchingRoute3!==null ||isMatchingRoute4!==null ? (
                            <img src={backbtn} style={{height:'35px'}} onClick={() => navigate(-1)}/>
                         ) : (
                           <NavbarMobile
