@@ -13,12 +13,11 @@ const DisplayComponent = ({ topic }) => {
   console.log(state);
   console.log(initialload);
   // Now you can access the passed state values
+  const TopicId = state?.TopicId;
   const moreItemName = state?.moreItemName || null;
-  const teamName = state?.topicName || initialload[0].name;
   const SubTopicHeadline = state?.SubttopicHeadline;
   const defaulttopic = topic?.Name || null;
-  const topicKey = state?.topicKey || initialload[0].highlights;
-  const topictype = state?.topictype || initialload[0].highlightType;
+
   var IsSubtopicVideo;
   if (state == undefined || state == null) {
     IsSubtopicVideo = initialload[0].isSubtopicVideo;
@@ -30,8 +29,9 @@ const DisplayComponent = ({ topic }) => {
   const logoPath = state?.LogoPath || null;
   const teamLogoPath = state?.LogoTeam || initialload[0].logo;
   const SubTopicId = state?.SubTopicId || initialload[0].subTopicID;
-  const TopicId = state?.TopicId;
-
+  const teamName = state?.topicName || initialload[0].name;
+  const topicKey = state?.topicKey || initialload[0].highlights;
+  const topictype = state?.topictype || initialload[0].highlightType;
   const linkPropsforhighlight = {
     to: IsSubtopicVideo ? '/videohighlights' : '/highlights',
     state: {
@@ -40,6 +40,7 @@ const DisplayComponent = ({ topic }) => {
       topicName: teamName,
       LogoTeam: teamLogoPath,
       SubTopicId: SubTopicId,
+      IsSubtopicVideo:IsSubtopicVideo
     },
   };
   const linkPropsforpodcast = {
@@ -50,6 +51,7 @@ const DisplayComponent = ({ topic }) => {
       topicName: teamName,
       LogoTeam: teamLogoPath,
       SubTopicId: SubTopicId,
+      IsSubtopicVideo:IsSubtopicVideo
     },
   };
   const IsSql = state?.IsSql;

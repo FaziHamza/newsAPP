@@ -3,8 +3,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import DataNotFound from '../../components/dataNotFound';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { divideByPercentage } from '../../utilities/common';
- import { IsMobile, videHighlight } from '../../utilities/config';
+ import { IsMobile, RootUrl, videHighlight } from '../../utilities/config';
  import { useSelector } from 'react-redux';
+import { Video_black } from '../../assets';
+import { Link } from 'react-router-dom';
+
 const PodcastList = () => {
   const [showModal, setShowModal] = useState(false);
   const [videoEmbed, setVideoEmbed] = useState('');
@@ -20,8 +23,42 @@ const PodcastList = () => {
   const location = useLocation();
   const { state } = location;
   console.log(JSON.stringify(state));
-  const {  topicName,topictype,SubTopicId } = state;
    const thumnbailbaseurl=videHighlight.thumbnailurl ;
+
+   const IsSubtopicVideo = state?.IsSubtopicVideo;
+   console.log(IsSubtopicVideo)
+   const [isShowPodcastIcon, setisshowPodcaseIcon] = useState(null);
+   const [isShowVideoIcon, setisShowVideoIcon] = useState(null);
+   const teamLogoPath = state?.LogoTeam ;
+   const SubTopicId = state?.SubTopicId;
+   const teamName = state?.topicName ;
+   const topicKey = state?.topicKey ;
+   const topictype = state?.topictype ;
+   const linkPropsforhighlight = {
+     to: IsSubtopicVideo ? '/videohighlights' : '/highlights',
+     state: {
+       topicKey,
+       topictype,
+       topicName: teamName,
+       LogoTeam: teamLogoPath,
+       SubTopicId: SubTopicId,
+       IsSubtopicVideo:IsSubtopicVideo
+     },
+   };
+
+   useEffect(() => {
+    const apiUrl = `${RootUrl.Baseurl}api/Subtopic/GetVideoStatusBySubtopicId?id=${SubTopicId}`;
+    fetch(apiUrl)
+      .then((res) => res.json())
+      .then((response) => {
+        setisshowPodcaseIcon(response.data.videoPodcast);
+        setisShowVideoIcon(response.data.videoHighlight);
+      })
+      .catch((err) => {
+        console.log('Error', err);
+      });
+  }, []);
+
   useEffect(() => {
     if (PodcastListsData?.length) {
       const [forty, sixty] = divideByPercentage(PodcastListsData.length);
@@ -85,9 +122,10 @@ const PodcastList = () => {
 
   if (PodcastListsData.length === 0) {
     return <div>Loading...</div>;
-  } else if (!topicName) {
-    return <DataNotFound />;
-  }
+  } 
+  // else if (!teamName) {
+  //   return <DataNotFound />;
+  // }
 
   let mainHightLights = PodcastListsData || [];
   let asideHightLights = [];
@@ -104,24 +142,14 @@ const PodcastList = () => {
         <div className="col-lg-8">
           <div className={`layout ${isDesktop}`}>
             <div className="main-card-section">
-            {IsMobile  && (
-                          <div className='tagcontainerforvideoandpodcast' >
-
-              <span
-                className='tag'>
-                {/* {SubTopicHeadline} */} Podcasts
-              </span>
-              </div>
-            )}
+            
               <div className="main-card">
-                <div className="row">
+                {/* <div className="row">
                 <div className="col-3">
                     <div className="header">
                       <div>
                         <img src={LogoPath} alt={LogoPath} />
-                        {/* why topicName not update here ?? */}
                         <span>{topicName?.replace('senaste nytt', '')}</span>{' '}
-                        {/* Modify this line */}
                       </div>
 
                     </div>
@@ -131,8 +159,6 @@ const PodcastList = () => {
                   </div>
                   <div className="col-3">
                     <div>
-                      {/* <img src="assets/images/22.png" alt="" /> */}
-                      {/* <span>SUBTOPIC : {state.Subtopicid} </span> */}
                     </div>
                     <button
                       type="button"
@@ -141,6 +167,40 @@ const PodcastList = () => {
                       onClick={() => navigate(-1)}>
                       <i class="fa-solid fa-xmark"></i>
                     </button>
+                  </div>
+                </div> */}
+
+                <div className='row'>
+                  <div className='col-3'>
+                  {IsMobile  && (
+                          <div className='tagcontainerforvideoandpodcast' >
+
+              <span
+                className='tag'>
+                {/* {SubTopicHeadline} */} Podcasts
+              </span>
+              </div>
+            )}
+                  </div>
+                  <div className='col-9'>
+                    <div className='podcast-video-icon'>
+              {isShowVideoIcon && IsSubtopicVideo &&(
+                <Link {...linkPropsforhighlight} className="underline-hide">
+                  <div className="highlights podcast-video">
+                    <img src={Video_black} height={'20px'} />
+                    <span>Videos</span>
+                  </div>
+                </Link>
+              )}
+              {IsSubtopicVideo!=null && IsSubtopicVideo!=undefined && !IsSubtopicVideo && (
+                <Link {...linkPropsforhighlight} className="underline-hide">
+                  <div className="highlights podcast-video">
+                    <img src={Video_black} height={'20px'} />
+                    <span>Videos</span>
+                  </div>
+                </Link>
+              )}
+                    </div>
                   </div>
                 </div>
                 <div
