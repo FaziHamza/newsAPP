@@ -160,7 +160,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   }, []);
   return (
     <div className={themeVariant}>
-      <div id="Sidenav" className={`sidenav ${usingScreen} ${isOpen ? 'open' : ''}`}>
+      <div id="Sidenav" className={`sidenav ${usingScreen} ${isOpen ? 'open' : ''}`} style={{paddingBottom:'100px'}}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
           &times;
         </a>
