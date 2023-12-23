@@ -23,7 +23,7 @@ const VideoHighlightsList = () => {
   const { topicKey, topicName, topictype, SubTopicId } = state;
   const thumnbailbaseurl = videHighlight.thumbnailurl;
   useEffect(() => {
-    if (highlightsData?.length>0) {
+    if (highlightsData?.length > 0) {
       const [forty, sixty] = divideByPercentage(highlightsData.length);
       setMainHighlightsQuantity(forty);
       setAsideHighlightsQuantity(sixty);
@@ -48,7 +48,7 @@ const VideoHighlightsList = () => {
               const dateB = b.datetime ? new Date(b.datetime) : 0;
               return dateB - dateA;
             });
-        
+
             setVideoHighlightsData(sortedData);
             setStatus('resolved');
           } else {
@@ -119,24 +119,23 @@ const VideoHighlightsList = () => {
             <div className="col-lg-8">
               <div className={`layout ${isDesktop}`}>
                 <div className="main-card-section">
-                {IsMobile  && (
-                          <div className='tagcontainerforvideoandpodcast' >
 
-              <span
-                className='tag'>
-                {/* {SubTopicHeadline} */} Videos
-              </span>
-              </div>
-            )}
                   <div className="main-card">
-                    <div className="row">
+                    {IsMobile && (
+                      <div className='tagcontainerforvideoandpodcast' >
+
+                        <span
+                          className='tag'>
+                          {/* {SubTopicHeadline} */} Podcast
+                        </span>
+                      </div>
+                    )}
+                    {/* <div className="row">
                       <div className="col-3">
                         <div className="header">
                           <div>
                             <img src={LogoPath} alt={LogoPath} />
-                            {/* why topicName not update here ?? */}
                             <span>{topicName?.replace('senaste nytt', '')}</span>{' '}
-                            {/* Modify this line */}
                           </div>
                         </div>
                       </div>
@@ -144,10 +143,6 @@ const VideoHighlightsList = () => {
                         <h2>VIDEO</h2>
                       </div>
                       <div className="col-3">
-                        <div>
-                          {/* <img src="assets/images/22.png" alt="" /> */}
-                          {/* <span>SUBTOPIC : {state.Subtopicid} </span> */}
-                        </div>
                         <button
                           type="button"
                           class="btn text-light close-btn rounded-circle "
@@ -156,7 +151,8 @@ const VideoHighlightsList = () => {
                           <i class="fa-solid fa-xmark"></i>
                         </button>
                       </div>
-                    </div>
+                    </div> */}
+                    <div className='video-nav'><i class="fa-regular fa-video"></i> Videos</div>
                     <div
                       className="video-banner"
                       style={{ backgroundImage: `url(${thumnbailbaseurl + highlightsData[0]?.thumbnail})` }}
@@ -166,7 +162,7 @@ const VideoHighlightsList = () => {
                     </div>
                     <div className="content">
                       <h5>{highlightsData[0]?.text}</h5>
-    
+
                       <small>{new Date(highlightsData[0]?.datetime).toLocaleString()}</small>
                     </div>
                     {showMathInfoModal && (
@@ -211,7 +207,7 @@ const VideoHighlightsList = () => {
                 )}
               </div>
             </div>
-    
+
             {asideHightLights?.length > 0 && (
               <div className="col-lg-4">
                 <div className={`layout ${isDesktop}`}>
@@ -228,7 +224,7 @@ const VideoHighlightsList = () => {
                           </div>
                           <div className="content">
                             <h5>{highlight.text}</h5>
-    
+
                             <small>{new Date(highlight.datetime).toLocaleString()}</small>
                           </div>
                         </div>
@@ -239,14 +235,14 @@ const VideoHighlightsList = () => {
               </div>
             )}
           </div>
-    
+
           {showModal && (
             <div className="modal">
               <div className="modal-content">
                 <button onClick={handleCloseModal} className="close-button">
                   X
                 </button>
-    
+
                 <div className="video-wrapper" dangerouslySetInnerHTML={{ __html: videoEmbed }} />
               </div>
             </div>

@@ -56,14 +56,14 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   };
   const [isCustomAlertOpen, setCustomAlertOpen] = useState(true);
   const ConfirmationforclearStorage = (items) => {
-  
+
     // const ClearStorage = (items) => {
     //   // Your logic to clear storage
     //   console.log('Storage cleared');
     //   setCustomAlertOpen(false); // Close the custom alert
     // };
-  
-  
+
+
     confirmAlert({
       customUI: ({ onClose }) => (
         <CustomConfirmation
@@ -99,7 +99,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
       </div>
     );
   };
-  
+
   const ClearStorage = (items) => {
     dispatch(clearFavouriteMenu(items));
   };
@@ -128,18 +128,18 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   const groupedNavItems = filteredNavItems.reduce((groups, item) => {
     const heading = item.topic.mainHeading;
     const navLogo = item.topic.mainHeadingLogo;
-  
+
     if (!groups[heading]) {
       groups[heading] = {
         items: [],
         mainHeadingLogo: navLogo
       };
     }
-  
+
     groups[heading].items.push(item);
     return groups;
   }, {});
-  
+
   const handleFavouriteMenu = (isChecked, name, link, state) => {
     // console.log('is check  ', isChecked, name, link, state);
     dispatch(addFavouriteMenu({ isChecked, name, link, state }));
@@ -167,8 +167,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
 
         <div className='region-container'>
           <div className='region-title'>
-          <Logo alt={'logo'} />          {GetCurrentDomain()}
-          <img />
+            <Logo alt={'logo'} />          {GetCurrentDomain()}
+            <img />
           </div>
         </div>
 
@@ -200,10 +200,10 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                   </svg> */}
                   {
                     group.mainHeadingLogo &&
-                    <img alt={group.mainHeadingLogo} src={group.mainHeadingLogo} style={{height:'16px', width:'17px'}} />
+                    <img alt={group.mainHeadingLogo} src={group.mainHeadingLogo} style={{ height: '16px', width: '17px' }} />
                   }
                   {/* <img alt={} /> */}
-                  <h5 style={{paddingLeft:'5px'}}>{heading}</h5>
+                  <h5 style={{ paddingLeft: '5px' }}>{heading}</h5>
                 </div>
                 <div className="arrow">
                   <svg
@@ -246,44 +246,44 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                         aria-expanded="false"
                         aria-controls={`collapseinner1-${id}`}>
 
-                     <div className="coll-lable">
-                      {moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
-                          <h5>{moreItem.topic.name}</h5>
-                        }
+                        <div className="coll-lable">
+                          {moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
+                            <h5>{moreItem.topic.name}</h5>
+                          }
                         </div>
                         <div className='rightside'>
-                        {moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
-                        <>
-                          <div className="action-bar-icon">
-                            {moreItem.subTopics.length > 0 && (
-                              <>
-                                {IsMobile && (
-                                  <span className="my-action-bar">{moreItem.topic.actionBar}</span>
-                                )}
-                              </>
-                            )}
-                          </div>
-              
-                          <div className="arrow">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="20"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              fill="none">
-                              <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M2.02322 5.70974C2.26316 5.4698 2.65218 5.4698 2.89212 5.70974L9.83055 12.6482L16.769 5.70974C17.0089 5.4698 17.3979 5.4698 17.6379 5.70974C17.8778 5.94968 17.8778 6.3387 17.6379 6.57864L10.265 13.9515C10.0251 14.1915 9.63604 14.1915 9.3961 13.9515L2.02322 6.57864C1.78328 6.3387 1.78328 5.94968 2.02322 5.70974Z"
-                                fill="black"
-                              />
-                            </svg>
-                          </div>
-                          </>
-              }
+                          {moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
+                            <>
+                              {moreItem.subTopics.length > 0 && (
+                                <>
+                                  {IsMobile && (
+                                    <div className="action-bar-icon">
+                                      <span className="my-action-bar">{moreItem.topic.actionBar}</span>
+                                    </div>
+                                  )}
+                                </>
+                              )}
+
+                              <div className="arrow">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="20"
+                                  height="20"
+                                  viewBox="0 0 20 20"
+                                  fill="none">
+                                  <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M2.02322 5.70974C2.26316 5.4698 2.65218 5.4698 2.89212 5.70974L9.83055 12.6482L16.769 5.70974C17.0089 5.4698 17.3979 5.4698 17.6379 5.70974C17.8778 5.94968 17.8778 6.3387 17.6379 6.57864L10.265 13.9515C10.0251 14.1915 9.63604 14.1915 9.3961 13.9515L2.02322 6.57864C1.78328 6.3387 1.78328 5.94968 2.02322 5.70974Z"
+                                    fill="black"
+                                  />
+                                </svg>
+                              </div>
+                            </>
+                          }
                         </div>
 
-                       {/* <div className="coll-lable">
+                        {/* <div className="coll-lable">
                           <h5>{moreItem.topic.name}</h5>
                         </div>
                         <div className='rightside'>
@@ -312,7 +312,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                             </svg>
                           </div>
                         </div>   */}
-                        
+
                       </a>
                       {moreItem.subTopics.map((team) => {
                         const [navType, navTopic, navAddress] = team.news
@@ -506,7 +506,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                     fill="black"
                   />
                 </svg>
-                <h5 style={{paddingLeft:'5px'}}>Settings</h5>
+                <h5 style={{ paddingLeft: '5px' }}>Settings</h5>
               </div>
               <div className="arrow">
                 <svg

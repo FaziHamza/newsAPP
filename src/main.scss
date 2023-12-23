@@ -160,7 +160,7 @@ header>div {
 .league-card .date {
     width: 100%;
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     padding: 4px 2px;
 }
 
@@ -175,7 +175,7 @@ header>div {
     width: 100%;
     min-height: 200px;
     background: white;
-    padding: 10px;
+    padding: 5px 10px;
     border-radius: 12px;
     filter: drop-shadow(0px 2px 4px rgba(16, 24, 40, 0.04)) drop-shadow(0px 4px 6px rgba(16, 24, 40, 0.04));
 }
@@ -375,13 +375,15 @@ body {
 
 
 .sidenav {
-    height: 100%;
+    // height: 100%;
     /* width: 0; */
     /* width: calc(100vw - 45px); */
     width: 0;
     position: fixed;
     z-index: 1;
+    border-bottom-right-radius: 10px;
     top: 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     right: 0;
     background-color: #ffff;
     border: 1px solid #d4c6c6;
@@ -572,11 +574,7 @@ body {
 }
 
 
-/* ///side */
-.league-card {
-    width: 100%;
-    padding: 10px;
-}
+
 
 .highlight-item {
     display: flex;
@@ -744,7 +742,7 @@ h6 {
     }
 
     .layout {
-        padding: 15px;
+        padding: 10px;
     }
 
     .main-body {
@@ -1052,7 +1050,6 @@ h6 {
 }
 
 .main-bodyFavmenu {
-    // padding: 110px 10px;
     padding: 100px 00px;
 }
 
@@ -1172,10 +1169,11 @@ h6 {
     background: #FDE42F;
     width: fit-content;
     padding: 2px 10px;
-    margin: 4px 0px;
+    margin: 0px;
     position: absolute;
-    top: 30px;
+    top: -5px;
     left: -5px;
+
     .tag {
         color: #000 !important;
         font-size: 13px !important;
@@ -1184,16 +1182,18 @@ h6 {
         line-height: normal !important;
     }
 }
-.tagcontainerforvideoandpodcast{
+
+.tagcontainerforvideoandpodcast {
     // border-radius: 18.5px;
     border-radius: 5px;
     background: #FDE42F;
     width: fit-content;
     padding: 2px 10px;
-    margin: 4px 0px;
-    position: relative;
-    top: 65px;
+    margin: 0px;
+    position: absolute;
+    top: -5px;
     left: -5px;
+
     .tag {
         color: #000 !important;
         font-size: 13px !important;
@@ -1238,15 +1238,15 @@ h6 {
 
                 .action-bar-icon {
                     background: #FDE42F;
-                    padding: 2px 5px;
+                    padding: 2px 10px;
                     width: fit-content;
-                    border-radius: 100px;
+                    border-radius: 10px;
                     margin-right: 6px;
 
                     span {
                         color: #000;
                         font-family: Inter;
-                        font-size: 8px;
+                        font-size: 10px;
                         font-style: normal;
                         font-weight: 400;
                         line-height: normal;
@@ -1375,4 +1375,19 @@ h6 {
 
 .coll-heading.collapsed .arrow {
     transform: rotate(180deg);
+}
+
+.main-card-section {
+    .video-nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: 16px;
+        margin-bottom: 3px;
+        font-weight: 600;
+
+        i {
+            margin-right: 5px;
+        }
+    }
 }

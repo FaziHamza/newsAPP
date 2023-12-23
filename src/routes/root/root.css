@@ -194,7 +194,7 @@ nav a:hover {
 }
 
 main {
-  padding:11.5rem 1.3rem 10rem 1.3rem;
+  padding:11rem 1.3rem 10rem 1.3rem;
   background-color: #FDFFFC;
 }
 
@@ -543,7 +543,7 @@ aside .tile-m p {
   align-items: center;
   font-size: 17px;
   font-weight: 500;
-  margin: 0 0 9px 0;
+  margin-bottom: 3px;
   font-size: 16px;
 }
 
@@ -632,7 +632,8 @@ ul {
   padding: 10px;
   width: 100%;
   border-radius: 6px;
-  margin-bottom: 10px
+  margin-bottom: 10px;
+  position: relative;
 }
 
 .layout .main-card .header {
