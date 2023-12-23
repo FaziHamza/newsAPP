@@ -174,16 +174,16 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
 
         {/* coll-sidenav */}
         <div className="coll-sidenav" >
-          {Object.entries(groupedNavItems).map(([heading, group]) => (
+          {Object.entries(groupedNavItems).map(([heading, group],index) => (
             <div className="coll-item" key={heading}>
               <a
                 className="coll-heading collapsed"
                 data-bs-toggle="collapse"
                 //href="#collapseExample"
-                href={`#collapseExample-${heading.trim()}`}
+                href={`#collapseExample-${heading.trim()+index}`}
                 role="button"
                 aria-expanded="false"
-                aria-controls={`collapseExample-${heading.trim()}`}>
+                aria-controls={`collapseExample-${heading.trim()+index}`}>
                 <div className="coll-lable" >
                   {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -236,15 +236,15 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                   ];
 
                 return (
-                  <div class="collapse" id={`collapseExample-${heading.trim()}`}>
+                  <div class="collapse" id={`collapseExample-${heading.trim()+index}`}>
                     <div className="coll-item-inner ">
                       <a
                         className="coll-heading collapsed"
                         data-bs-toggle="collapse"
-                        href={`#collapseinner1-${id}`}
+                        href={`#collapseinner1-${id+index}`}
                         role="button"
                         aria-expanded="false"
-                        aria-controls={`collapseinner1-${id}`}>
+                        aria-controls={`collapseinner1-${id+index}`}>
 
                      <div className="coll-lable">
                       {moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
@@ -263,7 +263,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                               </>
                             )}
                           </div>
-              
+{/*               
                           <div className="arrow">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -278,9 +278,24 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                 fill="black"
                               />
                             </svg>
-                          </div>
+                          </div> */}
                           </>
               }
+                                        <div className="arrow">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 20 20"
+                              fill="none">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.02322 5.70974C2.26316 5.4698 2.65218 5.4698 2.89212 5.70974L9.83055 12.6482L16.769 5.70974C17.0089 5.4698 17.3979 5.4698 17.6379 5.70974C17.8778 5.94968 17.8778 6.3387 17.6379 6.57864L10.265 13.9515C10.0251 14.1915 9.63604 14.1915 9.3961 13.9515L2.02322 6.57864C1.78328 6.3387 1.78328 5.94968 2.02322 5.70974Z"
+                                fill="black"
+                              />
+                            </svg>
+                          </div>
                         </div>
 
                        {/* <div className="coll-lable">
@@ -323,7 +338,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                             team.articles,
                           ];
                         return (
-                          <div class="collapse" key={team.name} id={`collapseinner1-${id}`}>
+                          <div class="collapse" key={team.name} id={`collapseinner1-${id+index}`}>
                             <div className="option">
                               <div class="form-check">
                                 {IsMobile && (
