@@ -209,6 +209,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                     tableInfo: tableInfo,
                                     baseUrl: addresses.baseUrl + settingsInfo.Api,
                                     imgUrl: addresses.baseUrl + mainNewsList[0]?._medias[0]?.href,
+                                    topicName:teamName
                                   }
                             }
                             to={
@@ -250,6 +251,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                         tableInfo: tableInfo,
                                         baseUrl: addresses.baseUrl + settingsInfo.Api,
                                         imgUrl: addresses.baseUrl + tileItem._medias[0].href,
+                                        topicName:teamName
                                       }
                                 }
                                 to={
@@ -301,6 +303,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                           tableInfo: tableInfo,
                                           baseUrl: addresses.baseUrl + settingsInfo.Api,
                                           imgUrl: addresses.baseUrl + tileItem._medias[0].href,
+                                          topicName:teamName
                                         }
                                   }
                                   to={
@@ -359,6 +362,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                         articleInfo: tileItem,
                                         baseUrl: addresses.baseUrl + settingsInfo.Api,
                                         imgUrl: addresses.baseUrl + tileItem._medias[0].href,
+                                        topicName:teamName
                                       }
                                 }
                                 to={
@@ -399,6 +403,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                               imgUrl:
                                                 addresses.baseUrl +
                                                 tableInfo[index]._medias[0].href,
+                                                topicName:teamName
                                             }
                                       }
                                       to={
@@ -437,6 +442,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                               imgUrl:
                                                 addresses.baseUrl +
                                                 tableInfo[index + 1]._medias[0].href,
+                                                topicName:teamName
                                             }
                                       }
                                       to={
@@ -490,6 +496,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                           articleInfo: tileItem,
                                           baseUrl: addresses.baseUrl + settingsInfo.Api,
                                           imgUrl: addresses.baseUrl + tileItem._medias[0].href,
+                                          topicName:teamName
                                         }
                                   }
                                   to={

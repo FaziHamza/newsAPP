@@ -201,7 +201,7 @@ const StoryMain = ({
           </div>
         </>
       ) : (
-        <div className="league-card">
+        <div className="league-card" style={{padding:'0px 10px'}}>
           {/* {!IsMobile && <DisplayComponent />} */}
           {IsMobile && <DisplayComponent />}
 
@@ -217,7 +217,7 @@ const StoryMain = ({
               </span>
             )}
           </div> */}
-          <div className="content">
+          <div className="content" >
             {/* <div className='tagcontainer' >
               <p className="tag">Nyheter</p>
             </div> */}

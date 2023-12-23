@@ -202,7 +202,7 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
   const location = useLocation();
   const { state } = location;
   const teamName = state?.topicName;
-  console.log(teamName)
+  console.log("TEAMNAMW",teamName)
 
   switch (status) {
     case 'idle':
