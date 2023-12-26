@@ -30,7 +30,7 @@ const HighlightsList = () => {
   const SubTopicId = state?.SubTopicId;
   const teamName = state?.topicName ;
   const topicKey = state?.topicKey ;
-  const topictype = state?.topictype ;
+  var topictype = state?.topictype ;
   const IsSubtopicVideo = state?.IsSubtopicVideo;
   const linkPropsforpodcast = {
     to: '/podcast',
