@@ -191,16 +191,19 @@ const VideoHighlightsList = () => {
             )}
                                       </div>
                   <div className='col-9'>
-                    <div className='podcast-video-icon'>
+                    <div className='d-flex justify-content-end'>
+                    <div className='podcast-video-icon podcast-video-highlight'>
                     {isShowPodcastIcon && (
                 <Link {...linkPropsforpodcast} className="underline-hide">
                   <div className="highlights podcast-video">
                     <img src={podcast_black} height={'20px'} />
-                    <span>Podcasts</span>
+                    <span>Pods</span>
                   </div>
                 </Link>
               )}
                     </div>
+                    </div>
+                    
                   </div>
                 </div>
                     <div

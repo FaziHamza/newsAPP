@@ -183,10 +183,11 @@ const PodcastList = () => {
             )}
                   </div>
                   <div className='col-9'>
-                    <div className='podcast-video-icon'>
+                  <div className='d-flex justify-content-end'>
+                  <div className='podcast-video-icon'>
               {isShowVideoIcon && IsSubtopicVideo &&(
                 <Link {...linkPropsforhighlight} className="underline-hide">
-                  <div className="highlights podcast-video">
+                  <div className="highlights podcast-video podcast-video-highlight">
                     <img src={Video_black} height={'20px'} />
                     <span>Videos</span>
                   </div>
@@ -194,13 +195,14 @@ const PodcastList = () => {
               )}
               {IsSubtopicVideo!=null && IsSubtopicVideo!=undefined && !IsSubtopicVideo && (
                 <Link {...linkPropsforhighlight} className="underline-hide">
-                  <div className="highlights podcast-video">
+                  <div className="highlights podcast-video podcast-video-highlight">
                     <img src={Video_black} height={'20px'} />
                     <span>Videos</span>
                   </div>
                 </Link>
               )}
-                    </div>
+                    </div>                  </div>
+
                   </div>
                 </div>
                 <div
