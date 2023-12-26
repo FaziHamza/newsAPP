@@ -102,15 +102,15 @@ const DisplayComponent = ({ topic }) => {
             <div style={{ display: 'flex' }}>
               {isShowPodcastIcon && (
                 <Link {...linkPropsforpodcast} className="underline-hide">
-                  <div className="highlights podcast-video">
+                  <div className="highlights podcast-video podcast-article">
                     <img src={podcast_black} height={'20px'} />
-                    <span>Podcasts</span>
+                    <span>Pods</span>
                   </div>
                 </Link>
               )}
               {isShowVideoIcon && IsSubtopicVideo && (
                 <Link {...linkPropsforhighlight} className="underline-hide">
-                  <div className="highlights podcast-video">
+                  <div className="highlights podcast-video video-article">
                     <img src={Video_black} height={'20px'} />
                     <span>Videos</span>
                   </div>
@@ -118,7 +118,7 @@ const DisplayComponent = ({ topic }) => {
               )}
               {!IsSubtopicVideo && (
                 <Link {...linkPropsforhighlight} className="underline-hide">
-                  <div className="highlights podcast-video">
+                  <div className="highlights podcast-video video-article">
                     <img src={Video_black} height={'20px'} />
                     <span>Videos</span>
                   </div>
