@@ -1,7 +1,7 @@
 import { timeQuery } from '../../utilities/timeQuery';
 import { json, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { logo, video_play, podcast,podcast_black,Video_black } from '../../assets';
+import { logo, video_play, podcast,podcast_black,Video_black, podcast_white, Video_white } from '../../assets';
 import { sportspotsverige, AFP_news, SPORSpot_News } from '../../assets';
 import { useSelector } from 'react-redux';
 import { IsMobile, RootUrl } from '../../utilities/config';
@@ -103,15 +103,15 @@ const DisplayComponent = ({ topic }) => {
               {isShowPodcastIcon && (
                 <Link {...linkPropsforpodcast} className="underline-hide">
                   <div className="highlights podcast-video podcast-article">
-                    <img src={podcast_black} height={'20px'} />
-                    <span>Pods</span>
+                    <img src={podcast_white} height={'20px'} />
+                    <span>Podcasts</span>
                   </div>
                 </Link>
               )}
               {isShowVideoIcon && IsSubtopicVideo && (
                 <Link {...linkPropsforhighlight} className="underline-hide">
                   <div className="highlights podcast-video video-article">
-                    <img src={Video_black} height={'20px'} />
+                    <img src={Video_white} height={'20px'} />
                     <span>Videos</span>
                   </div>
                 </Link>
@@ -119,7 +119,7 @@ const DisplayComponent = ({ topic }) => {
               {!IsSubtopicVideo && (
                 <Link {...linkPropsforhighlight} className="underline-hide">
                   <div className="highlights podcast-video video-article">
-                    <img src={Video_black} height={'20px'} />
+                    <img src={Video_white} height={'20px'} />
                     <span>Videos</span>
                   </div>
                 </Link>

@@ -9,7 +9,7 @@ import { removeBetween } from '../../utilities/common';
 import { timeQuery } from '../../utilities/timeQuery';
 import { StoryTile } from '../../compositions';
 import { useSelector } from 'react-redux';
-import { AFP_news, SPORSpot_News, video_play ,podcast, podcast_black, Video_black} from '../../assets';
+import { AFP_news, SPORSpot_News, video_play ,podcast, podcast_black, Video_black,Video_white,podcast_white} from '../../assets';
 import { RootUrl } from '../../utilities/config';
 const topicSettings = {};
 

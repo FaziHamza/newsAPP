@@ -173,8 +173,8 @@ const HighlightsList = () => {
                     {isShowPodcastIcon && (
                 <Link {...linkPropsforpodcast} className="underline-hide">
                   <div className="highlights podcast-video">
-                    <img src={podcast_black} height={'20px'} />
-                    <span>Pods</span>
+                    <img src={podcast_white} height={'20px'} />
+                    <span>Podcasts</span>
                   </div>
                 </Link>
               )}

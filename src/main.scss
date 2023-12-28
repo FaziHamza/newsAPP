@@ -822,12 +822,22 @@ h6 {
     color: white;
     font-size: 16px;
 }
-
+.light .sidenav .coll-sidenav .coll-item {
+    background-color: white;
+}
+.light .sidenav .coll-sidenav .coll-item-inner {
+    background-color: white;
+}
 .dark .sidenav {
     background-color: #0e1218;
     border: none;
 }
-
+.dark .sidenav .coll-sidenav .coll-item {
+    background-color: #2d333c;
+}
+.dark .sidenav .coll-sidenav .coll-item-inner {
+    background-color: #343a40;
+}
 .dark .sidenav .nav-item {
     color: white;
 }

@@ -6,7 +6,7 @@ import { divideByPercentage } from '../../utilities/common';
 import { IsMobile, RootUrl, videHighlight } from '../../utilities/config';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Video_black, podcast_black } from '../../assets';
+import { Video_black, podcast_black,Video_white ,podcast_white} from '../../assets';
 
 const VideoHighlightsList = () => {
   const [showModal, setShowModal] = useState(false);
@@ -196,8 +196,8 @@ const VideoHighlightsList = () => {
                     {isShowPodcastIcon && (
                 <Link {...linkPropsforpodcast} className="underline-hide">
                   <div className="highlights podcast-video">
-                    <img src={podcast_black} height={'20px'} />
-                    <span>Pods</span>
+                    <img src={podcast_white} height={'20px'} />
+                    <span>Podcasts</span>
                   </div>
                 </Link>
               )}

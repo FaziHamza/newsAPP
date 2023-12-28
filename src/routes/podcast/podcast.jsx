@@ -5,7 +5,7 @@ import { useMediaContext } from '../../utilities/mediaQuery';
 import { divideByPercentage } from '../../utilities/common';
  import { IsMobile, RootUrl, videHighlight } from '../../utilities/config';
  import { useSelector } from 'react-redux';
-import { Video_black } from '../../assets';
+import { Video_black ,Video_white} from '../../assets';
 import { Link } from 'react-router-dom';
 
 const PodcastList = () => {
@@ -188,7 +188,7 @@ const PodcastList = () => {
               {isShowVideoIcon && IsSubtopicVideo &&(
                 <Link {...linkPropsforhighlight} className="underline-hide">
                   <div className="highlights podcast-video podcast-video-highlight">
-                    <img src={Video_black} height={'20px'} />
+                    <img src={Video_white} height={'20px'} />
                     <span>Videos</span>
                   </div>
                 </Link>
@@ -196,7 +196,7 @@ const PodcastList = () => {
               {IsSubtopicVideo!=null && IsSubtopicVideo!=undefined && !IsSubtopicVideo && (
                 <Link {...linkPropsforhighlight} className="underline-hide">
                   <div className="highlights podcast-video podcast-video-highlight">
-                    <img src={Video_black} height={'20px'} />
+                    <img src={Video_white} height={'20px'} />
                     <span>Videos</span>
                   </div>
                 </Link>

@@ -21,6 +21,8 @@ export { default as sportspotsverige } from './images/sportspotsverige.png';
 export { default as settingicon } from './images/settings.png';
 export { default as podcast_black } from './images/podcast-black.png';
 export { default as Video_black } from './images/Video-black.png';
+export { default as podcast_white } from './images/podcast-white.png';
+export { default as Video_white } from './images/video-white.png';
 export { default as backbtn } from './images/back.png';
 
 
