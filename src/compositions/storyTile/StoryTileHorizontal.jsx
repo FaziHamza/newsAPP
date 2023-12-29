@@ -37,7 +37,7 @@ const StoryTileHorizonal = ({idforlogo, description, className = '', src, alt, t
   // };
   const sanitizedSrc = src.replace(/([^:]\/)\/+/g, "$1");
   const timecss = {
-    background: '#ece8e8',
+    // background: '#ece8e8',
     borderRadius: '30px',
     padding: '0px 10px',
     width: 'fit-content',
@@ -53,7 +53,7 @@ const StoryTileHorizonal = ({idforlogo, description, className = '', src, alt, t
         <p className={!!isDesktopScreen ? 'desktop' : 'mobile'} dangerouslySetInnerHTML={{ __html: description }} />
 
         <div style={{display:'flex', justifyContent:'center'}}>
-        <h6 className='content-time-img' style={timecss}>
+        <h6 className='content-time-img-hor' style={timecss}>
           <img src={imageUrl} alt="" />
           {days()}
         </h6>

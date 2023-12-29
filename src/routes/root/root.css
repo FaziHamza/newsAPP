@@ -835,7 +835,12 @@ ul {
   font-weight: 500;
   color: #000000c7;
 }
-
+.dark-theme .content .content-time-img-hor {
+  background-color: #2d333c;
+}
+.light-theme .content .content-time-img-hor {
+  background-color: #ece8e8;
+}
 .main-article {
   display: flex;
   justify-content: space-between;
