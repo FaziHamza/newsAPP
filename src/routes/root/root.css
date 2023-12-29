@@ -1000,12 +1000,19 @@ header .header-nav{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
   border: 1px solid #ccc;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+.light-theme .custom-alert{
+  background-color: white;
+}
+.dark-theme .custom-alert{
+  background-color: #212529;
+}
+.dark-theme .react-confirm-alert-overlay{
+  background-color: #2d333ccf;
+}
 .custom-alert-content {
   text-align: center;
 }
