@@ -201,7 +201,7 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
 
   const location = useLocation();
   const { state } = location;
-  const teamName = state?.topicName;
+  const teamName = state?.topicName || 'Dressyr ';
   console.log("TEAMNAMW",teamName)
 
   switch (status) {

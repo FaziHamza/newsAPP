@@ -38,6 +38,56 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
       if (cacheObject) setCacheState(cacheObject);
     }
   }, []);
+  let isfirst=true;
+  useEffect(() => {
+    // m?.state
+    const checkdreser=favouriteMenu.some(s=>s?.state.SubTopicId=='6b6875a3-dd4d-4c77-82b9-08dc0540e95d')
+    const checkhoping=favouriteMenu.some(s=>s?.state.SubTopicId=='1fa2e3ef-ec4a-43b6-63e8-08dc0630b17f')
+
+    console.log("Dress",checkdreser)
+    console.log("Hoping",checkdreser)
+    const statedresser= {
+      "address": "news/getNewsByTeam?keyword=Dressyr&lang=sv&sport=football&limit=12",
+      "topicKey": "",
+      "topictype": "team",
+      "IsSubtopicVideo": true,
+      "topicName": "Dressyr ",
+      "TopicId": "e5659f42-7e7a-4b3d-9d33-08dbe06ca0cb",
+      "navType": "news",
+      "navTopic": "dressyr_",
+      "moreItemName": "Kategori ",
+      "SubTopicId": "6b6875a3-dd4d-4c77-82b9-08dc0540e95d",
+      "LogoPath": "",
+      "LogoTeam": "https://live.staticflickr.com/65535/53420020233_750f1821e4_n.jpg",
+      "IsSql": false,
+      "SubttopicHeadline": "Nyheter "
+    }
+    const stateHoping={
+      "address": "news/getNewsByTeam?keyword=Hopp&lang=sv&sport=football&limit=12",
+      "topicKey": "",
+      "topictype": "team",
+      "IsSubtopicVideo": true,
+      "topicName": "Hoppning ",
+      "TopicId": "e5659f42-7e7a-4b3d-9d33-08dbe06ca0cb",
+      "navType": "news",
+      "navTopic": "hoppning_",
+      "moreItemName": "Kategori ",
+      "SubTopicId": "1fa2e3ef-ec4a-43b6-63e8-08dc0630b17f",
+      "LogoPath": "",
+      "LogoTeam": "https://live.staticflickr.com/65535/53421381152_93a168b609_n.jpg",
+      "IsSql": false,
+      "SubttopicHeadline": "Nyheter "
+    }
+    if(!checkdreser && !checkhoping && isfirst){
+      isfirst=false;
+      handleFavouriteMenu(true,"Dressyr ","../news/dressyr_",statedresser)
+      handleFavouriteMenu(true,"Hoppning ","../news/hoppning_",stateHoping)
+    }
+
+    console.log("Fav",favouriteMenu)
+
+
+  }, []);
   const openNav = () => {
     setIsOpen(true);
   };
