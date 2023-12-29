@@ -191,6 +191,7 @@ const VideoHighlightsList = () => {
             )}
                                       </div>
                   <div className='col-9'>
+                  {isShowPodcastIcon && 
                     <div className='d-flex justify-content-end'>
                     <div className='podcast-video-icon podcast-video-highlight'>
                     {isShowPodcastIcon && (
@@ -203,7 +204,7 @@ const VideoHighlightsList = () => {
               )}
                     </div>
                     </div>
-                    
+                      }
                   </div>
                 </div>
                     <div

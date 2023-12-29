@@ -6,7 +6,7 @@ import { divideByPercentage } from '../../utilities/common';
 import { useSelector } from 'react-redux';
 import { IsMobile, RootUrl } from '../../utilities/config';
 import { Link } from 'react-router-dom';
-import { podcast_black } from '../../assets';
+import { podcast_black,podcast_white } from '../../assets';
 
 const HighlightsList = () => {
   const [showModal, setShowModal] = useState(false);
@@ -167,7 +167,9 @@ const HighlightsList = () => {
               </div>
             )}
                                       </div>
+
                   <div className='col-9'>
+                    {isShowPodcastIcon && 
                     <div className='d-flex justify-content-end' >
                     <div className='podcast-video-icon podcast-video-highlight'>
                     {isShowPodcastIcon && (
@@ -180,7 +182,7 @@ const HighlightsList = () => {
               )}
                     </div>                   
                      </div>
-
+                }
                   </div>
                 </div>
                 <div
