@@ -1,5 +1,12 @@
-import { useEffect,useState } from 'react';
-import { Link, useLoaderData, useLocation, useNavigate, useOutletContext ,useParams} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import {
+  Link,
+  useLoaderData,
+  useLocation,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from 'react-router-dom';
 import parse from 'html-react-parser';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { useAsync } from '../../utilities/asyncReducer';
@@ -9,7 +16,16 @@ import { removeBetween } from '../../utilities/common';
 import { timeQuery } from '../../utilities/timeQuery';
 import { StoryTile } from '../../compositions';
 import { useSelector } from 'react-redux';
-import { AFP_news, SPORSpot_News, video_play ,podcast, podcast_black, Video_black,Video_white,podcast_white} from '../../assets';
+import {
+  AFP_news,
+  SPORSpot_News,
+  video_play,
+  podcast,
+  podcast_black,
+  Video_black,
+  Video_white,
+  podcast_white,
+} from '../../assets';
 import { RootUrl } from '../../utilities/config';
 import DataNotFound from '../../components/dataNotFound';
 
@@ -20,14 +36,13 @@ export const loader = ({ params }) => {
 };
 
 const AsideArticle = ({ tableInfo }) => {
-  const addresses = useSelector(state => state.origin.apiOrigin)
+  const addresses = useSelector((state) => state.origin.apiOrigin);
 
   const [settingsInfo] = useOutletContext();
 
-
   const { params } = useLoaderData();
   const { state } = useLocation();
-  // console.log(settingsInfo)
+  console.log(tableInfo)
   // console.log(state)
   return (
     <aside className="aside-right">
@@ -49,8 +64,7 @@ const AsideArticle = ({ tableInfo }) => {
                   tableInfo: state.tableInfo,
                   baseUrl: addresses.baseUrl + settingsInfo.Api,
                   imgUrl: addresses.baseUrl + tileItem._medias[0].href,
-                }}
-              >
+                }}>
                 <StoryTile
                   idforlogo={tileItem._id}
                   description={tileItem._abstract}
@@ -70,43 +84,44 @@ const AsideArticle = ({ tableInfo }) => {
 };
 
 const Article = ({ className = '' }) => {
-  const addresses = useSelector(state => state.origin.apiOrigin)
+  const addresses = useSelector((state) => state.origin.apiOrigin);
   const [status, setStatus] = useState('idle');
-  const [articleInfo,setArticelInfo]=useState([]);
+  const [articleInfo, setArticelInfo] = useState([]);
+  const [allarticleInfo, setAllArticelInfo] = useState([]);
   const [isShowPodcastIcon, setisshowPodcaseIcon] = useState(null);
   const [isShowVideoIcon, setisShowVideoIcon] = useState(null);
   const { state } = useLocation();
+  console.log(state);
   const articlevideo = useSelector((state) => state.origin.articlevideo);
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const { id } = useParams();
-  // Now you can access the passed state values
-  // const teamName = state?.topicName || null;
-  // const topicKey = state?.topicKey || null;
-  // const topictype =state?.topictype|| null;
-  // const teamLogoPath = state?.LogoTeam ||  null;
-  // const SubTopicId =state?.SubTopicId || null;
-  // var IsSubtopicVideo =null ;
-
-  // const linkPropsforhighlight = {
-  //   to: IsSubtopicVideo ? '/videohighlights' : '/highlights',
-  //   state: {
-  //     topicKey,
-  //     topictype,
-  //     topicName: teamName,
-  //     LogoTeam: teamLogoPath,
-  //     SubTopicId: SubTopicId,
-  //   },
-  // };
-  // const linkPropsforpodcast = {
-  //   to: '/podcast',
-  //   state: {
-  //     topicKey,
-  //     topictype,
-  //     topicName: teamName,
-  //     LogoTeam: teamLogoPath,
-  //     SubTopicId: SubTopicId,
-  //   },
-  // };
+  const teamName = state?.topicName || articlevideo[0]?.name;
+  const topicKey = state?.topicKey || articlevideo[0]?.highlights;
+  const topictype = state?.topictype || articlevideo[0]?.highlightType;
+  const teamLogoPath = state?.LogoTeam || articlevideo[0]?.logo;
+  const SubTopicId = state?.SubTopicId || articlevideo[0]?.subTopicID;
+  var IsSubtopicVideo = articlevideo[0]?.isSubtopicVideo;
+  const linkPropsforhighlight = {
+    to: IsSubtopicVideo ? '/videohighlights' : '/highlights',
+    state: {
+      topicKey,
+      topictype,
+      topicName: teamName,
+      LogoTeam: teamLogoPath,
+      SubTopicId: SubTopicId,
+    },
+  };
+  const linkPropsforpodcast = {
+    to: '/podcast',
+    state: {
+      topicKey,
+      topictype,
+      topicName: teamName,
+      LogoTeam: teamLogoPath,
+      SubTopicId: SubTopicId,
+    },
+  };
+  console.log(linkPropsforhighlight);
   useEffect(() => {
     setStatus('pending');
     const fetchArticle = async () => {
@@ -117,11 +132,17 @@ const Article = ({ className = '' }) => {
           const res = await response.json();
 
           if (res && res.length > 0) {
-            console.log(res)
-            setArticelInfo(res)
-            console.log(articleInfo)
-
-            // setVideoHighlightsData(sortedData);
+            const apiUrl = `${RootUrl.Baseurl}api/Subtopic/GetVideoStatusBySubtopicId?id=${SubTopicId}`;
+            fetch(apiUrl)
+              .then((res) => res.json())
+              .then((response) => {
+                setisshowPodcaseIcon(response.data.videoPodcast);
+                setisShowVideoIcon(response.data.videoHighlight);
+              })
+              .catch((err) => {
+                console.log('Error', err);
+              });
+            setArticelInfo(res);
             setStatus('resolved');
           } else {
             setArticelInfo([]); // Set an empty array or handle it as needed
@@ -136,7 +157,28 @@ const Article = ({ className = '' }) => {
         setStatus('error');
       }
     };
+    const fetchAllArticle = async () => {
+      const allarticleUrl = `${addresses.baseUrl}/api/news/getNewsByTeam?keyword=${addresses.siteKeyword}&lang=${addresses.siteLang}&sport=football&limit=${addresses.siteLimit}`;
+      try {
+        const response = await fetch(allarticleUrl);
+        if (response.status === 200) {
+          const res = await response.json();
 
+          if (res && res.length > 0) {
+            setAllArticelInfo(res);
+            // setStatus('resolved');
+          } else {
+            setAllArticelInfo([]); // Set an empty array or handle it as needed
+            // setStatus('noDataFound');
+          }
+        } else {
+          console.error(`HTTP Error: ${response.status}`);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchAllArticle();
     fetchArticle();
   }, []);
   const isDesktop = useMediaContext();
@@ -151,10 +193,7 @@ const Article = ({ className = '' }) => {
   // const { articleInfo, tableInfo } = state;
 
   let imageUrl;
-  console.log(articleInfo)
-  console.log(articleInfo[0]?._id)
-
-  if (articleInfo[0]>0 && articleInfo[0]?._id.length === 7) {
+  if (articleInfo[0] > 0 && articleInfo[0]?._id.length === 7) {
     imageUrl = AFP_news;
   } else {
     imageUrl = SPORSpot_News;
@@ -190,7 +229,7 @@ const Article = ({ className = '' }) => {
                     <main className={`article ${className}`.trim()}>
                       <div className="row">
                         <div className="col-11">
-                          <h2 dangerouslySetInnerHTML={{ __html: articleInfo?._title }}></h2>
+                          <h2 dangerouslySetInnerHTML={{ __html: articleInfo[0]?._title }}></h2>
                         </div>
                         <div className="col-1">
                           <button
@@ -203,7 +242,10 @@ const Article = ({ className = '' }) => {
                         </div>
                       </div>
                       <figure>
-                        <img src={state.imgUrl} alt={state.imgUrl} />
+                        <img
+                          src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
+                          alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
+                        />{' '}
                         <div class="main-article">
                           <div class="left-article">
                             <h6>
@@ -222,21 +264,21 @@ const Article = ({ className = '' }) => {
                         <hr />
                       </figure>
                       <p>
-                        <ContentParsed content={articleInfo._content} />
+                        <ContentParsed content={articleInfo[0]?._content} />
                       </p>
                     </main>
                   </div>
                   <div className="col-lg-4">
-                    <AsideArticle tableInfo={tableInfo} />
+                    <AsideArticle tableInfo={allarticleInfo} />
                   </div>
                 </div>
               </div>
               {/* <AsideArticle /> */}
             </>
           ) : (
-            <main className='article'>
+            <main className="article">
               <div className="row">
-                <div className="col-12">
+                <div className="col-11">
                   <h2 dangerouslySetInnerHTML={{ __html: articleInfo[0]?._title }}></h2>
                 </div>
                 {/* <div className="col-1">
@@ -248,9 +290,21 @@ const Article = ({ className = '' }) => {
                     <i class="fa-solid fa-xmark"></i>
                   </button>
                 </div> */}
+                 {/* <div className="col-1">
+                  <button
+                    type="button"
+                    class="btn text-light close-btn rounded-circle "
+                    style={{ float: 'right' }}
+                    onClick={onClick={onShareApi}}>
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                </div> */}
               </div>
               <figure className="artical-detail">
-                <img src={addresses.baseUrl+articleInfo[0]?._medias[0]?.href} alt={addresses.baseUrl+articleInfo[0]?._medias[0]?.href} />
+                <img
+                  src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
+                  alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
+                />
                 <div class="main-article">
                   <div class="left-article">
                     <h6>
@@ -258,29 +312,29 @@ const Article = ({ className = '' }) => {
                       <img src={imageUrl} alt="logo" />
                     </h6>
                   </div>
-                  {/* <div class="right-article d-flex">
-                  {isShowPodcastIcon && (
-                    <Link {...linkPropsforpodcast} className="underline-hide">
-                      <div className="highlights podcast-video">
-                        <img src={podcast_black} style={{height:'20px',margin:'0'}}/>
-                      </div>
-                    </Link>
-                  )}
-                  {isShowVideoIcon && IsSubtopicVideo && (
-                    <Link {...linkPropsforhighlight} className="underline-hide">
-                      <div className="highlights podcast-video">
-                        <img src={Video_black} style={{height:'20px',margin:'0'}} />
-                      </div>
-                    </Link>
-                  )}
-                  {!IsSubtopicVideo && (
-                    <Link {...linkPropsforhighlight} className="underline-hide">
-                      <div className="highlights podcast-video">
-                        <img src={Video_black} style={{height:'20px',margin:'0'}}/>
-                      </div>
-                    </Link>
-                  )}
-                  </div> */}
+                  <div class="right-article d-flex">
+                    {isShowPodcastIcon && (
+                      <Link {...linkPropsforpodcast} className="underline-hide">
+                        <div className="highlights podcast-video">
+                          <img src={podcast_black} style={{ height: '20px', margin: '0' }} />
+                        </div>
+                      </Link>
+                    )}
+                    {isShowVideoIcon && IsSubtopicVideo && (
+                      <Link {...linkPropsforhighlight} className="underline-hide">
+                        <div className="highlights podcast-video">
+                          <img src={Video_black} style={{ height: '20px', margin: '0' }} />
+                        </div>
+                      </Link>
+                    )}
+                    {!IsSubtopicVideo && (
+                      <Link {...linkPropsforhighlight} className="underline-hide">
+                        <div className="highlights podcast-video">
+                          <img src={Video_black} style={{ height: '20px', margin: '0' }} />
+                        </div>
+                      </Link>
+                    )}
+                  </div>
                 </div>
                 <hr />
               </figure>
@@ -292,13 +346,12 @@ const Article = ({ className = '' }) => {
         </>
       );
     case 'noDataFound':
-      return <DataNotFound customMessage={"Article"} />;
+      return <DataNotFound customMessage={'Article'} />;
     case 'error':
-      return <div>Error occurred while fetching data</div>;
+      return <DataNotFound customMessage={'Error occurred while fetching data'} />;
     default:
       return null;
   }
-
 };
 
 export default Article;
