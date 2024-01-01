@@ -209,6 +209,17 @@ const Article = ({ className = '' }) => {
       return `${day} Dag  `; // Swedish for days
     }
   };
+  const onShareApi = async () => {
+    try {
+      await navigator.share({
+        title: 'Atricle',
+        text: articleInfo[0]._title,
+        url: window.location.href,
+      });
+    } catch (e) {
+      console.log('e: ', e);
+    }
+  };
   switch (status) {
     case 'idle':
       return <div>idle</div>;
@@ -290,15 +301,15 @@ const Article = ({ className = '' }) => {
                     <i class="fa-solid fa-xmark"></i>
                   </button>
                 </div> */}
-                 {/* <div className="col-1">
+                 <div className="col-1">
                   <button
                     type="button"
                     class="btn text-light close-btn rounded-circle "
                     style={{ float: 'right' }}
-                    onClick={onClick={onShareApi}}>
-                    <i class="fa-solid fa-xmark"></i>
+                    onClick={onShareApi}>
+                    <i class="fa-solid fa-copy"></i>
                   </button>
-                </div> */}
+                </div>
               </div>
               <figure className="artical-detail">
                 <img
