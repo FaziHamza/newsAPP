@@ -340,18 +340,9 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
                           setThemeVariant={setThemeVariant}
                           themeVariant={themeVariant}
                         /> */}
-                        {isMatchingRoute1!==null &&
-                  <div>
-                  <button
-                    type="button"
-                    class="btn"
-                    style={{ float: 'right'}}
-                    onClick={shareContent}>
-                      <img src={shareicon} alt={shareicon} srcset="" style={{height:'35px',width:'35px' }}/>
-                    {/* <i class="fa-solid fa-copy"></i> */}
-                  </button>
-                </div>
-    }
+                        {IsMobile&&isMatchingRoute1!==null &&
+                                      <img src={shareicon} alt={shareicon} onClick={shareContent} srcset="" style={{height:'35px',width:'35px' }}/>
+                            }
                       </div>
                     </div>
                     {/* <div className="header-nav">
