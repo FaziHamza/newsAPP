@@ -220,6 +220,7 @@ const Article = ({ className = '' }) => {
       console.log('e: ', e);
     }
   };
+
   switch (status) {
     case 'idle':
       return <div>idle</div>;
@@ -289,7 +290,7 @@ const Article = ({ className = '' }) => {
           ) : (
             <main className="article">
               <div className="row">
-                <div className="col-11">
+                <div className="col-12">
                   <h2 dangerouslySetInnerHTML={{ __html: articleInfo[0]?._title }}></h2>
                 </div>
                 {/* <div className="col-1">
@@ -301,15 +302,7 @@ const Article = ({ className = '' }) => {
                     <i class="fa-solid fa-xmark"></i>
                   </button>
                 </div> */}
-                 <div className="col-1">
-                  <button
-                    type="button"
-                    class="btn text-light close-btn rounded-circle "
-                    style={{ float: 'right' }}
-                    onClick={onShareApi}>
-                    <i class="fa-solid fa-copy"></i>
-                  </button>
-                </div>
+
               </div>
               <figure className="artical-detail">
                 <img

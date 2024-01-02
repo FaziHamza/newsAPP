@@ -10,7 +10,7 @@ export { default as newsLogo } from './images/newsLogo.png';
 export { default as logo } from './images/sportspot_A12.png';
 export { default as flag } from './images/engFlag.png';
 export { default as tennis } from './images/Tennis.png';
-
+export { default as shareicon } from './images/share-icon.png';
 export { default as video_play } from './images/video_play.png';
 export { default as podcast } from './images/podcast_icon.png';
 export { default as video_play_forheader } from './images/icons8-video-50.png';

@@ -23,7 +23,7 @@ import {
   settopiwithsubtopic,
   setallregion,
 } from '../../redux/countries';
-import { video_play,settingicon, backbtn } from '../../assets';
+import { video_play,settingicon, backbtn, shareicon } from '../../assets';
 import { clearFavouriteMenu } from '../../redux/favouriteMenu';
 import { IsMobile } from '../../utilities/config';
 import { selectCountry } from '../../redux/countries';
@@ -59,7 +59,32 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
   const [minItem, setMinItem] = useState();
 
   const navigate = useNavigate();
-
+  const shareContent = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Atricle',
+          // text: articleInfo[0]._title,
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.error('Error sharing:', error);
+        alert(error)
+      }
+    } else {
+      // alert('Web Share API is not supported in this browser. You can manually share the link.');
+      copyToClipboard(window.location.href);
+    }
+  };
+  const copyToClipboard = (text) => {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    alert('URL copied to clipboard!');
+  };
   const isDesktop = useMediaQuery('width', 1024);
   const themeIcon = getData().themeIcon;
   const toggleTheme = (inputValue, valueOne, valueTwo) => {
@@ -315,6 +340,18 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
                           setThemeVariant={setThemeVariant}
                           themeVariant={themeVariant}
                         /> */}
+                        {isMatchingRoute1!==null &&
+                  <div>
+                  <button
+                    type="button"
+                    class="btn"
+                    style={{ float: 'right'}}
+                    onClick={shareContent}>
+                      <img src={shareicon} alt={shareicon} srcset="" style={{height:'35px',width:'35px' }}/>
+                    {/* <i class="fa-solid fa-copy"></i> */}
+                  </button>
+                </div>
+    }
                       </div>
                     </div>
                     {/* <div className="header-nav">
