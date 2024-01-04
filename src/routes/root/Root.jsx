@@ -156,9 +156,12 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
   };
 
   const shareContent = async () => {
-    debugger;
     const user = new URLSearchParams(window.location.search).get('user');
     if(user==='admin'){
+      localStorage.setItem('user', user);
+    }
+    const storedUser = localStorage.getItem('user');
+    if(user==='admin'||storedUser==='admin'){
       copyToClipboardV1();
      }else{
     if (navigator.share) {
