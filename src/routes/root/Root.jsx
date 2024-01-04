@@ -156,7 +156,11 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
   };
 
   const shareContent = async () => {
-  
+    if(1==1){
+      copyToClipboardV1();
+     }else{
+      
+     }
     if (navigator.share) {
       try {
         await navigator.share({
@@ -164,7 +168,7 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
           // text: articleInfo[0]._title,
           url: window.location.href,
         });
-        copyToClipboardV1();
+      
       } catch (error) {
         console.error('Error sharing:', error);
         alert(error)
