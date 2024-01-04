@@ -254,9 +254,9 @@ const Article = ({ className = '' }) => {
                         </div>
                       </div>
                       <figure>
-                        <img
-                          src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
-                          alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
+                        <img id="articalImages"
+                          src={articleInfo[0]?._medias[1]?.href}
+                          alt={articleInfo[0]?._medias[1]?.href}
                         />{' '}
                         <div class="main-article">
                           <div class="left-article">
@@ -291,7 +291,7 @@ const Article = ({ className = '' }) => {
             <main className="article">
               <div className="row">
                 <div className="col-12">
-                  <h2 dangerouslySetInnerHTML={{ __html: articleInfo[0]?._title }}></h2>
+                  <h2 id="article-headline" dangerouslySetInnerHTML={{ __html: articleInfo[0]?._title }}></h2>
                 </div>
                 {/* <div className="col-1">
                   <button
@@ -305,7 +305,11 @@ const Article = ({ className = '' }) => {
 
               </div>
               <figure className="artical-detail">
-                <img
+                <img id="articalImageMobileView"
+                  src={articleInfo[0]?._medias[1]?.href}
+                  alt={articleInfo[0]?._medias[1]?.href}
+                />
+                <img id="myImg" style={{display:'none'}}
                   src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                   alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                 />

@@ -59,7 +59,104 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
   const [minItem, setMinItem] = useState();
 
   const navigate = useNavigate();
+  const copyToClipboardV1 = () => {
+    const headline =  "Fazi demo"
+    const articleText = "text text txe"
+    const articleLink = 'http://example.com/path-to-article'; // Replace with your article link
+
+
+
+    // Create a text version of what you want to copy
+    const textToCopy = `Check out this article: ${headline}\n\n${articleText}\nRead more: ${articleLink}`;
+
+    // Use the Clipboard API to copy the text to the clipboard
+    navigator.clipboard.writeText(textToCopy).then(function () {
+      alert('Article information copied to clipboard!');
+    }).catch(function (error) {
+      alert('Error copying to clipboard: ' + error);
+    });
+
+    // Call the function to draw the image with the headline overlay
+    drawImageWithHeadline();
+  };
+  const drawImageWithHeadline = () => {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 600; // Adjust as needed
+    canvas.height = 400; // Adjust as needed
+    const imgElement = document.getElementById('myImg');
+    debugger
+    let base64String;
+    convertImageToBase64(imgElement.src, function (base64) {
+    // This will log the base64 string to the console
+      base64String = base64;
+      const image = new Image();
+    image.src = imgElement.src;
+
+    // This is a shortened placeholder base64 string; replace with actual data
+    // image.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcAAAAGzCAYAAAC4k8ccAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAP+lSURBVHhe7L11mFTXuu19zzl77yQEd+hGWqHdoAUadydIcPcGunF3d3eXxt3dPRBBQ0JCdPs++9z7fX/dv8Y3xlw1q1cXhSTbON9JP8941lpzSVVXw/zVeOf7zvm/8MvPLz+5ErkJggg==';
+    image.src = base64String;
+    image.onload = function () {
+      // Draw the image onto the canvas
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+      // const base64Image = canvas.toDataURL('image/png');
+
+
+      // Draw the semi-transparent rectangle
+      const rectHeight = 60; // Adjust as needed
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+      ctx.fillRect(0, canvas.height - rectHeight, canvas.width, rectHeight);
+
+      // Draw the headline text
+      ctx.font = '20px Arial'; // Adjust as needed
+      ctx.fillStyle = 'white';
+      ctx.textAlign = 'center';
+      ctx.fillText(document.getElementById('article-headline').innerText, canvas.width / 2, canvas.height - rectHeight / 2);
+
+      // Convert the canvas to a Blob
+      canvas.toBlob(function (blob) {
+        // Use the Clipboard API to copy the blob to the clipboard
+        navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]).then(function () {
+          alert('Image copied to clipboard!');
+        }).catch(function (error) {
+          alert('Error copying image to clipboard: ' + error);
+        });
+      }, 'image/png');
+    };
+    });
+    // Create a new image object for the base64 encoded image
+  
+  };
+
+  const convertImageToBase64 = (url, callback) => {
+    var img = new Image();
+    img.crossOrigin = 'Anonymous'; // This enables cross-origin access for the image
+
+    img.onload = function () {
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext('2d');
+      canvas.height = this.naturalHeight;
+      canvas.width = this.naturalWidth;
+      ctx.drawImage(this, 0, 0);
+
+      var dataURL = canvas.toDataURL('image/jpeg');
+      callback(dataURL);
+    };
+
+    img.onerror = function () {
+      callback(null);
+    };
+
+    img.src = url;
+    // This is needed to handle CORS issues
+    if (img.complete || img.complete === undefined) {
+      img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+      img.src = url;
+    }
+  };
+
   const shareContent = async () => {
+  
     if (navigator.share) {
       try {
         await navigator.share({
@@ -67,6 +164,7 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
           // text: articleInfo[0]._title,
           url: window.location.href,
         });
+        copyToClipboardV1();
       } catch (error) {
         console.error('Error sharing:', error);
         alert(error)
@@ -74,6 +172,8 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
     } else {
       // alert('Web Share API is not supported in this browser. You can manually share the link.');
       copyToClipboard(window.location.href);
+      copyToClipboardV1();
+
     }
   };
   const copyToClipboard = (text) => {
