@@ -156,11 +156,11 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
   };
 
   const shareContent = async () => {
-    if(1==1){
+    debugger;
+    const user = new URLSearchParams(window.location.search).get('user');
+    if(user==='admin'){
       copyToClipboardV1();
      }else{
-      
-     }
     if (navigator.share) {
       try {
         await navigator.share({
@@ -176,9 +176,8 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
     } else {
       // alert('Web Share API is not supported in this browser. You can manually share the link.');
       copyToClipboard(window.location.href);
-      copyToClipboardV1();
-
     }
+  }
   };
   const copyToClipboard = (text) => {
     const textarea = document.createElement('textarea');
