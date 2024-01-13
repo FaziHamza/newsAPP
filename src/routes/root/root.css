@@ -1,8 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700;800;900&display=swap');
 
-body {
-  font-family: 'Source Sans 3', sans-serif !important;
-}
 
 .dark-theme {
   --color-font-main: var(--color-light1);
@@ -773,7 +769,6 @@ ul {
   display: flex !important;
   /* justify-content: start !important; */
   align-items: center;
-  font-family: 'Source Sans 3 Light';
 }
 
 .nav-item-sub-child-content p {
@@ -860,7 +855,7 @@ ul {
 }
 
 .podcast-video {
-  font-family: 'Source Sans 3';
+
   font-weight: 300;
   font-size: 14px;
   margin: 3px;
