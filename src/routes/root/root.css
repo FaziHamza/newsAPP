@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700;800;900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700;800;900&display=swap'); */
 
-body {
+/* body {
   font-family: 'Source Sans 3', sans-serif !important;
-}
+} */
 
 .dark-theme {
   --color-font-main: var(--color-light1);
@@ -345,9 +345,9 @@ aside .tile-m p {
   padding: 0
 }
 
-.divider-container {
-  /* padding: 1rem 0 1rem 0; */
-}
+/* .divider-container {
+  padding: 1rem 0 1rem 0;
+} */
 
 .divider-solid {
   margin: 0;
@@ -773,7 +773,7 @@ ul {
   display: flex !important;
   /* justify-content: start !important; */
   align-items: center;
-  font-family: 'Source Sans 3 Light';
+  font-family: sourcesans;
 }
 
 .nav-item-sub-child-content p {
@@ -860,7 +860,7 @@ ul {
 }
 
 .podcast-video {
-  font-family: 'Source Sans 3';
+  font-family: sourcesans;
   font-weight: 300;
   font-size: 14px;
   margin: 3px;

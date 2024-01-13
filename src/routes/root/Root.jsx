@@ -402,7 +402,7 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
                         <Logo name={'Logo'} href="/" alt={'logo'} />
                       </div>
                       <div className="item">
-                        {IsMobile ? (
+                        {IsMobile &&isMatchingRoute1==null && (
                           <div className="c-dropdown">
                             <div class="dropdown">
                               <div
@@ -438,9 +438,11 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
                               </ul>
                             </div>
                           </div>
-                        ) : (
-                          <Logo name={'Flag'} href="/" alt={'logo'} />
-                        )}
+                        ) 
+                        // : (
+                        //   <Logo name={'Flag'} href="/" alt={'logo'} />
+                        // )
+                        }
                         {/* <SettingNavbar
                           navList={settingsInfo.menuItems}
                           setThemeVariant={setThemeVariant}
