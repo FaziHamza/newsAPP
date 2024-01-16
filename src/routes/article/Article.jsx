@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
+
 import {
   Link,
   useLoaderData,
@@ -233,58 +235,86 @@ const Article = ({ className = '' }) => {
     case 'resolved':
       return (
         <>
+          <Helmet>
+            <title>{articleInfo[0]?._title}</title>
+            <meta data-react-helmet="true" property="og:image:width" content="1200" />
+  <meta data-react-helmet="true" property="og:image:height" content="628" />
+
+            <meta data-react-helmet="true" property="og:title" content={articleInfo[0]?._title} />
+            <meta  data-react-helmet="true" property="og:image" content={articleInfo[0]?._medias[1]?.href} />
+            <meta data-react-helmet="true" property="og:image:width" content="1200" />
+  <meta data-react-helmet="true" property="og:image:height" content="628" />
+  
+            <meta property="og:image:alt" content={articleInfo[0]?._medias[1]?.href} />
+            <meta property="og:url" content={window.location.href} />
+            <meta property="og:description" content={articleInfo[0]?._abstract} />
+            {/* Add more OG tags as needed */}
+          </Helmet>
           {isDesktop === 'desktop' ? (
             <>
-              <div className="main-body dark">
+              <main className="article">
                 <div className="row">
-                  <div className="col-lg-8">
-                    <main className={`article ${className}`.trim()}>
-                      <div className="row">
-                        <div className="col-11">
-                          <h2 dangerouslySetInnerHTML={{ __html: articleInfo[0]?._title }}></h2>
-                        </div>
-                        <div className="col-1">
-                          <button
-                            type="button"
-                            class="btn text-light close-btn rounded-circle "
-                            style={{ float: 'right', backgroundColor: '#333333' }}
-                            onClick={() => navigate(-1)}>
-                            <i class="fa-solid fa-xmark"></i>
-                          </button>
-                        </div>
-                      </div>
-                      <figure>
-                        <img id="articalImages"
-                          src={articleInfo[0]?._medias[1]?.href}
-                          alt={articleInfo[0]?._medias[1]?.href}
-                        />{' '}
-                        <div class="main-article">
-                          <div class="left-article">
-                            <h6>
-                              {days()}
-                              <img src={imageUrl} alt="logo" />
-                            </h6>
-                          </div>
-                          {/* <div class="right-article">
-                            <Link {...linkPropsforhighlight}>
-                              <div className="highlights">
-                                <img src={video_play} style={{ height: '20px' }} />
-                              </div>
-                            </Link>
-                          </div> */}
-                        </div>
-                        <hr />
-                      </figure>
-                      <p>
-                        <ContentParsed content={articleInfo[0]?._content} />
-                      </p>
-                    </main>
+                  <div className="col-12">
+                    <h2 id="article-headline" dangerouslySetInnerHTML={{ __html: articleInfo[0]?._title }}></h2>
                   </div>
-                  <div className="col-lg-4">
-                    <AsideArticle tableInfo={allarticleInfo} />
-                  </div>
+                  {/* <div className="col-1">
+                  <button
+                    type="button"
+                    class="btn text-light close-btn rounded-circle "
+                    style={{ float: 'right' }}
+                    onClick={() => navigate(-1)}>
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                </div> */}
+
                 </div>
-              </div>
+                <figure className="artical-detail">
+
+                  <img id="articalImageMobileView"
+                    src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
+                    alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
+                  />
+                  {/* <img id="myImg" style={{display:'none'}}
+                  src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
+                  alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
+                /> */}
+                  <div class="main-article">
+                    <div class="left-article">
+                      <h6>
+                        {days()}
+                        {/* <img src={imageUrl} alt="logo" /> */}
+                      </h6>
+                    </div>
+                    <div class="right-article d-flex">
+                      {isShowPodcastIcon && (
+                        <Link {...linkPropsforpodcast} className="underline-hide">
+                          <div className="highlights podcast-video">
+                            <img src={podcast_black} style={{ height: '20px', margin: '0' }} />
+                          </div>
+                        </Link>
+                      )}
+                      {isShowVideoIcon && IsSubtopicVideo && (
+                        <Link {...linkPropsforhighlight} className="underline-hide">
+                          <div className="highlights podcast-video">
+                            <img src={Video_black} style={{ height: '20px', margin: '0' }} />
+                          </div>
+                        </Link>
+                      )}
+                      {!IsSubtopicVideo && (
+                        <Link {...linkPropsforhighlight} className="underline-hide">
+                          <div className="highlights podcast-video">
+                            <img src={Video_black} style={{ height: '20px', margin: '0' }} />
+                          </div>
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                  <hr />
+                </figure>
+                <p className="artical-detail-box">
+                  <ContentParsed content={articleInfo[0]._content} />
+                </p>
+              </main>
               {/* <AsideArticle /> */}
             </>
           ) : (
@@ -305,19 +335,20 @@ const Article = ({ className = '' }) => {
 
               </div>
               <figure className="artical-detail">
+
                 <img id="articalImageMobileView"
-                  src={articleInfo[0]?._medias[1]?.href}
-                  alt={articleInfo[0]?._medias[1]?.href}
-                />
-                <img id="myImg" style={{display:'none'}}
                   src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                   alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                 />
+                {/* <img id="myImg" style={{display:'none'}}
+                  src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
+                  alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
+                /> */}
                 <div class="main-article">
                   <div class="left-article">
                     <h6>
                       {days()}
-                      <img src={imageUrl} alt="logo" />
+                      {/* <img src={imageUrl} alt="logo" /> */}
                     </h6>
                   </div>
                   <div class="right-article d-flex">

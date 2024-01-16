@@ -84,7 +84,7 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
     const ctx = canvas.getContext('2d');
     canvas.width = 600; // Adjust as needed
     canvas.height = 400; // Adjust as needed
-    const imgElement = document.getElementById('myImg');
+    const imgElement = document.getElementById('articalImageMobileView');
     debugger
     let base64String;
     convertImageToBase64(imgElement.src, function (base64) {
