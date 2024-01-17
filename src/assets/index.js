@@ -24,6 +24,10 @@ export { default as Video_black } from './images/Video-black.png';
 export { default as podcast_white } from './images/podcast-white.png';
 export { default as Video_white } from './images/video-white.png';
 export { default as backbtn } from './images/back.png';
+export { default as appstore } from './images/appstore.png';
+export { default as googleplay } from './images/googleplay.png';
+export { default as articlefootericon } from './images/articlefootericon.png';
+
 
 
 

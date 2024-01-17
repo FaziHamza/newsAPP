@@ -1040,3 +1040,26 @@ header .header-nav{
   background-color: #f44336;
   margin-left: 10px;
 }
+.artile-footer-left{
+  background: black;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+.article-footer{
+  display: flex;
+  padding: 10px 40px 10px 40px;
+}
+.article-footer .footer-icon{
+text-align: center;
+}
+.article-footer-right{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.artile-footer-left p{
+  text-align: center;
+  font-size: 16px;
+  line-height: 2.5rem;
+}

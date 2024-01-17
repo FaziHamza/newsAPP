@@ -27,6 +27,9 @@ import {
   Video_black,
   Video_white,
   podcast_white,
+  appstore,
+  googleplay,
+  articlefootericon,
 } from '../../assets';
 import { RootUrl } from '../../utilities/config';
 import DataNotFound from '../../components/dataNotFound';
@@ -44,7 +47,7 @@ const AsideArticle = ({ tableInfo }) => {
 
   const { params } = useLoaderData();
   const { state } = useLocation();
-  console.log(tableInfo)
+  console.log(tableInfo);
   // console.log(state)
   return (
     <aside className="aside-right">
@@ -238,13 +241,17 @@ const Article = ({ className = '' }) => {
           <Helmet>
             <title>{articleInfo[0]?._title}</title>
             <meta data-react-helmet="true" property="og:image:width" content="1200" />
-  <meta data-react-helmet="true" property="og:image:height" content="628" />
+            <meta data-react-helmet="true" property="og:image:height" content="628" />
 
             <meta data-react-helmet="true" property="og:title" content={articleInfo[0]?._title} />
-            <meta  data-react-helmet="true" property="og:image" content={articleInfo[0]?._medias[1]?.href} />
+            <meta
+              data-react-helmet="true"
+              property="og:image"
+              content={articleInfo[0]?._medias[1]?.href}
+            />
             <meta data-react-helmet="true" property="og:image:width" content="1200" />
-  <meta data-react-helmet="true" property="og:image:height" content="628" />
-  
+            <meta data-react-helmet="true" property="og:image:height" content="628" />
+
             <meta property="og:image:alt" content={articleInfo[0]?._medias[1]?.href} />
             <meta property="og:url" content={window.location.href} />
             <meta property="og:description" content={articleInfo[0]?._abstract} />
@@ -255,7 +262,9 @@ const Article = ({ className = '' }) => {
               <main className="article">
                 <div className="row">
                   <div className="col-12">
-                    <h2 id="article-headline" dangerouslySetInnerHTML={{ __html: articleInfo[0]?._title }}></h2>
+                    <h2
+                      id="article-headline"
+                      dangerouslySetInnerHTML={{ __html: articleInfo[0]?._title }}></h2>
                   </div>
                   {/* <div className="col-1">
                   <button
@@ -266,11 +275,10 @@ const Article = ({ className = '' }) => {
                     <i class="fa-solid fa-xmark"></i>
                   </button>
                 </div> */}
-
                 </div>
                 <figure className="artical-detail">
-
-                  <img id="articalImageMobileView"
+                  <img
+                    id="articalImageMobileView"
                     src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                     alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                   />
@@ -321,7 +329,9 @@ const Article = ({ className = '' }) => {
             <main className="article">
               <div className="row">
                 <div className="col-12">
-                  <h2 id="article-headline" dangerouslySetInnerHTML={{ __html: articleInfo[0]?._title }}></h2>
+                  <h2
+                    id="article-headline"
+                    dangerouslySetInnerHTML={{ __html: articleInfo[0]?._title }}></h2>
                 </div>
                 {/* <div className="col-1">
                   <button
@@ -332,11 +342,10 @@ const Article = ({ className = '' }) => {
                     <i class="fa-solid fa-xmark"></i>
                   </button>
                 </div> */}
-
               </div>
               <figure className="artical-detail">
-
-                <img id="articalImageMobileView"
+                <img
+                  id="articalImageMobileView"
                   src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                   alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                 />
@@ -380,6 +389,24 @@ const Article = ({ className = '' }) => {
               <p className="artical-detail-box">
                 <ContentParsed content={articleInfo[0]._content} />
               </p>
+              <div className="article-footer">
+                <div className="artile-footer-left">
+                  <div>
+                    <p>FÅ SENASTE NYHETERNA, VIDEOR OCH PODCASTS DIREKT I MOBILEN UTAN KOSTNAD</p>
+                    <div className='footer-icon'>
+                      <img src={articlefootericon} style={{ height: '40px', width: '100px' ,margin:'10px'}} />  
+                    </div>
+                  </div>
+                </div>
+                <div className="article-footer-right">
+                  <div className="app-store">
+                    <img src={appstore} style={{ height: '60px',width:'200px', margin: '0' }} />
+                  </div>
+                  <div className="google-play">
+                    <img src={googleplay} style={{ height: '60px',width:'200px', margin: '0' }} />
+                  </div>
+                </div>
+              </div>
             </main>
           )}
         </>
