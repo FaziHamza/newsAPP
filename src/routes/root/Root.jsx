@@ -60,9 +60,9 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
 
   const navigate = useNavigate();
   const copyToClipboardV1 = () => {
-    const headline =  "Fazi demo"
-    const articleText = "text text txe"
-    const articleLink = 'http://example.com/path-to-article'; // Replace with your article link
+    const headline =  "SportBlitz News";
+    const articleText = document.getElementById('article-headline').innerText
+    const articleLink = window.location.href; // Replace with your article link
 
 
 
