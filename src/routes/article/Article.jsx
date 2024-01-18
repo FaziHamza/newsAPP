@@ -391,19 +391,23 @@ const Article = ({ className = '' }) => {
               </p>
               <div className="article-footer">
                 <div className="artile-footer-left">
-                  <div>
-                    <p>FÅ SENASTE NYHETERNA, VIDEOR OCH PODCASTS DIREKT I MOBILEN UTAN KOSTNAD</p>
-                    <div className='footer-icon'>
-                      <img src={articlefootericon} style={{ height: '40px', width: '100px' ,margin:'10px'}} />  
-                    </div>
+                  <div className='footer-icon'>
+                    <img src={articlefootericon} style={{ width: '100px', }} />
                   </div>
+                  <p>FÅ SENASTE NYHETERNA, VIDEOR OCH PODCASTS DIREKT I MOBILEN UTAN KOSTNAD</p>
                 </div>
                 <div className="article-footer-right">
-                  <div className="app-store">
-                    <img src={appstore} style={{ height: '60px',width:'200px', margin: '0' }} />
-                  </div>
-                  <div className="google-play">
-                    <img src={googleplay} style={{ height: '60px',width:'200px', margin: '0' }} />
+                  <div className='row'>
+                    <div className='col-6'>
+                      <div className="app-store">
+                        <img src={appstore} />
+                      </div>
+                    </div>
+                    <div className='col-6'>
+                      <div className="google-play">
+                        <img src={googleplay} />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
