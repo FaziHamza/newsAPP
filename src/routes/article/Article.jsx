@@ -399,14 +399,18 @@ const Article = ({ className = '' }) => {
                 <div className="article-footer-right">
                   <div className='row'>
                     <div className='col-6'>
-                      <div className="app-store">
-                        <img src={appstore} />
-                      </div>
+                      <a href="https://apps.apple.com/us/app/itunes-connect/id376771144">
+                        <div className="app-store">
+                          <img src={appstore} />
+                        </div>
+                      </a>
                     </div>
                     <div className='col-6'>
-                      <div className="google-play">
-                        <img src={googleplay} />
-                      </div>
+                      <a href="https://play.google.com/store/apps/details?id=com.sportblitz">
+                        <div className="google-play">
+                          <img src={googleplay} />
+                        </div>
+                      </a>
                     </div>
                   </div>
                 </div>
