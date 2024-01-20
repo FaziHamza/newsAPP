@@ -389,7 +389,7 @@ const Article = ({ className = '' }) => {
               <p className="artical-detail-box">
                 <ContentParsed content={articleInfo[0]._content} />
               </p>
-              <div className="article-footer">
+              {/* <div className="article-footer">
                 <div className="artile-footer-left">
                   <div className='footer-icon'>
                     <img src={articlefootericon} style={{ width: '100px', }} />
@@ -414,7 +414,7 @@ const Article = ({ className = '' }) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </main>
           )}
         </>
