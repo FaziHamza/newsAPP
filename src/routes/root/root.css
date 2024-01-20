@@ -1121,6 +1121,9 @@ header .header-nav {
 .light-theme .artile-footer-left p {
   color: white;
 }
+.light-theme .dropdown-toggle  img {
+  filter: invert(1);
+}
 
 @media screen and (max-width: 600px) {
   .article-footer {

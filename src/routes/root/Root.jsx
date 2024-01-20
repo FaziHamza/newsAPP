@@ -402,7 +402,7 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
                         <Logo name={'Logo'} href="/" alt={'logo'} />
                       </div>
                       <div className="item">
-                        {IsMobile &&isMatchingRoute1==null && (
+                        {/* {IsMobile &&isMatchingRoute1==null && (
                           <div className="c-dropdown">
                             <div class="dropdown">
                               <div
@@ -412,7 +412,6 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <span>
-                                  {/* <Logo alt={'logo'} /> */}
                                   <img src={settingicon} alt="" srcset="" style={{height:'35px',width:'35px'}}/>
                                 </span>
                               </div>
@@ -442,7 +441,7 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
                         // : (
                         //   <Logo name={'Flag'} href="/" alt={'logo'} />
                         // )
-                        }
+                        } */}
                         {/* <SettingNavbar
                           navList={settingsInfo.menuItems}
                           setThemeVariant={setThemeVariant}

@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Dropdown, Logo } from '../../compositions';
 import { NavLink, Link } from 'react-router-dom';
 import { SideNav } from '../../compositions';
-import { logo, sportLogoBlack, tennis } from '../../assets';
+import { logo, settingicon, sportLogoBlack, tennis } from '../../assets';
 import { useMediaContext } from '../../utilities/mediaQuery';
-import { IsMobile } from '../../utilities/config';
+import { IsMobile, RootUrl } from '../../utilities/config';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavouriteMenu, clearFavouriteMenu } from '../../redux/favouriteMenu';
 import { confirmAlert } from 'react-confirm-alert'; // Import
+import { selectCountry } from '../../redux/countries';
+import { setallregion } from '../../redux/countries';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVariant, ...props }) {
   const dispatch = useDispatch();
@@ -21,6 +23,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   const [colorState, setColorState] = useState({});
   const [cacheState, setCacheState] = useState({});
   const regionjson = useSelector((state) => state.origin.apiOrigin.regionJson);
+  const allregion = useSelector((state) => state?.origin?.allregion);
+  const selectedMenu = useSelector((state) => state?.origin?.apiOrigin);
+
   const jsonArray = JSON.parse(regionjson);
   const [isOpen, setIsOpen] = useState(false);
   const usingScreen = useMediaContext();
@@ -37,6 +42,19 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
       if (colorObject) setColorState(colorObject);
       if (cacheObject) setCacheState(cacheObject);
     }
+  }, []);
+  useEffect(() => {
+    const apiUrl = `${RootUrl.Baseurl}api/Region/GetRegion`;
+    fetch(apiUrl)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('All Region', data.data);
+        const dynamicData = data.data;
+        dispatch(setallregion(data.data));
+      })
+      .catch((err) => {
+        console.log('Error From Dummy Request', err);
+      });
   }, []);
   let isfirst=true;
   useEffect(() => {
@@ -194,7 +212,11 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
     // console.log('is check  ', isChecked, name, link, state);
     dispatch(addFavouriteMenu({ isChecked, name, link, state }));
   };
-
+  const handleOrigin = (e, id) => {
+    e.preventDefault();
+    dispatch(selectCountry(id));
+    // dispatch(clearFavouriteMenu());
+  };
   useEffect(() => {
     const currentDate = new Date();
     const currentHour = currentDate.getHours();
@@ -609,6 +631,48 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                   </div>
                 </div>
               )}
+              {IsMobile &&
+              <div className="coll-item-inner">
+                  <div className="nav-item">
+                    <div className="flx">Setting</div>
+                    <div className="c-dropdown">
+                            <div class="dropdown">
+                              <div
+                                class="  dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <span>
+                                  {/* <Logo alt={'logo'} /> */}
+                                  <img src={settingicon} alt="" srcset="" style={{height:'20px',width:'20px'}}/>
+                                </span>
+                              </div>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                {allregion?.map((m) => {
+                                  const isActive = selectedMenu?.id === m?.id;
+                                  return (
+                                    <li
+                                      key={m?.id}
+                                      className={`dropdown-item text-uppercase ${themeVariant === 'light'
+                                          ? isActive
+                                            ? 'bg-light active-light'
+                                            : 'bg-light'
+                                          : isActive
+                                            ? 'bg-dark active-dark'
+                                            : 'bg-dark'
+                                        }`}
+                                      onClick={(e) => handleOrigin(e, m?.id)}>
+                                      {m?.domainName}
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </div>
+                          </div>
+                  </div>
+                </div>
+                }
             </div>
           </div>
         </div>
