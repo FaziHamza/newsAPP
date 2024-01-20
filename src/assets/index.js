@@ -7,7 +7,7 @@ export { default as playStoreBadgeWhite } from './images/play-store-badge-white.
 export { default as appStoreRemote } from './images/apple-store-remote.jpg';
 export { default as googlePlayRemote } from './images/google-play-remote.jpg';
 export { default as newsLogo } from './images/newsLogo.png';
-export { default as logo } from './images/sportspot_A12.png';
+export { default as logo } from './images/sportblits_news_A4.png';
 export { default as flag } from './images/engFlag.png';
 export { default as tennis } from './images/Tennis.png';
 export { default as shareicon } from './images/share-icon.png';
