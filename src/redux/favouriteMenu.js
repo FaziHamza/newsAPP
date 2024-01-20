@@ -11,16 +11,16 @@ export const favouriteMenuReducer = createSlice({
       // console.log("action from",action?.payload);
       // state.isChecked='', state.name= '',state.link='', state.state={}
       let tempState = state;
+    
       if (action?.payload?.isChecked) {
-        tempState.push(action?.payload);
+        tempState.unshift(action?.payload); // Use unshift to add to the front
       } else {
         const newArray = tempState?.filter((s) => s.state.SubTopicId !== action?.payload?.state.SubTopicId);
-
         tempState = newArray;
       }
       localStorage.setItem('favouriteMenu', JSON.stringify(tempState));
       return tempState;
-    },
+    },    
     clearFavouriteMenu: (state, action) => {
 
       // localStorage.setItem('favouriteMenu', JSON.stringify([]));
