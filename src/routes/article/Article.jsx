@@ -204,14 +204,26 @@ const Article = ({ className = '' }) => {
     imageUrl = SPORSpot_News;
   }
   const days = () => {
-    const timeDifference = timeQuery(articleInfo[0]._published); // Assuming timeQuery returns the difference in hours
-    const day = Math.floor(timeDifference / 24);
-    const hours = timeDifference % 24;
+    // const timeDifference = timeQuery(articleInfo[0]._published); // Assuming timeQuery returns the difference in hours
+    // const day = Math.floor(timeDifference / 24);
+    // const hours = timeDifference % 24;
 
-    if (timeDifference < 24) {
-      return `${hours.toFixed(2)} Tim `; // Swedish for hours
+    // if (timeDifference < 24) {
+    //   return `${hours.toFixed(2)} Tim `; // Swedish for hours
+    // } else {
+    //   return `${day} Dag  `; // Swedish for days
+    // }
+    const timeDifference = timeQuery(articleInfo[0]._published); // Assuming timeQuery returns the difference in hours
+    const days = Math.floor(timeDifference / 24);
+    const hours = Math.floor(timeDifference % 24);
+    const minutes = Math.floor((timeDifference % 1) * 60);
+  
+    if (timeDifference < 1) {
+      return `${minutes} Min`; // Swedish for minutes
+    } else if (timeDifference < 24) {
+      return `${hours} Tim`; // Swedish for hours
     } else {
-      return `${day} Dag  `; // Swedish for days
+      return `${days} Dag`; // Swedish for days
     }
   };
   const onShareApi = async () => {
@@ -289,7 +301,7 @@ const Article = ({ className = '' }) => {
                   <div class="main-article">
                     <div class="left-article">
                       <h6>
-                        {days()}
+                        {days() }
                         {/* <img src={imageUrl} alt="logo" /> */}
                       </h6>
                     </div>

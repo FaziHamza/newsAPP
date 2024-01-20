@@ -10,15 +10,27 @@ const StoryTile = ({idforlogo, description, className = '', src, alt, time, isDe
   } else {
     imageUrl = SPORSpot_News;
   }
-const days = () => {
-    const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
-    const day = Math.floor(timeDifference / 24);
-    const hours = timeDifference % 24;
+  const days = () => {
+    // const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
+    // const day = Math.floor(timeDifference / 24);
+    // const hours = timeDifference % 24;
 
-    if (timeDifference < 24) {
-      return `${hours.toFixed(2)} Tim `; // Swedish for hours
+    // if (timeDifference < 24) {
+    //   return `${hours.toFixed(2)} Tim `; // Swedish for hours
+    // } else {
+    //   return `${day} Dag  `; // Swedish for days
+    // }
+    const timeDifference = timeQuery(time); // Assuming timeQuery returns the difference in hours
+    const days = Math.floor(timeDifference / 24);
+    const hours = Math.floor(timeDifference % 24);
+    const minutes = Math.floor((timeDifference % 1) * 60);
+  
+    if (timeDifference < 1) {
+      return `${minutes} Min`; // Swedish for minutes
+    } else if (timeDifference < 24) {
+      return `${hours} Tim`; // Swedish for hours
     } else {
-      return `${day} Dag  `; // Swedish for days
+      return `${days} Dag`; // Swedish for days
     }
   };
   // const days = () => {
