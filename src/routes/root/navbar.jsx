@@ -42,7 +42,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   useEffect(() => {
     // m?.state
     const checkdreser=favouriteMenu.some(s=>s?.state.SubTopicId=='6b6875a3-dd4d-4c77-82b9-08dc0540e95d')
-    const checkhoping=favouriteMenu.some(s=>s?.state.SubTopicId=='1fa2e3ef-ec4a-43b6-63e8-08dc0630b17f')
+    const checkhoping=favouriteMenu.some(s=>s?.state.SubTopicId=='a1b8b1c7-d48f-46ee-6627-08dc0b731fb7')
 
     console.log("Dress",checkdreser)
     console.log("Hoping",checkdreser)
@@ -62,26 +62,26 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
       "IsSql": false,
       "SubttopicHeadline": "Nyheter "
     }
-    const stateHoping={
+    const statehastHoping={
       "address": "news/getNewsByTeam?keyword=Hopp&lang=sv&sport=football&limit=12",
       "topicKey": "",
       "topictype": "team",
       "IsSubtopicVideo": true,
-      "topicName": "Hoppning ",
+      "topicName": "Häst Hoppning ",
       "TopicId": "e5659f42-7e7a-4b3d-9d33-08dbe06ca0cb",
       "navType": "news",
-      "navTopic": "hoppning_",
+      "navTopic": "häst_hoppning_",
       "moreItemName": "Kategori ",
-      "SubTopicId": "1fa2e3ef-ec4a-43b6-63e8-08dc0630b17f",
+      "SubTopicId": "a1b8b1c7-d48f-46ee-6627-08dc0b731fb7",
       "LogoPath": "",
-      "LogoTeam": "https://live.staticflickr.com/65535/53421381152_93a168b609_n.jpg",
+      "LogoTeam": "https://svg-files.pixelied.com/92f43d12-539b-4dd0-9179-65a560cf793b/thumb-256px.png",
       "IsSql": false,
       "SubttopicHeadline": "Nyheter "
     }
     if(!checkdreser && !checkhoping && isfirst){
       isfirst=false;
       handleFavouriteMenu(true,"Dressyr ","../news/dressyr_",statedresser)
-      handleFavouriteMenu(true,"Hoppning ","../news/hoppning_",stateHoping)
+      handleFavouriteMenu(true,"Häst Hoppning ","../news/häst_hoppning_",statehastHoping)
     }
 
     console.log("Fav",favouriteMenu)
