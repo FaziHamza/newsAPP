@@ -361,6 +361,10 @@ const Article = ({ className = '' }) => {
                   src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                   alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                 />
+                 <p className='text-end mb-0' id="article-photographyBy" style={{ fontSize: "10px" }}>
+                  {articleInfo[0]?._Type}
+                  {articleInfo[0]?._Creator ? `: ${articleInfo[0]?._Creator}` : ''}
+                </p>
                 {/* <img id="myImg" style={{display:'none'}}
                   src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                   alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}

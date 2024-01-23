@@ -88,44 +88,75 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
     debugger
     let base64String;
     convertImageToBase64(imgElement.src, function (base64) {
-    // This will log the base64 string to the console
+      // This will log the base64 string to the console
       base64String = base64;
       const image = new Image();
-    image.src = imgElement.src;
+      image.src = imgElement.src;
 
-    // This is a shortened placeholder base64 string; replace with actual data
-    // image.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcAAAAGzCAYAAAC4k8ccAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAP+lSURBVHhe7L11mFTXuu19zzl77yQEd+hGWqHdoAUadydIcPcGunF3d3eXxt3dPRBBQ0JCdPs++9z7fX/dv8Y3xlw1q1cXhSTbON9JP8941lpzSVVXw/zVeOf7zvm/8MvPLz+5ErkJggg==';
-    image.src = base64String;
-    image.onload = function () {
-      // Draw the image onto the canvas
-      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-      // const base64Image = canvas.toDataURL('image/png');
+      // This is a shortened placeholder base64 string; replace with actual data
+      // image.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcAAAAGzCAYAAAC4k8ccAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAP+lSURBVHhe7L11mFTXuu19zzl77yQEd+hGWqHdoAUadydIcPcGunF3d3eXxt3dPRBBQ0JCdPs++9z7fX/dv8Y3xlw1q1cXhSTbON9JP8941lpzSVVXw/zVeOf7zvm/8MvPLz+5ErkJggg==';
+      image.src = base64String;
+      image.onload = function () {
+        // Draw the image onto the canvas
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        // const base64Image = canvas.toDataURL('image/png');
+        // function wrapText(context, text, maxWidth, lineHeight, x, y) {
+        //   let words = text.split(' ');
+        //   let line = '';
+        //   let yOffset = 0;
 
+        //   for (let i = 0; i < words.length; i++) {
+        //     let testLine = line + words[i] + ' ';
+        //     let metrics = context.measureText(testLine);
+        //     let testWidth = metrics.width;
 
-      // Draw the semi-transparent rectangle
-      const rectHeight = 60; // Adjust as needed
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-      ctx.fillRect(0, canvas.height - rectHeight, canvas.width, rectHeight);
+        //     if (testWidth > maxWidth && i > 0) {
+        //       context.fillText(line, x, y + yOffset);
+        //       line = words[i] + ' ';
+        //       yOffset += lineHeight;
+        //     } else {
+        //       line = testLine;
+        //     }
+        //   }
 
-      // Draw the headline text
-      ctx.font = '20px Arial'; // Adjust as needed
-      ctx.fillStyle = 'white';
-      ctx.textAlign = 'center';
-      ctx.fillText(document.getElementById('article-headline').innerText, canvas.width / 2, canvas.height - rectHeight / 2);
+        //   context.fillText(line, x, y + yOffset);
+        // }
+        // Draw the semi-transparent rectangle
+        const rectHeight = 60; // Adjust as needed
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        ctx.fillRect(0, canvas.height - rectHeight, canvas.width, rectHeight);
 
-      // Convert the canvas to a Blob
-      canvas.toBlob(function (blob) {
-        // Use the Clipboard API to copy the blob to the clipboard
-        navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]).then(function () {
-          alert('Image copied to clipboard!');
-        }).catch(function (error) {
-          alert('Error copying image to clipboard: ' + error);
-        });
-      }, 'image/png');
-    };
+        // Draw the headline text
+        ctx.font = '20px Arial'; // Adjust as needed
+        ctx.fillStyle = 'white';
+        ctx.textAlign = 'center';
+        const headline = document.getElementById('article-headline').innerText;
+        const secondLine = document.getElementById('article-photographyBy').innerText
+        
+        //for text should be next line if long
+        // const lineHeight = 25; // Adjust as needed, it represents the height of each line
+        // const totalTextHeight = lineHeight * 2; // Assuming two lines of text
+        // const startY = canvas.height - rectHeight / 2 - totalTextHeight / 2;
+        // wrapText(ctx, headline, canvas.width, lineHeight, canvas.width / 2, startY);
+        
+        ctx.fillText(headline, canvas.width / 2, canvas.height - rectHeight / 2);
+        ctx.font = '10px Arial';
+        ctx.textAlign = 'right';
+        const lineHeight = 20;
+        ctx.fillText(secondLine, canvas.width-5, canvas.height - rectHeight / 2 + lineHeight);
+        // Convert the canvas to a Blob
+        canvas.toBlob(function (blob) {
+          // Use the Clipboard API to copy the blob to the clipboard
+          navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]).then(function () {
+            alert('Image copied to clipboard!');
+          }).catch(function (error) {
+            alert('Error copying image to clipboard: ' + error);
+          });
+        }, 'image/png');
+      };
     });
     // Create a new image object for the base64 encoded image
-  
+
   };
 
   const convertImageToBase64 = (url, callback) => {
@@ -402,7 +433,7 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
                         <Logo name={'Logo'} href="/" alt={'logo'} />
                       </div>
                       <div className="item">
-                        {/* {IsMobile &&isMatchingRoute1==null && (
+                        {IsMobile &&isMatchingRoute1==null && (
                           <div className="c-dropdown">
                             <div class="dropdown">
                               <div
@@ -416,7 +447,7 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
                                 </span>
                               </div>
                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                {allregion?.map((m) => {
+                              {allregion.filter(x=>x.id==selectedMenu?.id)?.map((m) => {
                                   const isActive = selectedMenu?.id === m?.id;
                                   return (
                                     <li
@@ -441,7 +472,7 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
                         // : (
                         //   <Logo name={'Flag'} href="/" alt={'logo'} />
                         // )
-                        } */}
+                        }
                         {/* <SettingNavbar
                           navList={settingsInfo.menuItems}
                           setThemeVariant={setThemeVariant}
