@@ -568,9 +568,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
           ))}
         </div>
 
-        <div class="separator"></div>
+        {/* <div class="separator"></div> */}
         {/* coll-sidenav */}
-        <div className="coll-sidenav">
+        {/* <div className="coll-sidenav">
           <div className="coll-item">
             <a
               className="coll-heading collapsed"
@@ -644,7 +644,6 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <span>
-                                  {/* <Logo alt={'logo'} /> */}
                                   <img src={settingicon} alt="" srcset="" style={{height:'20px',width:'20px'}}/>
                                 </span>
                               </div>
@@ -675,7 +674,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                 }
             </div>
           </div>
-        </div>
+        </div> */}
         {/* coll-sidenav */}
       </div>
       <span style={{ fontSize: '20px', cursor: 'pointer', color: 'white' }} onClick={openNav}>

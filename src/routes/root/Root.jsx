@@ -23,32 +23,38 @@ import {
   settopiwithsubtopic,
   setallregion,
 } from '../../redux/countries';
-import { video_play,settingicon, backbtn, shareicon } from '../../assets';
+import { video_play, settingicon, backbtn, shareicon } from '../../assets';
 import { clearFavouriteMenu } from '../../redux/favouriteMenu';
 import { IsMobile } from '../../utilities/config';
 import { selectCountry } from '../../redux/countries';
 import DisplayComponentforheader from './DisplayComponentforheader';
 import SettingNavbar from './SettingNavbar';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 const Root = () => {
   const dispatch = useDispatch();
   //For Header back Button
   // Define the route pattern you want to match
-const targetRoutePattern1 = '/:type/:topic/:id';
-const targetRoutePattern2 = 'podcast';
-const targetRoutePattern3 = 'videohighlights';
-const targetRoutePattern4 = 'highlights';
+  const targetRoutePattern1 = '/:type/:topic/:id';
+  const targetRoutePattern2 = 'podcast';
+  const targetRoutePattern3 = 'videohighlights';
+  const targetRoutePattern4 = 'highlights';
 
-const isMatchingRoute1 = useMatch(targetRoutePattern1);
-const isMatchingRoute2 = useMatch(targetRoutePattern2);
-const isMatchingRoute3 = useMatch(targetRoutePattern3);
-const isMatchingRoute4 = useMatch(targetRoutePattern4);
+  const isMatchingRoute1 = useMatch(targetRoutePattern1);
+  const isMatchingRoute2 = useMatch(targetRoutePattern2);
+  const isMatchingRoute3 = useMatch(targetRoutePattern3);
+  const isMatchingRoute4 = useMatch(targetRoutePattern4);
+  const [colorState, setColorState] = useState({});
+  const [cacheState, setCacheState] = useState({});
 
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const allregion = useSelector((state) => state?.origin?.allregion);
   const selectedMenu = useSelector((state) => state?.origin?.apiOrigin);
   const { pathname } = useLocation();
   const [filteredFavouriteMenu, setFilteredFavouriteMenu] = useState([]);
+  const [filteredFavouriteMenuId, setFilteredFavouriteMenuId] = useState([]);
+
   const decodedPathname = decodeURIComponent(pathname);
 
   const addresses = useSelector((state) => state.origin.apiOrigin);
@@ -59,22 +65,24 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
   const [minItem, setMinItem] = useState();
 
   const navigate = useNavigate();
+  
   const copyToClipboardV1 = () => {
-    const headline =  "SportBlitz News";
-    const articleText = document.getElementById('article-headline').innerText
+    const headline = 'SportBlitz News';
+    const articleText = document.getElementById('article-headline').innerText;
     const articleLink = window.location.href; // Replace with your article link
-
-
 
     // Create a text version of what you want to copy
     const textToCopy = `Check out this article: ${headline}\n\n${articleText}\nRead more: ${articleLink}`;
 
     // Use the Clipboard API to copy the text to the clipboard
-    navigator.clipboard.writeText(textToCopy).then(function () {
-      alert('Article information copied to clipboard!');
-    }).catch(function (error) {
-      alert('Error copying to clipboard: ' + error);
-    });
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(function () {
+        alert('Article information copied to clipboard!');
+      })
+      .catch(function (error) {
+        alert('Error copying to clipboard: ' + error);
+      });
 
     // Call the function to draw the image with the headline overlay
     drawImageWithHeadline();
@@ -85,7 +93,7 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
     canvas.width = 600; // Adjust as needed
     canvas.height = 400; // Adjust as needed
     const imgElement = document.getElementById('articalImageMobileView');
-    debugger
+    debugger;
     let base64String;
     convertImageToBase64(imgElement.src, function (base64) {
       // This will log the base64 string to the console
@@ -131,32 +139,34 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
         ctx.fillStyle = 'white';
         ctx.textAlign = 'center';
         const headline = document.getElementById('article-headline').innerText;
-        const secondLine = document.getElementById('article-photographyBy').innerText
-        
+        const secondLine = document.getElementById('article-photographyBy').innerText;
+
         //for text should be next line if long
         // const lineHeight = 25; // Adjust as needed, it represents the height of each line
         // const totalTextHeight = lineHeight * 2; // Assuming two lines of text
         // const startY = canvas.height - rectHeight / 2 - totalTextHeight / 2;
         // wrapText(ctx, headline, canvas.width, lineHeight, canvas.width / 2, startY);
-        
+
         ctx.fillText(headline, canvas.width / 2, canvas.height - rectHeight / 2);
         ctx.font = '10px Arial';
         ctx.textAlign = 'right';
         const lineHeight = 20;
-        ctx.fillText(secondLine, canvas.width-5, canvas.height - rectHeight / 2 + lineHeight);
+        ctx.fillText(secondLine, canvas.width - 5, canvas.height - rectHeight / 2 + lineHeight);
         // Convert the canvas to a Blob
         canvas.toBlob(function (blob) {
           // Use the Clipboard API to copy the blob to the clipboard
-          navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]).then(function () {
-            alert('Image copied to clipboard!');
-          }).catch(function (error) {
-            alert('Error copying image to clipboard: ' + error);
-          });
+          navigator.clipboard
+            .write([new ClipboardItem({ 'image/png': blob })])
+            .then(function () {
+              alert('Image copied to clipboard!');
+            })
+            .catch(function (error) {
+              alert('Error copying image to clipboard: ' + error);
+            });
         }, 'image/png');
       };
     });
     // Create a new image object for the base64 encoded image
-
   };
 
   const convertImageToBase64 = (url, callback) => {
@@ -181,37 +191,36 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
     img.src = url;
     // This is needed to handle CORS issues
     if (img.complete || img.complete === undefined) {
-      img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+      img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
       img.src = url;
     }
   };
 
   const shareContent = async () => {
     const user = new URLSearchParams(window.location.search).get('user');
-    if(user==='admin'){
+    if (user === 'admin') {
       localStorage.setItem('user', user);
     }
     const storedUser = localStorage.getItem('user');
-    if(user==='admin'||storedUser==='admin'){
+    if (user === 'admin' || storedUser === 'admin') {
       copyToClipboardV1();
-     }else{
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Atricle',
-          // text: articleInfo[0]._title,
-          url: window.location.href,
-        });
-      
-      } catch (error) {
-        console.error('Error sharing:', error);
-        alert(error)
-      }
     } else {
-      // alert('Web Share API is not supported in this browser. You can manually share the link.');
-      copyToClipboard(window.location.href);
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: 'Atricle',
+            // text: articleInfo[0]._title,
+            url: window.location.href,
+          });
+        } catch (error) {
+          console.error('Error sharing:', error);
+          alert(error);
+        }
+      } else {
+        // alert('Web Share API is not supported in this browser. You can manually share the link.');
+        copyToClipboard(window.location.href);
+      }
     }
-  }
   };
   const copyToClipboard = (text) => {
     const textarea = document.createElement('textarea');
@@ -222,13 +231,66 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
     document.body.removeChild(textarea);
     alert('URL copied to clipboard!');
   };
+  const ConfirmationforclearStorage = (items) => {
+    // const ClearStorage = (items) => {
+    //   // Your logic to clear storage
+    //   console.log('Storage cleared');
+    //   setCustomAlertOpen(false); // Close the custom alert
+    // };
+  
+  
+    confirmAlert({
+      customUI: ({ onClose }) => (
+        <CustomConfirmation
+          title="Confirm to submit"
+          message="Are you sure you want to Clear Cache?"
+          onConfirm={() => {
+            ClearStorage(items);
+            onClose();
+            // closeNav()
+          }}
+          onCancel={() => {
+            onClose();
+          }}
+        />
+      ),
+    });
+  };
+  const CustomConfirmation = ({ title, message, onConfirm, onCancel }) => {
+    return (
+      <div className="custom-alert">
+        <div className="custom-alert-content">
+          <h1>{title}</h1>
+          <p>{message}</p>
+          <div className="button-container">
+            <button className="confirm-button" onClick={onConfirm}>
+              Yes
+            </button>
+            <button className="cancel-button" onClick={onCancel}>
+              No
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+  const ClearStorage = (items) => {
+    dispatch(clearFavouriteMenu(items));
+  };
   const isDesktop = useMediaQuery('width', 1024);
   const themeIcon = getData().themeIcon;
-  const toggleTheme = (inputValue, valueOne, valueTwo) => {
-    if (inputValue === valueOne) {
-      setThemeVariant(valueTwo);
+  // const toggleTheme = (inputValue, valueOne, valueTwo) => {
+  //   if (inputValue === valueOne) {
+  //     setThemeVariant(valueTwo);
+  //   } else {
+  //     setThemeVariant(valueOne);
+  //   }
+  // };
+  const toggleTheme = () => {
+    if (themeVariant === 'light') {
+      setThemeVariant('dark');
     } else {
-      setThemeVariant(valueOne);
+      setThemeVariant('light');
     }
   };
   const getBaseUrlFromStorage = () => {
@@ -266,8 +328,6 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
 
       return () => clearInterval(x);
     }, []);
-
-    
   }
   useEffect(() => {
     const apiUrl = `${RootUrl.Baseurl}api/Region/GetRegion`;
@@ -310,7 +370,6 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
     }
   }, [addresses]);
   const [visible, setVisible] = useState(false);
-
   useEffect(() => {
     // console.log('sss',settingsInfo)
     if (settingsInfo) {
@@ -325,6 +384,11 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
       );
       setFilteredFavouriteMenu(filteredMenu);
       console.log('filtereremwnu', filteredFavouriteMenu);
+      const filteredMenuIds = favouriteMenu
+      .filter((item) => subTopicIds.includes(item.state.SubTopicId))
+      .map((item) => item.state.SubTopicId);
+      setFilteredFavouriteMenuId(filteredMenuIds)
+
       //favouriteMenu
     }
     const foundItems = settingsInfo?.menuItems
@@ -364,8 +428,21 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
   const location = useLocation();
   const { state } = location;
   const teamName = state?.topicName || 'Dressyr ';
-  console.log("TEAMNAMW",teamName)
+  console.log('TEAMNAMW', teamName);
+  const regionjson = useSelector((state) => state.origin.apiOrigin.regionJson);
+  const jsonArray = JSON.parse(regionjson);
 
+  useEffect(() => {
+    // Ensure regionjson is an array
+    if (Array.isArray(jsonArray)) {
+      // Filter and set state based on "type"
+      const colorObject = jsonArray.find((item) => item.type === 'color');
+      const cacheObject = jsonArray.find((item) => item.type === 'cache');
+
+      if (colorObject) setColorState(colorObject);
+      if (cacheObject) setCacheState(cacheObject);
+    }
+  }, [allregion]);
   switch (status) {
     case 'idle':
       return <div>idle</div>;
@@ -418,8 +495,15 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
                   <>
                     <div className="main-header">
                       <div className="item">
-                        {isMatchingRoute1 !== null ||isMatchingRoute2!==null ||isMatchingRoute3!==null ||isMatchingRoute4!==null ? (
-                           <img src={backbtn} style={{height:'35px'}} onClick={() => navigate(-1)}/>
+                        {isMatchingRoute1 !== null ||
+                        isMatchingRoute2 !== null ||
+                        isMatchingRoute3 !== null ||
+                        isMatchingRoute4 !== null ? (
+                          <img
+                            src={backbtn}
+                            style={{ height: '35px' }}
+                            onClick={() => navigate(-1)}
+                          />
                         ) : (
                           <NavbarMobile
                             navList={settingsInfo.menuItems}
@@ -433,54 +517,105 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
                         <Logo name={'Logo'} href="/" alt={'logo'} />
                       </div>
                       <div className="item">
-                        {IsMobile &&isMatchingRoute1==null && (
-                          <div className="c-dropdown">
-                            <div class="dropdown">
-                              <div
-                                class="  dropdown-toggle"
-                                type="button"
-                                id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <span>
-                                  <img src={settingicon} alt="" srcset="" style={{height:'35px',width:'35px'}}/>
-                                </span>
+                        {
+                          IsMobile && isMatchingRoute1 == null && (
+                            <>
+                              <div className="coll-item-inner">
+                                <div className="nav-item">
+                                  {/* <div className="flx">Setting</div> */}
+                                  <div className="c-dropdown">
+                                    <div class="dropdown">
+                                      <div
+                                        class="  dropdown-toggle"
+                                        type="button"
+                                        id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <span>
+                                          {/* <Logo alt={'logo'} /> */}
+                                          <img
+                                            src={settingicon}
+                                            alt=""
+                                            srcset=""
+                                            style={{ height: '35px', width: '35px' }}
+                                          />
+                                        </span>
+                                      </div>
+                                      <ul
+                                        class="dropdown-menu"
+                                        aria-labelledby="dropdownMenuButton1">
+                                        {/* {allregion?.map((m) => {
+                                          const isActive = selectedMenu?.id === m?.id;
+                                          return (
+                                            <li
+                                              key={m?.id}
+                                              className={`dropdown-item text-uppercase ${
+                                                themeVariant === 'light'
+                                                  ? isActive
+                                                    ? 'bg-light active-light'
+                                                    : 'bg-light'
+                                                  : isActive
+                                                  ? 'bg-dark active-dark'
+                                                  : 'bg-dark'
+                                              }`}
+                                              onClick={(e) => handleOrigin(e, m?.id)}>
+                                              {m?.domainName}
+                                            </li>
+                                          );
+                                        })} */}
+                                          <li className='dropdown-item text-uppercase bg-light'>
+                                        {colorState.value && (
+                                        <div className="coll-item-inner">
+                                          <div className="nav-item" style={{display:'flex',justifyContent:'space-between',alignItems:"center"}}>
+                                            <div className="flx" style={{marginRight:'10px'}}>{colorState.name}</div>
+
+                                            <i
+                                              className={colorState.icon}
+                                              onClick={() => toggleTheme('switch')}
+                                            />
+                                          </div>
+                                        </div>
+                                      )}
+                                        </li>
+                                        <li className='dropdown-item text-uppercase bg-light'>
+                                        {cacheState.value && (
+                                        <div className="coll-item-inner">
+                                          <div className="nav-item" style={{display:'flex',justifyContent:'space-between',alignItems:"center"}}>
+                                            <div className="flx" style={{marginRight:'10px'}}>{cacheState.name}</div>
+                                            <i
+                                              className={cacheState.icon}
+                                              onClick={() =>
+                                                ConfirmationforclearStorage(filteredFavouriteMenuId)
+                                              }></i>
+                                          </div>
+                                        </div>
+                                      )}
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
-                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                              {allregion.filter(x=>x.id==selectedMenu?.id)?.map((m) => {
-                                  const isActive = selectedMenu?.id === m?.id;
-                                  return (
-                                    <li
-                                      key={m?.id}
-                                      className={`dropdown-item text-uppercase ${themeVariant === 'light'
-                                          ? isActive
-                                            ? 'bg-light active-light'
-                                            : 'bg-light'
-                                          : isActive
-                                            ? 'bg-dark active-dark'
-                                            : 'bg-dark'
-                                        }`}
-                                      onClick={(e) => handleOrigin(e, m?.id)}>
-                                      {m?.domainName}
-                                    </li>
-                                  );
-                                })}
-                              </ul>
-                            </div>
-                          </div>
-                        ) 
-                        // : (
-                        //   <Logo name={'Flag'} href="/" alt={'logo'} />
-                        // )
+                            </>
+                          )
+                          // : (
+                          //   <Logo name={'Flag'} href="/" alt={'logo'} />
+                          // )
                         }
                         {/* <SettingNavbar
                           navList={settingsInfo.menuItems}
                           setThemeVariant={setThemeVariant}
                           themeVariant={themeVariant}
                         /> */}
-                        {IsMobile&&isMatchingRoute1!==null &&
-                                      <img src={shareicon} alt={shareicon} onClick={shareContent} srcset="" style={{height:'35px',width:'35px' }}/>
-                            }
+                        {IsMobile && isMatchingRoute1 !== null && (
+                          <img
+                            src={shareicon}
+                            alt={shareicon}
+                            onClick={shareContent}
+                            srcset=""
+                            style={{ height: '35px', width: '35px' }}
+                          />
+                        )}
                       </div>
                     </div>
                     {/* <div className="header-nav">
@@ -494,9 +629,7 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
               <Outlet context={fullInfo} />
             </div>
             <footer>
-              <div
-                className="top-bar lg-d-none"
-                >
+              <div className="top-bar lg-d-none">
                 <div className="curve"></div>
                 <div
                   className="all-tabs"
@@ -540,15 +673,12 @@ const isMatchingRoute4 = useMatch(targetRoutePattern4);
                             //     : 'tab btn-light'
                             // }
                             className={
-                              m?.name === teamName
-                               ? 'active tab btn-light'
-                               : 'tab btn-light'
-                           }
+                              m?.name === teamName ? 'active tab btn-light' : 'tab btn-light'
+                            }
                             to={m.link}
                             name={m?.name}
-                            onClick={() => ScrollToActiveTab(i)}
-                            >
-                              {/* {decodedPathname} */}
+                            onClick={() => ScrollToActiveTab(i)}>
+                            {/* {decodedPathname} */}
                             {/* Display the LogoTeam image if it exists */}
                             <div className="action-bar">
                               {m?.name?.toLowerCase() === 'top news'
