@@ -1297,3 +1297,11 @@ header>div {
 .coll-heading.collapsed .arrow {
     transform: rotate(180deg)
 }
+.horizontal-banner img {
+    object-position: top !important;
+}
+
+.banner img {
+    object-position: top !important;
+
+}
