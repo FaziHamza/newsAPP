@@ -214,7 +214,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             }
                             to={
                               mainNewsList[0]._isExternal
-                                ? '/external'
+                                ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
                                 : state
                                 ? mainNewsList[0]?._id
                                 : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
@@ -256,7 +256,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 }
                                 to={
                                   tileItem._isExternal
-                                    ? '/external'
+                                    ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
                                     : state
                                     ? tileItem._id
                                     : `news/${defaultTopic?.Name?.toLowerCase().replace(
@@ -308,7 +308,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   }
                                   to={
                                     tileItem._isExternal
-                                      ? '/external'
+                                      ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
                                       : state
                                       ? tileItem._id
                                       : `news/${defaultTopic?.Name?.toLowerCase().replace(
@@ -367,7 +367,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 }
                                 to={
                                   tileItem._isExternal
-                                    ? '/external'
+                                    ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
                                     : state
                                     ? tileItem._id
                                     : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
@@ -408,7 +408,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                       }
                                       to={
                                         tileItem._isExternal
-                                          ? '/external'
+                                          ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
                                           : state
                                           ? tableInfo[index]._id
                                           : `news/${defaultTopic
@@ -447,7 +447,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                       }
                                       to={
                                         tileItem._isExternal
-                                          ? '/external'
+                                          ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
                                           : state
                                           ? tableInfo[index + 1]._id
                                           : `news/${defaultTopic
@@ -501,7 +501,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   }
                                   to={
                                     tileItem._isExternal
-                                      ? '/external'
+                                      ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
                                       : state
                                       ? tileItem._id
                                       : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
