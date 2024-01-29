@@ -1,11 +1,11 @@
 import { timeQuery } from '../../utilities/timeQuery';
 import { json, useLocation } from 'react-router-dom';
-import { sportspotsverige, AFP_news,SPORSpot_News } from '../../assets';
-const StoryTile = ({idforlogo, description, className = '', src, alt, time, isDesktopScreen }) => {
+import { sportspotsverige, AFP_news, SPORSpot_News } from '../../assets';
+const StoryTile = ({ idforlogo, description, className = '', src, alt, time, isDesktopScreen,externaliconsource }) => {
   const location = useLocation();
   const { state } = location;
   let imageUrl;
-  if(idforlogo.length === 7) { 
+  if (idforlogo.length === 7) {
     imageUrl = AFP_news;
   } else {
     imageUrl = SPORSpot_News;
@@ -24,7 +24,7 @@ const StoryTile = ({idforlogo, description, className = '', src, alt, time, isDe
     const days = Math.floor(timeDifference / 24);
     const hours = Math.floor(timeDifference % 24);
     const minutes = Math.floor((timeDifference % 1) * 60);
-  
+
     if (timeDifference < 1) {
       return `${minutes} Min`; // Swedish for minutes
     } else if (timeDifference < 24) {
@@ -38,7 +38,7 @@ const StoryTile = ({idforlogo, description, className = '', src, alt, time, isDe
   //   const days = Math.floor(timeDifference / 24);
   //   const hours = Math.floor(timeDifference % 24);
   //   const remainingMinutes = Math.round((timeDifference - Math.floor(timeDifference)) * 60);
-  
+
   //   if (timeDifference < 1) {
   //     return `${remainingMinutes} minutes`; // Return minutes if less than 1 hour
   //   } else if (timeDifference < 24) {
@@ -47,20 +47,26 @@ const StoryTile = ({idforlogo, description, className = '', src, alt, time, isDe
   //     return `${days} Day`; // Return days, hours, and minutes
   //   }
   // };
-  const sanitizedSrc = src.replace(/([^:]\/)\/+/g, "$1");
+  const sanitizedSrc = src.replace(/([^:]\/)\/+/g, '$1');
 
   return (
     <>
-
       <div className={`suggested-card ${className}`}>
-        <div className='banner'>
+        <div className="banner">
           <img src={sanitizedSrc} alt={alt} />
         </div>
-        <div className='content'>
+        <div className="content">
           {/* <p>{description}</p> */}
-          <p className={!!isDesktopScreen ? 'desktop' : 'mobile'} dangerouslySetInnerHTML={{ __html: description }} />
-          <h6 className='content-time-img'  >
-            <img src={imageUrl} alt="" />
+          <p
+            className={!!isDesktopScreen ? 'desktop' : 'mobile'}
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+          <h6 className="content-time-img">
+            {externaliconsource !== null ? (
+              <img src={externaliconsource} alt="" />
+            ) : (
+              <img src={imageUrl} alt="" />
+            )}
             {days()}
           </h6>
         </div>
