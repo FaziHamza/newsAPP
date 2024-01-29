@@ -1305,3 +1305,7 @@ header>div {
     object-position: top !important;
 
 }
+.league-card .content p img {
+    height: 20px;
+    padding: 0 0 0px 4px;
+}
