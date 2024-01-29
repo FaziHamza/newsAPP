@@ -353,6 +353,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                         return (
                           <>
                             {index === 0 ? (
+                              <>
                               <Link
                                 className="story-link"
                                 key={tileItem._id}
@@ -387,7 +388,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   externaliconsource={tileItem?._isExternal?tileItem?._IconSource:null}
                                 />
                               </Link>
+                              </>
                             ) : index >= 1 && index <= 4 ? (
+                              <>
                               <div className="story-link-card second" style={{ display: 'flex' ,paddingBottom : "5px" }}>
                                 {(index === 1 || index === 3) &&
                                 tableInfo[index] != null &&
@@ -477,7 +480,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   </>
                                 ) : (
                                   <>
-                                    {index !== 2 && index === 3 ? (
+                                    {index !== 2 && (index === 3 || index === 1) ? (
                                       <StoryTile
                                         idforlogo={tileItem._id}
                                         description={tileItem._abstract}
@@ -487,10 +490,12 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                         time={tileItem._published}
                                         externaliconsource={tileItem?._isExternal?tileItem._IconSource:null}
                                       />
-                                    ) : null}
+                                    ) : null
+                                    }
                                   </>
                                 )}
                               </div>
+                              </>
                             ) : (
                               <div className="story-link-card one">
                                 <Link
