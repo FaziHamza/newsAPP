@@ -229,6 +229,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                               src={windowHref + mainNewsList[0]?._medias[0]?.href}
                               alt={mainNewsList[0]?._medias[0]?.href}
                               time={mainNewsList[0]?._published}
+                              externaliconsource={mainNewsList[0]?._isExternal?mainNewsList[0]?._IconSource:null}
                             />
                           </Link>
                         </main>
@@ -272,6 +273,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   src={windowHref + tileItem._medias[0].href}
                                   alt={tileItem._medias[0]?.href}
                                   time={tileItem._published}
+                                  externaliconsource={tileItem?._isExternal?tileItem._IconSource:null}
                                 />
                               </Link>
                             </>
@@ -323,6 +325,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                     src={windowHref + tileItem._medias[0].href}
                                     alt={tileItem._medias[0]?.href}
                                     time={tileItem._published}
+                                    externaliconsource={tileItem?._isExternal?tileItem._IconSource:null}
                                   />
                                 </Link>
                               </>
@@ -381,6 +384,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   src={windowHref + tileItem._medias[0].href}
                                   alt={tileItem._medias[0]?.href}
                                   time={tileItem._published}
+                                  externaliconsource={tileItem?._isExternal?tileItem?._IconSource:null}
                                 />
                               </Link>
                             ) : index >= 1 && index <= 4 ? (
@@ -424,6 +428,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                           src={windowHref + tableInfo[index]._medias[0].href}
                                           alt={tableInfo[index]._medias[0]?.href}
                                           time={tableInfo[index]._published}
+                                          externaliconsource={tableInfo[index]?._isExternal?tableInfo[index]._IconSource:null}
+
                                         />
                                       </>
                                     </Link>
@@ -463,6 +469,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                           src={windowHref + tableInfo[index + 1]._medias[0].href}
                                           alt={tableInfo[index + 1]._medias[0]?.href}
                                           time={tableInfo[index + 1]._published}
+                                          externaliconsource={tableInfo[index+1]?._isExternal?tableInfo[index+1]._IconSource:null}
+
                                         />
                                       </>
                                     </Link>
@@ -477,6 +485,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                         src={windowHref + tileItem._medias[0].href}
                                         alt={tileItem._medias[0]?.href}
                                         time={tileItem._published}
+                                        externaliconsource={tileItem?._isExternal?tileItem._IconSource:null}
                                       />
                                     ) : null}
                                   </>
@@ -516,6 +525,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                       src={windowHref + tileItem._medias[0].href}
                                       alt={tileItem._medias[0]?.href}
                                       time={tileItem._published}
+                                      externaliconsource={tileItem?._isExternal?tileItem._IconSource:null}
+
                                     />
                                   </>
                                 </Link>

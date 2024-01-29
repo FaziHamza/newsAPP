@@ -1,7 +1,15 @@
 import { timeQuery } from '../../utilities/timeQuery';
 import { json, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { logo, video_play, podcast,podcast_black,Video_black, podcast_white, Video_white } from '../../assets';
+import {
+  logo,
+  video_play,
+  podcast,
+  podcast_black,
+  Video_black,
+  podcast_white,
+  Video_white,
+} from '../../assets';
 import { sportspotsverige, AFP_news, SPORSpot_News } from '../../assets';
 import { useSelector } from 'react-redux';
 import { IsMobile, RootUrl } from '../../utilities/config';
@@ -40,7 +48,7 @@ const DisplayComponent = ({ topic }) => {
       topicName: teamName,
       LogoTeam: teamLogoPath,
       SubTopicId: SubTopicId,
-      IsSubtopicVideo:IsSubtopicVideo
+      IsSubtopicVideo: IsSubtopicVideo,
     },
   };
   const linkPropsforpodcast = {
@@ -51,7 +59,7 @@ const DisplayComponent = ({ topic }) => {
       topicName: teamName,
       LogoTeam: teamLogoPath,
       SubTopicId: SubTopicId,
-      IsSubtopicVideo:IsSubtopicVideo
+      IsSubtopicVideo: IsSubtopicVideo,
     },
   };
   const IsSql = state?.IsSql;
@@ -77,26 +85,22 @@ const DisplayComponent = ({ topic }) => {
                 <img src={logoPath} height={'20px'} />
                 {moreItemName}
               </div> */}
-              {!IsMobile &&
-              <div className="title">
-                <>
-                  {teamName.includes(moreItemName) ? null : (
-                    <>
-                      <img src={teamLogoPath} height={'20px'} />
-                    </>
-                  )}
-                  {teamName.replace(moreItemName, '')}
-                </>
-              </div>
-              }
+              {!IsMobile && (
+                <div className="title">
+                  <>
+                    {teamName.includes(moreItemName) ? null : (
+                      <>
+                        <img src={teamLogoPath} height={'20px'} />
+                      </>
+                    )}
+                    {teamName.replace(moreItemName, '')}
+                  </>
+                </div>
+              )}
             </div>
             {IsMobile && SubTopicHeadline && (
-                          <div className='tagcontainer' >
-
-              <span
-                className='tag'>
-                {SubTopicHeadline}
-              </span>
+              <div className="tagcontainer">
+                <span className="tag">{SubTopicHeadline}</span>
               </div>
             )}
             <div style={{ display: 'flex' }}>
@@ -142,6 +146,7 @@ const StoryMain = ({
   alt,
   time,
   isDesktopScreen,
+  externaliconsource,
 }) => {
   const location = useLocation();
   const { state } = location;
@@ -166,7 +171,7 @@ const StoryMain = ({
     const days = Math.floor(timeDifference / 24);
     const hours = Math.floor(timeDifference % 24);
     const minutes = Math.floor((timeDifference % 1) * 60);
-  
+
     if (timeDifference < 1) {
       return `${minutes} Min`; // Swedish for minutes
     } else if (timeDifference < 24) {
@@ -188,7 +193,7 @@ const StoryMain = ({
   //   } else {
   //     return `${days} Day`; // Return days, hours, and minutes
   //   }
-    
+
   // };
 
   const sanitizedSrc = src.replace(/([^:]\/)\/+/g, '$1');
@@ -213,13 +218,12 @@ const StoryMain = ({
           </div>
         </>
       ) : (
-        <div className="league-card" style={{padding:'0px 10px'}}>
+        <div className="league-card" style={{ padding: '0px 10px' }}>
           {/* {!IsMobile && <DisplayComponent />} */}
           {IsMobile && <DisplayComponent />}
 
           <div className="banner">
             <img src={sanitizedSrc} alt={alt} />
-  
           </div>
           {/* <div className='tagcontainer' >
             {IsMobile && SubTopicHeadline && (
@@ -229,7 +233,7 @@ const StoryMain = ({
               </span>
             )}
           </div> */}
-          <div className="content" >
+          <div className="content">
             {/* <div className='tagcontainer' >
               <p className="tag">Nyheter</p>
             </div> */}
@@ -240,7 +244,11 @@ const StoryMain = ({
             <div className="date">
               <p className="abstart-color">
                 {days()}
-                <img src={imageUrl} alt="" />
+                {externaliconsource !== null ? (
+                  <img src={externaliconsource} alt="" />
+                ) : (
+                  <img src={imageUrl} alt="" />
+                )}
               </p>
             </div>
           </div>
