@@ -31,7 +31,6 @@ const fetchPostFunction = (url, body) =>
   })
     .then((response) => response.json())
     .then((data) => {
-      debugger;
       return data;
     })
     .catch((error) => {
@@ -45,7 +44,6 @@ export const fetchConfig = (baseUrlApi, regionId) => {
 };
 
 export const fetchArticleTable = (topic) => {
-  debugger;
   fetchGetFunction(`${addresses.baseUrl}/GetArticles/${topic}`);
 };
 
