@@ -405,7 +405,7 @@ const Article = ({ className = '' }) => {
               <p className="artical-detail-box">
                 <ContentParsed content={articleInfo[0]._content} />
               </p>
-              {/* <div className="article-footer">
+              <div className="article-footer">
                 <div className="artile-footer-left">
                   <div className='footer-icon'>
                     <img src={articlefootericon} style={{ width: '100px', }} />
@@ -415,14 +415,14 @@ const Article = ({ className = '' }) => {
                 <div className="article-footer-right">
                   <div className='row'>
                     <div className='col-6'>
-                      <a href="https://apps.apple.com/us/app/itunes-connect/id376771144">
+                      <a target='_blank' href="https://apps.apple.com/se/app/sportblitz/id6475697031?itsct=apps_box_link&itscg=30200">
                         <div className="app-store">
                           <img src={appstore} />
                         </div>
                       </a>
                     </div>
                     <div className='col-6'>
-                      <a href="https://play.google.com/store/apps/details?id=com.sportblitz">
+                      <a target='_blank' href="https://play.google.com/store/apps/details?id=com.sportblitz">
                         <div className="google-play">
                           <img src={googleplay} />
                         </div>
@@ -430,7 +430,7 @@ const Article = ({ className = '' }) => {
                     </div>
                   </div>
                 </div>
-              </div> */}
+              </div>
             </main>
           )}
         </>
