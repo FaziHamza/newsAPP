@@ -209,7 +209,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                     tableInfo: tableInfo,
                                     baseUrl: addresses.baseUrl + settingsInfo.Api,
                                     imgUrl: addresses.baseUrl + mainNewsList[0]?._medias[0]?.href,
-                                    topicName:teamName
+                                    topicName: teamName,
                                   }
                             }
                             to={
@@ -229,7 +229,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                               src={windowHref + mainNewsList[0]?._medias[0]?.href}
                               alt={mainNewsList[0]?._medias[0]?.href}
                               time={mainNewsList[0]?._published}
-                              externaliconsource={mainNewsList[0]?._isExternal?mainNewsList[0]?._IconSource:null}
+                              externaliconsource={
+                                mainNewsList[0]?._isExternal ? mainNewsList[0]?._IconSource : null
+                              }
                             />
                           </Link>
                         </main>
@@ -252,7 +254,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                         tableInfo: tableInfo,
                                         baseUrl: addresses.baseUrl + settingsInfo.Api,
                                         imgUrl: addresses.baseUrl + tileItem._medias[0].href,
-                                        topicName:teamName
+                                        topicName: teamName,
                                       }
                                 }
                                 to={
@@ -273,7 +275,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   src={windowHref + tileItem._medias[0].href}
                                   alt={tileItem._medias[0]?.href}
                                   time={tileItem._published}
-                                  externaliconsource={tileItem?._isExternal?tileItem._IconSource:null}
+                                  externaliconsource={
+                                    tileItem?._isExternal ? tileItem._IconSource : null
+                                  }
                                 />
                               </Link>
                             </>
@@ -305,7 +309,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                           tableInfo: tableInfo,
                                           baseUrl: addresses.baseUrl + settingsInfo.Api,
                                           imgUrl: addresses.baseUrl + tileItem._medias[0].href,
-                                          topicName:teamName
+                                          topicName: teamName,
                                         }
                                   }
                                   to={
@@ -325,7 +329,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                     src={windowHref + tileItem._medias[0].href}
                                     alt={tileItem._medias[0]?.href}
                                     time={tileItem._published}
-                                    externaliconsource={tileItem?._isExternal?tileItem._IconSource:null}
+                                    externaliconsource={
+                                      tileItem?._isExternal ? tileItem._IconSource : null
+                                    }
                                   />
                                 </Link>
                               </>
@@ -354,147 +360,186 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                           <>
                             {index === 0 ? (
                               <>
-                              <Link
-                                className="story-link"
-                                key={tileItem._id}
-                                state={
-                                  tileItem?._isExternal
-                                    ? {
-                                        articleLink: tileItem?._ArticleLink,
-                                      }
-                                    : {
-                                        articleInfo: tileItem,
-                                        baseUrl: addresses.baseUrl + settingsInfo.Api,
-                                        imgUrl: addresses.baseUrl + tileItem._medias[0].href,
-                                        topicName:teamName
-                                      }
-                                }
-                                to={
-                                  tileItem._isExternal
-                                    ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
-                                    : state
-                                    ? tileItem._id
-                                    : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
-                                        tileItem._id
-                                      }`
-                                }>
-                                <StoryMain
-                                  idforlogo={tileItem._id}
-                                  heading={tileItem._title}
-                                  description={tileItem._abstract}
-                                  src={windowHref + tileItem._medias[0].href}
-                                  alt={tileItem._medias[0]?.href}
-                                  time={tileItem._published}
-                                  externaliconsource={tileItem?._isExternal?tileItem?._IconSource:null}
-                                />
-                              </Link>
+                                <Link
+                                  className="story-link"
+                                  key={tileItem._id}
+                                  state={
+                                    tileItem?._isExternal
+                                      ? {
+                                          articleLink: tileItem?._ArticleLink,
+                                        }
+                                      : {
+                                          articleInfo: tileItem,
+                                          baseUrl: addresses.baseUrl + settingsInfo.Api,
+                                          imgUrl: addresses.baseUrl + tileItem._medias[0].href,
+                                          topicName: teamName,
+                                        }
+                                  }
+                                  to={
+                                    tileItem._isExternal
+                                      ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
+                                      : state
+                                      ? tileItem._id
+                                      : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
+                                          tileItem._id
+                                        }`
+                                  }>
+                                  <StoryMain
+                                    idforlogo={tileItem._id}
+                                    heading={tileItem._title}
+                                    description={tileItem._abstract}
+                                    src={windowHref + tileItem._medias[0].href}
+                                    alt={tileItem._medias[0]?.href}
+                                    time={tileItem._published}
+                                    externaliconsource={
+                                      tileItem?._isExternal ? tileItem?._IconSource : null
+                                    }
+                                  />
+                                </Link>
                               </>
                             ) : index >= 1 && index <= 4 ? (
                               <>
-                              <div className="story-link-card second" style={{ display: 'flex' ,paddingBottom : "5px" }}>
-                                {(index === 1 || index === 3) &&
-                                tableInfo[index] != null &&
-                                tableInfo[index + 1] != null ? (
-                                  <>
-                                    <Link
-                                      className="story-link"
-                                      key={tableInfo[index]._id}
-                                      state={
-                                        tileItem?._isExternal
-                                          ? {
-                                              articleLink: tileItem?._ArticleLink,
+                                <div
+                                  className="story-link-card second"
+                                  style={{ display: 'flex', paddingBottom: '5px' }}>
+                                  {(index === 1 || index === 3) &&
+                                  tableInfo[index] != null &&
+                                  tableInfo[index + 1] != null ? (
+                                    <>
+                                      <Link
+                                        className="story-link"
+                                        key={tableInfo[index]._id}
+                                        state={
+                                          tileItem?._isExternal
+                                            ? {
+                                                articleLink: tileItem?._ArticleLink,
+                                              }
+                                            : {
+                                                articleInfo: tableInfo[index],
+                                                baseUrl: addresses.baseUrl + settingsInfo.Api,
+                                                imgUrl:
+                                                  addresses.baseUrl +
+                                                  tableInfo[index]._medias[0].href,
+                                                topicName: teamName,
+                                              }
+                                        }
+                                        to={
+                                          tileItem._isExternal
+                                            ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
+                                            : state
+                                            ? tableInfo[index]._id
+                                            : `news/${defaultTopic
+                                                ?.toLowerCase()
+                                                .replace(/\s/g, '_')}/${tableInfo[index]._id}`
+                                        }
+                                        style={{ width: '100%', marginRight: ' 10px' }}>
+                                        <>
+                                          <StoryTileHorizon
+                                            idforlogo={tableInfo[index]._id}
+                                            description={tableInfo[index]._abstract}
+                                            className={index === 0 ? '' : 'tile-m'}
+                                            src={windowHref + tableInfo[index]._medias[0].href}
+                                            alt={tableInfo[index]._medias[0]?.href}
+                                            time={tableInfo[index]._published}
+                                            externaliconsource={
+                                              tableInfo[index]?._isExternal
+                                                ? tableInfo[index]._IconSource
+                                                : null
                                             }
-                                          : {
-                                              articleInfo: tableInfo[index],
-                                              baseUrl: addresses.baseUrl + settingsInfo.Api,
-                                              imgUrl:
-                                                addresses.baseUrl +
-                                                tableInfo[index]._medias[0].href,
-                                                topicName:teamName
-                                            }
-                                      }
-                                      to={
-                                        tileItem._isExternal
-                                          ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
-                                          : state
-                                          ? tableInfo[index]._id
-                                          : `news/${defaultTopic
-                                              ?.toLowerCase()
-                                              .replace(/\s/g, '_')}/${tableInfo[index]._id}`
-                                      }
-                                      style={{ width: '100%', marginRight : ' 10px' }}>
-                                      <>
-                                        <StoryTileHorizon
-                                          idforlogo={tableInfo[index]._id}
-                                          description={tableInfo[index]._abstract}
-                                          className={index === 0 ? '' : 'tile-m'}
-                                          src={windowHref + tableInfo[index]._medias[0].href}
-                                          alt={tableInfo[index]._medias[0]?.href}
-                                          time={tableInfo[index]._published}
-                                          externaliconsource={tableInfo[index]?._isExternal?tableInfo[index]._IconSource:null}
+                                          />
+                                        </>
+                                      </Link>
 
-                                        />
-                                      </>
-                                    </Link>
-
-                                    <Link
-                                      className="story-link"
-                                      key={tableInfo[index + 1]._id}
-                                      state={
-                                        tileItem?._isExternal
-                                          ? {
-                                              articleLink: tileItem?._ArticleLink,
+                                      <Link
+                                        className="story-link"
+                                        key={tableInfo[index + 1]._id}
+                                        state={
+                                          tileItem?._isExternal
+                                            ? {
+                                                articleLink: tileItem?._ArticleLink,
+                                              }
+                                            : {
+                                                articleInfo: tableInfo[index + 1],
+                                                baseUrl: addresses.baseUrl + settingsInfo.Api,
+                                                imgUrl:
+                                                  addresses.baseUrl +
+                                                  tableInfo[index + 1]._medias[0].href,
+                                                topicName: teamName,
+                                              }
+                                        }
+                                        to={
+                                          tileItem._isExternal
+                                            ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
+                                            : state
+                                            ? tableInfo[index + 1]._id
+                                            : `news/${defaultTopic
+                                                ?.toLowerCase()
+                                                .replace(/\s/g, '_')}/${tableInfo[index + 1]._id}`
+                                        }
+                                        style={{ width: '100%', marginlEFT: '10px' }}>
+                                        <>
+                                          <StoryTileHorizon
+                                            idforlogo={tableInfo[index + 1]._id}
+                                            description={tableInfo[index + 1]._abstract}
+                                            className={index === 0 ? '' : 'tile-m'}
+                                            src={windowHref + tableInfo[index + 1]._medias[0].href}
+                                            alt={tableInfo[index + 1]._medias[0]?.href}
+                                            time={tableInfo[index + 1]._published}
+                                            externaliconsource={
+                                              tableInfo[index + 1]?._isExternal
+                                                ? tableInfo[index + 1]._IconSource
+                                                : null
                                             }
-                                          : {
-                                              articleInfo: tableInfo[index + 1],
-                                              baseUrl: addresses.baseUrl + settingsInfo.Api,
-                                              imgUrl:
-                                                addresses.baseUrl +
-                                                tableInfo[index + 1]._medias[0].href,
-                                                topicName:teamName
-                                            }
-                                      }
-                                      to={
-                                        tileItem._isExternal
-                                          ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
-                                          : state
-                                          ? tableInfo[index + 1]._id
-                                          : `news/${defaultTopic
-                                              ?.toLowerCase()
-                                              .replace(/\s/g, '_')}/${tableInfo[index + 1]._id}`
-                                      }
-                                      style={{ width: '100%', marginlEFT: '10px' }}>
-                                      <>
-                                        <StoryTileHorizon
-                                          idforlogo={tableInfo[index + 1]._id}
-                                          description={tableInfo[index + 1]._abstract}
-                                          className={index === 0 ? '' : 'tile-m'}
-                                          src={windowHref + tableInfo[index + 1]._medias[0].href}
-                                          alt={tableInfo[index + 1]._medias[0]?.href}
-                                          time={tableInfo[index + 1]._published}
-                                          externaliconsource={tableInfo[index+1]?._isExternal?tableInfo[index+1]._IconSource:null}
-
-                                        />
-                                      </>
-                                    </Link>
-                                  </>
-                                ) : (
-                                  <>
-                                    {index !== 2 && (index === 3 || index === 1) ? (
-                                      <StoryTile
-                                        idforlogo={tileItem._id}
-                                        description={tileItem._abstract}
-                                        className={index === 0 ? '' : 'tile-m'}
-                                        src={windowHref + tileItem._medias[0].href}
-                                        alt={tileItem._medias[0]?.href}
-                                        time={tileItem._published}
-                                        externaliconsource={tileItem?._isExternal?tileItem._IconSource:null}
-                                      />
-                                    ) : null
-                                    }
-                                  </>
-                                )}
-                              </div>
+                                          />
+                                        </>
+                                      </Link>
+                                    </>
+                                  ) : (
+                                    <>
+                                      {index !== 2 && (index === 3 || index === 1) ? (
+                                        <Link
+                                          className="story-link"
+                                          key={tileItem._id}
+                                          state={
+                                            tileItem?._isExternal
+                                              ? {
+                                                  articleLink: tileItem?._ArticleLink,
+                                                }
+                                              : {
+                                                  articleInfo: tileItem,
+                                                  baseUrl: addresses.baseUrl + settingsInfo.Api,
+                                                  imgUrl:
+                                                    addresses.baseUrl + tileItem._medias[0].href,
+                                                  topicName: teamName,
+                                                }
+                                          }
+                                          to={
+                                            tileItem._isExternal
+                                              ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
+                                              : state
+                                              ? tileItem._id
+                                              : `news/${defaultTopic
+                                                  ?.toLowerCase()
+                                                  .replace(/\s/g, '_')}/${tileItem._id}`
+                                          }>
+                                          <>
+                                            <StoryTile
+                                              idforlogo={tileItem._id}
+                                              description={tileItem._abstract}
+                                              className={index === 0 ? '' : 'tile-m'}
+                                              src={windowHref + tileItem._medias[0].href}
+                                              alt={tileItem._medias[0]?.href}
+                                              time={tileItem._published}
+                                              externaliconsource={
+                                                tileItem?._isExternal ? tileItem._IconSource : null
+                                              }
+                                            />
+                                          </>
+                                        </Link>
+                                      ) : null}
+                                    </>
+                                  )}
+                                </div>
                               </>
                             ) : (
                               <div className="story-link-card one">
@@ -510,7 +555,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                           articleInfo: tileItem,
                                           baseUrl: addresses.baseUrl + settingsInfo.Api,
                                           imgUrl: addresses.baseUrl + tileItem._medias[0].href,
-                                          topicName:teamName
+                                          topicName: teamName,
                                         }
                                   }
                                   to={
@@ -530,8 +575,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                       src={windowHref + tileItem._medias[0].href}
                                       alt={tileItem._medias[0]?.href}
                                       time={tileItem._published}
-                                      externaliconsource={tileItem?._isExternal?tileItem._IconSource:null}
-
+                                      externaliconsource={
+                                        tileItem?._isExternal ? tileItem._IconSource : null
+                                      }
                                     />
                                   </>
                                 </Link>
