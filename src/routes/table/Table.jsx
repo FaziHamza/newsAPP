@@ -410,9 +410,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                         className="story-link"
                                         key={tableInfo[index]._id}
                                         state={
-                                          tileItem?._isExternal
+                                          tableInfo[index]?._isExternal
                                             ? {
-                                                articleLink: tileItem?._ArticleLink,
+                                                articleLink: tableInfo[index]?._ArticleLink,
                                               }
                                             : {
                                                 articleInfo: tableInfo[index],
@@ -424,8 +424,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                               }
                                         }
                                         to={
-                                          tileItem._isExternal
-                                            ? `/external?isExternal=true&ArticleLink=${tileItem?._ArticleLink}`
+                                          tableInfo[index]._isExternal
+                                            ? `/external?isExternal=true&ArticleLink=${tableInfo[index]?._ArticleLink}`
                                             : state
                                             ? tableInfo[index]._id
                                             : `news/${defaultTopic
@@ -454,9 +454,9 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                         className="story-link"
                                         key={tableInfo[index + 1]._id}
                                         state={
-                                          tileItem?._isExternal
+                                          tableInfo[index+1]?._isExternal
                                             ? {
-                                                articleLink: tileItem?._ArticleLink,
+                                                articleLink: tableInfo[index+1]?._ArticleLink,
                                               }
                                             : {
                                                 articleInfo: tableInfo[index + 1],
@@ -468,8 +468,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                               }
                                         }
                                         to={
-                                          tileItem._isExternal
-                                            ? `/external?isExternal=true&ArticleLink=${tileItem?._ArticleLink}`
+                                          tableInfo[index+1]._isExternal
+                                            ? `/external?isExternal=true&ArticleLink=${tableInfo[index+1]?._ArticleLink}`
                                             : state
                                             ? tableInfo[index + 1]._id
                                             : `news/${defaultTopic
