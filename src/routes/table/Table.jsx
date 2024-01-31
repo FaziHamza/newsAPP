@@ -104,9 +104,12 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
         asideList = tableInfo.length > 4 ? tableInfo.slice(4, 12) : [];
       }
       const currentmenu=window.localStorage.getItem('CurrentMenu');
-      const parse=JSON.parse(currentmenu)
-      SetLinkText(parse[0].name)
-      ImageSetLinkText(parse[0].state.LogoTeam)
+      if(currentmenu!=null){
+        const parse=JSON.parse(currentmenu)
+        SetLinkText(parse[0].name)
+        ImageSetLinkText(parse[0].state.LogoTeam)
+      }
+
       setMainNewsList(mainList);
       setAsideNewsList(asideList);
     }
