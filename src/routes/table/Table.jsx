@@ -72,7 +72,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const [mainNewsList, setMainNewsList] = useState([]);
   const [asideNewsList, setAsideNewsList] = useState([]);
   const [shouldNavigate, setShouldNavigate] = useState(false);
-
+  const [LinkText,SetLinkText]=useState(null);
+  const [ImageLinkText,ImageSetLinkText]=useState(null)
   const linkPropsforhighlight = {
     to: subtopicvideo ? '/videohighlights' : '/highlights',
     state: {
@@ -102,7 +103,10 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
         mainList = tableInfo.slice(0, 4);
         asideList = tableInfo.length > 4 ? tableInfo.slice(4, 12) : [];
       }
-
+      const currentmenu=window.localStorage.getItem('CurrentMenu');
+      const parse=JSON.parse(currentmenu)
+      SetLinkText(parse[0].name)
+      ImageSetLinkText(parse[0].state.LogoTeam)
       setMainNewsList(mainList);
       setAsideNewsList(asideList);
     }
@@ -214,7 +218,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             }
                             to={
                               mainNewsList[0]._isExternal
-                                ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}`
+                                ? `/external?isExternal=true&ArticleLink=${mainNewsList[0]?._ArticleLink}&Logo=${ImageLinkText}&Text=${LinkText}`
                                 : state
                                 ? mainNewsList[0]?._id
                                 : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
@@ -259,7 +263,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                 }
                                 to={
                                   tileItem._isExternal
-                                    ? `/external?isExternal=true&ArticleLink=${tileItem?._ArticleLink}`
+                                    ? `/external?isExternal=true&ArticleLink=${tileItem?._ArticleLink}&Logo=${ImageLinkText}&Text=${LinkText}`
                                     : state
                                     ? tileItem._id
                                     : `news/${defaultTopic?.Name?.toLowerCase().replace(
@@ -314,7 +318,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   }
                                   to={
                                     tileItem._isExternal
-                                      ? `/external?isExternal=true&ArticleLink=${tileItem?._ArticleLink}`
+                                      ? `/external?isExternal=true&ArticleLink=${tileItem?._ArticleLink}&Logo=${ImageLinkText}&Text=${LinkText}`
                                       : state
                                       ? tileItem._id
                                       : `news/${defaultTopic?.Name?.toLowerCase().replace(
@@ -377,7 +381,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   }
                                   to={
                                     tileItem._isExternal
-                                      ? `/external?isExternal=true&ArticleLink=${ tileItem?._ArticleLink}`
+                                      ? `/external?isExternal=true&ArticleLink=${ tileItem?._ArticleLink}&Logo=${ImageLinkText}&Text=${LinkText}`
                                       : state
                                       ? tileItem._id
                                       : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${
@@ -425,7 +429,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                         }
                                         to={
                                           tableInfo[index]._isExternal
-                                            ? `/external?isExternal=true&ArticleLink=${tableInfo[index]?._ArticleLink}`
+                                            ? `/external?isExternal=true&ArticleLink=${tableInfo[index]?._ArticleLink}&Logo=${ImageLinkText}&Text=${LinkText}`
                                             : state
                                             ? tableInfo[index]._id
                                             : `news/${defaultTopic
@@ -469,7 +473,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                         }
                                         to={
                                           tableInfo[index+1]._isExternal
-                                            ? `/external?isExternal=true&ArticleLink=${tableInfo[index+1]?._ArticleLink}`
+                                            ? `/external?isExternal=true&ArticleLink=${tableInfo[index+1]?._ArticleLink}&Logo=${ImageLinkText}&Text=${LinkText}`
                                             : state
                                             ? tableInfo[index + 1]._id
                                             : `news/${defaultTopic
@@ -515,7 +519,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                           }
                                           to={
                                             tileItem._isExternal
-                                              ? `/external?isExternal=true&ArticleLink=${tileItem?._ArticleLink}`
+                                              ? `/external?isExternal=true&ArticleLink=${tileItem?._ArticleLink}&Logo=${ImageLinkText}&Text=${LinkText}`
                                               : state
                                               ? tileItem._id
                                               : `news/${defaultTopic
@@ -560,7 +564,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   }
                                   to={
                                     tileItem._isExternal
-                                      ? `/external?isExternal=true&ArticleLink=${tileItem?._ArticleLink}`
+                                      ? `/external?isExternal=true&ArticleLink=${tileItem?._ArticleLink}&Logo=${ImageLinkText}&Text=${LinkText}`
                                       : state
                                       ? tileItem._id
                                       : `news/${defaultTopic?.toLowerCase().replace(/\s/g, '_')}/${

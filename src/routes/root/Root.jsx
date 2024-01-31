@@ -15,6 +15,7 @@ import { useEffect, useState, useRef } from 'react';
 import { getData } from '../../assets/mockup-assets/data/dataObject';
 // import { addresses } from '../../utilities/config';
 import { useDispatch, useSelector } from 'react-redux';
+import { addCurrentMenu } from '../../redux/CurrentMenu';
 import {
   setApiOrigin,
   setFlag,
@@ -321,7 +322,7 @@ const Root = () => {
         }
         console.log(window.innerWidth, min_item);
         if (minItem != min_item && min_item != Infinity) {
-          ScrollToActiveTab(min_item);
+          ScrollToActiveTab(null,min_item);
         }
       }, 1500);
 
@@ -409,7 +410,10 @@ const Root = () => {
       });
   }, [settingsInfo, favouriteMenu]);
 
-  function ScrollToActiveTab(id) {
+  function ScrollToActiveTab(item,id) {
+    if(item!==null && item!==undefined){
+      dispatch(addCurrentMenu(item))
+    }
     // Get references to the div and the target element
     var scrollableDiv = document.getElementById('scrollableDiv');
     let tempId = 'targetId-' + id;
@@ -650,7 +654,7 @@ const Root = () => {
                       }
                     }
                     if (minItem != min_item && min_item != Infinity) {
-                      ScrollToActiveTab(min_item);
+                      ScrollToActiveTab(filteredFavouriteMenu[min_item],min_item);
                       setMinItem(min_item);
                       navigate(filteredFavouriteMenu[min_item]?.link, {
                         state: filteredFavouriteMenu[min_item]?.state,
@@ -676,7 +680,7 @@ const Root = () => {
                             }
                             to={m.link}
                             name={m?.name}
-                            onClick={() => ScrollToActiveTab(i)}>
+                            onClick={() => {ScrollToActiveTab(m,i)}}>
                             {/* {decodedPathname} */}
                             {/* Display the LogoTeam image if it exists */}
                             <div className="action-bar">
