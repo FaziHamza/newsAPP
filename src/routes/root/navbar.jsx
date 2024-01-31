@@ -11,6 +11,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import { selectCountry } from '../../redux/countries';
 import { setallregion } from '../../redux/countries';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import { addCurrentMenu } from '../../redux/CurrentMenu';
 function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVariant, ...props }) {
   const dispatch = useDispatch();
   // const navMain = navList.slice(0, inMain);
@@ -56,55 +57,58 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
         console.log('Error From Dummy Request', err);
       });
   }, []);
-  let isfirst=true;
+  let isfirst = true;
   useEffect(() => {
     // m?.state
-    const checkdreser=favouriteMenu.some(s=>s?.state.SubTopicId=='6b6875a3-dd4d-4c77-82b9-08dc0540e95d')
-    const checkhoping=favouriteMenu.some(s=>s?.state.SubTopicId=='a1b8b1c7-d48f-46ee-6627-08dc0b731fb7')
+    const checkdreser = favouriteMenu.some(
+      (s) => s?.state.SubTopicId == '6b6875a3-dd4d-4c77-82b9-08dc0540e95d'
+    );
+    const checkhoping = favouriteMenu.some(
+      (s) => s?.state.SubTopicId == 'a1b8b1c7-d48f-46ee-6627-08dc0b731fb7'
+    );
 
-    console.log("Dress",checkdreser)
-    console.log("Hoping",checkdreser)
-    const statedresser= {
-      "address": "news/getNewsByTeam?keyword=Dressyr&lang=sv&sport=football&limit=12",
-      "topicKey": "",
-      "topictype": "team",
-      "IsSubtopicVideo": true,
-      "topicName": "Dressyr ",
-      "TopicId": "e5659f42-7e7a-4b3d-9d33-08dbe06ca0cb",
-      "navType": "news",
-      "navTopic": "dressyr_",
-      "moreItemName": "Kategori ",
-      "SubTopicId": "6b6875a3-dd4d-4c77-82b9-08dc0540e95d",
-      "LogoPath": "",
-      "LogoTeam": "https://live.staticflickr.com/65535/53420020233_750f1821e4_n.jpg",
-      "IsSql": false,
-      "SubttopicHeadline": "Nyheter "
+    console.log('Dress', checkdreser);
+    console.log('Hoping', checkdreser);
+    const statedresser = {
+      address: 'news/getNewsByTeam?keyword=Dressyr&lang=sv&sport=football&limit=12',
+      topicKey: '',
+      topictype: 'team',
+      IsSubtopicVideo: true,
+      topicName: 'Dressyr ',
+      TopicId: 'e5659f42-7e7a-4b3d-9d33-08dbe06ca0cb',
+      navType: 'news',
+      navTopic: 'dressyr_',
+      moreItemName: 'Kategori ',
+      SubTopicId: '6b6875a3-dd4d-4c77-82b9-08dc0540e95d',
+      LogoPath: '',
+      LogoTeam: 'https://live.staticflickr.com/65535/53420020233_750f1821e4_n.jpg',
+      IsSql: false,
+      SubttopicHeadline: 'Nyheter ',
+    };
+    const statehastHoping = {
+      address: 'news/getNewsByTeam?keyword=Hopp&lang=sv&sport=football&limit=12',
+      topicKey: '',
+      topictype: 'team',
+      IsSubtopicVideo: true,
+      topicName: 'Häst Hoppning ',
+      TopicId: 'e5659f42-7e7a-4b3d-9d33-08dbe06ca0cb',
+      navType: 'news',
+      navTopic: 'häst_hoppning_',
+      moreItemName: 'Kategori ',
+      SubTopicId: 'a1b8b1c7-d48f-46ee-6627-08dc0b731fb7',
+      LogoPath: '',
+      LogoTeam:
+        'https://svg-files.pixelied.com/92f43d12-539b-4dd0-9179-65a560cf793b/thumb-256px.png',
+      IsSql: false,
+      SubttopicHeadline: 'Nyheter ',
+    };
+    if (!checkdreser && !checkhoping && isfirst) {
+      isfirst = false;
+      handleFavouriteMenu(true, 'Dressyr ', '../news/dressyr_', statedresser);
+      handleFavouriteMenu(true, 'Häst Hoppning ', '../news/häst_hoppning_', statehastHoping);
     }
-    const statehastHoping={
-      "address": "news/getNewsByTeam?keyword=Hopp&lang=sv&sport=football&limit=12",
-      "topicKey": "",
-      "topictype": "team",
-      "IsSubtopicVideo": true,
-      "topicName": "Häst Hoppning ",
-      "TopicId": "e5659f42-7e7a-4b3d-9d33-08dbe06ca0cb",
-      "navType": "news",
-      "navTopic": "häst_hoppning_",
-      "moreItemName": "Kategori ",
-      "SubTopicId": "a1b8b1c7-d48f-46ee-6627-08dc0b731fb7",
-      "LogoPath": "",
-      "LogoTeam": "https://svg-files.pixelied.com/92f43d12-539b-4dd0-9179-65a560cf793b/thumb-256px.png",
-      "IsSql": false,
-      "SubttopicHeadline": "Nyheter "
-    }
-    if(!checkdreser && !checkhoping && isfirst){
-      isfirst=false;
-      handleFavouriteMenu(true,"Dressyr ","../news/dressyr_",statedresser)
-      handleFavouriteMenu(true,"Häst Hoppning ","../news/häst_hoppning_",statehastHoping)
-    }
 
-    console.log("Fav",favouriteMenu)
-
-
+    console.log('Fav', favouriteMenu);
   }, []);
   const openNav = () => {
     setIsOpen(true);
@@ -113,7 +117,17 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   const closeNav = () => {
     setIsOpen(false);
   };
-
+  const SetCurrentMenu = (items) => {
+   const obj = 
+      {
+        isChecked: false,
+        name: `${items.name}`,
+        state: {
+          LogoTeam: `${items.logo}`,
+        },
+      }
+    dispatch(addCurrentMenu(obj))
+  };
   const [collapsedIds, setCollapsedIds] = useState({});
   const toggleTheme = () => {
     if (themeVariant === 'light') {
@@ -124,14 +138,12 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   };
   const [isCustomAlertOpen, setCustomAlertOpen] = useState(true);
   const ConfirmationforclearStorage = (items) => {
-  
     // const ClearStorage = (items) => {
     //   // Your logic to clear storage
     //   console.log('Storage cleared');
     //   setCustomAlertOpen(false); // Close the custom alert
     // };
-  
-  
+
     confirmAlert({
       customUI: ({ onClose }) => (
         <CustomConfirmation
@@ -140,7 +152,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
           onConfirm={() => {
             ClearStorage(items);
             onClose();
-            closeNav()
+            closeNav();
           }}
           onCancel={() => {
             onClose();
@@ -167,7 +179,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
       </div>
     );
   };
-  
+
   const ClearStorage = (items) => {
     dispatch(clearFavouriteMenu(items));
   };
@@ -196,18 +208,18 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   const groupedNavItems = filteredNavItems.reduce((groups, item) => {
     const heading = item.topic.mainHeading;
     const navLogo = item.topic.mainHeadingLogo;
-  
+
     if (!groups[heading]) {
       groups[heading] = {
         items: [],
-        mainHeadingLogo: navLogo
+        mainHeadingLogo: navLogo,
       };
     }
-  
+
     groups[heading].items.push(item);
     return groups;
   }, {});
-  
+
   const handleFavouriteMenu = (isChecked, name, link, state) => {
     // console.log('is check  ', isChecked, name, link, state);
     dispatch(addFavouriteMenu({ isChecked, name, link, state }));
@@ -228,35 +240,38 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
     // } else {
     //   setThemeVariant('dark');
     // }
-    setThemeVariant('light')  //By Default Light Theme
+    setThemeVariant('light'); //By Default Light Theme
   }, []);
   return (
     <div className={themeVariant}>
-      <div id="Sidenav" className={`sidenav ${usingScreen} ${isOpen ? 'open' : ''}`} style={{paddingBottom:'100px'}}>
+      <div
+        id="Sidenav"
+        className={`sidenav ${usingScreen} ${isOpen ? 'open' : ''}`}
+        style={{ paddingBottom: '100px' }}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
           &times;
         </a>
 
-        <div className='region-container'>
-          <div className='region-title'>
-          <Logo alt={'logo'} />          {GetCurrentDomain()}
-          <img />
+        <div className="region-container">
+          <div className="region-title">
+            <Logo alt={'logo'} /> {GetCurrentDomain()}
+            <img />
           </div>
         </div>
 
         {/* coll-sidenav */}
-        <div className="coll-sidenav" >
-          {Object.entries(groupedNavItems).map(([heading, group],index) => (
+        <div className="coll-sidenav">
+          {Object.entries(groupedNavItems).map(([heading, group], index) => (
             <div className="coll-item" key={heading}>
               <a
                 className="coll-heading collapsed"
                 data-bs-toggle="collapse"
                 //href="#collapseExample"
-                href={`#collapseExample-${heading.trim()+index}`}
+                href={`#collapseExample-${heading.trim() + index}`}
                 role="button"
                 aria-expanded="false"
-                aria-controls={`collapseExample-${heading.trim()+index}`}>
-                <div className="coll-lable" >
+                aria-controls={`collapseExample-${heading.trim() + index}`}>
+                <div className="coll-lable">
                   {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -270,12 +285,15 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                       fill="black"
                     />
                   </svg> */}
-                  {
-                    group.mainHeadingLogo &&
-                    <img alt={group.mainHeadingLogo} src={group.mainHeadingLogo} style={{height:'16px', width:'17px'}} />
-                  }
+                  {group.mainHeadingLogo && (
+                    <img
+                      alt={group.mainHeadingLogo}
+                      src={group.mainHeadingLogo}
+                      style={{ height: '16px', width: '17px' }}
+                    />
+                  )}
                   {/* <img alt={} /> */}
-                  <h5 style={{paddingLeft:'5px'}}>{heading}</h5>
+                  <h5 style={{ paddingLeft: '5px' }}>{heading}</h5>
                 </div>
                 <div className="arrow">
                   <svg
@@ -297,45 +315,46 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                 const id = moreItem.topic.name.toLowerCase().replace(/\s+/g, '-');
                 const [topicNavType, topicNavTopic, topicNavAddress] = moreItem.topic.news
                   ? [
-                    'news',
-                    moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
-                    moreItem.topic.news,
-                  ]
+                      'news',
+                      moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
+                      moreItem.topic.news,
+                    ]
                   : [
-                    'articles',
-                    moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
-                    moreItem.topic.articles,
-                  ];
+                      'articles',
+                      moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
+                      moreItem.topic.articles,
+                    ];
 
                 return (
-                  <div class="collapse" id={`collapseExample-${heading.trim()+index}`}>
+                  <div class="collapse" id={`collapseExample-${heading.trim() + index}`}>
                     <div className="coll-item-inner ">
                       <a
                         className="coll-heading collapsed"
                         data-bs-toggle="collapse"
-                        href={`#collapseinner1-${id+index}`}
+                        href={`#collapseinner1-${id + index}`}
                         role="button"
                         aria-expanded="false"
-                        aria-controls={`collapseinner1-${id+index}`}>
-
-                     <div className="coll-lable">
-                      {moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
-                          <h5>{moreItem.topic.name}</h5>
-                        }
+                        aria-controls={`collapseinner1-${id + index}`}>
+                        <div className="coll-lable">
+                          {moreItem.topic.name.toLowerCase().trim() !== 'notopic' && (
+                            <h5>{moreItem.topic.name}</h5>
+                          )}
                         </div>
-                        <div className='rightside'>
-                        {moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
-                        <>
-                          <div className="action-bar-icon">
-                            {moreItem.subTopics.length > 0 && (
-                              <>
-                                {IsMobile && (
-                                  <span className="my-action-bar">{moreItem.topic.actionBar}</span>
+                        <div className="rightside">
+                          {moreItem.topic.name.toLowerCase().trim() !== 'notopic' && (
+                            <>
+                              <div className="action-bar-icon">
+                                {moreItem.subTopics.length > 0 && (
+                                  <>
+                                    {IsMobile && (
+                                      <span className="my-action-bar">
+                                        {moreItem.topic.actionBar}
+                                      </span>
+                                    )}
+                                  </>
                                 )}
-                              </>
-                            )}
-                          </div>
-{/*               
+                              </div>
+                              {/*               
                           <div className="arrow">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -351,9 +370,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                               />
                             </svg>
                           </div> */}
-                          </>
-              }
-                                        <div className="arrow">
+                            </>
+                          )}
+                          <div className="arrow">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="20"
@@ -370,7 +389,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                           </div>
                         </div>
 
-                       {/* <div className="coll-lable">
+                        {/* <div className="coll-lable">
                           <h5>{moreItem.topic.name}</h5>
                         </div>
                         <div className='rightside'>
@@ -399,18 +418,17 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                             </svg>
                           </div>
                         </div>   */}
-                        
                       </a>
                       {moreItem.subTopics.map((team) => {
                         const [navType, navTopic, navAddress] = team.news
                           ? ['news', team.name.toLowerCase().replace(/\s/g, '_'), team.news]
                           : [
-                            'articles',
-                            team.name.toLowerCase().replace(/\s/g, '_'),
-                            team.articles,
-                          ];
+                              'articles',
+                              team.name.toLowerCase().replace(/\s/g, '_'),
+                              team.articles,
+                            ];
                         return (
-                          <div class="collapse" key={team.name} id={`collapseinner1-${id+index}`}>
+                          <div class="collapse" key={team.name} id={`collapseinner1-${id + index}`}>
                             <div className="option">
                               <div class="form-check">
                                 {IsMobile && (
@@ -447,7 +465,10 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                 {team.newsIcon !== '' && (
                                   <Link
                                     to={`../${navType}/${navTopic}`}
-                                    onClick={closeNav}
+                                    onClick={() => {
+                                      closeNav();
+                                      SetCurrentMenu(team);
+                                    }}
                                     state={{
                                       address: navAddress,
                                       topicKey: team?.Highlights,
@@ -481,7 +502,10 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                       SubttopicHeadline: team.subtopicHeadline, // Assuming team.LogoTeam is the correct logo path
                                       // Assuming team.LogoTeam is the correct logo path
                                     }}
-                                    onClick={closeNav}
+                                    onClick={() => {
+                                      closeNav();
+                                      SetCurrentMenu(team);
+                                    }}
                                     name={team.name}>
                                     <img src={team.videoIcon} className="coll-video" alt="" />
                                   </Link>
@@ -493,7 +517,10 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     team.newsIcon !== '' ? (
                                       <Link
                                         to={`../${navType}/${navTopic}`}
-                                        onClick={closeNav}
+                                        onClick={() => {
+                                          closeNav();
+                                          SetCurrentMenu(team);
+                                        }}
                                         state={{
                                           address: navAddress,
                                           topicKey: team?.highlights,
@@ -525,7 +552,10 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                           SubttopicHeadline: team.subtopicHeadline, // Assuming team.LogoTeam is the correct logo path
                                           // Assuming team.LogoTeam is the correct logo path
                                         }}
-                                        onClick={closeNav}
+                                        onClick={() => {
+                                          closeNav();
+                                          SetCurrentMenu(team);
+                                        }}
                                         name={team.name}>
                                         {team.name}
                                       </Link>
@@ -533,7 +563,10 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                   ) : (
                                     <Link
                                       to={`../${navType}/${navTopic}`}
-                                      onClick={closeNav}
+                                      onClick={() => {
+                                        closeNav();
+                                        SetCurrentMenu(team);
+                                      }}
                                       state={{
                                         address: navAddress,
                                         topicKey: team?.highlights,
