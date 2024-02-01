@@ -127,6 +127,7 @@ const Article = ({ className = '' }) => {
     },
   };
   console.log(linkPropsforhighlight);
+  var imageUrl ="logo";
   useEffect(() => {
     setStatus('pending');
     const fetchArticle = async () => {
@@ -148,6 +149,12 @@ const Article = ({ className = '' }) => {
                 console.log('Error', err);
               });
             setArticelInfo(res);
+            debugger
+            if (res[0] > 0 && res[0]?._id.length === 7) {
+              imageUrl = AFP_news;
+            } else {
+              imageUrl = SPORSpot_News;
+            }
             setStatus('resolved');
           } else {
             setArticelInfo([]); // Set an empty array or handle it as needed
@@ -197,12 +204,8 @@ const Article = ({ className = '' }) => {
 
   // const { articleInfo, tableInfo } = state;
 
-  let imageUrl;
-  if (articleInfo[0] > 0 && articleInfo[0]?._id.length === 7) {
-    imageUrl = AFP_news;
-  } else {
-    imageUrl = SPORSpot_News;
-  }
+ 
+
   const days = () => {
     // const timeDifference = timeQuery(articleInfo[0]._published); // Assuming timeQuery returns the difference in hours
     // const day = Math.floor(timeDifference / 24);
@@ -372,8 +375,8 @@ const Article = ({ className = '' }) => {
                 <div class="main-article">
                   <div class="left-article">
                     <h6>
-                      {days()}
-                      {/* <img src={imageUrl} alt="logo" /> */}
+                      {days()} 00
+                      <img src={imageUrl} alt={imageUrl} />
                     </h6>
                   </div>
                   <div class="right-article d-flex">
