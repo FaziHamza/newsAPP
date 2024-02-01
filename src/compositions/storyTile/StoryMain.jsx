@@ -241,13 +241,15 @@ const StoryMain = ({
               <h1 className="heading-bold">{heading}</h1>
               <p className="abstart-color" dangerouslySetInnerHTML={{ __html: description }} />
             </p>
-            <div className="date">
+            <div className="date d-flex justify-content-between" >
               <p className="abstart-color">
                 {days()}
-                {externaliconsource !== null ? (
+              </p>
+              <p>
+              {externaliconsource !== null ? (
                   <img src={externaliconsource} alt="" />
                 ) : (
-                  <img src={imageUrl} alt="" />
+                  <img src={imageUrl} alt="" style={{height:'45px'}}/>
                 )}
               </p>
             </div>
