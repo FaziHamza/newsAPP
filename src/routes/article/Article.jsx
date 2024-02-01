@@ -95,6 +95,7 @@ const Article = ({ className = '' }) => {
   const [allarticleInfo, setAllArticelInfo] = useState([]);
   const [isShowPodcastIcon, setisshowPodcaseIcon] = useState(null);
   const [isShowVideoIcon, setisShowVideoIcon] = useState(null);
+  const [imageUrl,setimageUrl]=useState('');
   const { state } = useLocation();
   console.log(state);
   const articlevideo = useSelector((state) => state.origin.articlevideo);
@@ -127,7 +128,7 @@ const Article = ({ className = '' }) => {
     },
   };
   console.log(linkPropsforhighlight);
-  var imageUrl ="logo";
+  // var imageUrl ="logo";
   useEffect(() => {
     setStatus('pending');
     const fetchArticle = async () => {
@@ -149,11 +150,11 @@ const Article = ({ className = '' }) => {
                 console.log('Error', err);
               });
             setArticelInfo(res);
-            debugger
-            if (res[0] > 0 && res[0]?._id.length === 7) {
-              imageUrl = AFP_news;
+            if (res[0]?._id.length === 7) {
+              setimageUrl(AFP_news);
             } else {
-              imageUrl = SPORSpot_News;
+              setimageUrl(SPORSpot_News);
+
             }
             setStatus('resolved');
           } else {
