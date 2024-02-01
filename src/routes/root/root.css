@@ -1124,7 +1124,9 @@ header .header-nav {
 /* .light-theme .dropdown-toggle  img {
   filter: invert(1);
 } */
-
+.navbar-right-logo img{
+  height: 35px;
+}
 @media screen and (max-width: 600px) {
   .article-footer {
     flex-direction: column;

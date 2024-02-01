@@ -429,8 +429,8 @@ header>div {
 .sidenav a {
     font-family: sourcesans;
     text-decoration: none;
-    font-size: 16px;
-    color: #818181;
+    font-size: 14px;
+    color: black;
     display: block;
     transition: .3s
 }
@@ -1168,7 +1168,7 @@ header>div {
 
 .coll-sidenav .coll-item .coll-heading .rightside .action-bar-icon {
     background: #fde42f;
-    padding: 2px 5px;
+    padding: 4px 6px;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 100px;
@@ -1178,18 +1178,19 @@ header>div {
 .coll-sidenav .coll-item .coll-heading .rightside .action-bar-icon span {
     color: #000;
     font-family: sourcesans;
-    font-size: 8px;
+    font-size: 10px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     white-space: nowrap;
-    max-width: 50px;
+    max-width: 60px;
     overflow: hidden;
     text-overflow: ellipsis
 }
 
 .coll-sidenav .coll-item .coll-heading .rightside .arrow svg {
-    height: 16px
+    height: 16px;
+    font-weight: bold;
 }
 
 .coll-sidenav .coll-item .coll-heading .coll-lable {
@@ -1238,7 +1239,7 @@ header>div {
 .coll-sidenav .coll-item-inner h5 {
     color: #000;
     font-family: sourcesans;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     line-height: normal;
     white-space: nowrap;

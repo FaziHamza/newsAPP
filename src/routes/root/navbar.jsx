@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Dropdown, Logo } from '../../compositions';
 import { NavLink, Link } from 'react-router-dom';
 import { SideNav } from '../../compositions';
-import { logo, settingicon, sportLogoBlack, tennis } from '../../assets';
+import { SPORSpot_News, logo, settingicon, sportLogoBlack, tennis } from '../../assets';
 import { useMediaContext } from '../../utilities/mediaQuery';
 import { IsMobile, RootUrl } from '../../utilities/config';
 import { useDispatch, useSelector } from 'react-redux';
@@ -251,7 +251,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
           &times;
         </a>
-
+        <div className='navbar-right-logo'>
+        <img src={SPORSpot_News} alt=""  />
+        </div>
         <div className="region-container">
           <div className="region-title">
             <Logo alt={'logo'} /> {GetCurrentDomain()}
