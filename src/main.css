@@ -263,7 +263,9 @@ header>div {
 }
 
 .suggested-card h6 img {
-    height: 22px
+    height: 14px;
+    mix-blend-mode: multiply;
+    margin-right: 3px;
 }
 
 .suggested-card .banner {
@@ -292,6 +294,7 @@ header>div {
 }
 
 .suggested-card .content h6 {
+    padding: 3px 10px !important;
     font-size: 12px;
     margin-bottom: 0px
 }
@@ -1225,6 +1228,12 @@ header>div {
     display: flex;
     align-items: center;
     justify-content: space-between
+}
+.coll-heading .arrow i {
+    font-size: 16px;
+}
+.coll-heading .arrow i:hover {
+  color: black !important;
 }
 
 .coll-sidenav .coll-item-inner .coll-heading .coll-lable {

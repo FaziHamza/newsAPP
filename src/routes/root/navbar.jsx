@@ -118,14 +118,14 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
     setIsOpen(false);
   };
   const SetCurrentMenu = (items) => {
-   const obj = 
-      {
-        isChecked: false,
-        name: `${items.name}`,
-        state: {
-          LogoTeam: `${items.logo}`,
-        },
-      }
+    const obj =
+    {
+      isChecked: false,
+      name: `${items.name}`,
+      state: {
+        LogoTeam: `${items.logo}`,
+      },
+    }
     dispatch(addCurrentMenu(obj))
   };
   const [collapsedIds, setCollapsedIds] = useState({});
@@ -252,7 +252,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
           &times;
         </a>
         <div className='navbar-right-logo'>
-        <img src={SPORSpot_News} alt=""  />
+          <img src={SPORSpot_News} alt="" />
         </div>
         <div className="region-container">
           <div className="region-title">
@@ -298,34 +298,22 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                   <h5 style={{ paddingLeft: '5px' }}>{heading}</h5>
                 </div>
                 <div className="arrow">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none">
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M2.02322 5.70974C2.26316 5.4698 2.65218 5.4698 2.89212 5.70974L9.83055 12.6482L16.769 5.70974C17.0089 5.4698 17.3979 5.4698 17.6379 5.70974C17.8778 5.94968 17.8778 6.3387 17.6379 6.57864L10.265 13.9515C10.0251 14.1915 9.63604 14.1915 9.3961 13.9515L2.02322 6.57864C1.78328 6.3387 1.78328 5.94968 2.02322 5.70974Z"
-                      fill="black"
-                    />
-                  </svg>
+                  <i class="fa-solid fa-chevron-down"></i>
                 </div>
               </a>
               {group.items.map((moreItem) => {
                 const id = moreItem.topic.name.toLowerCase().replace(/\s+/g, '-');
                 const [topicNavType, topicNavTopic, topicNavAddress] = moreItem.topic.news
                   ? [
-                      'news',
-                      moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
-                      moreItem.topic.news,
-                    ]
+                    'news',
+                    moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
+                    moreItem.topic.news,
+                  ]
                   : [
-                      'articles',
-                      moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
-                      moreItem.topic.articles,
-                    ];
+                    'articles',
+                    moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
+                    moreItem.topic.articles,
+                  ];
 
                 return (
                   <div class="collapse" id={`collapseExample-${heading.trim() + index}`}>
@@ -375,19 +363,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                             </>
                           )}
                           <div className="arrow">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="20"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              fill="none">
-                              <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M2.02322 5.70974C2.26316 5.4698 2.65218 5.4698 2.89212 5.70974L9.83055 12.6482L16.769 5.70974C17.0089 5.4698 17.3979 5.4698 17.6379 5.70974C17.8778 5.94968 17.8778 6.3387 17.6379 6.57864L10.265 13.9515C10.0251 14.1915 9.63604 14.1915 9.3961 13.9515L2.02322 6.57864C1.78328 6.3387 1.78328 5.94968 2.02322 5.70974Z"
-                                fill="black"
-                              />
-                            </svg>
+                            <i class="fa-solid fa-chevron-down"></i>
                           </div>
                         </div>
 
@@ -425,10 +401,10 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                         const [navType, navTopic, navAddress] = team.news
                           ? ['news', team.name.toLowerCase().replace(/\s/g, '_'), team.news]
                           : [
-                              'articles',
-                              team.name.toLowerCase().replace(/\s/g, '_'),
-                              team.articles,
-                            ];
+                            'articles',
+                            team.name.toLowerCase().replace(/\s/g, '_'),
+                            team.articles,
+                          ];
                         return (
                           <div class="collapse" key={team.name} id={`collapseinner1-${id + index}`}>
                             <div className="option">

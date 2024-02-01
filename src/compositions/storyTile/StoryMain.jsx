@@ -249,7 +249,7 @@ const StoryMain = ({
               {externaliconsource !== null ? (
                   <img src={externaliconsource} alt="" />
                 ) : (
-                  <img src={imageUrl} alt="" style={{height:'45px'}}/>
+                  <img src={imageUrl} alt="" style={{height:'28px'}}/>
                 )}
               </p>
             </div>
