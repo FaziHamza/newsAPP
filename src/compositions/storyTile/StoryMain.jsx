@@ -146,7 +146,7 @@ const StoryMain = ({
   alt,
   time,
   isDesktopScreen,
-  externaliconsource,
+  externaliconsource,ispublish
 }) => {
   const location = useLocation();
   const { state } = location;
@@ -237,13 +237,14 @@ const StoryMain = ({
             {/* <div className='tagcontainer' >
               <p className="tag">Nyheter</p>
             </div> */}
+
             <p>
               <h1 className="heading-bold">{heading}</h1>
               <p className="abstart-color" dangerouslySetInnerHTML={{ __html: description }} />
             </p>
             <div className="date d-flex justify-content-between" >
               <p className="abstart-color">
-                {days()}
+                {ispublish ? <span className='main-live'><i> LIVE</i></span> : days()}
               </p>
               <p>
               {externaliconsource !== null ? (

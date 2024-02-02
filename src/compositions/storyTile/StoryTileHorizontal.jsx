@@ -10,6 +10,7 @@ const StoryTileHorizonal = ({
   time,
   isDesktopScreen,
   externaliconsource,
+  ispublish
 }) => {
   const location = useLocation();
   const { state } = location;
@@ -82,7 +83,7 @@ const StoryTileHorizonal = ({
             ) : (
               <img src={imageUrl} alt="" />
             )}
-            {days()}
+                {ispublish ? <span className='tile-live'><i> LIVE</i></span> : days()}
           </h6>
         </div>
       </div>

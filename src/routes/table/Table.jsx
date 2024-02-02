@@ -239,6 +239,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                               externaliconsource={
                                 mainNewsList[0]?._isExternal ? mainNewsList[0]?._IconSource : null
                               }
+                              ispublish={mainNewsList[0]?._IsPublished}
                             />
                           </Link>
                         </main>
@@ -285,6 +286,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   externaliconsource={
                                     tileItem?._isExternal ? tileItem._IconSource : null
                                   }
+                                  ispublish={tileItem?._IsPublished}
                                 />
                               </Link>
                             </>
@@ -339,6 +341,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                     externaliconsource={
                                       tileItem?._isExternal ? tileItem._IconSource : null
                                     }
+                                    ispublish={tileItem?._IsPublished}
                                   />
                                 </Link>
                               </>
@@ -401,6 +404,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                     externaliconsource={
                                       tileItem?._isExternal ? tileItem?._IconSource : null
                                     }
+                                    ispublish={tileItem?._IsPublished}
                                   />
                                 </Link>
                               </>
@@ -453,6 +457,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                                 ? tableInfo[index]._IconSource
                                                 : null
                                             }
+                                            ispublish={tableInfo[index]?._IsPublished}
                                           />
                                         </>
                                       </Link>
@@ -497,6 +502,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                                 ? tableInfo[index + 1]._IconSource
                                                 : null
                                             }
+                                            ispublish={tableInfo[index+1]?._IsPublished}
                                           />
                                         </>
                                       </Link>
@@ -540,6 +546,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                               externaliconsource={
                                                 tileItem?._isExternal ? tileItem._IconSource : null
                                               }
+                                              ispublish={tileItem?._IsPublished}
                                             />
                                           </>
                                         </Link>
@@ -585,6 +592,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                       externaliconsource={
                                         tileItem?._isExternal ? tileItem._IconSource : null
                                       }
+                                      ispublish={tileItem?._IsPublished}
                                     />
                                   </>
                                 </Link>

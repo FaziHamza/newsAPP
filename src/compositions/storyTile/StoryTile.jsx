@@ -1,7 +1,7 @@
 import { timeQuery } from '../../utilities/timeQuery';
 import { json, useLocation } from 'react-router-dom';
 import { sportspotsverige, AFP_news, SPORSpot_News } from '../../assets';
-const StoryTile = ({ idforlogo, description, className = '', src, alt, time, isDesktopScreen,externaliconsource }) => {
+const StoryTile = ({ idforlogo, description, className = '', src, alt, time, isDesktopScreen,externaliconsource ,ispublish}) => {
   const location = useLocation();
   const { state } = location;
   let imageUrl;
@@ -67,7 +67,7 @@ const StoryTile = ({ idforlogo, description, className = '', src, alt, time, isD
             ) : (
               <img src={imageUrl} alt="" />
             )}
-            {days()}
+                {ispublish ? <span className='tile-live'><i> LIVE</i></span> : days()}
           </h6>
         </div>
       </div>

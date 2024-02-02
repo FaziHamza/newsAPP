@@ -968,7 +968,16 @@ ul {
   font-weight: bold;
   font-size: 19px;
 }
-
+.main-live{
+    color: red;
+    font-size: 20px;
+    font-weight: 700;
+} 
+.tile-live{
+  color: red;
+  font-size: 10px;
+  font-weight: 700;
+}
 .mid-logo .c-dropdown {
   position: relative;
   top: 30px;
@@ -1133,6 +1142,7 @@ header .header-nav {
   height: 35px;
   padding: 0 0 0 19px;
 }
+
 @media screen and (max-width: 600px) {
   .article-footer {
     flex-direction: column;
