@@ -306,14 +306,16 @@ article {
 }
 
 .story-tile img,
-.article img {
+.article #articalImageMobileView {
   max-height: 350px;
   object-fit: cover;
   width: 100%;
   height: auto;
   border-radius: 8px;
 }
-
+.left-article img {
+  margin: 0px 0 0 7px !important;
+}
 .story-tile p {
   margin: 0;
   padding: 2rem 0;
