@@ -376,7 +376,7 @@ const Article = ({ className = '' }) => {
                 <div class="main-article">
                   <div class="left-article">
                     <h6>
-                      {days()} 
+                      {days()}
                       <img src={imageUrl} alt={imageUrl} />
                     </h6>
                   </div>

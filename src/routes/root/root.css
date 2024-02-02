@@ -878,8 +878,10 @@ ul {
   padding: 4px;
   border-radius: 5px;
   position: absolute;
-  top: -10px;
+  /* top: -10px; */
   right: 100px;
+  margin-top: -8px;
+
 }
 
 .podcast-video-highlight {
@@ -895,8 +897,9 @@ ul {
   padding: 4px;
   border-radius: 5px;
   position: absolute;
-  top: -10px;
+  /* top: -10px; */
   right: 10px;
+  margin-top: -8px;
 }
 
 .podcast-video span {
