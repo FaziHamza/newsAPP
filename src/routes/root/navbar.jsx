@@ -28,7 +28,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   const selectedMenu = useSelector((state) => state?.origin?.apiOrigin);
 
   const jsonArray = JSON.parse(regionjson);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const usingScreen = useMediaContext();
   const isDesktop = usingScreen === 'desktop' ? true : false;
   const filteredNavItems = navList;
@@ -104,8 +104,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
     };
     if (!checkdreser && !checkhoping && isfirst) {
       isfirst = false;
-      handleFavouriteMenu(true, 'Dressyr ', '../news/dressyr_', statedresser);
-      handleFavouriteMenu(true, 'Häst Hoppning ', '../news/häst_hoppning_', statehastHoping);
+      //handleFavouriteMenu(true, 'Dressyr ', '../news/dressyr_', statedresser);
+      //handleFavouriteMenu(true, 'Häst Hoppning ', '../news/häst_hoppning_', statehastHoping);
     }
 
     console.log('Fav', favouriteMenu);
@@ -260,7 +260,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
             <img />
           </div>
         </div>
-
+        <div>
+          <p className='navbar-text'>Välj senaste nytt, för det du önskar nyheter om, från nedanstående meny:</p>
+        </div>
         {/* coll-sidenav */}
         <div className="coll-sidenav">
           {Object.entries(groupedNavItems).map(([heading, group], index) => (
@@ -578,7 +580,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
             </div>
           ))}
         </div>
-
+        <div className='navbar-text-bottom'>
+          <p className='navbar-text'>Här sparas dina personliga rubriker.</p>
+        </div>
         {/* <div class="separator"></div> */}
         {/* coll-sidenav */}
         {/* <div className="coll-sidenav">
