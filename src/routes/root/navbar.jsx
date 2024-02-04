@@ -28,7 +28,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   const selectedMenu = useSelector((state) => state?.origin?.apiOrigin);
 
   const jsonArray = JSON.parse(regionjson);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const usingScreen = useMediaContext();
   const isDesktop = usingScreen === 'desktop' ? true : false;
   const filteredNavItems = navList;
@@ -107,7 +107,12 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
       //handleFavouriteMenu(true, 'Dressyr ', '../news/dressyr_', statedresser);
       //handleFavouriteMenu(true, 'Häst Hoppning ', '../news/häst_hoppning_', statehastHoping);
     }
-
+    debugger
+    if(window.localStorage.getItem("FirstOpen")===undefined || window.localStorage.getItem("FirstOpen")===null   )
+    {
+      window.localStorage.setItem("FirstOpen",true)
+      setIsOpen(true)
+    }
     console.log('Fav', favouriteMenu);
   }, []);
   const openNav = () => {
@@ -116,6 +121,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
 
   const closeNav = () => {
     setIsOpen(false);
+    window.localStorage.setItem("FirstOpen",false)
   };
   const SetCurrentMenu = (items) => {
     const obj =
@@ -242,6 +248,14 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
     // }
     setThemeVariant('light'); //By Default Light Theme
   }, []);
+  // const FirsttimeOpen=window.localStorage.getItem("FirstOpen")
+  // let First;
+  // if(FirsttimeOpen){
+  //   First=true;
+  //   setIsOpen(true)
+  // }else{
+  //   First=''
+  // }
   return (
     <div className={themeVariant}>
       <div

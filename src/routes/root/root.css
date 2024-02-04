@@ -990,8 +990,8 @@ ul {
     margin-left: 10px;
 }
 .navbar-text-bottom{
-  position: absolute;
-  bottom: 80px;
+  position: relative;
+  top: 10px;
 }
 .mid-logo .c-dropdown .flag-image img {
   height: 30px;
