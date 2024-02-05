@@ -990,7 +990,7 @@ ul {
     margin-left: 10px;
 }
 .navbar-text-bottom{
-  position: relative;
+  /* position: relative; */
   top: 10px;
 }
 .mid-logo .c-dropdown .flag-image img {
