@@ -229,6 +229,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   const handleFavouriteMenu = (isChecked, name, link, state) => {
     // console.log('is check  ', isChecked, name, link, state);
     dispatch(addFavouriteMenu({ isChecked, name, link, state }));
+    closeNav();
   };
   const handleOrigin = (e, id) => {
     e.preventDefault();
@@ -426,12 +427,34 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                             <div className="option">
                               <div class="form-check">
                                 {IsMobile && (
+                                  <>
+                                  <Link
+                                  state={{
+                                    address: navAddress,
+                                    topicKey: team?.Highlights,
+                                    topictype: team?.highlightType,
+                                    IsSubtopicVideo: team?.isSubtopicVideo,
+                                    topicName: team.name,
+                                    TopicId: team.topicID,
+                                    navType,
+                                    navTopic,
+                                    moreItemName: moreItem.topic.name,
+                                    SubTopicId: team.subTopicID,
+                                    LogoPath: moreItem.topic.logo,
+                                    LogoTeam: team.logo,
+                                    IsSql: !team.news,
+                                    SubttopicHeadline: team.subtopicHeadline,
+                                  }}
+                                  >
                                   <input
                                     class="form-check-input"
                                     type="checkbox"
                                     checked={favouriteMenu?.some(
                                       (m) => m?.state.SubTopicId == team?.subTopicID
                                     )}
+                                    state={{
+                                      topicName: team.name,
+                                    }}
                                     onChange={(e) =>
                                       handleFavouriteMenu(
                                         e.target.checked,
@@ -455,6 +478,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                         }
                                       )
                                     }></input>
+                                  </Link>
+
+                                    </>
                                 )}
                                 {team.newsIcon !== '' && (
                                   <Link
