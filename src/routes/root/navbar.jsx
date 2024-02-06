@@ -429,6 +429,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                 {IsMobile && (
                                   <>
                                   <Link
+                                  to={`../${navType}/${navTopic}`}
                                   state={{
                                     address: navAddress,
                                     topicKey: team?.Highlights,
