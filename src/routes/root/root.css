@@ -988,6 +988,8 @@ ul {
     text-align: justify;
     padding: 10px;
     margin-left: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 0px;
 }
 .navbar-text-bottom{
   /* position: relative; */
@@ -1024,7 +1026,7 @@ header .header-nav {
 }
 
 .region-container {
-  padding: 20px 15px;
+  padding: 10px 15px;
 }
 
 .region-title {

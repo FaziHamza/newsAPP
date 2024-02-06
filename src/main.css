@@ -401,7 +401,7 @@ header>div {
     border: 1px solid #d4c6c6;
     overflow-x: hidden;
     transition: .5s;
-    padding-top: 30px;
+    padding-top: 15px;
     scrollbar-width: thin;
     scrollbar-color: #000;
     scrollbar-track-color: #fff
@@ -444,7 +444,7 @@ header>div {
 
 .sidenav .closebtn {
     position: absolute;
-    top: 8px;
+    top: 12px;
     left: 20px;
     font-size: 36px;
     display: flex;

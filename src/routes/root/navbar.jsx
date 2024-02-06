@@ -107,7 +107,6 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
       //handleFavouriteMenu(true, 'Dressyr ', '../news/dressyr_', statedresser);
       //handleFavouriteMenu(true, 'Häst Hoppning ', '../news/häst_hoppning_', statehastHoping);
     }
-    debugger
     if(window.localStorage.getItem("FirstOpen")===undefined || window.localStorage.getItem("FirstOpen")===null   )
     {
       window.localStorage.setItem("FirstOpen",true)
@@ -276,7 +275,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
           </div>
         </div>
         <div>
-          <p className='navbar-text'>Välj senaste nytt, för det du önskar nyheter om, från nedanstående meny:</p>
+          <p className='navbar-text'>Välj dina rubriker från nedanstående menu. Kryssa i rubriken som du vill spara den tillsvidare i annat fall klicka på rubriken för att se nyheterna:</p>
         </div>
         {/* coll-sidenav */}
         <div className="coll-sidenav">
@@ -621,9 +620,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
             </div>
           ))}
         </div>
-        <div className='navbar-text-bottom'>
+        {/* <div className='navbar-text-bottom'>
           <p className='navbar-text'>Här sparas dina personliga rubriker.</p>
-        </div>
+        </div> */}
         {/* <div class="separator"></div> */}
         {/* coll-sidenav */}
         {/* <div className="coll-sidenav">

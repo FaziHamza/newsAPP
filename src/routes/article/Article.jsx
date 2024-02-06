@@ -130,6 +130,7 @@ const Article = ({ className = '' }) => {
   console.log(linkPropsforhighlight);
   // var imageUrl ="logo";
   useEffect(() => {
+    document.body.className = 'light-theme';
     setStatus('pending');
     const fetchArticle = async () => {
       const articleUrl = `${addresses.baseUrl}/api/news/getNewsByTeamById?newsId=${id}&lang=sv`;
