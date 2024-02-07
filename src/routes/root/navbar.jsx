@@ -275,7 +275,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
           </div>
         </div>
         <div>
-          <p className='navbar-text'>Välj dina rubriker från nedanstående menu. Kryssa i rubriken som du vill spara den tillsvidare i annat fall klicka på rubriken för att se nyheterna:</p>
+        <p className='navbar-text'>Välj senaste nytt, för det du önskar nyheter om, från nedanstående meny:</p>
         </div>
         {/* coll-sidenav */}
         <div className="coll-sidenav">

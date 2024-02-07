@@ -681,6 +681,7 @@ const Root = () => {
                             to={m.link}
                             name={m?.name}
                             onClick={() => {ScrollToActiveTab(m,i)}}>
+                            {m?.name === teamName ?ScrollToActiveTab(m,i):null}
                             {/* {decodedPathname} */}
                             {/* Display the LogoTeam image if it exists */}
                             <div className="action-bar">
