@@ -107,10 +107,12 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
       //handleFavouriteMenu(true, 'Dressyr ', '../news/dressyr_', statedresser);
       //handleFavouriteMenu(true, 'Häst Hoppning ', '../news/häst_hoppning_', statehastHoping);
     }
-    if(window.localStorage.getItem("FirstOpen")===undefined || window.localStorage.getItem("FirstOpen")===null   )
-    {
-      window.localStorage.setItem("FirstOpen",true)
-      setIsOpen(true)
+    if (
+      window.localStorage.getItem('FirstOpen') === undefined ||
+      window.localStorage.getItem('FirstOpen') === null
+    ) {
+      window.localStorage.setItem('FirstOpen', true);
+      setIsOpen(true);
     }
     console.log('Fav', favouriteMenu);
   }, []);
@@ -120,18 +122,17 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
 
   const closeNav = () => {
     setIsOpen(false);
-    window.localStorage.setItem("FirstOpen",false)
+    window.localStorage.setItem('FirstOpen', false);
   };
   const SetCurrentMenu = (items) => {
-    const obj =
-    {
+    const obj = {
       isChecked: false,
       name: `${items.name}`,
       state: {
         LogoTeam: `${items.logo}`,
       },
-    }
-    dispatch(addCurrentMenu(obj))
+    };
+    dispatch(addCurrentMenu(obj));
   };
   const [collapsedIds, setCollapsedIds] = useState({});
   const toggleTheme = () => {
@@ -265,7 +266,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
           &times;
         </a>
-        <div className='navbar-right-logo'>
+        <div className="navbar-right-logo">
           <img src={SPORSpot_News} alt="" />
         </div>
         <div className="region-container">
@@ -275,7 +276,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
           </div>
         </div>
         <div>
-        <p className='navbar-text'>Välj senaste nytt, för det du önskar nyheter om, från nedanstående meny:</p>
+          <p className="navbar-text">
+            Välj senaste nytt, för det du önskar nyheter om, från nedanstående meny:
+          </p>
         </div>
         {/* coll-sidenav */}
         <div className="coll-sidenav">
@@ -321,15 +324,15 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                 const id = moreItem.topic.name.toLowerCase().replace(/\s+/g, '-');
                 const [topicNavType, topicNavTopic, topicNavAddress] = moreItem.topic.news
                   ? [
-                    'news',
-                    moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
-                    moreItem.topic.news,
-                  ]
+                      'news',
+                      moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
+                      moreItem.topic.news,
+                    ]
                   : [
-                    'articles',
-                    moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
-                    moreItem.topic.articles,
-                  ];
+                      'articles',
+                      moreItem.topic.name.toLowerCase().replace(/\s/g, '_'),
+                      moreItem.topic.articles,
+                    ];
 
                 return (
                   <div class="collapse" id={`collapseExample-${heading.trim() + index}`}>
@@ -417,70 +420,69 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                         const [navType, navTopic, navAddress] = team.news
                           ? ['news', team.name.toLowerCase().replace(/\s/g, '_'), team.news]
                           : [
-                            'articles',
-                            team.name.toLowerCase().replace(/\s/g, '_'),
-                            team.articles,
-                          ];
+                              'articles',
+                              team.name.toLowerCase().replace(/\s/g, '_'),
+                              team.articles,
+                            ];
                         return (
                           <div class="collapse" key={team.name} id={`collapseinner1-${id + index}`}>
                             <div className="option">
                               <div class="form-check">
                                 {IsMobile && (
                                   <>
-                                  <Link
-                                  to={`../${navType}/${navTopic}`}
-                                  state={{
-                                    address: navAddress,
-                                    topicKey: team?.Highlights,
-                                    topictype: team?.highlightType,
-                                    IsSubtopicVideo: team?.isSubtopicVideo,
-                                    topicName: team.name,
-                                    TopicId: team.topicID,
-                                    navType,
-                                    navTopic,
-                                    moreItemName: moreItem.topic.name,
-                                    SubTopicId: team.subTopicID,
-                                    LogoPath: moreItem.topic.logo,
-                                    LogoTeam: team.logo,
-                                    IsSql: !team.news,
-                                    SubttopicHeadline: team.subtopicHeadline,
-                                  }}
-                                  >
-                                  <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    checked={favouriteMenu?.some(
-                                      (m) => m?.state.SubTopicId == team?.subTopicID
-                                    )}
-                                    state={{
-                                      topicName: team.name,
-                                    }}
-                                    onChange={(e) =>
-                                      handleFavouriteMenu(
-                                        e.target.checked,
-                                        team.name,
-                                        `../${navType}/${navTopic}`,
-                                        {
-                                          address: navAddress,
-                                          topicKey: team?.highlights,
-                                          topictype: team?.highlightType,
-                                          IsSubtopicVideo: team?.isSubtopicVideo,
+                                    <Link
+                                      to={`../${navType}/${navTopic}`}
+                                      state={{
+                                        address: navAddress,
+                                        topicKey: team?.Highlights,
+                                        topictype: team?.highlightType,
+                                        IsSubtopicVideo: team?.isSubtopicVideo,
+                                        topicName: team.name,
+                                        TopicId: team.topicID,
+                                        navType,
+                                        navTopic,
+                                        moreItemName: moreItem.topic.name,
+                                        SubTopicId: team.subTopicID,
+                                        LogoPath: moreItem.topic.logo,
+                                        LogoTeam: team.logo,
+                                        IsSql: !team.news,
+                                        SubttopicHeadline: team.subtopicHeadline,
+                                      }}>
+                                      <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        checked={favouriteMenu?.some(
+                                          (m) => m?.state.SubTopicId == team?.subTopicID
+                                        )}
+                                        state={{
                                           topicName: team.name,
-                                          TopicId: team.topicID,
-                                          navType,
-                                          navTopic,
-                                          moreItemName: moreItem.topic.name,
-                                          SubTopicId: team.subTopicID,
-                                          LogoPath: moreItem.topic.logo,
-                                          LogoTeam: team.logo,
-                                          IsSql: !team.news,
-                                          SubttopicHeadline: team.subtopicHeadline,
-                                        }
-                                      )
-                                    }></input>
-                                  </Link>
-
-                                    </>
+                                        }}
+                                        onChange={(e) =>
+                                          handleFavouriteMenu(
+                                            e.target.checked,
+                                            team.name,
+                                            `../${navType}/${navTopic}`,
+                                            {
+                                              address: navAddress,
+                                              topicKey: team?.highlights,
+                                              topictype: team?.highlightType,
+                                              IsSubtopicVideo: team?.isSubtopicVideo,
+                                              topicName: team.name,
+                                              TopicId: team.topicID,
+                                              navType,
+                                              navTopic,
+                                              moreItemName: moreItem.topic.name,
+                                              SubTopicId: team.subTopicID,
+                                              LogoPath: moreItem.topic.logo,
+                                              LogoTeam: team.logo,
+                                              IsSql: !team.news,
+                                              SubttopicHeadline: team.subtopicHeadline,
+                                              isSubTopicChecked:team.isSubTopicChecked 
+                                            }
+                                          )
+                                        }></input>
+                                    </Link>
+                                  </>
                                 )}
                                 {team.newsIcon !== '' && (
                                   <Link
@@ -532,81 +534,85 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                 )}
                                 <label class="form-check-label d-flex">
                                   <img src={`${team.logo}`} alt={`${team.logo}`} height={'20px'} />
-                                  {/* Check if team.VideoIcon is not null and team.NewsIcon is null */}
-                                  {team.videoIcon !== '' ? (
-                                    team.newsIcon !== '' ? (
-                                      <Link
-                                        to={`../${navType}/${navTopic}`}
-                                        onClick={() => {
-                                          closeNav();
-                                          SetCurrentMenu(team);
-                                        }}
-                                        state={{
-                                          address: navAddress,
-                                          topicKey: team?.highlights,
-                                          topictype: team?.highlightType,
-                                          IsSubtopicVideo: team?.isSubtopicVideo,
-                                          topicName: team.name,
-                                          TopicId: team.topicID,
-                                          navType,
-                                          navTopic,
-                                          moreItemName: moreItem.topic.name,
-                                          SubTopicId: team.subTopicID,
-                                          LogoPath: moreItem.topic.menuFlag,
-                                          LogoTeam: team.logo,
-                                          IsSql: !team.news,
-                                          SubttopicHeadline: team.subtopicHeadline,
-                                        }}
-                                        name={team.name}>
-                                        {team.name}
-                                      </Link>
-                                    ) : (
-                                      <Link
-                                        to="/highlights"
-                                        state={{
-                                          topicKey: team?.highlights,
-                                          topictype: team?.highlightType,
-                                          IsSubtopicVideo: team?.isSubtopicVideo,
-                                          topicName: team?.name,
-                                          LogoTeam: moreItem.topic.logo,
-                                          SubttopicHeadline: team.subtopicHeadline, // Assuming team.LogoTeam is the correct logo path
-                                          // Assuming team.LogoTeam is the correct logo path
-                                        }}
-                                        onClick={() => {
-                                          closeNav();
-                                          SetCurrentMenu(team);
-                                        }}
-                                        name={team.name}>
-                                        {team.name}
-                                      </Link>
-                                    )
-                                  ) : (
-                                    <Link
-                                      to={`../${navType}/${navTopic}`}
-                                      onClick={() => {
-                                        closeNav();
-                                        SetCurrentMenu(team);
-                                      }}
-                                      state={{
-                                        address: navAddress,
-                                        topicKey: team?.highlights,
-                                        topictype: team?.highlightType,
-                                        IsSubtopicVideo: team?.isSubtopicVideo,
-                                        topicName: team.name,
-                                        TopicId: team.topicID,
-                                        navType,
-                                        navTopic,
-                                        moreItemName: moreItem.topic.name,
-                                        SubTopicId: team.subTopicID,
-                                        LogoPath: moreItem.topic.logo,
-                                        LogoTeam: team.logo,
-                                        IsSql: !team.news,
-                                        SubttopicHeadline: team.subtopicHeadline,
-                                      }}
-                                      name={team.name}>
-                                      {team.name}
-                                    </Link>
-                                  )}{' '}
+                                  {!team.isSubTopicChecked && (
+                                    <>
+                                      {/* Check if team.VideoIcon is not null and team.NewsIcon is null */}
+                                      {team.videoIcon !== '' ? (
+                                        team.newsIcon !== '' ? (
+                                          <Link
+                                            to={`../${navType}/${navTopic}`}
+                                            onClick={() => {
+                                              closeNav();
+                                              SetCurrentMenu(team);
+                                            }}
+                                            state={{
+                                              address: navAddress,
+                                              topicKey: team?.highlights,
+                                              topictype: team?.highlightType,
+                                              IsSubtopicVideo: team?.isSubtopicVideo,
+                                              topicName: team.name,
+                                              TopicId: team.topicID,
+                                              navType,
+                                              navTopic,
+                                              moreItemName: moreItem.topic.name,
+                                              SubTopicId: team.subTopicID,
+                                              LogoPath: moreItem.topic.menuFlag,
+                                              LogoTeam: team.logo,
+                                              IsSql: !team.news,
+                                              SubttopicHeadline: team.subtopicHeadline,
+                                            }}
+                                            name={team.name}>
+                                            {team.name}
+                                          </Link>
+                                        ) : (
+                                          <Link
+                                            to="/highlights"
+                                            state={{
+                                              topicKey: team?.highlights,
+                                              topictype: team?.highlightType,
+                                              IsSubtopicVideo: team?.isSubtopicVideo,
+                                              topicName: team?.name,
+                                              LogoTeam: moreItem.topic.logo,
+                                              SubttopicHeadline: team.subtopicHeadline, // Assuming team.LogoTeam is the correct logo path
+                                              // Assuming team.LogoTeam is the correct logo path
+                                            }}
+                                            onClick={() => {
+                                              closeNav();
+                                              SetCurrentMenu(team);
+                                            }}
+                                            name={team.name}>
+                                            {team.name}
+                                          </Link>
+                                        )
+                                      ) : (
+                                        <Link
+                                          to={`../${navType}/${navTopic}`}
+                                          onClick={() => {
+                                            closeNav();
+                                            SetCurrentMenu(team);
+                                          }}
+                                          state={{
+                                            address: navAddress,
+                                            topicKey: team?.highlights,
+                                            topictype: team?.highlightType,
+                                            IsSubtopicVideo: team?.isSubtopicVideo,
+                                            topicName: team.name,
+                                            TopicId: team.topicID,
+                                            navType,
+                                            navTopic,
+                                            moreItemName: moreItem.topic.name,
+                                            SubTopicId: team.subTopicID,
+                                            LogoPath: moreItem.topic.logo,
+                                            LogoTeam: team.logo,
+                                            IsSql: !team.news,
+                                            SubttopicHeadline: team.subtopicHeadline,
+                                          }}
+                                          name={team.name}>
+                                          {team.name}
+                                        </Link>
+                                      )}{' '}
+                                    </>
+                                  )}
                                 </label>
                               </div>
                             </div>

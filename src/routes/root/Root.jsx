@@ -701,9 +701,11 @@ const Root = () => {
                                     />
                                   )}
                             </div>
-                            {m?.name?.toLowerCase() == 'top news'
+                                
+                            {m?.state?.isSubTopicChecked ? <span style={{visibility:"hidden"}}>SPACE</span> : <span>{m?.name}</span>}
+                            {/* {!m?.isSubTopicChecked && m?.name?.toLowerCase() == 'top news'
                               ? `${m.name} ${m?.state?.moreItemName}`
-                              : m?.name}
+                              : m?.name} */}
                           </div>
                         );
                       })}
