@@ -26,6 +26,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   const regionjson = useSelector((state) => state.origin.apiOrigin.regionJson);
   const allregion = useSelector((state) => state?.origin?.allregion);
   const selectedMenu = useSelector((state) => state?.origin?.apiOrigin);
+  const [isChecked, setIsChecked] = useState(false); // State to track the checked state of the checkbox
 
   const jsonArray = JSON.parse(regionjson);
   const [isOpen, setIsOpen] = useState(false);
@@ -227,6 +228,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   }, {});
 
   const handleFavouriteMenu = (isChecked, name, link, state) => {
+    setIsChecked(isChecked);
     // console.log('is check  ', isChecked, name, link, state);
     dispatch(addFavouriteMenu({ isChecked, name, link, state }));
     closeNav();
