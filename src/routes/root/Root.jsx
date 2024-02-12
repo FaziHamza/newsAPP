@@ -435,7 +435,7 @@ const Root = () => {
   const currentmenuparse = JSON.parse(currentmenu);
   if (
     state?.topicName === undefined &&
-    (Array.isArray(currentmenuparse)) &&
+    (Array.isArray(currentmenuparse)) && currentmenuparse !=null && currentmenuparse.length !==0 &&
     CurrentMenuItemSelected == undefined
   ) {
     const parse = JSON.parse(currentmenu);
@@ -697,20 +697,22 @@ const Root = () => {
                     <>
                       <div style={{ marginRight: '40%' }}></div>
                       {filteredFavouriteMenu?.map((m, i) => {
-                        // const condition =
-                        // (teamName === undefined && m?.name === CurrentMenuItemSelected) || m?.name === teamName;
-                        let condition;
-                        if (teamName == undefined && m?.name === CurrentMenuItemSelected) {
-                          console.log('Condition value 1:', teamName,m?.name ,CurrentMenuItemSelected);
-                          condition = true;
-                        } else if (m?.name == teamName) {
-                          console.log('Condition value 2:', teamName,m?.name);
-                          condition = true;
-                        } else {
-                          console.log('Condition value 3:', teamName,m?.name ,CurrentMenuItemSelected);
-                          condition = false;
-                        }
-                        console.log('Condition value:', condition);
+                        console.log("FAV",filteredFavouriteMenu[0].name)
+                        // filteredFavouriteMenu[0].name
+                        const condition =
+                        (teamName === undefined && m?.name ===  filteredFavouriteMenu[0].name) || m?.name === teamName;
+                        // let condition;
+                        // if (teamName == undefined && m?.name === CurrentMenuItemSelected) {
+                        //   console.log('Condition value 1:', teamName,m?.name ,CurrentMenuItemSelected);
+                        //   condition = true;
+                        // } else if (m?.name == teamName) {
+                        //   console.log('Condition value 2:', teamName,m?.name);
+                        //   condition = true;
+                        // } else {
+                        //   console.log('Condition value 3:', teamName,m?.name ,CurrentMenuItemSelected);
+                        //   condition = false;
+                        // }
+                        // console.log('Condition value:', condition);
                         return (
                           <div
                             key={i}
@@ -730,14 +732,14 @@ const Root = () => {
                               ScrollToActiveTab(m, i);
                             }}>
                             {/* {m?.name === CurrentMenuItemSelected ?ScrollToActiveTab(m,i):null} */}
-                            {/* {m?.name === teamName ? ScrollToActiveTab(m, i) : null}
-                            {teamName == undefined
+                            {/* {m?.name === teamName ? ScrollToActiveTab(m, i) : null} */}
+                            {/* {teamName == undefined
                               ? m?.name === CurrentMenuItemSelected
                                 ? ScrollToActiveTab(m, i)
                                 : null
                               : null} */}
                             {m?.name === teamName ||
-                            (teamName === undefined && m?.name === CurrentMenuItemSelected)
+                            (teamName === undefined && m?.name === filteredFavouriteMenu[0].name)
                               ? ScrollToActiveTab(m, i)
                               : null}
 
