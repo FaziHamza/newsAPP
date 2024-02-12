@@ -48,7 +48,7 @@ const Root = () => {
   const isMatchingRoute4 = useMatch(targetRoutePattern4);
   const [colorState, setColorState] = useState({});
   const [cacheState, setCacheState] = useState({});
-
+  const[ CurrentMenuItemSelected,SetCurrentMenuItemSelected]=useState();
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const allregion = useSelector((state) => state?.origin?.allregion);
   const selectedMenu = useSelector((state) => state?.origin?.apiOrigin);
@@ -431,7 +431,14 @@ const Root = () => {
   const location = useLocation();
   const { state } = location;
   const teamName = state?.topicName || 'Dressyr ';
-  console.log('TEAMNAMW', teamName);
+  console.log('TEAMNAMW', state?.topicName);
+  const currentmenu=window.localStorage.getItem('CurrentMenu');
+  if(state?.topicName===undefined && currentmenu!=null && CurrentMenuItemSelected==undefined){
+    debugger
+    const parse=JSON.parse(currentmenu)
+    SetCurrentMenuItemSelected(parse[0].state.topicName)
+    console.log("FirstTime",parse[0].state.topicName)
+  }
   const regionjson = useSelector((state) => state.origin.apiOrigin.regionJson);
   const jsonArray = JSON.parse(regionjson);
 
@@ -682,6 +689,7 @@ const Root = () => {
                             name={m?.name}
                             onClick={() => {ScrollToActiveTab(m,i)}}>
                             {m?.name === teamName ?ScrollToActiveTab(m,i):null}
+                            {m?.name === CurrentMenuItemSelected ?ScrollToActiveTab(m,i):null}
                             {/* {decodedPathname} */}
                             {/* Display the LogoTeam image if it exists */}
                             <div className="action-bar">
