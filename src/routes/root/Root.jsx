@@ -431,20 +431,18 @@ const Root = () => {
   const { state } = location;
   const teamName = state?.topicName;
   console.log('TEAMNAMW', state?.topicName);
-  const currentmenu = window.localStorage.getItem('CurrentMenu');
+  const currentmenu = window.localStorage.getItem('favouriteMenu');
+  const currentmenuparse = JSON.parse(currentmenu);
   if (
     state?.topicName === undefined &&
-    currentmenu != null &&
+    (Array.isArray(currentmenuparse)) &&
     CurrentMenuItemSelected == undefined
   ) {
-    debugger;
     const parse = JSON.parse(currentmenu);
-    SetCurrentMenuItemSelected(parse[0].state.topicName);
-    console.log('FirstTime', parse[0].state.topicName);
+    SetCurrentMenuItemSelected(parse[0]?.state.topicName);
   }
   const regionjson = useSelector((state) => state.origin.apiOrigin.regionJson);
   const jsonArray = JSON.parse(regionjson);
-  console.log('FirstTimeCurrentMenuItemSelected', CurrentMenuItemSelected);
 
   useEffect(() => {
     // Ensure regionjson is an array
