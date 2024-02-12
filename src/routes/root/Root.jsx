@@ -48,7 +48,7 @@ const Root = () => {
   const isMatchingRoute4 = useMatch(targetRoutePattern4);
   const [colorState, setColorState] = useState({});
   const [cacheState, setCacheState] = useState({});
-  const[ CurrentMenuItemSelected,SetCurrentMenuItemSelected]=useState();
+  const [CurrentMenuItemSelected, SetCurrentMenuItemSelected] = useState();
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const allregion = useSelector((state) => state?.origin?.allregion);
   const selectedMenu = useSelector((state) => state?.origin?.apiOrigin);
@@ -66,7 +66,7 @@ const Root = () => {
   const [minItem, setMinItem] = useState();
 
   const navigate = useNavigate();
-  
+
   const copyToClipboardV1 = () => {
     const headline = 'SportBlitz News';
     const articleText = document.getElementById('article-headline').innerText;
@@ -237,8 +237,7 @@ const Root = () => {
     //   console.log('Storage cleared');
     //   setCustomAlertOpen(false); // Close the custom alert
     // };
-  
-  
+
     confirmAlert({
       customUI: ({ onClose }) => (
         <CustomConfirmation
@@ -322,7 +321,7 @@ const Root = () => {
         }
         console.log(window.innerWidth, min_item);
         if (minItem != min_item && min_item != Infinity) {
-          ScrollToActiveTab(null,min_item);
+          ScrollToActiveTab(null, min_item);
         }
       }, 1500);
 
@@ -385,9 +384,9 @@ const Root = () => {
       setFilteredFavouriteMenu(filteredMenu);
       console.log('filtereremwnu', filteredFavouriteMenu);
       const filteredMenuIds = favouriteMenu
-      .filter((item) => subTopicIds.includes(item.state.SubTopicId))
-      .map((item) => item.state.SubTopicId);
-      setFilteredFavouriteMenuId(filteredMenuIds)
+        .filter((item) => subTopicIds.includes(item.state.SubTopicId))
+        .map((item) => item.state.SubTopicId);
+      setFilteredFavouriteMenuId(filteredMenuIds);
 
       //favouriteMenu
     }
@@ -410,9 +409,9 @@ const Root = () => {
       });
   }, [settingsInfo, favouriteMenu]);
 
-  function ScrollToActiveTab(item,id) {
-    if(item!==null && item!==undefined){
-      dispatch(addCurrentMenu(item))
+  function ScrollToActiveTab(item, id) {
+    if (item !== null && item !== undefined) {
+      dispatch(addCurrentMenu(item));
     }
     // Get references to the div and the target element
     var scrollableDiv = document.getElementById('scrollableDiv');
@@ -430,17 +429,22 @@ const Root = () => {
 
   const location = useLocation();
   const { state } = location;
-  const teamName = state?.topicName || 'Dressyr ';
+  const teamName = state?.topicName;
   console.log('TEAMNAMW', state?.topicName);
-  const currentmenu=window.localStorage.getItem('CurrentMenu');
-  if(state?.topicName===undefined && currentmenu!=null && CurrentMenuItemSelected==undefined){
-    debugger
-    const parse=JSON.parse(currentmenu)
-    SetCurrentMenuItemSelected(parse[0].state.topicName)
-    console.log("FirstTime",parse[0].state.topicName)
+  const currentmenu = window.localStorage.getItem('CurrentMenu');
+  if (
+    state?.topicName === undefined &&
+    currentmenu != null &&
+    CurrentMenuItemSelected == undefined
+  ) {
+    debugger;
+    const parse = JSON.parse(currentmenu);
+    SetCurrentMenuItemSelected(parse[0].state.topicName);
+    console.log('FirstTime', parse[0].state.topicName);
   }
   const regionjson = useSelector((state) => state.origin.apiOrigin.regionJson);
   const jsonArray = JSON.parse(regionjson);
+  console.log('FirstTimeCurrentMenuItemSelected', CurrentMenuItemSelected);
 
   useEffect(() => {
     // Ensure regionjson is an array
@@ -573,33 +577,55 @@ const Root = () => {
                                             </li>
                                           );
                                         })} */}
-                                          <li className='dropdown-item text-uppercase bg-light'>
-                                        {colorState.value && (
-                                        <div className="coll-item-inner">
-                                          <div className="nav-item" style={{display:'flex',justifyContent:'space-between',alignItems:"center"}}>
-                                            <div className="flx" style={{marginRight:'10px'}}>{colorState.name}</div>
+                                        <li className="dropdown-item text-uppercase bg-light">
+                                          {colorState.value && (
+                                            <div className="coll-item-inner">
+                                              <div
+                                                className="nav-item"
+                                                style={{
+                                                  display: 'flex',
+                                                  justifyContent: 'space-between',
+                                                  alignItems: 'center',
+                                                }}>
+                                                <div
+                                                  className="flx"
+                                                  style={{ marginRight: '10px' }}>
+                                                  {colorState.name}
+                                                </div>
 
-                                            <i
-                                              className={colorState.icon}
-                                              onClick={() => toggleTheme('switch')}
-                                            />
-                                          </div>
-                                        </div>
-                                      )}
+                                                <i
+                                                  className={colorState.icon}
+                                                  onClick={() => toggleTheme('switch')}
+                                                />
+                                              </div>
+                                            </div>
+                                          )}
                                         </li>
-                                        <li className='dropdown-item text-uppercase bg-light'>
-                                        {cacheState.value && (
-                                        <div className="coll-item-inner">
-                                          <div className="nav-item" style={{display:'flex',justifyContent:'space-between',alignItems:"center"}}>
-                                            <div className="flx" style={{marginRight:'10px'}}>{cacheState.name}</div>
-                                            <i
-                                              className={cacheState.icon}
-                                              onClick={() =>
-                                                ConfirmationforclearStorage(filteredFavouriteMenuId)
-                                              }></i>
-                                          </div>
-                                        </div>
-                                      )}
+                                        <li className="dropdown-item text-uppercase bg-light">
+                                          {cacheState.value && (
+                                            <div className="coll-item-inner">
+                                              <div
+                                                className="nav-item"
+                                                style={{
+                                                  display: 'flex',
+                                                  justifyContent: 'space-between',
+                                                  alignItems: 'center',
+                                                }}>
+                                                <div
+                                                  className="flx"
+                                                  style={{ marginRight: '10px' }}>
+                                                  {cacheState.name}
+                                                </div>
+                                                <i
+                                                  className={cacheState.icon}
+                                                  onClick={() =>
+                                                    ConfirmationforclearStorage(
+                                                      filteredFavouriteMenuId
+                                                    )
+                                                  }></i>
+                                              </div>
+                                            </div>
+                                          )}
                                         </li>
                                       </ul>
                                     </div>
@@ -661,7 +687,7 @@ const Root = () => {
                       }
                     }
                     if (minItem != min_item && min_item != Infinity) {
-                      ScrollToActiveTab(filteredFavouriteMenu[min_item],min_item);
+                      ScrollToActiveTab(filteredFavouriteMenu[min_item], min_item);
                       setMinItem(min_item);
                       navigate(filteredFavouriteMenu[min_item]?.link, {
                         state: filteredFavouriteMenu[min_item]?.state,
@@ -673,6 +699,20 @@ const Root = () => {
                     <>
                       <div style={{ marginRight: '40%' }}></div>
                       {filteredFavouriteMenu?.map((m, i) => {
+                        // const condition =
+                        // (teamName === undefined && m?.name === CurrentMenuItemSelected) || m?.name === teamName;
+                        let condition;
+                        if (teamName == undefined && m?.name === CurrentMenuItemSelected) {
+                          console.log('Condition value 1:', teamName,m?.name ,CurrentMenuItemSelected);
+                          condition = true;
+                        } else if (m?.name == teamName) {
+                          console.log('Condition value 2:', teamName,m?.name);
+                          condition = true;
+                        } else {
+                          console.log('Condition value 3:', teamName,m?.name ,CurrentMenuItemSelected);
+                          condition = false;
+                        }
+                        console.log('Condition value:', condition);
                         return (
                           <div
                             key={i}
@@ -682,14 +722,27 @@ const Root = () => {
                             //     ? 'active tab btn-light '
                             //     : 'tab btn-light'
                             // }
-                            className={
-                              m?.name === teamName ? 'active tab btn-light' : 'tab btn-light'
-                            }
+                            // className={
+                            //   m?.name === teamName ? 'active tab btn-light' : 'tab btn-light'
+                            // }
+                            className={condition ? 'active tab btn-light' : 'tab btn-light'}
                             to={m.link}
                             name={m?.name}
-                            onClick={() => {ScrollToActiveTab(m,i)}}>
-                            {m?.name === teamName ?ScrollToActiveTab(m,i):null}
-                            {m?.name === CurrentMenuItemSelected ?ScrollToActiveTab(m,i):null}
+                            onClick={() => {
+                              ScrollToActiveTab(m, i);
+                            }}>
+                            {/* {m?.name === CurrentMenuItemSelected ?ScrollToActiveTab(m,i):null} */}
+                            {/* {m?.name === teamName ? ScrollToActiveTab(m, i) : null}
+                            {teamName == undefined
+                              ? m?.name === CurrentMenuItemSelected
+                                ? ScrollToActiveTab(m, i)
+                                : null
+                              : null} */}
+                            {m?.name === teamName ||
+                            (teamName === undefined && m?.name === CurrentMenuItemSelected)
+                              ? ScrollToActiveTab(m, i)
+                              : null}
+
                             {/* {decodedPathname} */}
                             {/* Display the LogoTeam image if it exists */}
                             <div className="action-bar">
@@ -709,8 +762,12 @@ const Root = () => {
                                     />
                                   )}
                             </div>
-                                
-                            {m?.state?.isSubTopicChecked ? <span style={{visibility:"hidden"}}>SPACE</span> : <span>{m?.name}</span>}
+
+                            {m?.state?.isSubTopicChecked ? (
+                              <span style={{ visibility: 'hidden' }}>SPACE</span>
+                            ) : (
+                              <span>{m?.name}</span>
+                            )}
                             {/* {!m?.isSubTopicChecked && m?.name?.toLowerCase() == 'top news'
                               ? `${m.name} ${m?.state?.moreItemName}`
                               : m?.name} */}
