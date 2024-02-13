@@ -321,7 +321,7 @@ const Root = () => {
         }
         console.log(window.innerWidth, min_item);
         if (minItem != min_item && min_item != Infinity) {
-          ScrollToActiveTab(null, min_item);
+          ScrollToActiveTab(null, min_item,false);
         }
       }, 1500);
 
@@ -409,8 +409,8 @@ const Root = () => {
       });
   }, [settingsInfo, favouriteMenu]);
 
-  function ScrollToActiveTab(item, id) {
-    if (item !== null && item !== undefined) {
+  function ScrollToActiveTab(item, id,useraction) {
+    if (item !== null && item !== undefined && useraction) {
       dispatch(addCurrentMenu(item));
     }
     // Get references to the div and the target element
@@ -685,7 +685,7 @@ const Root = () => {
                       }
                     }
                     if (minItem != min_item && min_item != Infinity) {
-                      ScrollToActiveTab(filteredFavouriteMenu[min_item], min_item);
+                      ScrollToActiveTab(filteredFavouriteMenu[min_item], min_item,true);
                       setMinItem(min_item);
                       navigate(filteredFavouriteMenu[min_item]?.link, {
                         state: filteredFavouriteMenu[min_item]?.state,
@@ -729,7 +729,7 @@ const Root = () => {
                             to={m.link}
                             name={m?.name}
                             onClick={() => {
-                              ScrollToActiveTab(m, i);
+                              ScrollToActiveTab(m, i,true);
                             }}>
                             {/* {m?.name === CurrentMenuItemSelected ?ScrollToActiveTab(m,i):null} */}
                             {/* {m?.name === teamName ? ScrollToActiveTab(m, i) : null} */}
@@ -740,7 +740,7 @@ const Root = () => {
                               : null} */}
                             {m?.name === teamName ||
                             (teamName === undefined && m?.name === filteredFavouriteMenu[0].name)
-                              ? ScrollToActiveTab(m, i)
+                              ? ScrollToActiveTab(m, i,false)
                               : null}
 
                             {/* {decodedPathname} */}
