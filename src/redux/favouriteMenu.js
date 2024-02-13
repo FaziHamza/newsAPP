@@ -6,21 +6,30 @@ const initialState = tempLocal?.length > 0 ? JSON.parse(tempLocal) : [];
 export const favouriteMenuReducer = createSlice({
   name: 'favourite',
   initialState,
-  reducers: {
+  reducers: { 
     addFavouriteMenu: (state, action) => {
       // console.log("action from",action?.payload);
       // state.isChecked='', state.name= '',state.link='', state.state={}
       let tempState = state;
-    
       if (action?.payload?.isChecked) {
-        tempState.unshift(action?.payload); // Use unshift to add to the front
+        // If the payload is checked, add it to the beginning of the array
+        tempState.unshift(action?.payload);
+        // Check if the length of tempState is greater than 6
+        if (tempState.length > 6) {
+          // If so, remove the last item from the array
+          tempState.pop();
+        }
       } else {
+        // If the payload is not checked, filter out the item with the same SubTopicId
         const newArray = tempState?.filter((s) => s.state.SubTopicId !== action?.payload?.state.SubTopicId);
         tempState = newArray;
       }
-      localStorage.setItem('favouriteMenu', JSON.stringify(tempState));
+      // Update localStorage with the modified tempState
+      localStorage.setItem('favouriteMenu', JSON.stringify(tempState));      
+      // Return the modified tempState
       return tempState;
-    },    
+    },
+     
     clearFavouriteMenu: (state, action) => {
 
       // localStorage.setItem('favouriteMenu', JSON.stringify([]));
