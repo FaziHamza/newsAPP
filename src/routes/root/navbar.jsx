@@ -459,7 +459,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                         state={{
                                           topicName: team.name,
                                         }}
-                                        onChange={(e) =>
+                                        onChange={(e) => {
+
+                                        
                                           handleFavouriteMenu(
                                             e.target.checked,
                                             team.name,
@@ -481,7 +483,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                               SubttopicHeadline: team.subtopicHeadline,
                                               isSubTopicChecked:team.isSubTopicChecked 
                                             }
-                                          )
+                                          );
+                                          SetCurrentMenu(team);
+                                        }
                                         }></input>
                                     </Link>
                                   </>

@@ -41,6 +41,7 @@ export const favouriteMenuReducer = createSlice({
         (item) => !subTopicIdsToRemove.includes(item.state.SubTopicId)
       );
       localStorage.removeItem('FirstOpen');
+      localStorage.removeItem('CurrentMenu');
       localStorage.setItem('favouriteMenu', JSON.stringify(updatedState));
       return updatedState;
     },
