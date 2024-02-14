@@ -411,12 +411,12 @@ const Article = ({ className = '' }) => {
                 <ContentParsed content={articleInfo[0]._content} />
               </p>
               <div className="article-footer">
-                <div className="artile-footer-left">
+                {/* <div className="artile-footer-left">
                   <div className='footer-icon'>
                     <img src={articlefootericon} style={{ width: '100px', }} />
                   </div>
                   <p>FÅ SENASTE NYHETERNA, VIDEOR OCH PODCASTS DIREKT I MOBILEN UTAN KOSTNAD</p>
-                </div>
+                </div> */}
                 <div className="article-footer-right">
                   <div className='row'>
                     <div className='col-6'>
