@@ -209,7 +209,7 @@ const StoryMain = ({
             </div>
             <div></div>
             <div className="content">
-            <h1 className="heading-bold">{heading}123</h1>
+            <h1 className="heading-bold">{heading}</h1>
               <p className="abstart-color" dangerouslySetInnerHTML={{ __html: description }} />
               <h6 className="content-time-img">
                 <img src={imageUrl} alt="" />

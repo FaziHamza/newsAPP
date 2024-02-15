@@ -451,7 +451,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                         SubttopicHeadline: team.subtopicHeadline,
                                       }}>
                                       <input
-                                        class="form-check-input"
+                                        class="form-check-input checkBox"
                                         type="checkbox"
                                         checked={favouriteMenu?.some(
                                           (m) => m?.state.SubTopicId == team?.subTopicID
