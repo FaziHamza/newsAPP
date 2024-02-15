@@ -203,13 +203,14 @@ const StoryMain = ({
       {!!isDesktopScreen ? (
         <>
           <DisplayComponent />
-          <div className={`suggested-card ${className}`}>
+          <div className={`suggested-card suggested-card-top ${className}`}>
             <div className="banner">
               <img src={sanitizedSrc} alt={alt} />
             </div>
             <div></div>
             <div className="content">
-              <p className="desktopTop" dangerouslySetInnerHTML={{ __html: description }} />
+            <h1 className="heading-bold">{heading}123</h1>
+              <p className="abstart-color" dangerouslySetInnerHTML={{ __html: description }} />
               <h6 className="content-time-img">
                 <img src={imageUrl} alt="" />
                 {days()}

@@ -548,6 +548,7 @@ aside .tile-m p {
   font-weight: 500;
   margin: 0 0 9px 0;
   font-size: 16px;
+  position: relative;
 }
 
 .topic img {
@@ -890,6 +891,8 @@ ul {
   border-radius: 5px;
   position: relative;
   top: 10px;
+  z-index: 1000;
+
 }
 
 .video-article {
@@ -900,6 +903,7 @@ ul {
   /* top: -10px; */
   right: 10px;
   margin-top: -8px;
+  z-index: 1000;
 }
 
 .podcast-video span {
@@ -1003,7 +1007,8 @@ ul {
 }
 
 .desktop-header {
-  background-color: #c10206;
+  /* background-color: #c10206; */
+  background-color: black;
 }
 
 .mobile-header {
