@@ -839,13 +839,13 @@ h6 {
     border: none;
 }
 
-.dark .sidenav .coll-sidenav .coll-item {
-    background-color: #2d333c;
-}
+// .dark .sidenav .coll-sidenav .coll-item {
+//     // background-color: #2d333c;
+// }
 
-.dark .sidenav .coll-sidenav .coll-item-inner {
-    background-color: #343a40;
-}
+// .dark .sidenav .coll-sidenav .coll-item-inner {
+//     // background-color: #343a40;
+// }
 
 .dark .sidenav .nav-item {
     color: white;
@@ -1194,7 +1194,7 @@ h6 {
     padding: 2px 10px;
     margin: 4px 0px;
     position: absolute;
-    top: 15px;
+    top: 0px;
     left: -5px;
     z-index: 1000;
 
@@ -1230,6 +1230,9 @@ h6 {
 @media screen and (max-width: 768px) {
     .suggested-card.tile-m .content-time-img {
         font-size: 7px !important;
+    }
+    .tagcontainer {
+        top: -15px;
     }
 }
 

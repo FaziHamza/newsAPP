@@ -230,6 +230,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                             }>
                             <StoryMain
                               idforlogo={mainNewsList[0]?._id}
+                              heading={mainNewsList[0]?._title}
                               description={mainNewsList[0]?._abstract}
                               className={'tile-l'}
                               isDesktopScreen={true}
