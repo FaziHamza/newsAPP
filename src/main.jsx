@@ -6,6 +6,7 @@ import './main.css';
 import { Provider } from 'react-redux';
 import store from './redux/store'
 import ExternalArticle from './compositions/storyTile/ExternalArticle';
+import GeolocationComponent from './components/GeolocationComponent';
 
 const router = createBrowserRouter([
   {
@@ -27,8 +28,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <GeolocationComponent />
     <Provider store={store}>
-
     <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
