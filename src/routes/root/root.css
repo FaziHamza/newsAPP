@@ -1013,7 +1013,6 @@ ul {
 /* Apply styles to the horizontal scrollbar */
 #scrollableDiv {
   overflow-x: auto; /* Enable horizontal scrolling */
-  display: block; /* Or flex, depending on your layout */
   white-space: nowrap; /* For inline or inline-block elements */
   width: 100%; /* Or a specific width */
   /* Your existing scrollbar styling */

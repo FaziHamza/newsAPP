@@ -409,25 +409,27 @@ const Root = () => {
       });
   }, [settingsInfo, favouriteMenu]);
 
-  function ScrollToActiveTab(item, id,useraction) {
+  function ScrollToActiveTab(item, id, useraction) {
     if (item !== null && item !== undefined && useraction) {
       dispatch(addCurrentMenu(item));
     }
-    // Get references to the div and the target element
-    var scrollableDiv = document.getElementById('scrollableDiv');
-    let tempId = 'targetId-' + id;
-    // console.logtempId);
-    var targetElement = document.getElementById(tempId);
-  debugger
-    var targetPosition =
-      targetElement?.offsetLeft + targetElement?.clientWidth / 2 - window.innerWidth * 0.5;
-    // console.log'ont', scrollableDiv?.scrollLeft, targetPosition);
-    // Scroll the div to the target position
+  
     requestAnimationFrame(() => {
-      scrollableDiv.scrollLeft = targetPosition;
+      // Ensure this runs after any pending layout changes
+      var scrollableDiv = document.getElementById('scrollableDiv');
+      let tempId = 'targetId-' + id;
+      var targetElement = document.getElementById(tempId);
+  
+      if (targetElement) {
+        var targetPosition = targetElement.offsetLeft + targetElement.clientWidth / 2 - window.innerWidth / 2;
+  
+        // Perform the scroll
+        scrollableDiv.scrollLeft = targetPosition;
+      }
     });
-    
   }
+  
+
   const scrollableDivRef = useRef(null);
 
   const location = useLocation();
