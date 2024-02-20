@@ -18,6 +18,9 @@ const GeolocationComponent = () => {
     };
     const PostData = async (jsondata) => {
       try {
+         // Add timestamp to JSON data
+          jsondata.timestamp = new Date().toISOString();
+
         const response = await fetch('https://sportifiedspot.com/api/Account/UserLocation', {
           method: 'POST',
           headers: {
