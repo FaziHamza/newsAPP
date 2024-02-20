@@ -11,8 +11,8 @@ const DisplayComponentforheader = ({ topic }) => {
     const location = useLocation();
     const initialload = useSelector((state) => state.origin.initialload);
     const { state } = location;
-    console.log(state)
-    console.log(initialload)
+    // console.logstate)
+    // console.loginitialload)
     // Now you can access the passed state values
     const moreItemName = state?.moreItemName || null;
     const teamName = state?.topicName || initialload[0].name;
@@ -32,8 +32,8 @@ const DisplayComponentforheader = ({ topic }) => {
     const teamLogoPath = state?.LogoTeam || initialload[0].logo;
     const SubTopicId = state?.SubTopicId || initialload[0].subTopicID;
     const TopicId = state?.TopicId;
-    console.log(SubTopicId)
-    console.log(state?.SubTopicId)
+    // console.logSubTopicId)
+    // console.logstate?.SubTopicId)
     const linkPropsforhighlight = {
       to: IsSubtopicVideo ? '/videohighlights' : '/highlights',
       state: {
@@ -66,7 +66,7 @@ const DisplayComponentforheader = ({ topic }) => {
             setisShowVideoIcon(response.data.videoHighlight)
         })
         .catch((err) => {
-          console.log('Error', err);
+          // console.log'Error', err);
         });
     }, [state]);
     return (

@@ -22,7 +22,7 @@ const HighlightsList = () => {
 
   const location = useLocation();
   const { state } = location;
-  console.log(JSON.stringify(state));
+  // console.logJSON.stringify(state));
   const [isShowPodcastIcon, setisshowPodcaseIcon] = useState(null);
   const [isShowVideoIcon, setisShowVideoIcon] = useState(null);
   const logoPath = state?.LogoPath || null;
@@ -53,7 +53,7 @@ const HighlightsList = () => {
         setisShowVideoIcon(response.data.videoHighlight);
       })
       .catch((err) => {
-        console.log('Error', err);
+        // console.log'Error', err);
       });
   }, []);
     if(topictype==='compition'){
@@ -64,8 +64,8 @@ const HighlightsList = () => {
       const [forty, sixty] = divideByPercentage(highlightsData.length);
       setMainHighlightsQuantity(forty);
       setAsideHighlightsQuantity(sixty);
-      // console.log("Total: => ", highlightsData.length);
-      // console.log(`40%: ${forty}, 60%: ${sixty}`);
+      // // console.log"Total: => ", highlightsData.length);
+      // // console.log`40%: ${forty}, 60%: ${sixty}`);
     }
   }, [highlightsData]);
 

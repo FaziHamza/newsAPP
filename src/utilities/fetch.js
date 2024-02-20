@@ -38,7 +38,7 @@ const fetchPostFunction = (url, body) =>
     });
 
 export const fetchConfig = (baseUrlApi, regionId) => {
-  console.log('Address From Fetch  ZZAZAZAZ', baseUrlApi);
+  // console.log'Address From Fetch  ZZAZAZAZ', baseUrlApi);
 
   return fetchGetFunction(`${baseUrlApi}/api/Topic/GetTopicWithSubTopic?regionId=${regionId}`);
 };

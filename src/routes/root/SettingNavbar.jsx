@@ -89,7 +89,7 @@ function SettingNavbar({ className = '', navList, inMain = 4, setThemeVariant, t
   }, {});
   
   const handleFavouriteMenu = (isChecked, name, link, state) => {
-    // console.log('is check  ', isChecked, name, link, state);
+    // // console.log'is check  ', isChecked, name, link, state);
     dispatch(addFavouriteMenu({ isChecked, name, link, state }));
   };
 

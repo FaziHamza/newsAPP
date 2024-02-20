@@ -234,7 +234,7 @@ const Root = () => {
   const ConfirmationforclearStorage = (items) => {
     // const ClearStorage = (items) => {
     //   // Your logic to clear storage
-    //   console.log('Storage cleared');
+    //   // console.log'Storage cleared');
     //   setCustomAlertOpen(false); // Close the custom alert
     // };
 
@@ -309,7 +309,7 @@ const Root = () => {
         let min_dist = Infinity;
         let min_item = Infinity;
         let y = (window?.innerWidth || 0) * 0.04;
-        console.log(y);
+        // console.logy);
         for (let index = 0; index < filteredFavouriteMenu.length; index++) {
           const element = scrollableDivRef.current?.children[index];
           y += element.scrollWidth;
@@ -319,7 +319,7 @@ const Root = () => {
             min_item = index;
           }
         }
-        console.log(window.innerWidth, min_item);
+        // console.logwindow.innerWidth, min_item);
         if (minItem != min_item && min_item != Infinity) {
           ScrollToActiveTab(null, min_item,false);
         }
@@ -333,12 +333,12 @@ const Root = () => {
     fetch(apiUrl)
       .then((res) => res.json())
       .then((data) => {
-        console.log('All Region', data.data);
+        // console.log'All Region', data.data);
         const dynamicData = data.data;
         dispatch(setallregion(data.data));
       })
       .catch((err) => {
-        console.log('Error From Dummy Request', err);
+        // console.log'Error From Dummy Request', err);
       });
   }, []);
   useEffect(() => {
@@ -353,12 +353,12 @@ const Root = () => {
       `${RootUrl.Baseurl}api/Region/GetRegionByHostName?hostName=${hostName}`
     )
       .then((res) => {
-        console.log('Responce From Dummy Request ', res);
+        // console.log'Responce From Dummy Request ', res);
         dispatch(setApiOrigin(res?.data));
         // dispatch(clearFavouriteMenu());
       })
       .catch((err) => {
-        console.log('Error From Dummy Request ', err);
+        // console.log'Error From Dummy Request ', err);
       });
   }, []);
   useEffect(() => {
@@ -370,7 +370,7 @@ const Root = () => {
   }, [addresses]);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
-    // console.log('sss',settingsInfo)
+    // // console.log'sss',settingsInfo)
     if (settingsInfo) {
       dispatch(setFlag(settingsInfo?.url));
       dispatch(settopiwithsubtopic(settingsInfo?.menuItems));
@@ -382,7 +382,7 @@ const Root = () => {
         subTopicIds.includes(item.state.SubTopicId)
       );
       setFilteredFavouriteMenu(filteredMenu);
-      console.log('filtereremwnu', filteredFavouriteMenu);
+      // console.log'filtereremwnu', filteredFavouriteMenu);
       const filteredMenuIds = favouriteMenu
         .filter((item) => subTopicIds.includes(item.state.SubTopicId))
         .map((item) => item.state.SubTopicId);
@@ -416,21 +416,24 @@ const Root = () => {
     // Get references to the div and the target element
     var scrollableDiv = document.getElementById('scrollableDiv');
     let tempId = 'targetId-' + id;
-    console.log(tempId);
+    // console.logtempId);
     var targetElement = document.getElementById(tempId);
-
+  debugger
     var targetPosition =
       targetElement?.offsetLeft + targetElement?.clientWidth / 2 - window.innerWidth * 0.5;
-    console.log('ont', scrollableDiv.scrollLeft, targetPosition);
+    // console.log'ont', scrollableDiv?.scrollLeft, targetPosition);
     // Scroll the div to the target position
-    scrollableDiv.scrollLeft = targetPosition;
+    requestAnimationFrame(() => {
+      scrollableDiv.scrollLeft = targetPosition;
+    });
+    
   }
   const scrollableDivRef = useRef(null);
 
   const location = useLocation();
   const { state } = location;
   const teamName = state?.topicName;
-  console.log('TEAMNAMW', state?.topicName);
+  // console.log'TEAMNAMW', state?.topicName);
   const currentmenu = window.localStorage.getItem('favouriteMenu');
   const currentmenuparse = JSON.parse(currentmenu);
   if (
@@ -674,7 +677,7 @@ const Root = () => {
                     let min_dist = Infinity;
                     let min_item = Infinity;
                     let y = (window?.innerWidth || 0) * 0.04;
-                    console.log(y);
+                    // console.logy);
                     for (let index = 0; index < filteredFavouriteMenu.length; index++) {
                       const element = scrollableDivRef.current?.children[index];
                       y += element.scrollWidth;
@@ -697,22 +700,22 @@ const Root = () => {
                     <>
                       <div style={{ marginRight: '40%' }}></div>
                       {filteredFavouriteMenu?.map((m, i) => {
-                        console.log("FAV",filteredFavouriteMenu[0].name)
+                        // console.log"FAV",filteredFavouriteMenu[0].name)
                         // filteredFavouriteMenu[0].name
                         const condition =
                         (teamName === undefined && m?.name ===  filteredFavouriteMenu[0].name) || m?.name === teamName;
                         // let condition;
                         // if (teamName == undefined && m?.name === CurrentMenuItemSelected) {
-                        //   console.log('Condition value 1:', teamName,m?.name ,CurrentMenuItemSelected);
+                        //   // console.log'Condition value 1:', teamName,m?.name ,CurrentMenuItemSelected);
                         //   condition = true;
                         // } else if (m?.name == teamName) {
-                        //   console.log('Condition value 2:', teamName,m?.name);
+                        //   // console.log'Condition value 2:', teamName,m?.name);
                         //   condition = true;
                         // } else {
-                        //   console.log('Condition value 3:', teamName,m?.name ,CurrentMenuItemSelected);
+                        //   // console.log'Condition value 3:', teamName,m?.name ,CurrentMenuItemSelected);
                         //   condition = false;
                         // }
-                        // console.log('Condition value:', condition);
+                        // // console.log'Condition value:', condition);
                         return (
                           <div
                             key={i}
@@ -789,9 +792,9 @@ const Root = () => {
                 <div className="all-tabs" 
                  id="scrollableDiv"
                 ref={scrollableDivRef}
-                // onDragEnd={()=>console.log('DRAG-END')}
+                // onDragEnd={()=>// console.log'DRAG-END')}
                 onScroll={() => {
-                  // console.log(scrollableDivRef?.current?.children);
+                  // // console.logscrollableDivRef?.current?.children);
                   // (window.width)
                   const x = scrollableDivRef.current?.scrollLeft;
                   let min_dist = Infinity;
@@ -808,7 +811,7 @@ const Root = () => {
                   }
                   if (minItem != min_item && min_item != Infinity) {
                     // alert(minItem)
-                    console.log(min_item);
+                    // console.logmin_item);
 
                     // ScrollToActiveTab(min_item);
                     setMinItem(min_item);
@@ -816,7 +819,7 @@ const Root = () => {
                       state: filteredFavouriteMenu[min_item]?.state,
                     });
                   }
-                  // console.log(min_tem);
+                  // // console.logmin_tem);
                   // ScrollToActiveTab(min_item)
                 }}>
                   {IsMobile && (
