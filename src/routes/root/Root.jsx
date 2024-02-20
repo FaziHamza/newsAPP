@@ -409,24 +409,6 @@ const Root = () => {
       });
   }, [settingsInfo, favouriteMenu]);
 
-  function scrollToElement(scrollableDiv, targetPosition, duration = 500) {
-    const start = scrollableDiv.scrollLeft;
-    const change = targetPosition - start;
-    const startTime = performance.now();
-  
-    function animateScroll(timestamp) {
-      var timeElapsed = timestamp - startTime;
-      var progress = Math.min(timeElapsed / duration, 1);
-      scrollableDiv.scrollLeft = start + change * progress;
-  
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animateScroll);
-      }
-    }
-  
-    requestAnimationFrame(animateScroll);
-  }
-  
   function ScrollToActiveTab(item, id, useraction) {
     if (item !== null && item !== undefined && useraction) {
       dispatch(addCurrentMenu(item));
@@ -437,13 +419,14 @@ const Root = () => {
     var targetElement = document.getElementById(tempId);
   
     if (targetElement) {
+      // Calculate the target position
       var targetPosition =
         targetElement.offsetLeft + targetElement.clientWidth / 2 - window.innerWidth / 2;
   
-      scrollToElement(scrollableDiv, targetPosition);
+      // Directly set scrollLeft without animation
+      scrollableDiv.scrollLeft = targetPosition;
     }
   }
-  
   
   
   const scrollableDivRef = useRef(null);
