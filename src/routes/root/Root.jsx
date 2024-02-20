@@ -34,6 +34,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 const Root = () => {
+  
   const dispatch = useDispatch();
   //For Header back Button
   // Define the route pattern you want to match
@@ -409,22 +410,29 @@ const Root = () => {
       });
   }, [settingsInfo, favouriteMenu]);
 
-  function ScrollToActiveTab(item, id,useraction) {
+  function scrollToPosition(element, targetPosition) {
+    // Simple scroll without smooth behavior to ensure compatibility
+    element.scrollLeft = targetPosition;
+  }
+  
+  function ScrollToActiveTab(item, id, useraction) {
     if (item !== null && item !== undefined && useraction) {
       dispatch(addCurrentMenu(item));
     }
-    // Get references to the div and the target element
     var scrollableDiv = document.getElementById('scrollableDiv');
     let tempId = 'targetId-' + id;
     console.log(tempId);
     var targetElement = document.getElementById(tempId);
-
-    var targetPosition =
-      targetElement?.offsetLeft + targetElement?.clientWidth / 2 - window.innerWidth * 0.5;
-    console.log('ont', scrollableDiv.scrollLeft, targetPosition);
-    // Scroll the div to the target position
-    scrollableDiv.scrollLeft = targetPosition;
+  
+    if (targetElement) {
+      var targetPosition =
+        targetElement.offsetLeft + targetElement.clientWidth / 2 - window.innerWidth * 0.5;
+      console.log('ont', scrollableDiv.scrollLeft, targetPosition);
+      // Use the adjusted scroll function
+      scrollToPosition(scrollableDiv, targetPosition);
+    }
   }
+  
   const scrollableDivRef = useRef(null);
 
   const location = useLocation();

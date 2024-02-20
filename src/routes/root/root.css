@@ -1013,7 +1013,9 @@ ul {
 /* Apply styles to the horizontal scrollbar */
 #scrollableDiv {
 
-
+  overflow-x: scroll; /* Allows horizontal scrolling */
+  display: flex; /* If your items are flex items */
+  flex-direction: row; /* Ensures items are laid out horizontally */
   &::-webkit-scrollbar-thumb {
     background-color: #000000;
   }
