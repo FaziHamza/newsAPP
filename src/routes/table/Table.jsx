@@ -52,7 +52,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   const navigate = useNavigate();
   const addresses = useSelector((state) => state.origin.apiOrigin);
   const allorigin = useSelector((state) => state.origin);
-  console.log(allorigin);
+ // console.log(allorigin);
   const topicwithsubtopic = useSelector((state) => state.origin.topicwithsubtopic);
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const [settingsInfo, windowHref] = useOutletContext();
@@ -121,7 +121,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
   useEffect(() => {
     // const address = state?.address ?? 'news/getnews?lang=sv&topic=football&sub1=fbl,ENG,Pr';
     // const address = state?.address ?? 'news/getNewsByTeam?keyword=Pr&lang=en&sport=football&limit=12';
-    // console.log(addresses.siteKeyword)
+    //// console.log(addresses.siteKeyword)
 
     if (state?.address !== undefined) {
       // Assuming 'state.address' is a URL
@@ -133,8 +133,8 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
       if (match && match[1]) {
         if (topicwithsubtopic !== null) {
           const keyword = decodeURIComponent(match[1]);
-          console.log(topicwithsubtopic);
-          console.log(keyword);
+         // console.log(topicwithsubtopic);
+         // console.log(keyword);
 
           // Assuming your object is stored in a variable called 'settingsInfo'
           const foundItems = topicwithsubtopic
@@ -152,7 +152,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
               dispatch(setarticlevideo(filteredSubTopics));
               return { subTopics: filteredSubTopics };
             });
-          console.log('Settings Info  ', foundItems);
+         // console.log('Settings Info  ', foundItems);
         }
       } else {
         console.error('Keyword not found in the URL');

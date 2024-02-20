@@ -18,8 +18,8 @@ const DisplayComponent = ({ topic }) => {
   const location = useLocation();
   const initialload = useSelector((state) => state.origin.initialload);
   const { state } = location;
-  console.log(state);
-  console.log(initialload);
+ // console.log(state);
+ // console.log(initialload);
   // Now you can access the passed state values
   const TopicId = state?.TopicId;
   const moreItemName = state?.moreItemName || null;
@@ -72,7 +72,7 @@ const DisplayComponent = ({ topic }) => {
         setisShowVideoIcon(response.data.videoHighlight);
       })
       .catch((err) => {
-        console.log('Error', err);
+       // console.log('Error', err);
       });
   }, []);
   return (

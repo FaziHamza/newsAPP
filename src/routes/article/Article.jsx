@@ -47,8 +47,8 @@ const AsideArticle = ({ tableInfo }) => {
 
   const { params } = useLoaderData();
   const { state } = useLocation();
-  console.log(tableInfo);
-  // console.log(state)
+ // console.log(tableInfo);
+  //// console.log(state)
   return (
     <aside className="aside-right">
       {tableInfo
@@ -97,7 +97,7 @@ const Article = ({ className = '' }) => {
   const [isShowVideoIcon, setisShowVideoIcon] = useState(null);
   const [imageUrl,setimageUrl]=useState('');
   const { state } = useLocation();
-  console.log(state);
+ // console.log(state);
   const articlevideo = useSelector((state) => state.origin.articlevideo);
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
   const { id } = useParams();
@@ -127,7 +127,7 @@ const Article = ({ className = '' }) => {
       SubTopicId: SubTopicId,
     },
   };
-  console.log(linkPropsforhighlight);
+ // console.log(linkPropsforhighlight);
   // var imageUrl ="logo";
   useEffect(() => {
     document.body.className = 'light-theme';
@@ -148,7 +148,7 @@ const Article = ({ className = '' }) => {
                 setisShowVideoIcon(response.data.videoHighlight);
               })
               .catch((err) => {
-                console.log('Error', err);
+               // console.log('Error', err);
               });
             setArticelInfo(res);
             if (res[0]?._id.length === 7) {
@@ -239,7 +239,7 @@ const Article = ({ className = '' }) => {
         url: window.location.href,
       });
     } catch (e) {
-      console.log('e: ', e);
+     // console.log('e: ', e);
     }
   };
 

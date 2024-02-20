@@ -22,11 +22,11 @@ const PodcastList = () => {
 
   const location = useLocation();
   const { state } = location;
-  console.log(JSON.stringify(state));
+ // console.log(JSON.stringify(state));
    const thumnbailbaseurl=videHighlight.thumbnailurl ;
 
    const IsSubtopicVideo = state?.IsSubtopicVideo;
-   console.log(IsSubtopicVideo)
+  // console.log(IsSubtopicVideo)
    const [isShowPodcastIcon, setisshowPodcaseIcon] = useState(null);
    const [isShowVideoIcon, setisShowVideoIcon] = useState(null);
    const teamLogoPath = state?.LogoTeam ;
@@ -55,7 +55,7 @@ const PodcastList = () => {
         setisShowVideoIcon(response.data.videoHighlight);
       })
       .catch((err) => {
-        console.log('Error', err);
+       // console.log('Error', err);
       });
   }, []);
 
@@ -64,8 +64,8 @@ const PodcastList = () => {
       const [forty, sixty] = divideByPercentage(PodcastListsData.length);
       setMainHighlightsQuantity(forty);
       setAsideHighlightsQuantity(sixty);
-      // console.log("Total: => ", PodcastListsData.length);
-      // console.log(`40%: ${forty}, 60%: ${sixty}`);
+      //// console.log("Total: => ", PodcastListsData.length);
+      //// console.log(`40%: ${forty}, 60%: ${sixty}`);
     }
   }, [PodcastListsData]);
 

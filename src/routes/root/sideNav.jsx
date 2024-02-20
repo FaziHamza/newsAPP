@@ -30,7 +30,7 @@ const pages = [
 
 function SideNav({ isOpen, closeNav }) {
   // const { state } = useLocation();
-  // console.log(state);
+  //// console.log(state);
   // useEffect(() => {
   //   const address = state?.address ?? defaultTopic.SearchItems.news;
   //   // const tablePromise = () => fetchNewsTable(windowHref + settingsInfo.Api + address);

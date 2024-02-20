@@ -22,7 +22,7 @@ const VideoHighlightsList = () => {
   const [status, setStatus] = useState('idle');
   const location = useLocation();
   const { state } = location;
-  console.log(JSON.stringify(state));
+ // console.log(JSON.stringify(state));
   const thumnbailbaseurl = videHighlight.thumbnailurl;
   const [isShowPodcastIcon, setisshowPodcaseIcon] = useState(null);
   const [isShowVideoIcon, setisShowVideoIcon] = useState(null);
@@ -54,7 +54,7 @@ const VideoHighlightsList = () => {
         setisShowVideoIcon(response.data.videoHighlight);
       })
       .catch((err) => {
-        console.log('Error', err);
+       // console.log('Error', err);
       });
   }, []);
   useEffect(() => {

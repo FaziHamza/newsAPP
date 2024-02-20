@@ -50,12 +50,12 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
     fetch(apiUrl)
       .then((res) => res.json())
       .then((data) => {
-        console.log('All Region', data.data);
+       // console.log('All Region', data.data);
         const dynamicData = data.data;
         dispatch(setallregion(data.data));
       })
       .catch((err) => {
-        console.log('Error From Dummy Request', err);
+       // console.log('Error From Dummy Request', err);
       });
   }, []);
   let isfirst = true;
@@ -68,8 +68,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
       (s) => s?.state.SubTopicId == 'a1b8b1c7-d48f-46ee-6627-08dc0b731fb7'
     );
 
-    console.log('Dress', checkdreser);
-    console.log('Hoping', checkdreser);
+   // console.log('Dress', checkdreser);
+   // console.log('Hoping', checkdreser);
     const statedresser = {
       address: 'news/getNewsByTeam?keyword=Dressyr&lang=sv&sport=football&limit=12',
       topicKey: '',
@@ -115,7 +115,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
       window.localStorage.setItem('FirstOpen', true);
       setIsOpen(true);
     }
-    console.log('Fav', favouriteMenu);
+   // console.log('Fav', favouriteMenu);
   }, []);
   const openNav = () => {
     setIsOpen(true);
@@ -147,7 +147,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
   const ConfirmationforclearStorage = (items) => {
     // const ClearStorage = (items) => {
     //   // Your logic to clear storage
-    //   console.log('Storage cleared');
+    //  // console.log('Storage cleared');
     //   setCustomAlertOpen(false); // Close the custom alert
     // };
 
@@ -229,7 +229,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
 
   const handleFavouriteMenu = (isChecked, name, link, state) => {
     setIsChecked(isChecked);
-    // console.log('is check  ', isChecked, name, link, state);
+    //// console.log('is check  ', isChecked, name, link, state);
     dispatch(addFavouriteMenu({ isChecked, name, link, state }));
     closeNav();
   };

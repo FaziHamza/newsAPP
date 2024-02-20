@@ -8,7 +8,7 @@ const GeolocationComponent = () => {
         if (response.ok) {
           const data = await response.json();
           PostData(data)
-          console.log("GEO",data); // Log the response data to the console
+         // console.log("GEO",data); // Log the response data to the console
         } else {
           throw new Error('Failed to fetch geolocation data');
         }
@@ -34,7 +34,7 @@ const GeolocationComponent = () => {
         if (response.ok) {
           const data = await response.json();
           
-          console.log("Data Post",data); // Log the response data to the console
+         // console.log("Data Post",data); // Log the response data to the console
         } else {
           throw new Error('Failed to Post Data  ');
         }
