@@ -409,6 +409,24 @@ const Root = () => {
       });
   }, [settingsInfo, favouriteMenu]);
 
+  function scrollToElement(scrollableDiv, targetPosition, duration = 500) {
+    const start = scrollableDiv.scrollLeft;
+    const change = targetPosition - start;
+    const startTime = performance.now();
+  
+    function animateScroll(timestamp) {
+      var timeElapsed = timestamp - startTime;
+      var progress = Math.min(timeElapsed / duration, 1);
+      scrollableDiv.scrollLeft = start + change * progress;
+  
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animateScroll);
+      }
+    }
+  
+    requestAnimationFrame(animateScroll);
+  }
+  
   function ScrollToActiveTab(item, id, useraction) {
     if (item !== null && item !== undefined && useraction) {
       dispatch(addCurrentMenu(item));
@@ -418,32 +436,15 @@ const Root = () => {
     let tempId = 'targetId-' + id;
     var targetElement = document.getElementById(tempId);
   
-    // Ensure the target element is present
-    if (!targetElement) {
-      console.error('Target element not found:', tempId);
-      return;
+    if (targetElement) {
+      var targetPosition =
+        targetElement.offsetLeft + targetElement.clientWidth / 2 - window.innerWidth / 2;
+  
+      scrollToElement(scrollableDiv, targetPosition);
     }
-    var targetPosition =
-      targetElement.offsetLeft + targetElement.clientWidth / 2 - window.innerWidth * 0.5;
-  
-    // Use setTimeout to ensure the scroll action occurs after any potential reflows
-    setTimeout(() => {
-      // Feature detection for scroll behavior
-      if ('scrollBehavior' in document.documentElement.style) {
-        // Smooth scroll is supported
-        scrollableDiv.scrollTo({
-          left: targetPosition,
-          behavior: 'smooth'
-        });
-      } else {
-        // Fallback for browsers without smooth scroll support
-        scrollableDiv.scrollLeft = targetPosition;
-      }
-    }, 0); // A delay of 0 ms effectively defers the action until the stack is clear
-  
-    // Optional: Log the scroll action for debugging purposes
-    console.log('scrollLeft', scrollableDiv.scrollLeft, 'targetPosition', targetPosition);
   }
+  
+  
   
   const scrollableDivRef = useRef(null);
 
