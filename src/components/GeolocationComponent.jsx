@@ -20,7 +20,8 @@ const GeolocationComponent = () => {
       try {
          // Add timestamp to JSON data
           jsondata.timestamp = new Date().toISOString();
-
+          jsondata.mode = navigator.userAgent =='MyCustomWebViewMarker' ?"Mobile-APP" : "Browser";
+          jsondata.userdetail = navigator.userAgent + JSON.stringify(navigator.userAgentData)
         const response = await fetch('https://sportifiedspot.com/api/Account/UserLocation', {
           method: 'POST',
           headers: {
