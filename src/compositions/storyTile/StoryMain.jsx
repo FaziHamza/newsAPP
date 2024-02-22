@@ -17,8 +17,10 @@ import { useEffect, useState } from 'react';
 const DisplayComponent = ({ topic }) => {
   const location = useLocation();
   const initialload = useSelector((state) => state.origin.initialload);
+  const favouriteMenu = useSelector((state) => state?.favouriteMenu);
+
   const { state } = location;
-  // console.logstate);
+  console.log("State",state);
   // console.loginitialload);
   // Now you can access the passed state values
   const TopicId = state?.TopicId;
@@ -34,6 +36,7 @@ const DisplayComponent = ({ topic }) => {
   }
   const [isShowPodcastIcon, setisshowPodcaseIcon] = useState(null);
   const [isShowVideoIcon, setisShowVideoIcon] = useState(null);
+  const [isfavItemExist, setisfavItemExist] = useState(false);
   const logoPath = state?.LogoPath || null;
   const teamLogoPath = state?.LogoTeam || initialload[0].logo;
   const SubTopicId = state?.SubTopicId || initialload[0].subTopicID;
@@ -74,6 +77,11 @@ const DisplayComponent = ({ topic }) => {
       .catch((err) => {
         // console.log'Error', err);
       });
+      const isExistinFav = favouriteMenu.some(
+        (s) => s?.state.SubTopicId == SubTopicId
+      );
+      setisfavItemExist(isExistinFav)
+      console.log("isExistinFav",isExistinFav)
   }, []);
   return (
     <>
@@ -98,8 +106,20 @@ const DisplayComponent = ({ topic }) => {
                 </div>
               )}
             </div>
+            {IsMobile  && !isfavItemExist &&(
+              <div className="title tag-title">
+              <>
+                {teamName.includes(moreItemName) ? null : (
+                  <>
+                    <img src={teamLogoPath} height={'20px'} />
+                  </>
+                )}
+                {teamName.replace(moreItemName, '')}
+              </>
+            </div>
+            )}
             {IsMobile && SubTopicHeadline && (
-              <div className="tagcontainer">
+              <div className={!isfavItemExist ? 'tagcontainer-if-title' : 'tagcontainer'}>
                 <span className="tag">{SubTopicHeadline}</span>
               </div>
             )}
