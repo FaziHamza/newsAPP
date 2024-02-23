@@ -107,19 +107,19 @@ const DisplayComponent = ({ topic }) => {
               )}
             </div>
             {IsMobile  && !isfavItemExist &&(
-              <div className="title tag-title">
-              <>
+              <div className="tagcontainer">
+              <div className='tag'>
                 {teamName.includes(moreItemName) ? null : (
                   <>
                     <img src={teamLogoPath} height={'20px'} />
                   </>
                 )}
                 {teamName.replace(moreItemName, '')}
-              </>
+              </div>
             </div>
             )}
-            {IsMobile && SubTopicHeadline && (
-              <div className={!isfavItemExist ? 'tagcontainer-if-title' : 'tagcontainer'}>
+            {IsMobile && SubTopicHeadline && isfavItemExist && (
+              <div className='tagcontainer'>
                 <span className="tag">{SubTopicHeadline}</span>
               </div>
             )}
