@@ -18,7 +18,8 @@ const GeolocationComponent = () => {
     };
     const PostData = async (jsondata) => {
       try {
-         // Add timestamp to JSON data
+         // Add timestamp to JSON data // productionEnvVar
+
           jsondata.timestamp = new Date().toISOString();
           jsondata.mode = navigator.userAgent =='MyCustomWebViewMarker' ?"Mobile-APP" : "Browser";
           jsondata.userdetail = navigator.userAgent + JSON.stringify(navigator.userAgentData)
