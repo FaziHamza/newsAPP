@@ -434,7 +434,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                 {IsMobile && (
                                   <>
                                     <Link
-                                      to={`../${navType}/${navTopic}`}
+                                      to={team.isExternalUrl ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}` :`../${navType}/${navTopic}` }
                                       state={{
                                         address: navAddress,
                                         topicKey: team?.Highlights,
@@ -493,8 +493,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                 )}
                                 {team.newsIcon !== '' && (
                                   <Link
-                                    to={`../${navType}/${navTopic}`}
-                                    onClick={() => {
+                                  to={team.isExternalUrl ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}` :`../${navType}/${navTopic}` }
+                                  onClick={() => {
                                       closeNav();
                                       SetCurrentMenu(team);
                                     }}
@@ -521,7 +521,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
 
                                 {team.videoIcon !== null && team.newsIcon === null && (
                                   <Link
-                                    to="/highlights"
+                                  to={team.isExternalUrl ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}` :`highlights` }
                                     state={{
                                       topicKey: team?.highlights,
                                       topictype: team?.highlightType,
@@ -536,7 +536,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                       SetCurrentMenu(team);
                                     }}
                                     name={team.name}>
-                                    <img src={team.videoIcon} className="coll-video" alt="" />
+                                    {/* <img src={team.videoIcon} className="coll-video" alt="" /> */}
                                   </Link>
                                 )}
                                 <label class="form-check-label d-flex">
@@ -547,8 +547,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                       {team.videoIcon !== '' ? (
                                         team.newsIcon !== '' ? (
                                           <Link
-                                            to={`../${navType}/${navTopic}`}
-                                            onClick={() => {
+                                          to={team.isExternalUrl ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}` :`../${navType}/${navTopic}` }
+                                          onClick={() => {
                                               closeNav();
                                               SetCurrentMenu(team);
                                             }}
@@ -573,8 +573,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                           </Link>
                                         ) : (
                                           <Link
-                                            to="/highlights"
-                                            state={{
+                                          to={team.isExternalUrl ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}` :`highlights` }
+                                          state={{
                                               topicKey: team?.highlights,
                                               topictype: team?.highlightType,
                                               IsSubtopicVideo: team?.isSubtopicVideo,
@@ -593,8 +593,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                         )
                                       ) : (
                                         <Link
-                                          to={`../${navType}/${navTopic}`}
-                                          onClick={() => {
+                                        to={team.isExternalUrl ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}` :`../${navType}/${navTopic}` }
+                                        onClick={() => {
                                             closeNav();
                                             SetCurrentMenu(team);
                                           }}
