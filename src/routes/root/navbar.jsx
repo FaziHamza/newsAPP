@@ -431,7 +431,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                           <div class="collapse" key={team.name} id={`collapseinner1-${id + index}`}>
                             <div className="option">
                               <div class="form-check">
-                                {IsMobile && (
+                                {IsMobile && !team.isExternalUrl && (
                                   <>
                                     <Link
                                       to={team.isExternalUrl ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}` :`../${navType}/${navTopic}` }
