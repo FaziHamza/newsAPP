@@ -280,7 +280,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                   isDesktopScreen={true}
                                   description={tileItem._abstract}
                                   className={'tile-m main-list'}
-                                  src={ tileItem._medias[1].href.replace('http://sportifiedspot','https://sportifiedspot')}
+                                  src={ tileItem._medias[1].href.replace('http://','https://')}
                                   alt={tileItem._medias[0]?.href}
                                   time={tileItem._published}
                                   externaliconsource={
@@ -335,7 +335,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                     idforlogo={tileItem._id}
                                     description={tileItem._abstract}
                                     className={'tile-m'}
-                                    src={ tileItem._medias[1].href.replace('http://sportifiedspot','https://sportifiedspot')}
+                                    src={ tileItem._medias[1].href.replace('http://','https://')}
                                     alt={tileItem._medias[0]?.href}
                                     time={tileItem._published}
                                     externaliconsource={
@@ -398,7 +398,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                     idforlogo={tileItem._id}
                                     heading={tileItem._title}
                                     description={tileItem._abstract}
-                                    src={tileItem._medias[1].href.replace('http://sportifiedspot','https://sportifiedspot')}
+                                    src={tileItem._medias[1].href.replace('http://','https://')}
                                     alt={tileItem._medias[0]?.href}
                                     time={tileItem._published}
                                     externaliconsource={
@@ -449,7 +449,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                             idforlogo={tableInfo[index]._id}
                                             description={tableInfo[index]._abstract}
                                             className={index === 0 ? '' : 'tile-m'}
-                                            src={ tableInfo[index]._medias[1].href.replace('http://sportifiedspot','https://sportifiedspot')}
+                                            src={ tableInfo[index]._medias[1].href.replace('http://','https://')}
                                             alt={tableInfo[index]._medias[1]?.href}
                                             time={tableInfo[index]._published}
                                             externaliconsource={
@@ -494,7 +494,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                             idforlogo={tableInfo[index + 1]._id}
                                             description={tableInfo[index + 1]._abstract}
                                             className={index === 0 ? '' : 'tile-m'}
-                                            src={ tableInfo[index + 1]._medias[1].href.replace('http://sportifiedspot','https://sportifiedspot')}
+                                            src={ tableInfo[index + 1]._medias[1].href.replace('http://','https://')}
                                             alt={tableInfo[index + 1]._medias[1]?.href}
                                             time={tableInfo[index + 1]._published}
                                             externaliconsource={
@@ -540,7 +540,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                               idforlogo={tileItem._id}
                                               description={tileItem._abstract}
                                               className={index === 0 ? '' : 'tile-m'}
-                                              src={ tileItem._medias[1].href.replace('http://sportifiedspot','https://sportifiedspot')}
+                                              src={ tileItem._medias[1].href.replace('http://','https://')}
                                               alt={tileItem._medias[1]?.href}
                                               time={tileItem._published}
                                               externaliconsource={
@@ -586,7 +586,7 @@ const Table = ({ topStoryLimit = 4, adSpan = 6 }) => {
                                       idforlogo={tileItem._id}
                                       description={tileItem._abstract}
                                       className={index === 0 ? '' : 'tile-m'}
-                                      src={tileItem._medias[1].href.replace('http://sportifiedspot','https://sportifiedspot')}
+                                      src={tileItem._medias[1].href.replace('http://','https://')}
                                       alt={tileItem._medias[0]?.href}
                                       time={tileItem._published}
                                       externaliconsource={
