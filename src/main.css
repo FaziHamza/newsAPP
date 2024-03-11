@@ -438,9 +438,9 @@ header>div {
     transition: .3s
 }
 
-.sidenav a:hover {
+/* .sidenav a:hover {
     color: #f1f1f1
-}
+} */
 
 .sidenav .closebtn {
     position: absolute;
@@ -483,6 +483,9 @@ header>div {
 .sidenav .nav-item .my-action-bar {
     padding: 0px 10px;
     white-space: nowrap
+}
+.dark-theme .my-action-bar {
+    color: #000 !important;
 }
 
 .sidenav .nav-item:hover {
@@ -1169,7 +1172,7 @@ header>div {
     justify-content: space-between
 }
 
-.coll-sidenav .coll-item .coll-heading .rightside .action-bar-icon {
+.coll-sidenav .coll-item  .rightside .action-bar-icon {
     background: #fde42f;
     padding: 4px 6px;
     width: -moz-fit-content;
@@ -1178,7 +1181,7 @@ header>div {
     margin-right: 6px
 }
 
-.coll-sidenav .coll-item .coll-heading .rightside .action-bar-icon span {
+.coll-sidenav .coll-item  .rightside .action-bar-icon span {
     color: #000;
     font-family: sourcesans;
     font-size: 10px;
@@ -1232,10 +1235,12 @@ header>div {
 .coll-heading .arrow i {
     font-size: 16px;
 }
-.coll-heading .arrow i:hover {
-  color: black !important;
+.dark-theme  .coll-heading .arrow i:hover {
+  color: white !important;
 }
-
+.light-theme  .coll-heading .arrow i:hover {
+    color: black !important;
+}
 .coll-sidenav .coll-item-inner .coll-heading .coll-lable {
     display: flex;
     align-items: center

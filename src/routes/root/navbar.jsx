@@ -249,7 +249,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
     // } else {
     //   setThemeVariant('dark');
     // }
-    setThemeVariant('light'); //By Default Light Theme
+    setThemeVariant('dark'); //By Default Light Theme
   }, []);
   // const FirsttimeOpen=window.localStorage.getItem("FirstOpen")
   // let First;
@@ -268,21 +268,21 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
           &times;
         </a>
-        <div className="navbar-right-logo">
+        <div className="navbar-right-logo d-flex">
           <img src={SPORSpot_News} alt="" />
+          <Logo alt={'logo'} /> {GetCurrentDomain()}
         </div>
-        <div className="region-container">
+        {/* <div className="region-container">
           <div className="region-title">
             <Logo alt={'logo'} /> {GetCurrentDomain()}
             <img />
           </div>
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <p className="navbar-text">
-            {/* Välj senaste nytt, för det du önskar nyheter om, från nedanstående meny: */}
             Välj dina nyheter ifrån menyn. Kryssa för den rubrik du vill spara
           </p>
-        </div>
+        </div> */}
         {/* coll-sidenav */}
         <div className="coll-sidenav">
           {Object.entries(groupedNavItems).map(([heading, group], index) => (
@@ -355,7 +355,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                         <div className="rightside">
                           {moreItem.topic.name.toLowerCase().trim() !== 'notopic' && (
                             <>
-                              <div className="action-bar-icon">
+                              {/* <div className="action-bar-icon">
                                 {moreItem.subTopics.length > 0 && (
                                   <>
                                     {IsMobile && (
@@ -365,7 +365,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     )}
                                   </>
                                 )}
-                              </div>
+                              </div> */}
                               {/*               
                           <div className="arrow">
                             <svg
@@ -419,7 +419,8 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                           </div>
                         </div>   */}
                       </a>
-                      {moreItem.subTopics.map((team) => {
+
+                      {moreItem.subTopics.map((team, teamIndex) => {
                         const [navType, navTopic, navAddress] = team.news
                           ? ['news', team.name.toLowerCase().replace(/\s/g, '_'), team.news]
                           : [
@@ -427,14 +428,54 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                               team.name.toLowerCase().replace(/\s/g, '_'),
                               team.articles,
                             ];
+                        // Check if it's the first item in the array
+                        const isFirstItem = teamIndex === 0;
                         return (
                           <div class="collapse" key={team.name} id={`collapseinner1-${id + index}`}>
+                            <div className="rightside">
+                              {moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
+                                isFirstItem && (
+                                  <>
+                                    <div className="option">
+                                      <div class="form-check d-flex justify-content-between">
+                                        <div className="action-bar-icon">
+                                          {moreItem.subTopics.length > 0 && (
+                                            <>
+                                              {IsMobile && (
+                                                <span className="my-action-bar">
+                                                  {moreItem.topic.actionBar}
+                                                </span>
+                                              )}
+                                            </>
+                                          )}
+                                        </div>
+                                        <div className="action-bar-icon">
+                                          {moreItem.subTopics.length > 0 && (
+                                            <>
+                                              {IsMobile && (
+                                                <span className="my-action-bar">
+                                                  {moreItem.topic.actionBar}
+                                                </span>
+                                              )}
+                                            </>
+                                          )}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </>
+                                )}
+                            </div>
+
                             <div className="option">
                               <div class="form-check">
-                                {IsMobile  && (
+                                {IsMobile && (
                                   <>
                                     <Link
-                                      to={team.isExternalUrl ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}` :`../${navType}/${navTopic}` }
+                                      to={
+                                        team.isExternalUrl
+                                          ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}`
+                                          : `../${navType}/${navTopic}`
+                                      }
                                       state={{
                                         address: navAddress,
                                         topicKey: team?.Highlights,
@@ -461,8 +502,6 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                           topicName: team.name,
                                         }}
                                         onChange={(e) => {
-
-                                        
                                           handleFavouriteMenu(
                                             e.target.checked,
                                             team.name,
@@ -482,48 +521,24 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                               LogoTeam: team.logo,
                                               IsSql: !team.news,
                                               SubttopicHeadline: team.subtopicHeadline,
-                                              isSubTopicChecked:team.isSubTopicChecked ,
-                                              IsExternal:team.isExternalUrl,
-                                              ExternalUrl:team.externalUrl
+                                              isSubTopicChecked: team.isSubTopicChecked,
+                                              IsExternal: team.isExternalUrl,
+                                              ExternalUrl: team.externalUrl,
                                             }
                                           );
                                           SetCurrentMenu(team);
-                                        }
-                                        }></input>
+                                        }}></input>
                                     </Link>
                                   </>
-                                )}
-                                {team.newsIcon !== '' && (
-                                  <Link
-                                  to={team.isExternalUrl ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}` :`../${navType}/${navTopic}` }
-                                  onClick={() => {
-                                      closeNav();
-                                      SetCurrentMenu(team);
-                                    }}
-                                    state={{
-                                      address: navAddress,
-                                      topicKey: team?.Highlights,
-                                      topictype: team?.highlightType,
-                                      IsSubtopicVideo: team?.isSubtopicVideo,
-                                      topicName: team.name,
-                                      TopicId: team.topicID,
-                                      navType,
-                                      navTopic,
-                                      moreItemName: moreItem.topic.name,
-                                      SubTopicId: team.subTopicID,
-                                      LogoPath: moreItem.topic.logo,
-                                      LogoTeam: team.logo,
-                                      IsSql: !team.news,
-                                      SubttopicHeadline: team.subtopicHeadline,
-                                    }}
-                                    name={team.name}>
-                                    <i className={team.newsIcon}></i>
-                                  </Link>
                                 )}
 
                                 {team.videoIcon !== null && team.newsIcon === null && (
                                   <Link
-                                  to={team.isExternalUrl ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}` :`highlights` }
+                                    to={
+                                      team.isExternalUrl
+                                        ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}`
+                                        : `highlights`
+                                    }
                                     state={{
                                       topicKey: team?.highlights,
                                       topictype: team?.highlightType,
@@ -541,6 +556,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     {/* <img src={team.videoIcon} className="coll-video" alt="" /> */}
                                   </Link>
                                 )}
+                                <div className="d-flex justify-content-between" style={{width:'100%'}}>
                                 <label class="form-check-label d-flex">
                                   <img src={`${team.logo}`} alt={`${team.logo}`} height={'20px'} />
                                   {!team.isSubTopicChecked && (
@@ -549,8 +565,12 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                       {team.videoIcon !== '' ? (
                                         team.newsIcon !== '' ? (
                                           <Link
-                                          to={team.isExternalUrl ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}` :`../${navType}/${navTopic}` }
-                                          onClick={() => {
+                                            to={
+                                              team.isExternalUrl
+                                                ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}`
+                                                : `../${navType}/${navTopic}`
+                                            }
+                                            onClick={() => {
                                               closeNav();
                                               SetCurrentMenu(team);
                                             }}
@@ -575,8 +595,12 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                           </Link>
                                         ) : (
                                           <Link
-                                          to={team.isExternalUrl ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}` :`highlights` }
-                                          state={{
+                                            to={
+                                              team.isExternalUrl
+                                                ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}`
+                                                : `highlights`
+                                            }
+                                            state={{
                                               topicKey: team?.highlights,
                                               topictype: team?.highlightType,
                                               IsSubtopicVideo: team?.isSubtopicVideo,
@@ -595,8 +619,12 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                         )
                                       ) : (
                                         <Link
-                                        to={team.isExternalUrl ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}` :`../${navType}/${navTopic}` }
-                                        onClick={() => {
+                                          to={
+                                            team.isExternalUrl
+                                              ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}`
+                                              : `../${navType}/${navTopic}`
+                                          }
+                                          onClick={() => {
                                             closeNav();
                                             SetCurrentMenu(team);
                                           }}
@@ -623,6 +651,39 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     </>
                                   )}
                                 </label>
+                                  {!team.newsIcon !== '' && (
+                                    <Link
+                                      to={
+                                        team.isExternalUrl
+                                          ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}`
+                                          : `../${navType}/${navTopic}`
+                                      }
+                                      onClick={() => {
+                                        closeNav();
+                                        SetCurrentMenu(team);
+                                      }}
+                                      state={{
+                                        address: navAddress,
+                                        topicKey: team?.Highlights,
+                                        topictype: team?.highlightType,
+                                        IsSubtopicVideo: team?.isSubtopicVideo,
+                                        topicName: team.name,
+                                        TopicId: team.topicID,
+                                        navType,
+                                        navTopic,
+                                        moreItemName: moreItem.topic.name,
+                                        SubTopicId: team.subTopicID,
+                                        LogoPath: moreItem.topic.logo,
+                                        LogoTeam: team.logo,
+                                        IsSql: !team.news,
+                                        SubttopicHeadline: team.subtopicHeadline,
+                                      }}
+                                      name={team.name}>
+                                      {/* <i className={team.newsIcon}></i>                                     */}
+                                      <i className="fa fa-newspaper"></i>
+                                    </Link>
+                                  )}
+                                </div>
                               </div>
                             </div>
                           </div>
