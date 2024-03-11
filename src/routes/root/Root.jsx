@@ -692,7 +692,7 @@ const Root = () => {
                     if (minItem != min_item && min_item != Infinity) {
                       ScrollToActiveTab(filteredFavouriteMenu[min_item], min_item,true);
                       setMinItem(min_item);
-                      navigate(filteredFavouriteMenu[min_item]?.link, {
+                      navigate(  filteredFavouriteMenu[min_item]?.state?.IsExternal ? `/external?isExternal=true&ArticleLink=${filteredFavouriteMenu[min_item]?.state?.ExternalUrl}&Logo=${filteredFavouriteMenu[min_item]?.state?.LogoTeam}&Text=${filteredFavouriteMenu[min_item]?.state?.topicName}` : filteredFavouriteMenu[min_item]?.link, {
                         state: filteredFavouriteMenu[min_item]?.state,
                       });
                     }
