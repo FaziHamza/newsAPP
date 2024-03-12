@@ -525,7 +525,8 @@ const Root = () => {
                           <NavbarMobile
                             navList={settingsInfo.menuItems}
                             setThemeVariant={setThemeVariant}
-                            themeVariant={themeVariant}
+                            // themeVariant={themeVariant}
+                            themeVariant={'dark-theme'}
                           />
                         )}
                         {/* <span style={{ fontSize: '30px', cursor: 'pointer' }}>&#9776;</span> */}

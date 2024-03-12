@@ -826,6 +826,10 @@ header>div {
     background: #fff;
     border-left: 1px solid #d3d3d3
 }
+.dark-theme .sidenav {
+    background: #000000;
+    border-left: 1px solid #d3d3d3
+}
 
 .light-theme .sidenav .nav-item {
     color: #000

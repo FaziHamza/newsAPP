@@ -249,7 +249,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
     // } else {
     //   setThemeVariant('dark');
     // }
-    setThemeVariant('dark'); //By Default Light Theme
+    setThemeVariant('light'); //By Default Light Theme
   }, []);
   // const FirsttimeOpen=window.localStorage.getItem("FirstOpen")
   // let First;
@@ -432,44 +432,55 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                         const isFirstItem = teamIndex === 0;
                         const topicCss = {
                           backgroundColor: 'transparent',
-                          paddingLeft:'0px',
-                          paddingRight:'0px'
+                          paddingLeft: '0px',
+                          paddingRight: '0px',
                         };
                         return (
                           <div class="collapse" key={team.name} id={`collapseinner1-${id + index}`}>
-                              {moreItem.subTopics.length > 0 && moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
-                                isFirstItem && (
-                                  <>
-                                                              <div className="rightside">
+                            {moreItem.subTopics.length > 0 && ( moreItem.topic.highlights || moreItem.topic.highlights2)&&
+                              moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
+                              isFirstItem && (
+                                <>
+                                  <div className="rightside">
                                     <div className="option" style={topicCss}>
-                                      <div class="form-check d-flex justify-content-between" style={{padding:'0'}}>
-                                        <div className="action-bar-icon">
-                                          {moreItem.subTopics.length > 0 && (
-                                            <>
-                                              {IsMobile && (
-                                                <span className="my-action-bar" style={{margin:'0'}}>
-                                                  {moreItem.topic.actionBar}
-                                                </span>
-                                              )}
-                                            </>
+                                      <div
+                                        class="form-check d-flex justify-content-between"
+                                        style={{ padding: '0' }}>
+                                        {moreItem.subTopics.length > 0 &&
+                                          moreItem.topic.highlights != '' &&
+                                          moreItem.topic.highlights != null && (
+                                            <div className="action-bar-icon">
+                                              <>
+                                                {IsMobile && (
+                                                  <span
+                                                    className="my-action-bar"
+                                                    style={{ margin: '0' }}>
+                                                    {moreItem.topic.highlights}
+                                                  </span>
+                                                )}
+                                              </>
+                                            </div>
                                           )}
-                                        </div>
-                                        <div className="action-bar-icon" style={{margin:'0'}}>
-                                          {moreItem.subTopics.length > 0 && (
-                                            <>
-                                              {IsMobile && (
-                                                <span className="my-action-bar">
-                                                  {moreItem.topic.actionBar}
-                                                </span>
-                                              )}
-                                            </>
+                                        {moreItem.subTopics.length > 0 &&
+                                          moreItem.topic.highlights2 != '' &&
+                                          moreItem.topic.highlights2 != null && (
+                                            <div
+                                              className="action-bar-icon"
+                                              style={{ margin: '0' }}>
+                                              <>
+                                                {IsMobile && (
+                                                  <span className="my-action-bar">
+                                                    {moreItem.topic.highlights2}
+                                                  </span>
+                                                )}
+                                              </>
+                                            </div>
                                           )}
-                                        </div>
                                       </div>
                                     </div>
-                                    </div>
-                                  </>
-                                )}
+                                  </div>
+                                </>
+                              )}
 
                             <div className="option">
                               <div class="form-check">
@@ -561,14 +572,74 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                     {/* <img src={team.videoIcon} className="coll-video" alt="" /> */}
                                   </Link>
                                 )}
-                                <div className="d-flex justify-content-between" style={{width:'100%'}}>
-                                <label class="form-check-label d-flex">
-                                  <img src={`${team.logo}`} alt={`${team.logo}`} height={'20px'} />
-                                  {!team.isSubTopicChecked && (
-                                    <>
-                                      {/* Check if team.VideoIcon is not null and team.NewsIcon is null */}
-                                      {team.videoIcon !== '' ? (
-                                        team.newsIcon !== '' ? (
+                                <div
+                                  className="d-flex justify-content-between"
+                                  style={{ width: '100%' }}>
+                                  <label class="form-check-label d-flex">
+                                    <img
+                                      src={`${team.logo}`}
+                                      alt={`${team.logo}`}
+                                      height={'20px'}
+                                    />
+                                    {!team.isSubTopicChecked && (
+                                      <>
+                                        {/* Check if team.VideoIcon is not null and team.NewsIcon is null */}
+                                        {team.videoIcon !== '' ? (
+                                          team.newsIcon !== '' ? (
+                                            <Link
+                                              to={
+                                                team.isExternalUrl
+                                                  ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}`
+                                                  : `../${navType}/${navTopic}`
+                                              }
+                                              onClick={() => {
+                                                closeNav();
+                                                SetCurrentMenu(team);
+                                              }}
+                                              state={{
+                                                address: navAddress,
+                                                topicKey: team?.highlights,
+                                                topictype: team?.highlightType,
+                                                IsSubtopicVideo: team?.isSubtopicVideo,
+                                                topicName: team.name,
+                                                TopicId: team.topicID,
+                                                navType,
+                                                navTopic,
+                                                moreItemName: moreItem.topic.name,
+                                                SubTopicId: team.subTopicID,
+                                                LogoPath: moreItem.topic.menuFlag,
+                                                LogoTeam: team.logo,
+                                                IsSql: !team.news,
+                                                SubttopicHeadline: team.subtopicHeadline,
+                                              }}
+                                              name={team.name}>
+                                              {team.name}
+                                            </Link>
+                                          ) : (
+                                            <Link
+                                              to={
+                                                team.isExternalUrl
+                                                  ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}`
+                                                  : `highlights`
+                                              }
+                                              state={{
+                                                topicKey: team?.highlights,
+                                                topictype: team?.highlightType,
+                                                IsSubtopicVideo: team?.isSubtopicVideo,
+                                                topicName: team?.name,
+                                                LogoTeam: moreItem.topic.logo,
+                                                SubttopicHeadline: team.subtopicHeadline, // Assuming team.LogoTeam is the correct logo path
+                                                // Assuming team.LogoTeam is the correct logo path
+                                              }}
+                                              onClick={() => {
+                                                closeNav();
+                                                SetCurrentMenu(team);
+                                              }}
+                                              name={team.name}>
+                                              {team.name}
+                                            </Link>
+                                          )
+                                        ) : (
                                           <Link
                                             to={
                                               team.isExternalUrl
@@ -590,7 +661,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                               navTopic,
                                               moreItemName: moreItem.topic.name,
                                               SubTopicId: team.subTopicID,
-                                              LogoPath: moreItem.topic.menuFlag,
+                                              LogoPath: moreItem.topic.logo,
                                               LogoTeam: team.logo,
                                               IsSql: !team.news,
                                               SubttopicHeadline: team.subtopicHeadline,
@@ -598,65 +669,11 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                             name={team.name}>
                                             {team.name}
                                           </Link>
-                                        ) : (
-                                          <Link
-                                            to={
-                                              team.isExternalUrl
-                                                ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}`
-                                                : `highlights`
-                                            }
-                                            state={{
-                                              topicKey: team?.highlights,
-                                              topictype: team?.highlightType,
-                                              IsSubtopicVideo: team?.isSubtopicVideo,
-                                              topicName: team?.name,
-                                              LogoTeam: moreItem.topic.logo,
-                                              SubttopicHeadline: team.subtopicHeadline, // Assuming team.LogoTeam is the correct logo path
-                                              // Assuming team.LogoTeam is the correct logo path
-                                            }}
-                                            onClick={() => {
-                                              closeNav();
-                                              SetCurrentMenu(team);
-                                            }}
-                                            name={team.name}>
-                                            {team.name}
-                                          </Link>
-                                        )
-                                      ) : (
-                                        <Link
-                                          to={
-                                            team.isExternalUrl
-                                              ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}`
-                                              : `../${navType}/${navTopic}`
-                                          }
-                                          onClick={() => {
-                                            closeNav();
-                                            SetCurrentMenu(team);
-                                          }}
-                                          state={{
-                                            address: navAddress,
-                                            topicKey: team?.highlights,
-                                            topictype: team?.highlightType,
-                                            IsSubtopicVideo: team?.isSubtopicVideo,
-                                            topicName: team.name,
-                                            TopicId: team.topicID,
-                                            navType,
-                                            navTopic,
-                                            moreItemName: moreItem.topic.name,
-                                            SubTopicId: team.subTopicID,
-                                            LogoPath: moreItem.topic.logo,
-                                            LogoTeam: team.logo,
-                                            IsSql: !team.news,
-                                            SubttopicHeadline: team.subtopicHeadline,
-                                          }}
-                                          name={team.name}>
-                                          {team.name}
-                                        </Link>
-                                      )}{' '}
-                                    </>
-                                  )}
-                                </label>
-                                  {!team.newsIcon !== '' && (
+                                        )}{' '}
+                                      </>
+                                    )}
+                                  </label>
+                                  {moreItem.topic.highlights !== '' && moreItem.topic.highlights !=null && (
                                     <Link
                                       to={
                                         team.isExternalUrl
