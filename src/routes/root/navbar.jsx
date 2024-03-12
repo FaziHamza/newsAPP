@@ -578,7 +578,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                   <label class="form-check-label d-flex">
                                     <img
                                       src={`${team.logo}`}
-                                      alt={`${team.logo}`}
+                                      // alt={`${team.logo}`}
                                       height={'20px'}
                                     />
                                     {!team.isSubTopicChecked && (
