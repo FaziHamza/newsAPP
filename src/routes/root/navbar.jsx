@@ -430,26 +430,31 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                             ];
                         // Check if it's the first item in the array
                         const isFirstItem = teamIndex === 0;
+                        const topicCss = {
+                          backgroundColor: 'transparent',
+                          paddingLeft:'0px',
+                          paddingRight:'0px'
+                        };
                         return (
                           <div class="collapse" key={team.name} id={`collapseinner1-${id + index}`}>
-                            <div className="rightside">
-                              {moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
+                              {moreItem.subTopics.length > 0 && moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
                                 isFirstItem && (
                                   <>
-                                    <div className="option">
-                                      <div class="form-check d-flex justify-content-between">
+                                                              <div className="rightside">
+                                    <div className="option" style={topicCss}>
+                                      <div class="form-check d-flex justify-content-between" style={{padding:'0'}}>
                                         <div className="action-bar-icon">
                                           {moreItem.subTopics.length > 0 && (
                                             <>
                                               {IsMobile && (
-                                                <span className="my-action-bar">
+                                                <span className="my-action-bar" style={{margin:'0'}}>
                                                   {moreItem.topic.actionBar}
                                                 </span>
                                               )}
                                             </>
                                           )}
                                         </div>
-                                        <div className="action-bar-icon">
+                                        <div className="action-bar-icon" style={{margin:'0'}}>
                                           {moreItem.subTopics.length > 0 && (
                                             <>
                                               {IsMobile && (
@@ -462,9 +467,9 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                         </div>
                                       </div>
                                     </div>
+                                    </div>
                                   </>
                                 )}
-                            </div>
 
                             <div className="option">
                               <div class="form-check">
