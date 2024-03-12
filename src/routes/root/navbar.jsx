@@ -486,7 +486,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                               <div class="form-check">
                                 {IsMobile && !team.isExternalUrl && (
                                   <>
-                                    <Link
+                                    {/* <Link
                                       to={
                                         team.isExternalUrl
                                           ? `/external?isExternal=true&ArticleLink=${team.externalUrl}&Logo=${team.logo}&Text=${team.name}`
@@ -544,7 +544,43 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                           );
                                           SetCurrentMenu(team);
                                         }}></input>
-                                    </Link>
+                                    </Link> */}
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        checked={favouriteMenu?.some(
+                                          (m) => m?.state.SubTopicId == team?.subTopicID
+                                        )}
+                                        state={{
+                                          topicName: team.name,
+                                        }}
+                                        onChange={(e) => {
+                                          handleFavouriteMenu(
+                                            e.target.checked,
+                                            team.name,
+                                            `../${navType}/${navTopic}`,
+                                            {
+                                              address: navAddress,
+                                              topicKey: team?.highlights,
+                                              topictype: team?.highlightType,
+                                              IsSubtopicVideo: team?.isSubtopicVideo,
+                                              topicName: team.name,
+                                              TopicId: team.topicID,
+                                              navType,
+                                              navTopic,
+                                              moreItemName: moreItem.topic.name,
+                                              SubTopicId: team.subTopicID,
+                                              LogoPath: moreItem.topic.logo,
+                                              LogoTeam: team.logo,
+                                              IsSql: !team.news,
+                                              SubttopicHeadline: team.subtopicHeadline,
+                                              isSubTopicChecked: team.isSubTopicChecked,
+                                              IsExternal: team.isExternalUrl,
+                                              ExternalUrl: team.externalUrl,
+                                            }
+                                          );
+                                          SetCurrentMenu(team);
+                                        }}></input>
                                   </>
                                 )}
 
