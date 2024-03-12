@@ -444,7 +444,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                   <div className="rightside">
                                     <div className="option" style={topicCss}>
                                       <div
-                                        class="form-check d-flex justify-content-between"
+                                        className={`form-check ${moreItem.topic.highlights  ? 'd-flex justify-content-between' : 'd-flex justify-content-end'}`}
                                         style={{ padding: '0' }}>
                                         {moreItem.subTopics.length > 0 &&
                                           moreItem.topic.highlights != '' &&
