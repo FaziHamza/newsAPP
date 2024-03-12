@@ -231,7 +231,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
     setIsChecked(isChecked);
     // // console.log'is check  ', isChecked, name, link, state);
     dispatch(addFavouriteMenu({ isChecked, name, link, state }));
-    closeNav();
+    // closeNav();
   };
   const handleOrigin = (e, id) => {
     e.preventDefault();
