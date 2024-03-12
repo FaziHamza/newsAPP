@@ -484,7 +484,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
 
                             <div className="option">
                               <div class="form-check">
-                                {IsMobile && (
+                                {IsMobile && !team.isExternalUrl && (
                                   <>
                                     <Link
                                       to={
