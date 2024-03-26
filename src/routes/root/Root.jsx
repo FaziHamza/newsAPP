@@ -32,8 +32,16 @@ import DisplayComponentforheader from './DisplayComponentforheader';
 import SettingNavbar from './SettingNavbar';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { debounce } from 'lodash';
 
 const Root = () => {
+  
+  
+
+
   const dispatch = useDispatch();
   //For Header back Button
   // Define the route pattern you want to match
@@ -65,6 +73,50 @@ const Root = () => {
 
   const [minItem, setMinItem] = useState();
 
+
+  // ====== slider ====
+  const [activeTabIndex, setActiveTabIndex] = useState(
+    localStorage.getItem('activeTabIndex') ? 
+  parseInt(localStorage.getItem('activeTabIndex')) : 0
+  );
+  const sliderRef = useRef(null);
+  const settings = {
+    dots: false,
+    infinite: false,
+    arrows: false,
+    speed: 500,
+    slidesToScroll: 1,
+    centerMode: true, 
+    variableWidth: true,
+    swipe :true,
+    swipeToSlide : true,
+    
+  
+    beforeChange:(currentSlide, index) => {
+      setActiveTabIndex(index); 
+      localStorage.setItem('activeTabIndex', index);
+      ScrollToActiveTab(filteredFavouriteMenu[index], index, true);
+    },
+  };
+  
+  const handleTabClick = (index) => {
+    setActiveTabIndex(index);
+    localStorage.setItem('activeTabIndex', index);
+    sliderRef.current.slickGoTo(index);
+  };
+
+
+
+  useEffect(() => {
+   
+    // Ensure sliderRef is initialized before attempting to call slickGoTo
+    if (sliderRef.current) {
+      console.log(activeTabIndex);
+      sliderRef.current.slickGoTo(activeTabIndex);
+    }
+  }, [sliderRef.current ,activeTabIndex]);
+
+  // === slider end ===
   const navigate = useNavigate();
 
   const copyToClipboardV1 = () => {
@@ -321,7 +373,7 @@ const Root = () => {
         }
         // console.logwindow.innerWidth, min_item);
         if (minItem != min_item && min_item != Infinity) {
-          ScrollToActiveTab(null, min_item,false);
+          ScrollToActiveTab(null, min_item, false);
         }
       }, 1500);
 
@@ -410,37 +462,33 @@ const Root = () => {
   }, [settingsInfo, favouriteMenu]);
 
   function ScrollToActiveTab(item, id, useraction) {
+    setActiveTabIndex(id);
+   
     if (item !== null && item !== undefined && useraction) {
       dispatch(addCurrentMenu(item));
     }
-  
-    requestAnimationFrame(() => {
-      // Ensure this runs after any pending layout changes
-      var scrollableDiv = document.getElementById('scrollableDiv');
-      let tempId = 'targetId-' + id;
-      var targetElement = document.getElementById(tempId);
-  
-      if (targetElement) {
-        var targetPosition = targetElement.offsetLeft + targetElement.clientWidth / 2 - window.innerWidth / 2;
-  
-        // Perform the scroll
-        scrollableDiv.scrollLeft = targetPosition;
-      }
+
+    navigate(  filteredFavouriteMenu[id]?.state?.IsExternal ? `/external?isExternal=true&ArticleLink=${filteredFavouriteMenu[id]?.state?.ExternalUrl}&Logo=${filteredFavouriteMenu[id]?.state?.LogoTeam}&Text=${filteredFavouriteMenu[id]?.state?.topicName}` : filteredFavouriteMenu[id]?.link, {
+      state: filteredFavouriteMenu[id]?.state,
     });
+
+    
   }
-  
 
   const scrollableDivRef = useRef(null);
 
   const location = useLocation();
   const { state } = location;
   const teamName = state?.topicName;
+
   // console.log'TEAMNAMW', state?.topicName);
   const currentmenu = window.localStorage.getItem('favouriteMenu');
   const currentmenuparse = JSON.parse(currentmenu);
   if (
     state?.topicName === undefined &&
-    (Array.isArray(currentmenuparse)) && currentmenuparse !=null && currentmenuparse.length !==0 &&
+    Array.isArray(currentmenuparse) &&
+    currentmenuparse != null &&
+    currentmenuparse.length !== 0 &&
     CurrentMenuItemSelected == undefined
   ) {
     const parse = JSON.parse(currentmenu);
@@ -542,9 +590,9 @@ const Root = () => {
                                 <div className="nav-item">
                                   {/* <div className="flx">Setting</div> */}
                                   <div className="c-dropdown">
-                                    <div class="dropdown">
+                                    <div className="dropdown">
                                       <div
-                                        class="  dropdown-toggle"
+                                        className="  dropdown-toggle"
                                         type="button"
                                         id="dropdownMenuButton1"
                                         data-bs-toggle="dropdown"
@@ -554,13 +602,13 @@ const Root = () => {
                                           <img
                                             src={settingicon}
                                             alt=""
-                                            srcset=""
+                                            srcSet=""
                                             style={{ height: '35px', width: '35px' }}
                                           />
                                         </span>
                                       </div>
                                       <ul
-                                        class="dropdown-menu"
+                                        className="dropdown-menu"
                                         aria-labelledby="dropdownMenuButton1">
                                         {/* {allregion?.map((m) => {
                                           const isActive = selectedMenu?.id === m?.id;
@@ -652,7 +700,7 @@ const Root = () => {
                             src={shareicon}
                             alt={shareicon}
                             onClick={shareContent}
-                            srcset=""
+                            srcSet=""
                             style={{ height: '35px', width: '35px' }}
                           />
                         )}
@@ -671,119 +719,70 @@ const Root = () => {
             <footer>
               <div className="top-bar lg-d-none">
                 <div className="curve"></div>
-                <div
-                  className="all-tabs"
-                  id="scrollableDiv"
-                  ref={scrollableDivRef}
-                  onScroll={() => {
-                    const x = scrollableDivRef.current?.scrollLeft;
-                    let min_dist = Infinity;
-                    let min_item = Infinity;
-                    let y = (window?.innerWidth || 0) * 0.04;
-                    // console.logy);
-                    for (let index = 0; index < filteredFavouriteMenu.length; index++) {
-                      const element = scrollableDivRef.current?.children[index];
-                      y += element.scrollWidth;
-                      let thisDistance = Math.abs(x - (y + element.scrollWidth / 2));
-                      if (thisDistance < min_dist) {
-                        min_dist = thisDistance;
-                        min_item = index;
-                      }
-                    }
-                    if (minItem != min_item && min_item != Infinity) {
-                      ScrollToActiveTab(filteredFavouriteMenu[min_item], min_item,true);
-                      setMinItem(min_item);
-                      navigate(  filteredFavouriteMenu[min_item]?.state?.IsExternal ? `/external?isExternal=true&ArticleLink=${filteredFavouriteMenu[min_item]?.state?.ExternalUrl}&Logo=${filteredFavouriteMenu[min_item]?.state?.LogoTeam}&Text=${filteredFavouriteMenu[min_item]?.state?.topicName}` : filteredFavouriteMenu[min_item]?.link, {
-                        state: filteredFavouriteMenu[min_item]?.state,
-                      });
-                    }
-                  }}>
+
+                {/* ====== slicl slider ========== */}
+                <div className="all-tabs" id="scrollableDiv" ref={scrollableDivRef}>
                   {IsMobile && (
-                    // {favouriteMenu?.some(m => m?.name == team?.name)}
                     <>
-                      <div style={{ marginRight: '40%' }}></div>
-                      {filteredFavouriteMenu?.map((m, i) => {
-                        // console.log"FAV",filteredFavouriteMenu[0].name)
-                        // filteredFavouriteMenu[0].name
-                        const condition =
-                        (teamName === undefined && m?.name ===  filteredFavouriteMenu[0].name) || m?.name === teamName;
-                        // let condition;
-                        // if (teamName == undefined && m?.name === CurrentMenuItemSelected) {
-                        //   // console.log'Condition value 1:', teamName,m?.name ,CurrentMenuItemSelected);
-                        //   condition = true;
-                        // } else if (m?.name == teamName) {
-                        //   // console.log'Condition value 2:', teamName,m?.name);
-                        //   condition = true;
-                        // } else {
-                        //   // console.log'Condition value 3:', teamName,m?.name ,CurrentMenuItemSelected);
-                        //   condition = false;
-                        // }
-                        // // console.log'Condition value:', condition);
-                        return (
-                          <div
-                            key={i}
-                            id={`targetId-${i}`}
-                            // className={
-                            //   decodedPathname == `/${m?.state?.navType}/${m?.state?.navTopic}`
-                            //     ? 'active tab btn-light '
-                            //     : 'tab btn-light'
-                            // }
-                            // className={
-                            //   m?.name === teamName ? 'active tab btn-light' : 'tab btn-light'
-                            // }
-                            className={condition ? 'active tab btn-light' : 'tab btn-light'}
-                            to={m.link}
-                            name={m?.name}
-                            onClick={() => {
-                              ScrollToActiveTab(m, i,true);
-                            }}>
-                            {/* {m?.name === CurrentMenuItemSelected ?ScrollToActiveTab(m,i):null} */}
-                            {/* {m?.name === teamName ? ScrollToActiveTab(m, i) : null} */}
-                            {/* {teamName == undefined
-                              ? m?.name === CurrentMenuItemSelected
-                                ? ScrollToActiveTab(m, i)
-                                : null
-                              : null} */}
-                            {m?.name === teamName ||
-                            (teamName === undefined && m?.name === filteredFavouriteMenu[0].name)
-                              ? ScrollToActiveTab(m, i,false)
-                              : null}
+                      <Slider {...settings} ref={sliderRef}>
+                        
+                        {filteredFavouriteMenu?.map((m, i) => {
+                          {/* console.log('mmm' , m) */}
+                          {/* const condition =
+                            (teamName === undefined && m?.name === filteredFavouriteMenu[0].name) ||
+                            m?.name === teamName; */}
+                            {/* console.log("ccc" , filteredFavouriteMenu[0].name);
+                            console.log("fff" , m?.name) */}
+                          return (
+                            
+                        
+                           <div
+                              key={i}
+                              id={`targetId-${i}`}
+                              className={i == activeTabIndex ? 'active tab btn-light' : 'tab btn-light'}
+                              to={m.link}
+                              name={m?.name}
+                              onClick={() => {
+                                ScrollToActiveTab(m, i, true);
+                                handleTabClick(i)
+                              }}>
+                              <span className="action-bar">
+                                {m?.name?.toLowerCase() === 'top news'
+                                  ? m?.state?.LogoPath && (
+                                      <img
+                                        className="action-bar-img"
+                                        src={m?.state?.LogoPath}
+                                        alt={`${m?.name} logo`}
+                                      />
+                                    )
+                                  : m?.state?.LogoTeam && (
+                                      <img
+                                        className="action-bar-img"
+                                        src={m?.state?.LogoTeam}
+                                        alt={`${m?.name} logo`}
+                                      />
+                                    )}
+                              </span>
 
-                            {/* {decodedPathname} */}
-                            {/* Display the LogoTeam image if it exists */}
-                            <div className="action-bar">
-                              {m?.name?.toLowerCase() === 'top news'
-                                ? m?.state?.LogoPath && (
-                                    <img
-                                      className="action-bar-img"
-                                      src={m?.state?.LogoPath}
-                                      alt={`${m?.name} logo`}
-                                    />
-                                  )
-                                : m?.state?.LogoTeam && (
-                                    <img
-                                      className="action-bar-img"
-                                      src={m?.state?.LogoTeam}
-                                      alt={`${m?.name} logo`}
-                                    />
-                                  )}
+                              {m?.state?.isSubTopicChecked ? (
+                                <span style={{ visibility: 'hidden' }}>SPACE</span>
+                              ) : (
+                                <span>{m?.name}</span>
+                              )}
                             </div>
+                         
+                        
+                            
+                          );
+                        })}
+                      
+                      </Slider>
 
-                            {m?.state?.isSubTopicChecked ? (
-                              <span style={{ visibility: 'hidden' }}>SPACE</span>
-                            ) : (
-                              <span>{m?.name}</span>
-                            )}
-                            {/* {!m?.isSubTopicChecked && m?.name?.toLowerCase() == 'top news'
-                              ? `${m.name} ${m?.state?.moreItemName}`
-                              : m?.name} */}
-                          </div>
-                        );
-                      })}
-                      <div style={{ marginLeft: '40%' }}></div>
                     </>
                   )}
                 </div>
+
+                {/* =========== slick slider end ======= */}
               </div>
             </footer>
 

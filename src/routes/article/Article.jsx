@@ -95,7 +95,7 @@ const Article = ({ className = '' }) => {
   const [allarticleInfo, setAllArticelInfo] = useState([]);
   const [isShowPodcastIcon, setisshowPodcaseIcon] = useState(null);
   const [isShowVideoIcon, setisShowVideoIcon] = useState(null);
-  const [imageUrl,setimageUrl]=useState('');
+  const [imageUrl, setimageUrl] = useState('');
   const { state } = useLocation();
   // console.logstate);
   const articlevideo = useSelector((state) => state.origin.articlevideo);
@@ -206,7 +206,7 @@ const Article = ({ className = '' }) => {
 
   // const { articleInfo, tableInfo } = state;
 
- 
+
 
   const days = () => {
     // const timeDifference = timeQuery(articleInfo[0]._published); // Assuming timeQuery returns the difference in hours
@@ -222,7 +222,7 @@ const Article = ({ className = '' }) => {
     const days = Math.floor(timeDifference / 24);
     const hours = Math.floor(timeDifference % 24);
     const minutes = Math.floor((timeDifference % 1) * 60);
-  
+
     if (timeDifference < 1) {
       return `${minutes} Min`; // Swedish for minutes
     } else if (timeDifference < 24) {
@@ -303,14 +303,14 @@ const Article = ({ className = '' }) => {
                   src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                   alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                 /> */}
-                  <div class="main-article">
-                    <div class="left-article">
+                  <div className="main-article">
+                    <div className="left-article">
                       <h6>
-                        {days() }
+                        {days()}
                         {/* <img src={imageUrl} alt="logo" /> */}
                       </h6>
                     </div>
-                    <div class="right-article d-flex">
+                    <div className="right-article d-flex">
                       {isShowPodcastIcon && (
                         <Link {...linkPropsforpodcast} className="underline-hide">
                           <div className="highlights podcast-video">
@@ -366,7 +366,7 @@ const Article = ({ className = '' }) => {
                   src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                   alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                 />
-                 <p className='text-end mb-0' id="article-photographyBy" style={{ fontSize: "10px" }}>
+                <p className='text-end mb-0' id="article-photographyBy" style={{ fontSize: "10px" }}>
                   {articleInfo[0]?._Type}
                   {articleInfo[0]?._Creator ? `: ${articleInfo[0]?._Creator}` : ''}
                 </p>
@@ -374,14 +374,14 @@ const Article = ({ className = '' }) => {
                   src={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                   alt={addresses.baseUrl + articleInfo[0]?._medias[0]?.href}
                 /> */}
-                <div class="main-article">
-                  <div class="left-article">
+                <div className="main-article">
+                  <div className="left-article">
                     <h6>
                       {days()}
                       <img src={imageUrl} alt={imageUrl} />
                     </h6>
                   </div>
-                  <div class="right-article d-flex">
+                  <div className="right-article d-flex">
                     {isShowPodcastIcon && (
                       <Link {...linkPropsforpodcast} className="underline-hide">
                         <div className="highlights podcast-video">
@@ -411,12 +411,6 @@ const Article = ({ className = '' }) => {
                 <ContentParsed content={articleInfo[0]._content} />
               </p>
               <div className="article-footer">
-                <div className="artile-footer-left">
-                  <div className='footer-icon'>
-                    <img src={articlefootericon} style={{ width: '100px', }} />
-                  </div>
-                  <p>FÅ SENASTE NYHETERNA, VIDEOR OCH PODCASTS DIREKT I MOBILEN UTAN KOSTNAD</p>
-                </div>
                 <div className="article-footer-right">
                   <div className='row'>
                     <div className='col-6'>
@@ -434,6 +428,33 @@ const Article = ({ className = '' }) => {
                       </a>
                     </div>
                   </div>
+                </div>
+                <div className="artile-footer-left">
+                 
+                  <div className='row'>
+                    <div className="col-12">
+                      <div className='artile-footer-left-div' >
+                        <p className='mini-text' >Ansvarig utgivare</p>
+                        <p>Camilla Larsson</p>
+                      </div>
+                    </div>
+                    <div className="col-12">
+                      <div className='artile-footer-left-div-II' >
+                        <p className='mini-text' >  E-post</p>
+                        <div className="email">
+                          <p className='emailText' >camilla.larsson@sportblitznews.com</p>
+                          <i class="fa-sharp fa-light fa-envelope"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-12">
+                    <div className='artile-footer-left-div-III'>
+                      <p className='copuRight' >&#169;</p>
+                      <p>ItzyBiltz Media AB</p>
+                    </div>
+                  </div>
+                  {/* <p>FÅ SENASTE NYHETERNA, VIDEOR OCH PODCASTS DIREKT I MOBILEN UTAN KOSTNAD</p> */}
                 </div>
               </div>
             </main>

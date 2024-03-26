@@ -313,9 +313,11 @@ article {
   height: auto;
   border-radius: 8px;
 }
+
 .left-article img {
   margin: 0px 0 0 7px !important;
 }
+
 .story-tile p {
   margin: 0;
   padding: 2rem 0;
@@ -968,33 +970,39 @@ ul {
   font-weight: bold;
   font-size: 19px;
 }
-.main-live{
-    color: red;
-    font-size: 20px;
-    font-weight: 700;
-} 
-.tile-live{
+
+.main-live {
+  color: red;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.tile-live {
   color: red;
   font-size: 10px;
   font-weight: 700;
 }
+
 .mid-logo .c-dropdown {
   position: relative;
   top: 30px;
   right: 40px;
 }
-.navbar-text{
+
+.navbar-text {
   font-weight: 500;
-    text-align: justify;
-    padding: 10px;
-    margin-left: 10px;
-    padding-bottom: 5px;
-    margin-bottom: 0px;
+  text-align: justify;
+  padding: 10px;
+  margin-left: 10px;
+  padding-bottom: 5px;
+  margin-bottom: 0px;
 }
-.navbar-text-bottom{
+
+.navbar-text-bottom {
   /* position: relative; */
   top: 10px;
 }
+
 .mid-logo .c-dropdown .flag-image img {
   height: 30px;
   width: 40px;
@@ -1012,12 +1020,17 @@ ul {
 
 /* Apply styles to the horizontal scrollbar */
 #scrollableDiv {
-  overflow-x: auto; /* Enable horizontal scrolling */
-  white-space: nowrap; /* For inline or inline-block elements */
-  width: 100%; /* Or a specific width */
+  overflow-x: auto;
+  /* Enable horizontal scrolling */
+  white-space: nowrap;
+  /* For inline or inline-block elements */
+  width: 100%;
+
+  /* Or a specific width */
   /* Your existing scrollbar styling */
   &::-webkit-scrollbar-thumb {
-    background-color: #000000; /* Scrollbar color */
+    background-color: #000000;
+    /* Scrollbar color */
   }
 }
 
@@ -1108,15 +1121,91 @@ header .header-nav {
 
 .article-footer .footer-icon {
   text-align: center;
+  padding-bottom: 1rem;
 }
 
 .article-footer-right {
   width: 100%;
-  margin-top: 15px;
+  margin-bottom: 15px;
 
   display: flex;
   justify-content: space-around;
+}
 
+.artile-footer-left-div,
+.artile-footer-left-div-II {
+  border: 2px solid gray;
+  border-right: 0;
+  border-left: 0;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.artile-footer-left-div-II {
+  border-top: 0px !important;
+}
+
+.mini-text {
+  padding: 0;
+  margin: 0 !important;
+  font-size: 13px;
+  color: gray !important;
+  line-height: 20px;
+}
+
+.artile-footer-left-div>p:nth-child(2) {
+  margin: 0px;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.artile-footer-left-div-II .email {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  HEIGHT: 20px;
+  border-radius: 6px;
+  justify-content: space-between;
+}
+
+.copuRight{
+  color: white;
+  font-size: 16px;
+  padding: 0px !important;
+  margin-top: 0px !important;
+  margin-right: 5px;
+}
+
+.artile-footer-left-div-II .email .emailText {
+  border: 0px;
+  background: black;
+  text-align: left;
+  margin: 0px;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.artile-footer-left-div-II .email .fa-envelope {
+  font-size: 20px;
+  color: white;
+}
+
+.artile-footer-left-div-III {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  padding-top: 1.5rem;
+}
+
+
+.artile-footer-left-div-III p:nth-child(2) {
+  font-size: 16px;
+  background-color: black;
+  margin-top: 0px !important;
 }
 
 .google-play,
@@ -1148,10 +1237,11 @@ header .header-nav {
 .light-theme .artile-footer-left p {
   color: white;
 }
+
 /* .light-theme .dropdown-toggle  img {
   filter: invert(1);
 } */
-.navbar-right-logo img{
+.navbar-right-logo img {
   height: 35px;
   padding: 0 0 0 19px;
 }

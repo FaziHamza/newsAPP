@@ -905,13 +905,23 @@ header>div {
     border-bottom-right-radius: 26px
 }
 
-.top-bar .all-tabs {
+/* .top-bar .all-tabs {
     height: 100%;
     display: flex;
     overflow-x: scroll;
     align-items: center;
     padding-bottom: 15px
+} */
+
+.top-bar .all-tabs {
+    height: 100%;
+    margin-top: 20px;
+    /* display: flex; */
+    /* overflow-x: scroll; */
+    /* align-items: center !important; */
+    padding-bottom: 15px
 }
+
 
 .top-bar .all-tabs .btn-light {
     margin: 0px 10px;
@@ -949,15 +959,44 @@ header>div {
 }
 
 .top-bar .tab {
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: start;
     text-decoration: none;
     color: #fff !important;
     background-color: #000 !important;
-    padding: 0px 10px;
-    font-size: 14px
+    padding: 0px 10px !important;
+    font-size: 14px ;
+    /* width: 70px !important ; */
+    overflow: hidden !important;
+    /* margin : 0px 50px !important; */
 }
+/* .slick-track{
+    justify-content: center !important;
+display: flex !important;
+
+} */
+/* @media screen and (min-width: 400px) {
+    .top-bar .tab {
+        width: 90px !important;
+    }
+}
+@media screen and (min-width: 450px) {
+    .top-bar .tab {
+        width: 100px !important;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .top-bar .tab {
+        width: 120px !important;
+    }
+}
+@media screen and (min-width: 550px) {
+    .top-bar .tab {
+        width: auto !important;
+    }
+} */
 
 .action-bar-img {
     width: auto;

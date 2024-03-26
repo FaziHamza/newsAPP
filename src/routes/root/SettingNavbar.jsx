@@ -158,7 +158,7 @@ function SettingNavbar({ className = '', navList, inMain = 4, setThemeVariant, t
                 </svg>
               </div>
             </a>
-            <div class="collapse" id="collapseExample">
+            <div className="collapse" id="collapseExample">
               {colorState.value && (
                 <div className="coll-item-inner">
                   <div className="nav-item">

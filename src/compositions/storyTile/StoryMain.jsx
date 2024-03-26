@@ -20,7 +20,7 @@ const DisplayComponent = ({ topic }) => {
   const favouriteMenu = useSelector((state) => state?.favouriteMenu);
 
   const { state } = location;
-  console.log("State",state);
+  // console.log("State",state);
   // console.loginitialload);
   // Now you can access the passed state values
   const TopicId = state?.TopicId;
@@ -81,7 +81,7 @@ const DisplayComponent = ({ topic }) => {
         (s) => s?.state.SubTopicId == SubTopicId
       );
       setisfavItemExist(isExistinFav)
-      console.log("isExistinFav",isExistinFav)
+      // console.log("isExistinFav",isExistinFav)
   }, []);
   return (
     <>

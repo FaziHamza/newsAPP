@@ -320,10 +320,10 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                   <h5 style={{ paddingLeft: '5px' }}>{heading}</h5>
                 </div>
                 <div className="arrow">
-                  <i class="fa-solid fa-chevron-down"></i>
+                  <i className="fa-solid fa-chevron-down"></i>
                 </div>
               </a>
-              {group.items.map((moreItem) => {
+              {group.items.map((moreItem ,i) => {
                 const id = moreItem.topic.name.toLowerCase().replace(/\s+/g, '-');
                 const [topicNavType, topicNavTopic, topicNavAddress] = moreItem.topic.news
                   ? [
@@ -338,7 +338,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                     ];
 
                 return (
-                  <div class="collapse" id={`collapseExample-${heading.trim() + index}`}>
+                  <div className="collapse" key={i} id={`collapseExample-${heading.trim() + index}`}>
                     <div className="coll-item-inner ">
                       <a
                         className="coll-heading collapsed"
@@ -385,7 +385,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                             </>
                           )}
                           <div className="arrow">
-                            <i class="fa-solid fa-chevron-down"></i>
+                            <i className="fa-solid fa-chevron-down"></i>
                           </div>
                         </div>
 
@@ -436,7 +436,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                           paddingRight: '0px',
                         };
                         return (
-                          <div class="collapse" key={team.name} id={`collapseinner1-${id + index}`}>
+                          <div className="collapse" key={team.name} id={`collapseinner1-${id + index}`}>
                             {moreItem.subTopics.length > 0 && ( moreItem.topic.highlights || moreItem.topic.highlights2)&&
                               moreItem.topic.name.toLowerCase().trim() !== 'notopic' &&
                               isFirstItem && (
@@ -483,7 +483,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                               )}
 
                             <div className="option">
-                              <div class="form-check">
+                              <div className="form-check">
                                 {IsMobile && !team.isExternalUrl && (
                                   <>
                                     {/* <Link
@@ -546,7 +546,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                         }}></input>
                                     </Link> */}
                                     <input
-                                        class="form-check-input"
+                                        className="form-check-input"
                                         type="checkbox"
                                         checked={favouriteMenu?.some(
                                           (m) => m?.state.SubTopicId == team?.subTopicID
@@ -611,7 +611,7 @@ function Navbar({ className = '', navList, inMain = 4, setThemeVariant, themeVar
                                 <div
                                   className="d-flex justify-content-between"
                                   style={{ width: '100%' }}>
-                                  <label class="form-check-label d-flex">
+                                  <label className="form-check-label d-flex">
                                     <img
                                       src={`${team.logo}`}
                                       // alt={`${team.logo}`}

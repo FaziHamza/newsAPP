@@ -8,6 +8,7 @@ export const favouriteMenuReducer = createSlice({
   initialState,
   reducers: { 
     addFavouriteMenu: (state, action) => {
+      
       // // console.log"action from",action?.payload);
       // state.isChecked='', state.name= '',state.link='', state.state={}
       let tempState = state;
@@ -15,7 +16,7 @@ export const favouriteMenuReducer = createSlice({
         // If the payload is checked, add it to the beginning of the array
         tempState.unshift(action?.payload);
         // Check if the length of tempState is greater than 6
-        if (tempState.length > 6) {
+        if (tempState.length > 100) {
           // If so, remove the last item from the array
           tempState.pop();
         }

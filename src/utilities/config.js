@@ -75,23 +75,23 @@ export const addresses = {
 // }
 export const IsMobile=true;
 
-// export const videHighlight ={
-//     thumbnailurl:'https://sportspotadmin.dev/',
-//     videobaseurl:'https://sportspotadmin.dev/',
-    
-// }
-// // productionEnvVar
-// export const RootUrl={
-//   Baseurl:'https://sportspotadmin.dev/',
-//   HostName:'www.sportblitznews.se'
-// }
-
 export const videHighlight ={
-  thumbnailurl:'https://sportifiedspot.com/',
-  videobaseurl:'https://sportifiedspot.com/',
-  
+    thumbnailurl:'https://sportspotadmin.dev/',
+    videobaseurl:'https://sportspotadmin.dev/',
+    
 }
+// productionEnvVar
 export const RootUrl={
-  Baseurl:'https://sportifiedspot.com/',
-  HostName:'www.sportspotsverige.se'
+  Baseurl:'https://sportspotadmin.dev/',
+  HostName:'www.sportblitznews.se'
 }
+
+// export const videHighlight ={
+//   thumbnailurl:'https://sportifiedspot.com/',
+//   videobaseurl:'https://sportifiedspot.com/',
+  
+// }
+// export const RootUrl={
+//   Baseurl:'https://sportifiedspot.com/',
+//   HostName:'www.sportspotsverige.se'
+// }
