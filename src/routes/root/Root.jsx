@@ -90,31 +90,153 @@ const Root = () => {
     variableWidth: true,
     swipe :true,
     swipeToSlide : true,
+    cssEase: 'linear',
     
+   
   
     beforeChange:(currentSlide, index) => {
       setActiveTabIndex(index); 
+      handleTabChange(index)
       localStorage.setItem('activeTabIndex', index);
       ScrollToActiveTab(filteredFavouriteMenu[index], index, true);
+
+      var namee = decodeURIComponent(window.location.pathname.split('/news/')[1]);
+     
+      let indexxx = favouriteMenu.findIndex(item => decodeURIComponent(item.state.navTopic.toString().toLowerCase()) == namee.toString().toLowerCase());
+
+      console.log("favouriteMenu" , indexxx);
+        if (indexxx !== -1) {
+          setActiveTabIndex(indexxx);
+          handleTabChange(indexxx)
+          localStorage.setItem('activeTabIndex', indexxx);
+          ScrollToActiveTab(filteredFavouriteMenu[indexxx], indexxx, true);
+          sliderRef.current.slickGoTo(indexxx);
+
+        }
+
     },
   };
   
+  useEffect(()=>{
+    const namee = decodeURIComponent(window.location.pathname.split('/news/')[1]);
+    
+    
+    console.log("nameee" , namee);
+    let indexxx = filteredFavouriteMenu?.findIndex(item => decodeURIComponent(item.name.toString().toLowerCase()) == namee.toString().toLowerCase());
+    
+      if (indexxx !== -1) {
+        setActiveTabIndex(indexxx);
+        handleTabChange(indexxx)
+        localStorage.setItem('activeTabIndex', indexxx);
+        ScrollToActiveTab(filteredFavouriteMenu[indexxx], indexxx, true);
+        sliderRef.current.slickGoTo(indexxx);
+        
+      }
+
+  },[]);
+
+    // ======== tab history =======
+
+    // const [tabHistory, setTabHistory] = useState(
+    //   localStorage.getItem('tabHistory') ? JSON.parse(localStorage.getItem('tabHistory')) : []
+    // );
+  
+  
+    // const handleTabChange = (index) => {
+    //   setActiveTabIndex(index);
+    //   const updatedTabHistory = [...tabHistory, index];
+    //   setTabHistory(updatedTabHistory);
+    //   localStorage.setItem('activeTabIndex', index);
+    //   localStorage.setItem('tabHistory', JSON.stringify(updatedTabHistory));
+    // };
+  
+    // const handleBackButton = () => {
+    //   const updatedTabHistory = [...tabHistory];
+    //   updatedTabHistory.pop();
+    //   const lastIndex = updatedTabHistory.pop(); 
+    //   setTabHistory(updatedTabHistory);
+    //   setActiveTabIndex(lastIndex);
+    //   localStorage.setItem('activeTabIndex', lastIndex);
+    //   localStorage.setItem('tabHistory', JSON.stringify(updatedTabHistory));
+    // };
+  
+  
+    // useEffect(() => {
+    //   const handlePopState = () => {
+    //     handleBackButton();
+    //   };
+    //   window.addEventListener('popstate', handlePopState);
+    //   return () => {
+    //     window.removeEventListener('popstate', handlePopState);
+    //   };
+    // }, [tabHistory]);
+
+
+    //  the commented code not remove tabhistory after close the window 
+
+    // but the lower code is removing the tab histroy after refresh
+    const [tabHistory, setTabHistory] = useState(
+      localStorage.getItem('tabHistory') ? JSON.parse(localStorage.getItem('tabHistory')) : []
+    );
+  
+    const handleTabChange = (index) => {
+      setActiveTabIndex(index);
+      const updatedTabHistory = [...tabHistory, index];
+      setTabHistory(updatedTabHistory);
+      localStorage.setItem('activeTabIndex', index);
+      localStorage.setItem('tabHistory', JSON.stringify(updatedTabHistory));
+    };
+  
+    const handleBackButton = () => {
+      const updatedTabHistory = [...tabHistory];
+      updatedTabHistory.pop(); // Remove the last index from history
+      const lastIndex = updatedTabHistory.pop(); // Get the previous index
+      setTabHistory(updatedTabHistory);
+      setActiveTabIndex(lastIndex);
+      localStorage.setItem('activeTabIndex', lastIndex);
+      localStorage.setItem('tabHistory', JSON.stringify(updatedTabHistory));
+    };
+  
+    const handleWindowClose = () => {
+      // Clear tab history from localStorage when the window is closed
+      localStorage.removeItem('tabHistory');
+    };
+  
+    useEffect(() => {
+      const handlePopState = () => {
+        handleBackButton();
+      };
+  
+      // Add event listener for the popstate event
+      window.addEventListener('popstate', handlePopState);
+  
+      // Add event listener for the unload event
+      window.addEventListener('unload', handleWindowClose);
+  
+      // Clean up event listeners when the component unmounts
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+        window.removeEventListener('unload', handleWindowClose);
+      };
+    }, [tabHistory]);
+
+
   const handleTabClick = (index) => {
     setActiveTabIndex(index);
     localStorage.setItem('activeTabIndex', index);
     sliderRef.current.slickGoTo(index);
   };
 
-
-
-  useEffect(() => {
-   
-    // Ensure sliderRef is initialized before attempting to call slickGoTo
+    useEffect(() => {
     if (sliderRef.current) {
       console.log(activeTabIndex);
       sliderRef.current.slickGoTo(activeTabIndex);
     }
   }, [sliderRef.current ,activeTabIndex]);
+
+
+
+
 
   // === slider end ===
   const navigate = useNavigate();
@@ -307,6 +429,10 @@ const Root = () => {
       ),
     });
   };
+
+
+
+
   const CustomConfirmation = ({ title, message, onConfirm, onCancel }) => {
     return (
       <div className="custom-alert">
@@ -354,32 +480,7 @@ const Root = () => {
     dispatch(selectCountry(id));
     // dispatch(clearFavouriteMenu());
   };
-  if (IsMobile) {
-    useEffect(() => {
-      const x = setInterval(() => {
-        const x = scrollableDivRef.current?.scrollLeft;
-        let min_dist = Infinity;
-        let min_item = Infinity;
-        let y = (window?.innerWidth || 0) * 0.04;
-        // console.logy);
-        for (let index = 0; index < filteredFavouriteMenu.length; index++) {
-          const element = scrollableDivRef.current?.children[index];
-          y += element.scrollWidth;
-          let thisDistance = Math.abs(x - (y + element.scrollWidth / 2));
-          if (thisDistance < min_dist) {
-            min_dist = thisDistance;
-            min_item = index;
-          }
-        }
-        // console.logwindow.innerWidth, min_item);
-        if (minItem != min_item && min_item != Infinity) {
-          ScrollToActiveTab(null, min_item, false);
-        }
-      }, 1500);
-
-      return () => clearInterval(x);
-    }, []);
-  }
+ 
   useEffect(() => {
     const apiUrl = `${RootUrl.Baseurl}api/Region/GetRegion`;
     fetch(apiUrl)
@@ -721,18 +822,13 @@ const Root = () => {
                 <div className="curve"></div>
 
                 {/* ====== slicl slider ========== */}
-                <div className="all-tabs" id="scrollableDiv" ref={scrollableDivRef}>
+                <div className="all-tabs" id="scrollableDiv" ref={scrollableDivRef} >
                   {IsMobile && (
                     <>
-                      <Slider {...settings} ref={sliderRef}>
+                      <Slider {...settings} ref={sliderRef} >
                         
                         {filteredFavouriteMenu?.map((m, i) => {
-                          {/* console.log('mmm' , m) */}
-                          {/* const condition =
-                            (teamName === undefined && m?.name === filteredFavouriteMenu[0].name) ||
-                            m?.name === teamName; */}
-                            {/* console.log("ccc" , filteredFavouriteMenu[0].name);
-                            console.log("fff" , m?.name) */}
+                          
                           return (
                             
                         
